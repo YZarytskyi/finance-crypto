@@ -1,4 +1,5 @@
 const ALL_CURRENCIES = "ALL_CURRENCIES"
+const ADD_PRICE = "ADD_PRICE";
 const ADD_PAIRS = "ADD_PAIRS";
 const ADD_PAIR1 = "ADD_PAIR1";
 const ADD_PAIR2 = "ADD_PAIR2";
@@ -6,10 +7,11 @@ const ADD_PAIR3 = "ADD_PAIR3";
 
 const initialState = {
   currencies: [],
+  price: [],
   pairs: [],
-  pair1: 'ETHUSDT',
-  pair2: 'SOLETH',
-  pair3: 'SOLUSDT',
+  pair1: null,
+  pair2: null,
+  pair3: null,
 };
 
 export const cryptoReducer = (state = initialState, action) => {
@@ -17,8 +19,13 @@ export const cryptoReducer = (state = initialState, action) => {
     case ALL_CURRENCIES:
       return {
         ...state,
-        currencies: [action.currencies]
+        currencies: action.currencies
       };
+    case ADD_PRICE:
+      return {
+        ...state,
+        price: action.price
+      }
     case ADD_PAIRS:
       return {
         ...state,
@@ -47,6 +54,7 @@ export const cryptoReducer = (state = initialState, action) => {
 // ACTION CREATORS
 
 export const setAllCurrencies = (currencies) => ({ type: ALL_CURRENCIES, currencies });
+export const setPrice = (price) => ({type: ADD_PRICE, price});
 export const setPairs = (pair1, pair2, pair3) => ({ type: ADD_PAIRS, pair1, pair2, pair3 });
 export const setPair1 = (pair1) => ({ type: ADD_PAIR1, pair1 });
 export const setPair2 = (pair2) => ({ type: ADD_PAIR2, pair2 });

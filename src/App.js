@@ -1,11 +1,16 @@
 import "./App.css";
-import CheckResult from "./Components/CheckResult";
-
+import { Route, Routes } from "react-router-dom";
+import Arbitrage from "./Components/Crypto/Arbitrage/Arbitrage";
+import Header from "./Components/Header/Header";
 
 function App() {
   return (
     <div className="App">
-      <CheckResult />
+      <Header />
+        <Routes>
+          <Route path="/" element={<Arbitrage />}/>
+          <Route path="/crypto" element={<Arbitrage />} />
+        </Routes>
     </div>
   );
 }

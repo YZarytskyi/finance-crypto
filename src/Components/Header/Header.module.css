@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.header img {
+  margin-right: 18px;
+}
+
+.header a {
+  margin-top: -20px;
+}
+
+.item {
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  margin: 8px;
+}
+
+.active {
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  margin: 8px;
+}
+
+.nav {
+  justify-content: center;
+  align-items: center;
+}

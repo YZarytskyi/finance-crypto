@@ -1,6 +1,9 @@
-.input{
+.input {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-bottom: 20px;
+}
+.price {
+  padding-bottom: 15px;
 }

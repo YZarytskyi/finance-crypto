@@ -10,8 +10,8 @@ export const cryptoApi = {
     return instance
       .get("api/v3/exchangeInfo")
       .then(res => res.data.symbols)
-      .catch((err) => {
-        alert("Something went wrong! ", err)
+      .catch((error) => {
+        alert("Something went wrong: " + error)
       })
   },
   getPairs(value1, value2, value3) {
@@ -22,7 +22,13 @@ export const cryptoApi = {
            .then(axios.spread((pair1, pair2, pair3) => {
            return [pair1.data.price, pair2.data.price, pair3.data.price]
            }))
-           .catch(error => alert(error))
-   )
+           .catch(error => alert("Something went wrong: " + error))
+    )
    },
+  getPrice() {
+    return instance
+      .get("api/v3/ticker/price")
+      .then(res => res.data)
+      .catch((error) => {alert("Something went wrong: " + error)})
+  },
 }

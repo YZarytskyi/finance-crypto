@@ -1,0 +1,35 @@
+if (price.length !==0) {
+  let par = price.filter(q => q.symbol.includes("USDT"))
+  return (
+    console.log(
+    par.map(x => {
+      let filterPair1 = x.symbol.replace(/USDT/, '')
+      let par2 = price.filter(y => y.symbol.includes(filterPair1))
+      let map2 = par2.map(w => {
+        const regexp = new RegExp(filterPair1);
+        let filterPair2 = w.symbol.replace(regexp, '')
+        let par3 = price.filter(z => z.symbol.includes(filterPair2 + 'USDT' || 'USDT' +  filterPair2) ?
+        z.symbol.includes(filterPair2 + 'USDT' || 'USDT' +  filterPair2) : "")
+        let map3 = par3.map(q => {
+          return ({
+            pair1: x.symbol,
+            price1: x.price,
+            pair2: w.symbol,
+            price2: w.price,
+            pair3: q.symbol ? q.symbol : "",
+            price3: q.price ? q.price : "",
+          })
+        }) 
+        return (map3) 
+      })
+      return (map2)
+      })
+    )
+  )
+}
+
+
+
+const rows = [
+  {pair1: 'BTCUSDT', price1: '23725.88000000', pair2: 'BANDBTC', price2: '0.00007740', pair3: 'BANDUSDT', price3: "21421", result: "1.94" },
+];
