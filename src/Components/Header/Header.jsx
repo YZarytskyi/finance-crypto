@@ -5,6 +5,7 @@ import brand from '../../assets/images/logo.png'
 
 const Header = () => {
   return (
+    <>
     <div className={style.header}>
       <nav className={style.nav}>
         <NavLink
@@ -45,6 +46,8 @@ const Header = () => {
         </NavLink>
       </nav>
     </div>
+    <hr />
+    </>
   );
 };
 
