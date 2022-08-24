@@ -1,26 +1,17 @@
-.App{
-  text-align: center;
-  font-size: 18px;
-}
-.result{
-margin-top: 8px;
-font-weight: bold;
-}
-
-.apexcharts-tooltip {
-  color: rgb(3, 2, 2);
-}
-
 .dropdown button {
   height: fit-content;
   width: 25px;
   margin-right: 0px;
   font-size: 12px;
   padding: 0px 0px 0px 2.8px;
+    &::after {
+      border-top: 0;
+      border: none;
+    }
 }
-.dropdown button::after {
-  border-top: 0;
-  border: none;
+
+.dropdown div a {
+  width: 33px;
 }
 
 .btn-primary:focus {
@@ -35,18 +26,12 @@ font-weight: bold;
   background-color: rgba(52,58,64) !important;
 }
 
-.dropdown-item:hover {
-  border-radius: 5px;
-}
-
 .dropdown-item {
   padding: 5.8px !important;
   padding-left: 3.7px !important;
   text-align: center !important;
   font-size: 12.5px !important;
-}
-
-
-.dropdown div a {
-  width: 33px;
+    &:hover {
+      border-radius: 5px;
+    }
 }

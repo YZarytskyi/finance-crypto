@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import style from "./Articles.module.css";
+import style from "./Articles.module.scss";
 import { NavLink } from "react-router-dom";
 
 const ArticlesList = () => {

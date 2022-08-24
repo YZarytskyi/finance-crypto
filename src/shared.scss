@@ -1,0 +1,15 @@
+$color-main: rgba(255, 255, 255, 0.85);
+$color-data: rgba(255, 255, 255, 0.55);
+$bg-color-body: rgb(22, 27, 32);
+$bg-color-header: rgb(23, 34, 43);
+$bg-color-content: rgb(45, 49, 54);
+$box-shadow: rgb(95, 93, 168) 0px -1px 8px;
+$background-img: linear-gradient( rgba(9, 9, 14, 0.95), rgba(3, 3, 5, 0.95) ), url('./assets/images/bg-body.jpg');
+
+@mixin bg {
+  background: $background-img;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+}

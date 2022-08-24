@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Crypto from "./Components/Crypto/Crypto";
@@ -13,9 +13,10 @@ import Contacts from "./Components/Contacts/Contacts";
 function App() {
   return (
     <div className="App">
-      <Header />
+        <Header />
+        <div className="content">
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Home />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/crypto" element={<Crypto />} />
           <Route path="/crypto/arbitrage" element={<Arbitrage />} />
@@ -24,6 +25,7 @@ function App() {
           <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
+      </div>
     </div>
   );
 }

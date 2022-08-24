@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
-import style from "./Crypto.module.css";
+import style from "./Crypto.module.scss";
 import {
   fetchCurrencies,
   fetchPairs,

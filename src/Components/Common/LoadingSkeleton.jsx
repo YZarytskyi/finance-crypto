@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import style from "./Home/Home.module.css";
+import style from "../Home/Home.module.scss";
 
 export const CoinsBlockSkeleton = () => {
   const Block = () => {

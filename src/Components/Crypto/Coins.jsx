@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "./Crypto.module.css";
+import style from "./Crypto.module.scss";
 
 const Coins = () => {
   return(

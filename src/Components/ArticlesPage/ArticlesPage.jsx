@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
-import style from "./Articles.module.css";
+import style from "./Articles.module.scss";
 import ArticlesList from "./ArticlesList";
 
 const ArticlesPage = () => {

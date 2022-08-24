@@ -1,26 +1,23 @@
+@import '../../shared.scss';
+
 .wrapper {
+  @include bg;
   width: 100%;
   margin: 0 auto;
   font-family: nyt-imperial,georgia,'times new roman',times,serif;
   line-height: 1.875rem;
-  background: linear-gradient(rgba(9, 9, 14, 0.9), rgba(3, 3, 5, 0.9)), url('../../assets/images/bg-body.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: top;
-  color: var(--color-main);
+  color: $color-main;
 }
 
 .allArticles {
 	display: flex;
   flex: 1;
   flex-wrap: wrap;
-  padding: 1rem 5rem
-}
-
-.allArticles a{
-  text-decoration: none;
-  color: rgb(167, 149, 238); 
+  padding: 1rem 5rem;
+    a {
+      text-decoration: none;
+      color: rgb(167, 149, 238); 
+    }
 }
 
 .article {
@@ -31,7 +28,7 @@
   box-shadow: rgb(95, 93, 168) 0px 0px 7px;
   margin: 1.6rem;
   padding: 0.5rem;
-  background: linear-gradient(rgba(15, 15, 27, 0.99), rgba(15, 15, 27, 0.98)), url('../../assets/images/bg-body.jpg');
+  background: $background-img;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -54,16 +51,14 @@
 .selectedArticle {
   width: 50%;
   margin: 0 auto;
-}
-
-.selectedArticle img {
-  margin: 0 auto;
-  width: 75%;
-  box-shadow: rgb(77, 74, 74) 1px 1px 5px;;
-}
-
-.selectedArticle a {
-  color: rgb(121, 99, 211); 
+    img {
+      margin: 0 auto;
+      width: 75%;
+      box-shadow: rgb(77, 74, 74) 1px 1px 5px;;
+    }
+    a {
+      color: rgb(121, 99, 211); 
+    }
 }
 
 .title {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./Articles.module.css";
+import style from "./Articles.module.scss";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 
 const Article = () => {

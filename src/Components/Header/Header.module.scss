@@ -1,11 +1,13 @@
+@import '../../shared.scss';
+
 .header {
   display: flex;
   justify-content: center;
   height: 1rem;
-  background-color: var(--bg-color-header);
-  box-shadow: var(--box-shadow);
+  background-color: $bg-color-header;
+  box-shadow: $box-shadow;
   padding: 2rem;
-  background: linear-gradient( rgba(9, 9, 14, 0.89), rgba(3, 3, 5, 0.8) ), url('../../assets/images/bg-body.jpg');
+  background: $background-img;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: top 1% left 10%;
@@ -15,22 +17,19 @@
 
 .item {
   text-decoration: none;
-  color: black;
   vertical-align: middle;
   margin: 12px;
-  color: var(--color-main);
+  color: $color-main;
+    &:hover {
+      color:rgb(136, 136, 204)
+    }
 }
 
 .active {
   text-decoration: none;
-  color: black;
   vertical-align: middle;
   margin: 12px;
-  color: var(--color-main);
-}
-
-.item:hover {
-  color:rgb(136, 136, 204)
+  color: $color-main;
 }
 
 .nav {

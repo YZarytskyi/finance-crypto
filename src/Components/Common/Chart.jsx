@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
+import './Chart.scss';
 
 const ApexChart = ({markets, coinId}) => {
   const marketsTime = useSelector(state => state.crypto.marketsTime)

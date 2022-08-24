@@ -4,13 +4,14 @@ import { Carousel } from "react-bootstrap";
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpeg";
 import slider3 from "../../assets/images/slider3.jpg";
-import style from "./Home.module.css";
+import style from "./Home.module.scss";
 import { fetchMarkets } from "../../Store/Reducers/cryptoSlice";
-import Chart from "./Chart";
-import { ArticlesBlockSkeleton, CoinsBlockSkeleton } from "../LoadingSkeleton";
+import Chart from "../Common/Chart";
+import { ArticlesBlockSkeleton, CoinsBlockSkeleton } from "../Common/LoadingSkeleton";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { NavLink } from "react-router-dom";
-import Select from "./Select";
+import Select from "../Common/Select";
+import { BiTimeFive } from "react-icons/bi"
 
 const Home = () => {
   const articles = useSelector((state) => state.articles.articles);
@@ -154,7 +155,10 @@ const Home = () => {
                 <div className="text-left mt-1 w-72">{
                   articles[0].title.slice(0, 65)}...
                   </div>
-                <div className="text-left mt-1 text-zinc-600 text-sm">
+                <div className="text-left mt-1 text-zinc-600 text-sm flex">
+                  <div style={{marginTop:'3px', marginRight: '5px'}}>
+                    <BiTimeFive />
+                  </div>
                   {articles[0].publishedAt.slice(0, 10)}
                 </div>
               </div>
@@ -167,7 +171,10 @@ const Home = () => {
                 <div className="text-left mt-1 w-72">
                   {articles[1].title.slice(0, 65)}...
                 </div>
-                <div className="text-left mt-1 text-zinc-600 text-sm">
+                <div className="text-left mt-1 text-zinc-600 text-sm flex">
+                  <div style={{marginTop:'3px', marginRight: '5px'}}>
+                    <BiTimeFive />
+                  </div>
                   {articles[1].publishedAt.slice(0, 10)}
                 </div>
               </div>
@@ -189,7 +196,10 @@ const Home = () => {
                 <div className="text-left ml-5 text-base">
                   {articles[2].title}
                 </div>
-                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
+                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
+                  <div style={{marginTop:'3px', marginRight: '5px'}}>
+                    <BiTimeFive />
+                  </div>
                   {articles[2].publishedAt.slice(0, 10)}
                 </div>
               </div>
@@ -206,7 +216,10 @@ const Home = () => {
                 <div className="text-left ml-5 text-base">
                   {articles[3].title}
                 </div>
-                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
+                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
+                  <div style={{marginTop:'3px', marginRight: '5px'}}>
+                    <BiTimeFive />
+                  </div>
                   {articles[3].publishedAt.slice(0, 10)}
                 </div>
               </div>
@@ -223,7 +236,10 @@ const Home = () => {
                 <div className="text-left ml-5 text-base">
                   {articles[4].title}
                 </div>
-                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
+                <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
+                  <div style={{marginTop:'3px', marginRight: '5px'}}>
+                    <BiTimeFive />
+                  </div>
                   {articles[4].publishedAt.slice(0, 10)}
                 </div>
               </div>

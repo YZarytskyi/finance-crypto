@@ -3,6 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useDispatch } from 'react-redux';
 import { setDefaultMarketsTime, setMarketsTime } from '../../Store/Reducers/cryptoSlice';
+import './Select.scss'
 
 export default function Select({chartTime, setChartTime, oneDay, threeDays, sevenDays, coinId}) {
   const dispatch = useDispatch()
