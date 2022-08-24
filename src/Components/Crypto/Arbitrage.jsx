@@ -1,33 +1,34 @@
 import * as React from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
+import style from "./Crypto.module.css";
 import {
-  fetchAllCurrencies,
+  fetchCurrencies,
   fetchPairs,
   setPair1,
   setPair2,
   setPair3,
-} from "../../../Redux/Reducers/cryptoReducer";
-import style from './Arbitrage.module.css'
+} from "../../Store/Reducers/cryptoSlice";
 import Scanner from "./Scanner";
-import { useState } from "react";
 
 const Arbitrage = () => {
   const { pair1, pair2, pair3 } = useSelector((state) => state.crypto);
   const currencies = useSelector((state) => state.crypto.currencies);
   const pairs = useSelector((state) => state.crypto.pairs);
   const dispatch = useDispatch();
-  const [getResult, setGetResult] = useState(0)
 
   useEffect(() => {
-    dispatch(fetchAllCurrencies());
+    dispatch(fetchCurrencies());
   }, []);
 
-  useEffect(() => {
-      if(getResult && pair1 && pair2 && pair3) dispatch(fetchPairs(pair1, pair2, pair3))
-  }, [getResult]);
+  const handlePairs = (pair1, pair2, pair3) => { 
+        const pairs = {pair1, pair2, pair3}
+        dispatch(fetchPairs(pairs))
+  } 
+
 
 
   const allCurrencies = currencies.length !== 0 ? currencies.map((item) => item.symbol) : "";
@@ -46,19 +47,27 @@ const Arbitrage = () => {
     ? allCurrencies.filter((x) => x.includes(filterPair2 + "USDT" || "USDT" + filterPair2))
     : [];
 
-  const formula = (100 / pairs[0] * pairs[1] * pairs[2] - 100) || 0;
+
+  const pair11 = pairs[0] ? pairs[0] : 0
+  const pair22 = pairs[1] ? pairs[1] : 0
+  const pair33 = pairs[2] ? pairs[2] : 0
+  const formula = (100 / pair11.ask / pair22.ask * pair33.bid - 100) || 0;
   const result = formula < 4 && formula > -4
       ? formula.toFixed(2)
-      : (100 / pairs[0] / pairs[1] * pairs[2] - 100).toFixed(2);
+      : (100 / pair11.ask * pair22.bid * pair33.bid - 100).toFixed(2)
+  const result2 = result < 4 && result > -4
+      ? result
+      : (100 * pair11.bid / pair22.ask * pair33.bid - 100).toFixed(2)
+
 
   return (
-    <>
-      <div className={style.head}>
+    <div className={style.wrapper}>
+      <div>
         <br />
       </div>
-      <div className={style.input}>
+      <div className="flex justify-center gap-5 mb-5">
         <div>
-          <div className={style.price}>{+pairs[0]}</div>
+          <div className="pb-0">{+pair11.ask}</div>
           <Autocomplete
             value={pair1}
             onChange={(event, pair1) => {
@@ -72,7 +81,7 @@ const Arbitrage = () => {
           />
         </div>
         <div>
-          <div className={style.price}>{+pairs[1]}</div>
+          <div>{+pair22.ask}</div>
           <Autocomplete
             value={pair2}
             onChange={(event, newValue) => {
@@ -86,7 +95,7 @@ const Arbitrage = () => {
           />
         </div>
         <div>
-          <div className={style.price}>{+pairs[2]}</div>
+          <div>{+pair33.bid}</div>
           <Autocomplete
             value={pair3}
             onChange={(event, newValue) => {
@@ -100,20 +109,19 @@ const Arbitrage = () => {
           />
         </div>
       </div>
-      <Button onClick={() => setGetResult(getResult + 1)} variant="outlined">
+      <Button onClick={() => handlePairs(pair1, pair2, pair3)} variant="outlined">
         Check
       </Button>
-      <h4 className={style.result}>Result: {result} %</h4>
+      <h4 className='my-4 text-xl font-medium'>Result: {result2} %</h4>
       <hr />
       <Scanner
         allCurrencies={allCurrencies}
         pair1Currencies={pair1Currencies}
         pair2Currencies={pair2Currencies}
         pair3Currencies={pair3Currencies}
-        dispatch={dispatch}
         currencies={currencies}
       />
-    </>
+    </div>
   );
 };
 

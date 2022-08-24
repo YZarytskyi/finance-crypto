@@ -53,7 +53,8 @@ export default function DataGridDemo({result}) {
       <DataGrid
         rows={result}
         columns={columns}
-        rowsPerPageOptions={[10]}
+        rowsPerPageOptions={[5]}
+        
       />
     </Box>
   );

@@ -1,0 +1,36 @@
+.wrapper {
+  width: auto;
+  /* background: linear-gradient( rgba(9, 9, 14, 0.5), rgba(3, 3, 5, 0.5) ), url('../../../assets/images/bg-body.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+  color: var(--color-main); */
+}
+/* 
+.wrapper fieldset {
+  border: 1px solid var(--color-main);
+}
+
+.wrapper path {
+  color: var(--color-main) !important;
+} */
+
+.crypto {
+  background: linear-gradient( rgba(9, 9, 14, 0.97), rgba(3, 3, 5, 0.97) ), url('../../assets/images/bg-body.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+  color: var(--color-main);
+}
+
+.crypto a {
+  text-decoration: none;
+  color: var(--color-main);
+  margin: 1.5rem; 
+}
+
+.crypto a:hover {
+  color: rgb(146, 146, 175);
+}

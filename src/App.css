@@ -1,18 +1,52 @@
 .App{
-  padding: 10px;
   text-align: center;
   font-size: 18px;
-}
-.head{
-  margin-bottom: 10px;
 }
 .result{
 margin-top: 8px;
 font-weight: bold;
 }
-.price{
 
+.apexcharts-tooltip {
+  color: rgb(3, 2, 2);
 }
-.pair{
 
+.dropdown button {
+  height: fit-content;
+  width: 25px;
+  margin-right: 0px;
+  font-size: 12px;
+  padding: 0px 0px 0px 2.8px;
+}
+.dropdown button::after {
+  border-top: 0;
+  border: none;
+}
+
+.btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.dropdown-menu {
+  left: -5px !important;
+  top: -25px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  background-color: rgba(52,58,64) !important;
+}
+
+.dropdown-item:hover {
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  padding: 5.8px !important;
+  padding-left: 3.7px !important;
+  text-align: center !important;
+  font-size: 12.5px !important;
+}
+
+
+.dropdown div a {
+  width: 33px;
 }
