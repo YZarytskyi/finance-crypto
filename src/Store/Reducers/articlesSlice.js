@@ -4,7 +4,10 @@ import { articlesApi } from "../../API/api";
 export const fetchArticles = createAsyncThunk(
   'articles/fetchAll',
   async (_,) => {
-    return await articlesApi.getArticles()
+    let response = await articlesApi.getArticles();
+    return response.map((article, index) => ({
+      id: index + 1, ...article
+    }))
   }
 )
 
@@ -16,12 +19,12 @@ export const articlesSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchArticles.fulfilled, (state, action) => {
-      state.articles = action.payload;
-      state.isLoading = false;
-      })
-      .addCase(fetchArticles.pending, (state) => {
+    builder.addCase(fetchArticles.pending, (state) => {
         state.isLoading = true;
+      })
+      .addCase(fetchArticles.fulfilled, (state, action) => {
+        state.articles = action.payload;
+        state.isLoading = false;
       })
   }
 })

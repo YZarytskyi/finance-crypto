@@ -1,0 +1,43 @@
+@import '../../shared.scss';
+
+.contacts {
+  @include bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+    .heading {
+      width: 80%;
+      padding: 1.5rem;
+    }
+    .formImg {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5rem;
+        div:nth-child(1) {
+          width: 100%;
+        }
+        div:nth-child(2) {
+          width: 100%;
+        }
+    }
+}
+
+.modal {
+  text-align: center;
+  color: rgb(39, 39, 39);
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bolder;
+      margin-bottom: -0.3rem;
+    }
+    div:first-child {
+      margin-top: 0.8rem;
+    }
+    span {
+      font-weight: bolder;
+    }
+}

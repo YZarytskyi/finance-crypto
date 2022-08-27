@@ -1,4 +1,4 @@
-import DataGridDemo from "./Table";
+import TableArbitrage from "./TableArbitrage";
 
 const Scanner = ({ currencies }) => {
   if (currencies.length !== 0) {
@@ -58,7 +58,7 @@ const Scanner = ({ currencies }) => {
       id: i + 1,
     }));
 
-    return <DataGridDemo result={result} />;
+    return <TableArbitrage result={result} />;
   }
 };
 

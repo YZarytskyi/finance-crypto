@@ -4,14 +4,14 @@ import TextField from '@mui/material/TextField';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
-import style from "./Crypto.module.scss";
+import style from "../Crypto.module.scss";
 import {
   fetchCurrencies,
   fetchPairs,
   setPair1,
   setPair2,
   setPair3,
-} from "../../Store/Reducers/cryptoSlice";
+} from "../../../Store/Reducers/cryptoSlice";
 import Scanner from "./Scanner";
 
 const Arbitrage = () => {

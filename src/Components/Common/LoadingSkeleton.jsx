@@ -14,7 +14,7 @@ export const CoinsBlockSkeleton = () => {
               style={{ marginLeft: 4, borderRadius: 50 }}
             />
           </div>
-          <Skeleton height={15} width={53} />
+          <Skeleton height={15} width={50} />
           <Skeleton height={15} width={40} style={{ marginLeft: 2 }} />
         </div>
         <div className={style.cryptoRightSide}>
@@ -32,7 +32,7 @@ export const CoinsBlockSkeleton = () => {
   return (
     <>
       <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
-        <div className={style.charts}>
+        <div className={style.coins}>
           <Block />
           <Block />
           <Block />

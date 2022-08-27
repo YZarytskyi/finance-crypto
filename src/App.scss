@@ -1,5 +1,23 @@
 @import './shared.scss';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @include bg;
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: inherit;
+      color: $color-main;
+      overflow-y: scroll;
+    }
+}
 .App {
   text-align: center;
   font-size: 18px;
@@ -8,4 +26,13 @@
 .result {
   margin-top: 8px;
   font-weight: bold;
+}
+
+.tableCoins {
+  * {
+    color: $color-main;
+      &:hover {
+        color: $color-a-hover;
+      }
+  }
 }

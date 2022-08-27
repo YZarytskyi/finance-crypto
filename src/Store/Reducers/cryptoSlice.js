@@ -29,13 +29,22 @@ export const fetchMarkets = createAsyncThunk(
   }
 )
 
+export const fetchCoinDescription = createAsyncThunk(
+  'CoinDescrtiption/fetch',
+  async (coinId) => {
+    return await cryptoApi.getCoinsDescription(coinId)
+  }
+)
+
 export const cryptoSlice = createSlice({
   name: 'crypto',
   initialState: {
     currencies: [],
     markets: [],
     isLoading: false,
+    coinDescription: "",
     marketsTime: {},
+    coinInfo: null,
     pairs: [],
     pair1: null,
     pair2: null,
@@ -56,6 +65,12 @@ export const cryptoSlice = createSlice({
     },
     setDefaultMarketsTime(state) {
       state.marketsTime = {}
+    },
+    removeCoinDescription(state) {
+      state.coinDescription = ''
+    },
+    setCoinInfo(state, action) {
+      state.coinInfo = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -72,9 +87,13 @@ export const cryptoSlice = createSlice({
       .addCase(fetchMarkets.pending, (state) => {
         state.isLoading = true;
       })
+    builder.addCase(fetchCoinDescription.fulfilled, (state, action) => {
+      state.coinDescription = action.payload
+    })
   }
 })
 
-export const { setPair1, setPair2, setPair3, setMarketsTime, setDefaultMarketsTime } = cryptoSlice.actions
+export const { setPair1, setPair2, setPair3, setMarketsTime, setDefaultMarketsTime,
+  removeCoinDescription, setCoinInfo} = cryptoSlice.actions
 
 export default cryptoSlice.reducer

@@ -47,7 +47,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-export default function DataGridDemo({result}) {
+export default function TableArbitrage({result}) {
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid

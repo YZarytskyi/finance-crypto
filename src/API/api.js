@@ -34,8 +34,16 @@ export const cryptoApi = {
   },
   
   getMarkets() {
-    return axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=11&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d')
+    return axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d')
     .then(res => res.data)
+    .catch((error) => {
+      alert(error)
+    })
+  },
+
+  getCoinsDescription(coinId) {
+    return axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`)
+    .then(res => res.data.description.en)
     .catch((error) => {
       alert(error)
     })

@@ -4,7 +4,10 @@ $bg-color-body: rgb(22, 27, 32);
 $bg-color-header: rgb(23, 34, 43);
 $bg-color-content: rgb(45, 49, 54);
 $box-shadow: rgb(95, 93, 168) 0px -1px 8px;
-$background-img: linear-gradient( rgba(9, 9, 14, 0.95), rgba(3, 3, 5, 0.95) ), url('./assets/images/bg-body.jpg');
+$background-img: linear-gradient( rgba(9, 9, 14, 0.97), rgba(3, 3, 5, 0.97) ), url('./assets/images/bg-body.jpg');
+$color-plus: rgb(3, 109, 3);
+$color-minus: rgb(212, 66, 8);
+$color-a-hover: rgb(136, 136, 204);
 
 @mixin bg {
   background: $background-img;
