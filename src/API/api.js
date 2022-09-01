@@ -1,14 +1,10 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "https://api.binance.com/",
-});
-
 export const cryptoApi = {
 
   getAllCurrencies() {
-    return instance
-      .get("api/v3/exchangeInfo")
+    return axios
+      .get("https://api.binance.com/api/v3/exchangeInfo")
       .then(res => res.data.symbols)
       .catch((error) => {
         alert(error)
@@ -27,14 +23,22 @@ export const cryptoApi = {
     )
    },
   getPrice() {
-    return instance
-      .get("api/v3/ticker/price")
+    return axios
+      .get("https://api.binance.com/api/v3/ticker/bookTicker")
       .then(res => res.data)
       .catch((error) => {alert(error)})
   },
   
   getMarkets() {
-    return axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d')
+    return axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d')
+    .then(res => res.data)
+    .catch((error) => {
+      alert(error)
+    })
+  },
+
+  getMarketChart(coinId, period) {
+    return axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${period}`)
     .then(res => res.data)
     .catch((error) => {
       alert(error)
@@ -44,6 +48,14 @@ export const cryptoApi = {
   getCoinsDescription(coinId) {
     return axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`)
     .then(res => res.data.description.en)
+    .catch((error) => {
+      alert(error)
+    })
+  },
+
+  getExchanges() {
+    return axios.get('https://api.coingecko.com/api/v3/exchanges')
+    .then(res => res.data)
     .catch((error) => {
       alert(error)
     })

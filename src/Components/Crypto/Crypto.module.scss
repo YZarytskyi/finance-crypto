@@ -1,144 +1,17 @@
-@import '../../shared.scss';
+@import '../../variables.scss';
 
 .wrapper {
   width: auto;
-  /* @include bg
-  color: $color-main; */
 }
 
 .crypto {
-  @include bg;
   color: $color-main;
+    > div {
+      margin-top: 0.5rem;
+    }
     a {
       text-decoration: none;
       color: $color-main;
       margin: 1.5rem;
-        &:hover {
-          color: rgb(146, 146, 175);
-        }
-    }
-}
-
-.coin {
-  @include bg;
-  color: $color-main;
-}
-
-.descriptionChart {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.description {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 40%;
-  padding: 3rem 4rem;
-    .rank {
-      background-color: rgb(66, 63, 63);
-      border-radius: 10px;
-      padding: 2px 6px;
-      font-size: 0.9rem;
-    }
-    .imgName {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-top: 0.8rem;
-        div:nth-child(1) {
-          font-size: 1.5rem;
-          font-weight: 700;
-        }
-    }
-    .pricePercentage {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0.3rem;
-        div:nth-child(1) {
-          font-size: 2rem;
-          font-weight: 700;
-        }
-        div:nth-child(2) {
-          font-size: 1.5rem;
-          font-weight: 600;
-        }
-      }
-    .progressBar  {
-      width: 80%;
-      margin-bottom: 0.2rem;
-    }
-    .lowHigh {
-      display: flex;
-      width: 80%;
-      justify-content: space-between;
-      margin-bottom: 0.2rem;
-        div:nth-child(1) {
-          font-size: 1rem;
-          color: $color-minus;
-        }
-        div:nth-child(2) {
-          display: flex;
-          align-items: center;
-          font-size: 0.8rem;
-          color: $color-main;
-        }
-        div:nth-child(3) {
-          font-size: 1rem;
-          color: $color-plus;
-        }
-    }
-    .marketCapInfo {
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-      padding-bottom: 0.3rem;
-      margin-top: 0.5rem;
-      border-bottom: 0.01rem solid rgb(78, 77, 77);
-        div:nth-child(1) {
-          font-size: 0.9rem;
-          color: gray
-        }
-        div:nth-child(2) {
-          font-size: 0.9rem;
-        }
-    }
-}
-
-.chartContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 60%;
-  height: 100%;
-  margin-top: 7rem;
-    .chart {
-      width: 90%;
-      height: 100%;
-    }
-}
-
-.percentagePlus {
-  color: $color-plus;
-}
-
-.percentageMinus {
-  color: $color-minus;
-}
-
-.commonInfo {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-    .coinInfo {
-      padding: 2rem 4rem;
-      color: rgb(179, 174, 174);
-      text-align: left;
-      font-size: 1.1rem;
-      width: 100%;
-      white-space: pre-line;
     }
 }

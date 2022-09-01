@@ -7,29 +7,40 @@ import Finance from "./Components/Finance/Finance";
 import Articles from "./Components/ArticlesPage/ArticlesPage";
 import Article from "./Components/ArticlesPage/Article";
 import Contacts from "./Components/Contacts/Contacts";
-import Coin from "./Components/Crypto/Coins/Coin";
-import Coins from "./Components/Crypto/Coins/Coins";
+import SelectedCoin from "./Components/Crypto/Coins/SelectedCoin";
 import Arbitrage from "./Components/Crypto/Arbitrage/Arbitrage";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Exchanges from "./Components/Crypto/Exchanges/Exchanges";
 
-function App() {
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+const App = () => {
   return (
-    <div className="App">
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="App">
         <Header />
         <div className="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/finance" element={<Finance />} />
-          <Route path="/crypto" element={<Crypto />} />
-          <Route path="/crypto/arbitrage" element={<Arbitrage />} />
-          <Route path="/crypto/coins" element={<Coins />} />
-          <Route path="/crypto/coins/:coinId" element={<Coin />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/articles/:articleId" element={<Article />} />
-          <Route path="/contacts" element={<Contacts />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/finance" element={<Finance />} />
+            <Route path="/crypto/coins" element={<Crypto />} />
+            <Route path="/crypto/arbitrage" element={<Arbitrage />} />
+            <Route path="/crypto/exchanges" element={<Exchanges />} />
+            <Route path="/crypto/coins/:coinId" element={<SelectedCoin />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:articleId" element={<Article />} />
+            <Route path="/contacts" element={<Contacts />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

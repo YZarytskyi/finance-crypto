@@ -16,7 +16,7 @@ const Header = () => {
         <NavLink to="/finance">
           <div>Finance</div>
         </NavLink>
-        <NavLink to="/crypto">
+        <NavLink to="/crypto/coins">
           <div>Crypto</div>
         </NavLink>
         <NavLink to="/articles">

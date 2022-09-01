@@ -1,14 +1,17 @@
-import React, { Component, useState } from "react";
-import Chart from "react-apexcharts";
+import React from "react";
+import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
-const ChartSelectedCoin = ({markets}) => {
+const ChartHome = ({markets, coinId}) => {
 
+  const marketsTime = useSelector(state => state.crypto.marketsTime)
+  const check = Object.keys(marketsTime);
   const settings = {
     optionsMixedChart: {
       chart: {
         animations: {
           enabled: false,
-        }, 
+        },
         id: "area-datetime",
         type: 'area',
         toolbar: {
@@ -18,25 +21,11 @@ const ChartSelectedCoin = ({markets}) => {
           enabled: true
         }
       },
+      dataLabels: {
+        enabled: false,
+      }, 
       grid: {
-        show: true,
-        position: 'back',
-        xaxis: {
-            lines: {
-                show: false
-            },
-        },   
-        yaxis: {
-            lines: {
-                show: false
-            }
-        },  
-        padding: {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-        },  
+        show: false,
       },
       fill: {
         type: 'gradient',
@@ -76,7 +65,7 @@ const ChartSelectedCoin = ({markets}) => {
       },
       
       xaxis: {
-        yAxisIndex: 0,
+        type: 'numeric',
         labels: {
           show: false,
         },
@@ -88,22 +77,33 @@ const ChartSelectedCoin = ({markets}) => {
       stroke: {
         show: true,
         curve: 'straight',
-        lineCap: 'butt',
-        width: 2,    
-      },     
+        width: 2, 
+      },
+      states: {
+        hover: {
+            filter: {
+                type: 'none',
+            }
+        },
+      }
+      
     },
     seriesMixedChart: [
       {
         name: "price",
         type: "area",
-        data: markets,
+        data: (check.includes(coinId)) 
+        ? ((marketsTime[coinId] === '168' && markets) 
+        || (marketsTime[coinId] === '72' && markets.slice(-72))
+        || (marketsTime[coinId] === '24' && markets.slice(-24)))
+        : (markets)
   }
   ]
 }
   if(markets.length !== 0) {
     return (
       <div>
-        <Chart
+        <ReactApexChart
           options={settings.optionsMixedChart}
           series={settings.seriesMixedChart}
           type="line"
@@ -115,4 +115,4 @@ const ChartSelectedCoin = ({markets}) => {
     }
 }
 
-export default ChartSelectedCoin;
+export default ChartHome;

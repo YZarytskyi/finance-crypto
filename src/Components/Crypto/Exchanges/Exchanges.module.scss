@@ -1,0 +1,54 @@
+@import "../Coins/Coins.module.scss";
+
+.tableExchanges {
+  width: 80%;
+  th:nth-child(2) {
+    width: 25%
+  }
+  th:nth-child(3) {
+    text-align: center;
+    padding: 0;
+  }
+  th:nth-child(5) {
+    width: 11%;
+  }
+  th:nth-child(6) {
+    width: 20%;
+  }
+  td:nth-child(2) {
+    > div {
+      display: flex;
+      align-items: center;
+      height: auto;
+      > div:first-child {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 1rem;
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: $color-main;
+        &:hover {
+          color: rgb(18,107,210);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  td:nth-child(3) {
+    padding: 0;
+    > div {
+      display: flex;
+      align-items: center;
+      > div {
+        width: 80%;
+        height: 0.8rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

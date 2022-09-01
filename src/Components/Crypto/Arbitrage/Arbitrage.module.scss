@@ -1,0 +1,40 @@
+@import '../Coins/Coins.module.scss';
+
+.tableArbitrage {
+  width: 55%;
+}
+
+.arbitrageHead {
+  height: 2rem;
+  > tr {
+    > th:nth-child(3) {
+    text-align: center;
+    padding: 0;
+    }
+  }
+} 
+
+.arbitrageBody {
+  > td {
+    text-align: right;
+    text-align: center;
+    cursor: pointer;
+  }
+  > td:nth-child(odd) {
+    color:rgb(150, 150, 150);
+  }
+  > td:nth-child(7) {
+    color: rgb(91, 180, 98);
+  }
+  > td:nth-child(3) {
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.refreshIcon {
+  margin: 0 auto;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

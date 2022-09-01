@@ -83,8 +83,8 @@ const Home = () => {
             <div className={style.articlesLeft}>
               <div className="w-100 text-left ml-7 text-xl">Top Articles</div>
               <div className={style.articlesLeftContent}>
-                {articles.slice(0,2).map(article => {
-                  return(
+
+                {articles.slice(0,2).map(article => (
                 <NavLink to={`/articles/${article.id}`} key={article.id}>
                   <div className="w-64 mr-10">
                     <div>
@@ -101,7 +101,8 @@ const Home = () => {
                     </div>
                   </div>
                 </NavLink>
-                )})}
+                ))}
+
               </div>
             </div>
 
@@ -109,68 +110,30 @@ const Home = () => {
               <div className="text-left ml-7 text-xl w-11/12">
                 Recent Articles
               </div>
-              {
-              <NavLink to="/articles/3">
+
+              {articles.slice(2,5).map(article => (
+              <NavLink to={`/articles/${article.id}`} key={article.id}>
                 <div className={style.articlesRightList}>
                   <div>
                     <div className={style.articlesRightImg}>
-                      <img src={articles[2].urlToImage} alt="article title" />
+                      <img src={article.urlToImage} alt="article title" />
                     </div>
                   </div>
                   <div>
                     <div className="text-left ml-5 text-base">
-                      {articles[2].title}
+                      {article.title}
                     </div>
                     <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
                       <div style={{ marginTop: "3px", marginRight: "5px" }}>
                         <BiTimeFive />
                       </div>
-                      {articles[2].publishedAt.slice(0, 10)}
+                      {article.publishedAt.slice(0, 10)}
                     </div>
                   </div>
                 </div>
               </NavLink>
-              }
-              <NavLink to="/articles/4">
-                <div className={style.articlesRightList}>
-                  <div>
-                    <div className={style.articlesRightImg}>
-                      <img src={articles[3].urlToImage} alt="article title" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-left ml-5 text-base">
-                      {articles[3].title}
-                    </div>
-                    <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
-                      <div style={{ marginTop: "3px", marginRight: "5px" }}>
-                        <BiTimeFive />
-                      </div>
-                      {articles[3].publishedAt.slice(0, 10)}
-                    </div>
-                  </div>
-                </div>
-              </NavLink>
-              <NavLink to="/articles/5">
-                <div className={style.articlesRightList}>
-                  <div>
-                    <div className={style.articlesRightImg}>
-                      <img src={articles[4].urlToImage} alt="article title" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-left ml-5 text-base">
-                      {articles[4].title}
-                    </div>
-                    <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
-                      <div style={{ marginTop: "3px", marginRight: "5px" }}>
-                        <BiTimeFive />
-                      </div>
-                      {articles[4].publishedAt.slice(0, 10)}
-                    </div>
-                  </div>
-                </div>
-              </NavLink>
+              ))}
+
             </div>
 
           </div>

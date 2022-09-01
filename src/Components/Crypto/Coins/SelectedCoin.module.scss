@@ -1,0 +1,146 @@
+@import '../../../variables.scss';
+
+.descriptionChart {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.description {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 40%;
+  padding: 3rem 4rem;
+    .rank {
+      background-color: rgb(66, 63, 63);
+      border-radius: 10px;
+      padding: 2px 6px;
+      font-size: 0.9rem;
+    }
+    .imgName {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+        div:nth-child(1) {
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+    }
+    .pricePercentage {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+        div:nth-child(1) {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+        div:nth-child(2) {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    .progressBar  {
+      width: 85%;
+      margin-bottom: 0.2rem;
+    }
+    .lowHigh {
+      display: flex;
+      width: 85%;
+      justify-content: space-between;
+      margin-bottom: 0.2rem;
+        div:nth-child(1) {
+          font-size: 1rem;
+          color: $color-minus;
+        }
+        div:nth-child(2) {
+          display: flex;
+          align-items: center;
+          font-size: 0.8rem;
+          color: $color-main;
+        }
+        div:nth-child(3) {
+          font-size: 1rem;
+          color: $color-plus;
+        }
+    }
+    .marketCapInfo {
+      width: 85%;
+      margin-top: 1rem;
+      > div{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 0.3rem;
+        margin-top: 0.6rem;
+        border-bottom: 0.01rem solid rgb(78, 77, 77);
+          div:nth-child(1) {
+            font-size: 0.9rem;
+            color: gray
+          }
+          div:nth-child(2) {
+            font-size: 0.9rem;
+          }
+      }
+    }
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+  height: 100%;
+  margin-top: 2rem;
+    .chart {
+      width: 90%;
+      height: 100%;
+    }
+}
+
+.inputChartTime {
+  input {
+    width: 6rem;
+    color:rgb(66, 63, 63);
+    padding: 0.3rem;
+    border-radius: 7px;
+    margin: 0rem 1rem 1rem 0;
+  }
+}
+
+.chartTools {
+  .chartButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 3rem;
+      button {
+        background-color: #0d6efd;
+        border-radius: 5px;
+        padding: 0.1rem;
+        font-size: 1.05rem;
+        width: 3rem;
+          &:active {
+            background-color: #034dbd;
+          }
+      }
+  }
+}
+
+.commonInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+    .coinInfo {
+      padding: 2rem 4rem;
+      color: rgb(179, 174, 174);
+      text-align: left;
+      font-size: 1.1rem;
+      width: 100%;
+      white-space: pre-line;
+    }
+}

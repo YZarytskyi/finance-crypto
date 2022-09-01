@@ -1,17 +1,150 @@
-@import '../../shared.scss';
+@import '../../variables.scss';
+
+$bg-main:rgba(0, 0, 0, 0.65);
 
 .wrapper {
-  @include bg;
   width: 100%;
-  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   font-family: nyt-imperial,georgia,'times new roman',times,serif;
-  line-height: 1.875rem;
-  color: $color-main;
 }
 
-.allArticles {
+.heading {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+  a {
+    text-decoration: none;
+    color: $color-main;
+    &:hover {
+      color: rgb(131, 131, 241);
+    }
+  }
+  .leftBlock {
+    position: relative;
+    height: 100%;
+    width: 64%;
+    z-index: 1;
+    .bottomList {
+      position: absolute;
+      bottom: 35px;
+      right: 0px;
+      width: 90%;
+      height: 35%;
+      display: flex;
+      background-color: $bg-main;
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: flex-start;
+      gap: 2rem;
+      padding: 1.5rem 3rem;
+      .bottomListItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 33%;
+        > div:nth-child(1) {
+          font-size: 0.9rem;
+          img {
+            height: 12vh;
+            width: 100%;
+          }
+        }
+        > div:nth-child(2) {
+          margin-top: 0.6rem;
+          font-size: 1rem;
+          height: 90px;
+          font-size: 2.1vh;
+          line-height: 2.7vh;
+        }
+      }
+    }
+  }
+  .rightBlock {
+    position: relative;
+    height: 100%;
+    width: 36%;
+    display: flex;
+    z-index: 1;
+    .rightList {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 83%;
+      height: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 4.5vh;
+      background-color: $bg-main;
+      backdrop-filter: blur(4px);
+      padding: 2rem 3rem;
+      > div:first-child {
+        margin-bottom: -0.3rem;
+        font-size: 3vh;
+        text-align: left;
+      }
+      .topArticlesItem {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        > div:nth-child(1) {
+          min-width: 9vh;
+          height: 9vh;
+          border-radius: 50%;
+          overflow: hidden;
+          > img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        > div:nth-child(2) {
+          font-size: 2.2vh;
+          margin-left: 1rem;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.mainPhoto {
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  height: 79.9vh;
+  width: 100%;
+  overflow: hidden;
+  > img {
+    height: 79.9vh;
+    width: 100%;
+    filter: brightness(40%);
+  }
+}
+.mainTitle {
+  position: absolute;
+  left: 6.5%;
+  top: 10%;
+  font-size: 6vh;
+  max-width: 50%;
+  text-align: left;
+  backdrop-filter: blur(4px);
+  padding: 0rem 1rem;
+}
+
+
+
+
+
+// Blocks under Heading
+
+
+
+
+.articleBlocks {
 	display: flex;
-  flex: 1;
   flex-wrap: wrap;
   padding: 1rem 5rem;
     a {
@@ -22,14 +155,15 @@
 
 .article {
   margin: 0;
-  width: 29%;
+  max-width: 29%;
   height: 17rem;
   flex-grow: 1;
-  box-shadow: rgb(95, 93, 168) 0px 0px 5px;
-  border-radius: 15px;
+  box-shadow: rgb(95, 93, 168) 0px 0px 3px;
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
   margin: 1.6rem;
-  padding: 0.5rem;
-  background: $background-img;
+  padding: 0.5rem 1rem;
+
   background-repeat: no-repeat;
   background-size: cover;
 }

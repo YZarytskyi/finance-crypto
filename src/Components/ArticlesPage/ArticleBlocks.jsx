@@ -28,7 +28,7 @@ const ArticlesList = () => {
                   </div>
                   </div>
                   <div className="text-base text-left text-zinc-400 mx-3 mb-2">
-                  {article.content.slice(0,-30)}...
+                  {article.content.slice(0,-35)}...
                   </div>
 
             </NavLink>

@@ -1,0 +1,89 @@
+@import '../../../variables.scss';
+
+.table {
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 90%;
+  font-size: 0.9rem;
+  a {
+    margin: 0;
+  }
+}
+
+td {
+  background-color: rgb(18,18,18, 0.4) !important;
+}
+
+th {
+  background-color: rgba(73, 73, 73, 0.3) !important;
+  border-top: 1px solid rgb(73, 73, 73) !important;
+}
+
+thead {
+  height: 3rem;
+  tr {
+    th:nth-child(2) {
+      width: 17%;
+      text-align: left;
+      padding-left: 3rem;
+    }
+    th:nth-child(3) {
+      width: 10%;
+      text-align: right;
+      padding-right: 2.5rem;
+    }
+    th:nth-child(7) {
+      width: 14%;
+    }
+    th:nth-child(8) {
+      width: 14%; 
+    }
+  }
+}
+
+tbody{
+  td:nth-child(3) {
+    text-align: right;
+    padding-right: 2rem;
+    font-weight: 450;
+  }
+  td {
+    > div {
+      margin: 0 auto;
+      width: 90%;
+      height: 3.5rem;
+    }
+    a {
+      display: flex;
+      align-items: center;
+        &:hover {
+          text-decoration: underline;
+          color: rgb(131, 150, 255);
+        }
+        div:nth-child(2) {
+          margin-left: 0.8rem;
+          font-size: 0.95rem;
+        }
+        div:nth-child(3) {
+          font-size: 0.8rem;
+          color: rgb(129, 128, 128);
+          margin-left: 0.4rem;
+        }
+    }
+  }
+}
+
+tr {
+  vertical-align: middle;
+  td:nth-child(9) {
+    width: 16%;
+  }
+}
+
+.percentagePlus {
+  color: $color-plus;
+}
+
+.percentageMinus {
+  color: $color-minus;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Home.module.scss";
-import ChartHome from "./Chart";
+import ChartHome from "./ChartHome";
 import Select from "../Common/Select";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -73,7 +73,7 @@ const CoinsBlock = () => {
                         {coin.current_price >= 100 &&
                           coin.current_price < 10000 &&
                           coin.current_price.toFixed(1)}
-                        {coin.current_price >= 10000 && coin.current_price}
+                        {coin.current_price >= 10000 && coin.current_price.toFixed(0)}
                         {` $`}
                       </div>
                     </div>
@@ -81,14 +81,13 @@ const CoinsBlock = () => {
                   <div className={style.chart}>
                     <ChartHome
                       markets={coin.sparkline_in_7d.price}
-                      chartTime={chartTime}
                       coinId={coin.id}
                     />
                   </div>
                 </div>
               </div>
             );
-          } else return "";
+          } else return ""
         })}
       </>
     );

@@ -1,7 +1,6 @@
-@import '../../shared.scss';
+@import '../../variables.scss';
 
 .contacts {
-  @include bg;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +9,7 @@
     .heading {
       width: 80%;
       padding: 1.5rem;
+      margin-bottom: 10px;
     }
     .formImg {
       width: 70%;
@@ -17,15 +17,20 @@
       align-items: center;
       justify-content: center;
       gap: 5rem;
-        div:nth-child(1) {
-          width: 100%;
+        > div:nth-child(1) {
+          width: 45%;
+          display: flex;
+          justify-content: center;
         }
-        div:nth-child(2) {
-          width: 100%;
+        > div:nth-child(2) {
+          width: 55%;
+          div {
+            margin-bottom: 10px;
+          }
         }
     }
 }
-
+  
 .modal {
   text-align: center;
   color: rgb(39, 39, 39);
@@ -36,8 +41,5 @@
     }
     div:first-child {
       margin-top: 0.8rem;
-    }
-    span {
-      font-weight: bolder;
     }
 }

@@ -11,18 +11,18 @@ export const CoinsBlockSkeleton = () => {
             <Skeleton
               height={34}
               width={34}
-              style={{ marginLeft: 4, borderRadius: 50 }}
+              style={{ marginLeft: 1, borderRadius: 50 }}
             />
           </div>
-          <Skeleton height={15} width={50} />
-          <Skeleton height={15} width={40} style={{ marginLeft: 2 }} />
+          <Skeleton height={15} width={50} style={{ marginTop: 8 }} />
+          <Skeleton height={15} width={40} style={{ marginTop: 6 }} />
         </div>
         <div className={style.cryptoRightSide}>
           <div>
-            <Skeleton height={20} width={130} />
+            <Skeleton height={20} width={130} style={{ marginLeft: 3 }} />
           </div>
           <div>
-            <Skeleton height={57} width={130} />
+            <Skeleton height={58} width={130} />
           </div>
         </div>
       </div>

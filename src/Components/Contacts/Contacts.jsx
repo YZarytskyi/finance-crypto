@@ -8,6 +8,9 @@ import style from './Contacts.module.scss'
 export function ModalContact(props) {
   return (
     <Modal {...props}
+      style={{
+       overflowY: 'scroll'
+      }}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -17,7 +20,7 @@ export function ModalContact(props) {
         <br />
         <p>
         We have received your message and would like to thank you for writing to us. We will reply by email as soon as possible.
-        <div>Talk to you soon, Your <span> PRO ECONOMY</span>.</div>
+        <div>Talk to you soon.</div>
         </p>
         <div>
           <Button onClick={props.onHide}>Close</Button>
@@ -44,7 +47,7 @@ const Contacts = () => {
       </div>
       <div className={style.formImg}>
         <div>
-          <img src={contacts} alt="Contact us" width={400} height={10} />
+          <img src={contacts} alt="Contact us" width={250} />
         </div>
         <div>
         <Form>

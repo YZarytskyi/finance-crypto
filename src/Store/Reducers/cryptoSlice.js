@@ -30,9 +30,23 @@ export const fetchMarkets = createAsyncThunk(
 )
 
 export const fetchCoinDescription = createAsyncThunk(
-  'CoinDescrtiption/fetch',
+  'coinDescrtiption/fetch',
   async (coinId) => {
     return await cryptoApi.getCoinsDescription(coinId)
+  }
+)
+
+export const fetchMarketChart = createAsyncThunk(
+  'marketChart/fetch',
+  async ([coinId, days]) => {
+    return await cryptoApi.getMarketChart(coinId, days)
+  }
+)
+
+export const fetchExchanges = createAsyncThunk(
+  'exchanges/fetch',
+  async () => {
+    return await cryptoApi.getExchanges()
   }
 )
 
@@ -42,13 +56,15 @@ export const cryptoSlice = createSlice({
     currencies: [],
     markets: [],
     isLoading: false,
-    coinDescription: "",
     marketsTime: {},
     coinInfo: null,
+    marketChart: [],
+    exchanges: [],
     pairs: [],
     pair1: null,
     pair2: null,
     pair3: null,
+    coinDescription: "",
   },
   reducers: {
     setPair1(state, action) {
@@ -71,15 +87,30 @@ export const cryptoSlice = createSlice({
     },
     setCoinInfo(state, action) {
       state.coinInfo = action.payload
+    },
+    removeMarketChart(state) {
+      state.marketChart = []
+    },
+    removePairs(state) {
+      state.pairs = [];
+      state.pair1 = null;
+      state.pair2 = null;
+      state.pair3 = null;
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchCurrencies.fulfilled, (state, action) => {
+    builder.addCase(fetchCurrencies.pending, (state) => {
+      state.isLoading = true
+      })
+      .addCase(fetchCurrencies.fulfilled, (state, action) => {
       state.currencies = action.payload
-    })
+      state.isLoading = false
+      })
+
     builder.addCase(fetchPairs.fulfilled, (state, action) => {
       state.pairs = action.payload
     })
+
     builder.addCase(fetchMarkets.fulfilled, (state, action) => {
       state.markets = action.payload;
       state.isLoading = false;
@@ -87,13 +118,22 @@ export const cryptoSlice = createSlice({
       .addCase(fetchMarkets.pending, (state) => {
         state.isLoading = true;
       })
+
     builder.addCase(fetchCoinDescription.fulfilled, (state, action) => {
       state.coinDescription = action.payload
+    })
+
+    builder.addCase(fetchMarketChart.fulfilled, (state, action) => {
+      state.marketChart = action.payload
+    })
+
+    builder.addCase(fetchExchanges.fulfilled, (state, action) => {
+      state.exchanges = action.payload
     })
   }
 })
 
 export const { setPair1, setPair2, setPair3, setMarketsTime, setDefaultMarketsTime,
-  removeCoinDescription, setCoinInfo} = cryptoSlice.actions
+  removeCoinDescription, setCoinInfo, removeMarketChart, removePairs} = cryptoSlice.actions
 
 export default cryptoSlice.reducer

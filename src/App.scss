@@ -1,4 +1,4 @@
-@import './shared.scss';
+@import './variables.scss';
 
 @tailwind base;
 @tailwind components;
@@ -26,13 +26,4 @@ html {
 .result {
   margin-top: 8px;
   font-weight: bold;
-}
-
-.tableCoins {
-  * {
-    color: $color-main;
-      &:hover {
-        color: $color-a-hover;
-      }
-  }
 }
