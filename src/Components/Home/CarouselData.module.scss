@@ -1,0 +1,73 @@
+@import './Home.module.scss';
+
+.carouselInfo {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  width: 76%;
+  min-height: 62%;
+  max-height: 62%;
+  > div {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    padding: 0.8rem 0.6rem;
+    min-height: 4.9rem;
+    max-height: 100%;
+    width: 28%;
+    border-radius: 0.5rem;
+    border-left: 10px solid rgba(0, 59, 253, 0.35);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    word-wrap: break-word;
+  }
+}
+
+.cryptoData {
+  > div {
+    > div {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      > div:nth-child(1) {
+        font-weight: 500;
+      }
+      > div:nth-child(2) {
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+      }
+    }
+    > div:last-child {
+      margin-top: 0.1rem;
+      font-size: 0.9rem;
+      color:rgb(141, 142, 143);
+    }
+  }
+  > div:nth-child(2), div:nth-child(3) {
+    > div:first-child {
+      font-weight: 500;
+    }
+  }
+}
+
+.articlesData {
+  > div {
+    text-align: left;
+    > div:first-child {
+      font-weight: 500;
+    }
+    > div:last-child {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.1rem;
+      font-size: 0.9rem;
+      color:rgb(141, 142, 143);
+    }
+  }
+}

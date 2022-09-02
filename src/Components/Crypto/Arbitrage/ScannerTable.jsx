@@ -10,7 +10,6 @@ const ScannerTable = ({
   dispatch,
   fetchCurrencies,
 }) => {
-  console.log("render");
   const isLoading = useSelector((state) => state.crypto.isLoading);
   
   useEffect(() => {

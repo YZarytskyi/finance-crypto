@@ -2,6 +2,9 @@
 
 .tableExchanges {
   width: 80%;
+  thead {
+    height: 2.8rem;
+  }
   th:nth-child(2) {
     width: 25%
   }
@@ -20,6 +23,7 @@
       display: flex;
       align-items: center;
       height: auto;
+      font-weight: 500;
       > div:first-child {
         width: 2.5rem;
         height: 2.5rem;

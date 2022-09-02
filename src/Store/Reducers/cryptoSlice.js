@@ -14,39 +14,40 @@ export const fetchCurrencies = createAsyncThunk(
     })
   }
 )
-
 export const fetchPairs = createAsyncThunk(
   'pairs/fetch',
   async (pairs) => {
     return await cryptoApi.getPairs(pairs.pair1, pairs.pair2, pairs.pair3);
   }
 )
-
 export const fetchMarkets = createAsyncThunk(
   'markets/fetch',
   async () => {
     return await cryptoApi.getMarkets();
   }
 )
-
 export const fetchCoinDescription = createAsyncThunk(
   'coinDescrtiption/fetch',
   async (coinId) => {
     return await cryptoApi.getCoinsDescription(coinId)
   }
 )
-
 export const fetchMarketChart = createAsyncThunk(
   'marketChart/fetch',
   async ([coinId, days]) => {
     return await cryptoApi.getMarketChart(coinId, days)
   }
 )
-
 export const fetchExchanges = createAsyncThunk(
   'exchanges/fetch',
   async () => {
     return await cryptoApi.getExchanges()
+  }
+)
+export const fetchGlobalData = createAsyncThunk(
+  'globalData/fetch',
+  async () => {
+    return await cryptoApi.getGlobalData()
   }
 )
 
@@ -57,6 +58,7 @@ export const cryptoSlice = createSlice({
     markets: [],
     isLoading: false,
     marketsTime: {},
+    globalData: {},
     coinInfo: null,
     marketChart: [],
     exchanges: [],
@@ -129,6 +131,10 @@ export const cryptoSlice = createSlice({
 
     builder.addCase(fetchExchanges.fulfilled, (state, action) => {
       state.exchanges = action.payload
+    })
+
+    builder.addCase(fetchGlobalData.fulfilled, (state, action) => {
+      state.globalData = action.payload
     })
   }
 })

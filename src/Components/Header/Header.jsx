@@ -13,9 +13,6 @@ const Header = () => {
         <NavLink to="/">
           <div>Home</div>
         </NavLink>
-        <NavLink to="/finance">
-          <div>Finance</div>
-        </NavLink>
         <NavLink to="/crypto/coins">
           <div>Crypto</div>
         </NavLink>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect } from "react";
 import style from "./Arbitrage.module.scss";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -22,7 +22,7 @@ const Arbitrage = () => {
   const pairs = useSelector((state) => state.crypto.pairs);
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       dispatch(removePairs())
     }
@@ -81,7 +81,7 @@ const Arbitrage = () => {
         </div>
         <div className="flex justify-center gap-5 mb-4">
           <div>
-            <div className="mb-3">{+pair11.ask}</div>
+            <div className="mb-3">{pair11.ask && +pair11.ask}</div>
             <Autocomplete
               id="pair-1"
               value={pair1}
@@ -95,7 +95,7 @@ const Arbitrage = () => {
             />
           </div>
           <div>
-            <div className="mb-3">{+pair22.ask}</div>
+            <div className="mb-3">{pair22.ask && +pair22.ask}</div>
             <Autocomplete
               id="pair-2"
               value={pair2}
@@ -109,7 +109,7 @@ const Arbitrage = () => {
             />
           </div>
           <div>
-            <div className="mb-3">{+pair33.bid}</div>
+            <div className="mb-3">{pair33.bid && +pair33.bid}</div>
             <Autocomplete
               id="pair-3"
               value={pair3}

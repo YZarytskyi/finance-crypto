@@ -22,8 +22,11 @@ th {
 thead {
   height: 3rem;
   tr {
+    th:nth-child(1) {
+      width: 5%;
+    }
     th:nth-child(2) {
-      width: 17%;
+      width: 20%;
       text-align: left;
       padding-left: 3rem;
     }
