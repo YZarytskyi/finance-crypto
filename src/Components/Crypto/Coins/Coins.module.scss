@@ -21,6 +21,10 @@ th {
 
 thead {
   height: 3rem;
+  position: sticky;
+  top: -2px;
+  background-color: rgb(31, 30, 30);
+  z-index: 2;
   tr {
     th:nth-child(1) {
       width: 5%;
