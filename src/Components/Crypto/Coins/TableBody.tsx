@@ -1,7 +1,9 @@
+import React from "react";
 import style from "./Coins.module.scss";
 import { NavLink } from "react-router-dom";
 import ChartCoins from "./Chart";
 import { useAppSelector } from "../../../Store/hooks";
+
 
 export const parseNumber = (number: number) => new Intl.NumberFormat("ua-UA").format(number);
 export const parseValue = (value: number) => {
@@ -50,4 +52,4 @@ const TableCoinsBody = () => {
   )
 };
 
-export default TableCoinsBody;
+export default React.memo(TableCoinsBody);

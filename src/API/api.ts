@@ -23,7 +23,6 @@ export const cryptoApi = {
             .map((x: { status: string; symbol: string }) => ({
               symbol: x.symbol,
             })));
-          console.log(result);
           return result.map((x: { symbol: string }) => {
             const filterPrice = response2.data.find(
               (y: Currencies) => y.symbol === x.symbol
@@ -62,10 +61,10 @@ export const cryptoApi = {
       )
       .catch((error) => alert(error));
   },
-  getMarkets() {
+  getMarkets(page: number = 1) {
     return axios
       .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d"
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       )
       .then((res) => res.data)
       .catch((error) => {
@@ -73,7 +72,7 @@ export const cryptoApi = {
       });
   },
   getSelectedCoinMarketChart(coinId: string | undefined, days: number | "max") {
-    return axios
+    if (typeof coinId === 'string') return axios
       .get(
         `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
       )
@@ -83,7 +82,7 @@ export const cryptoApi = {
       });
   },
   getCoinsDescription(coinId: string | undefined) {
-    return axios
+    if (typeof coinId === 'string') return axios
       .get(
         `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
       )
@@ -92,9 +91,9 @@ export const cryptoApi = {
         alert(error);
       });
   },
-  getExchanges() {
+  getExchanges(page: number) {
     return axios
-      .get("https://api.coingecko.com/api/v3/exchanges")
+      .get(`https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`)
       .then((res) => res.data)
       .catch((error) => {
         alert(error);

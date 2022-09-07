@@ -1,4 +1,3 @@
-import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import style from "../Home/Home.module.scss";
 
@@ -134,5 +133,39 @@ export const ArticlesBlockSkeleton = () => {
         </div>
       </div>
     </SkeletonTheme>
+  );
+};
+
+export const MarketCapSkeleton = () => {
+  return (
+    <>
+      <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+        <div>
+          <Skeleton height={23} width={220} />
+        </div>
+      </SkeletonTheme>
+    </>
+  );
+};
+export const VolumeSkeleton = () => {
+  return (
+    <>
+      <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+        <div>
+          <Skeleton height={23} width={160} />
+        </div>
+      </SkeletonTheme>
+    </>
+  );
+};
+export const ActiveCoinsSkeleton = () => {
+  return (
+    <>
+      <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+        <div>
+          <Skeleton height={23} width={65} />
+        </div>
+      </SkeletonTheme>
+    </>
   );
 };

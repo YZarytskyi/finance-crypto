@@ -1,13 +1,14 @@
 import style from "./Articles.module.scss";
-import { ReactElement, useEffect } from "react";
-import { fetchArticles, Articles } from "../../Store/Reducers/articlesSlice";
+import { useEffect } from "react";
+import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import ArticleBlocks from "./ArticleBlocks";
 import a from "../../assets/images/q.jpg";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
+import { handleImageError } from "../Home/Home";
 
 const ArticlesPage = () => {
-  const articles = useAppSelector((state) => state.articles.articles);
+  const articles = useAppSelector(state => state.articles.articles);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,82 +17,88 @@ const ArticlesPage = () => {
     }
   }, []);
 
-  return (
-    <div className={style.wrapper}>
-      <div className={style.heading}>
-        <div className={style.leftBlock}>
-          <div className={style.bottomList}>
-            <BottomList articles={articles} />
+  if (articles.length !== 0) {
+    return (
+      <div className={style.wrapper}>
+        <div className={style.heading}>
+          <div className={style.leftBlock}>
+            <div className={style.bottomList}>
+              <BottomList />
+            </div>
           </div>
-        </div>
 
-        <div className={style.rightBlock}>
-          <div className={style.rightList}>
-            <div>Top Articles</div>
-            <TopArticles articles={articles} />
+          <div className={style.rightBlock}>
+            <div className={style.rightList}>
+              <div>Top Articles</div>
+              <TopArticles />
+            </div>
           </div>
-        </div>
 
-        <div className={style.mainPhoto}>
-          <img src={a} alt={articles[9]?.title} />
+          <div className={style.mainPhoto}>
+            <img src={a} alt='Articles page' onError={handleImageError} />
+          </div>
+          <NavLink to={`${articles[13].id}`} >
+            <div className={style.mainTitle} style={{zIndex: 1}}>{articles[13]?.title}</div>
+          </NavLink>
         </div>
-        <div className={style.mainTitle}>{articles[9]?.title}</div>
+        <div className="mt-4 text-xl">Must Read</div>
+        <div className={style.articleBlocks}>
+          <ArticleBlocks />
+        </div>
       </div>
-      <div className="mt-4 text-xl">Must Read</div>
-      <div className={style.articleBlocks}>
-        <ArticleBlocks />
-      </div>
-    </div>
-  );
+    );
+  }
+  return null;
 };
 
 export default ArticlesPage;
 
-interface ArticlesProps {
-  articles: Array<Articles>;
-}
-const BottomList: React.FC<ArticlesProps> = ({articles}) => {
-  if (articles.length !== 0) {
-    return (
-      <>
-        {articles.slice(3, 6).map((article) => (
-            <NavLink
-              to={`${article.id}`}
-              className={style.bottomListItem}
-              key={article.id}
-            >
-              <div>
-                <img src={article.urlToImage} alt={article.title} />
-              </div>
-              <div>{article.title}</div>
-            </NavLink>
-          )
-        )}
-      </>
-    );
-  }
-  return null;
+const BottomList = () => {
+  const articles = useAppSelector((state) => state.articles.articles);
+
+  return (
+    <>
+      {articles.slice(3, 6).map((article) => (
+        <NavLink
+          to={`${article.id}`}
+          className={style.bottomListItem}
+          key={article.id}
+        >
+          <div>
+            <img
+              src={article.urlToImage}
+              alt={article.title}
+              onError={handleImageError}
+            />
+          </div>
+          <div>{article.title}</div>
+        </NavLink>
+      ))}
+    </>
+  );
 };
 
-const TopArticles: React.FC<ArticlesProps> = ({ articles }) => {
-  if (articles.length !== 0) {
-    return (
-      <>
-        {articles.slice(6, 10).map((article) => (
-            <NavLink
-              to={`${article.id}`}
-              className={style.topArticlesItem}
-              key={article.id}
-            >
-              <div>
-                <img src={article.urlToImage} alt={article.title} />
-              </div>
-              <div>{article.title}</div>
-            </NavLink>
-          )
-        )}
-      </>
-    );
-  }
-  return null;
+const TopArticles = () => {
+  const articles = useAppSelector((state) => state.articles.articles);
+
+  return (
+    <>
+      {articles.slice(6, 10).map((article) => (
+        <NavLink
+          to={`${article.id}`}
+          className={style.topArticlesItem}
+          key={article.id}
+        >
+          <div>
+            <img
+              src={article.urlToImage}
+              alt={article.title}
+              onError={handleImageError}
+            />
+          </div>
+          <div>{article.title}</div>
+        </NavLink>
+      ))}
+    </>
+  );
 };

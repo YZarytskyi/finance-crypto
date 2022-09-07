@@ -11,7 +11,7 @@
   width: 76%;
   min-height: 62%;
   max-height: 62%;
-  > div {
+  > a {
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     padding: 0.8rem 0.6rem;
@@ -28,7 +28,7 @@
 }
 
 .cryptoData {
-  > div {
+  > a {
     > div {
       display: flex;
       align-items: center;
@@ -55,7 +55,8 @@
 }
 
 .articlesData {
-  > div {
+  > a {
+    min-height: 8rem;
     text-align: left;
     > div:first-child {
       font-weight: 500;

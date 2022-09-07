@@ -1,16 +1,9 @@
 import style from "./Home.module.scss";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Carousel } from "react-bootstrap";
-import slider1 from "../../assets/images/slider1.jpg";
-import slider2 from "../../assets/images/slider2.jpeg";
-import {
-  fetchMarkets,
-  fetchGlobalData,
-} from "../../Store/Reducers/cryptoSlice";
-import {
-  ArticlesBlockSkeleton,
-  CoinsBlockSkeleton,
-} from "../Common/LoadingSkeleton";
+import news from "../../assets/images/news.jpg";
+import { fetchMarkets, fetchGlobalData } from "../../Store/Reducers/cryptoSlice";
+import { ArticlesBlockSkeleton, CoinsBlockSkeleton } from "../Common/HomeSkeleton";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { NavLink } from "react-router-dom";
 import { BiTimeFive } from "react-icons/bi";
@@ -18,17 +11,17 @@ import CoinsBlock from "./CoinsBlock";
 import { ArticlesCarouselData, CryptoCarouselData } from "./CarouselData";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 
+export const handleImageError = (e: React.BaseSyntheticEvent) => {e.target.onerror = null; e.target.src = news}
+
 const Home = () => {
   const {articles, isLoadingArticles} = useAppSelector((state) => state.articles);
-  const {markets, globalData, isLoadingCrypto} = useAppSelector((state) => state.crypto);
+  const {globalData, isLoadingCrypto} = useAppSelector((state) => state.crypto);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(fetchMarkets());
     if (articles.length === 0) {
       dispatch(fetchArticles());
-    }
-    if (markets.length === 0) {
-      dispatch(fetchMarkets());
     }
     if (Object.keys(globalData).length === 0) {
       dispatch(fetchGlobalData());
@@ -38,26 +31,11 @@ const Home = () => {
   return (
     <div className={style.home}>
       <Carousel className={style.carousel}>
-        <Carousel.Item className={style.carouselItem}>
-          <img src={slider2} alt="Second slide" />
-          <CryptoCarouselData globalData={globalData} />
-          <Carousel.Caption>
-            <NavLink to="/crypto/coins">
-              <h1>CRYPTOCURRENCIES MARKETS</h1>
-              <p>CHECK OUT LIVE DATA</p>
-            </NavLink>
-          </Carousel.Caption>
+      <Carousel.Item className={style.carouselItem}>
+        <CryptoCarouselData />
         </Carousel.Item>
-
         <Carousel.Item className={style.carouselItem}>
-          <img src={slider1} alt="Second slide" />
-          <ArticlesCarouselData articles={articles} />
-          <Carousel.Caption>
-            <NavLink to="/articles">
-              <h1>ECONOMIC ANALYSIS</h1>
-              <p>CHECK OUT NEW ARTICLES</p>
-            </NavLink>
-          </Carousel.Caption>
+        <ArticlesCarouselData />
         </Carousel.Item>
       </Carousel>
 
@@ -65,7 +43,7 @@ const Home = () => {
         <CoinsBlockSkeleton />
       ) : (
         <div className={style.coins}>
-          <CoinsBlock markets={markets}/>
+          <CoinsBlock />
         </div>
       )}
 
@@ -81,7 +59,7 @@ const Home = () => {
                   <NavLink to={`/articles/${article.id}`} key={article.id}>
                     <div className="w-64 mr-10">
                       <div>
-                        <img src={article.urlToImage} alt="article title" />
+                        <img src={article.urlToImage} alt={article.title} onError={handleImageError}/>
                       </div>
                       <div className="text-left mt-1 w-72">
                         {article.title.slice(0, 65)}...
@@ -108,7 +86,7 @@ const Home = () => {
                   <div className={style.articlesRightList}>
                     <div>
                       <div className={style.articlesRightImg}>
-                        <img src={article.urlToImage} alt="article title" />
+                        <img src={article.urlToImage} alt={article.title} onError={handleImageError}/>
                       </div>
                     </div>
                     <div>

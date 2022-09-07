@@ -1,22 +1,48 @@
 @import '../Coins/Coins.module.scss';
 
+.checkResult {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  .pairPrice {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: rgb(136, 135, 135);
+  }
+}
+.result {
+  margin: 1.5rem;
+  font-weight: bold;
+}  
+
+.refreshIcon {
+  margin: 0 auto;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .tableArbitrage {
   width: 55%;
+  display: flex;
+  justify-content: center;
 }
 
 .arbitrageHead {
   height: 2rem;
   > tr {
-    > th:nth-child(3) {
-    text-align: center;
-    padding: 0;
+    > th {
+    text-align: center !important;
+    padding: 0 !important;
     }
   }
 } 
 
 .arbitrageBody {
   > td {
-    text-align: right;
     text-align: center;
     cursor: pointer;
   }
@@ -30,11 +56,4 @@
     padding: 0;
     text-align: center;
   }
-}
-
-.refreshIcon {
-  margin: 0 auto;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
 }

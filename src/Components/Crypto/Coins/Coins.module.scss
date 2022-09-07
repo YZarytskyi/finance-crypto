@@ -5,9 +5,6 @@
   margin-top: 1rem;
   width: 90%;
   font-size: 0.9rem;
-  a {
-    margin: 0;
-  }
 }
 
 td {
@@ -63,9 +60,10 @@ tbody{
     a {
       display: flex;
       align-items: center;
+      text-decoration: none;
+      color: $color-main;
         &:hover {
-          text-decoration: underline;
-          color: rgb(131, 150, 255);
+          color: rgb(63, 91, 252);
         }
         div:nth-child(2) {
           margin-left: 0.8rem;
@@ -93,4 +91,10 @@ tr {
 
 .percentageMinus {
   color: $color-minus;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }

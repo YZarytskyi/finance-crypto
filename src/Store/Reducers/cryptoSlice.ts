@@ -11,10 +11,10 @@ const initialState: InitialState = {
   selectedCoinMarketChart: {},
   exchanges: [],
   pairs: [],
-  pair1: '',
-  pair2: '',
-  pair3: '',
-  coinDescription: '',
+  pair1: null,
+  pair2: null,
+  pair3: null,
+  coinDescription: null,
 }
 
 interface InitialState {
@@ -26,10 +26,10 @@ interface InitialState {
   selectedCoinMarketChart: Partial<SelectedCoinMarketChart>;
   exchanges: Array<Exchanges>;
   pairs: Array<Pairs>;
-  pair1: string;
-  pair2: string;
-  pair3: string;
-  coinDescription: string;
+  pair1: string | null;
+  pair2: string | null;
+  pair3: string | null;
+  coinDescription: string | null;
 }
 
 export const fetchCurrencies = createAsyncThunk(
@@ -46,8 +46,8 @@ export const fetchPairs = createAsyncThunk(
 )
 export const fetchMarkets = createAsyncThunk(
   'markets/fetch',
-  async () => {
-    return (await cryptoApi.getMarkets()) as Array<Markets>;
+  async (page?: number) => {
+    return (await cryptoApi.getMarkets(page)) as Array<Markets>;
   }
 )
 export const fetchCoinDescription = createAsyncThunk(
@@ -64,8 +64,8 @@ export const fetchSelectedCoinMarketChart = createAsyncThunk(
 )
 export const fetchExchanges = createAsyncThunk(
   'exchanges/fetch',
-  async () => {
-    return (await cryptoApi.getExchanges()) as Array<Exchanges>
+  async (page: number) => {
+    return (await cryptoApi.getExchanges(page)) as Array<Exchanges>
   }
 )
 export const fetchGlobalData = createAsyncThunk(
@@ -95,16 +95,16 @@ export const cryptoSlice = createSlice({
       state.marketsTime = {}
     },
     removeCoinDescription(state) {
-      state.coinDescription = ''
+      state.coinDescription = null;
     },
     removeMarketChart(state) {
       state.selectedCoinMarketChart = {}
     },
     removePairs(state) {
       state.pairs = [];
-      state.pair1 = '';
-      state.pair2 = '';
-      state.pair3 = '';
+      state.pair1 = null;
+      state.pair2 = null;
+      state.pair3 = null;
     }
   },
   extraReducers: (builder) => {
@@ -120,12 +120,12 @@ export const cryptoSlice = createSlice({
       state.pairs = action.payload
     })
 
-    builder.addCase(fetchMarkets.fulfilled, (state, action) => {
+    builder.addCase(fetchMarkets.pending, (state) => {
+      state.isLoadingCrypto = true;
+      })
+      .addCase(fetchMarkets.fulfilled, (state, action) => {
       state.markets = action.payload;
       state.isLoadingCrypto = false;
-      })
-      .addCase(fetchMarkets.pending, (state) => {
-        state.isLoadingCrypto = true;
       })
 
     builder.addCase(fetchCoinDescription.fulfilled, (state, action) => {
@@ -136,9 +136,13 @@ export const cryptoSlice = createSlice({
       state.selectedCoinMarketChart = action.payload
     })
 
-    builder.addCase(fetchExchanges.fulfilled, (state, action) => {
+    builder.addCase(fetchExchanges.pending, (state, action) => {
+      state.isLoadingCrypto = true
+      })
+      .addCase(fetchExchanges.fulfilled, (state, action) => {
       state.exchanges = action.payload
-    })
+      state.isLoadingCrypto = false
+      })
 
     builder.addCase(fetchGlobalData.fulfilled, (state, action) => {
       state.globalData = action.payload

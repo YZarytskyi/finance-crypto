@@ -5,7 +5,6 @@ header {
   justify-content: center;
   align-items: center;
   height: 3.8rem;
-  width: 100%;
   font-size: 1.1rem;
   box-shadow: $box-shadow;
   background: $background-img;
@@ -18,7 +17,6 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: fit-content;
       gap: 2.5rem;
         * {
           text-decoration: none;

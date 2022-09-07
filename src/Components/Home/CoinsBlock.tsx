@@ -1,12 +1,13 @@
-import React from "react";
 import style from "./Home.module.scss";
 import ChartHome from "./ChartHome";
 import Select from "../Common/Select";
 import { NavLink } from "react-router-dom";
-import { Markets } from "../../Types/Types";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 
-interface CoinsBlockProps {markets: Array<Markets>}
-const CoinsBlock: React.FC<CoinsBlockProps> = ({markets}) => {
+const CoinsBlock = () => {
+
+  const markets = useAppSelector((state) => state.crypto.markets);
+  const dispatch = useAppDispatch();
 
   enum Hours {
     H24 = "24",

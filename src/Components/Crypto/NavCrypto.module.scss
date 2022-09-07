@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+.navCrypto {
+  margin: 0.8rem 0;
+  display: flex;
+  justify-content: center;
+  > div {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    line-height: 2rem;
+    width: 30%;
+    box-shadow: rgb(95, 93, 168) 0px 0px 6px;
+    a {
+      text-decoration: none;
+      color: $color-main;
+      &:hover {
+        color: rgb(92, 92, 245);
+      }
+    }
+  }
+}

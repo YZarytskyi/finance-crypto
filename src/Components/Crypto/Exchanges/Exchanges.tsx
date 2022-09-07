@@ -1,24 +1,32 @@
-import { useEffect } from 'react';
+import style from './Exchanges.module.scss'
+import { useEffect, useState } from 'react';
 import NavCrypto from "../NavCrypto";
 import TableExchanges from './Table';
 import {fetchExchanges} from '../../../Store/Reducers/cryptoSlice'
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import TablePagination from '../../Common/TablePagination';
+import { CryptoSkeleton } from '../../Common/CryptoSkeleton';
+
 
 const Exchanges = () => {
-
   const dispatch = useAppDispatch()
-  const exchanges = useAppSelector(state => state.crypto.exchanges)
+  const [page, setPage] = useState<number>(1)
+  const isLoading = useAppSelector(state => state.crypto.isLoadingCrypto)
 
   useEffect(() => {
-    if (exchanges.length === 0) {
-      dispatch(fetchExchanges())
-    }
-  }, [])
+    dispatch(fetchExchanges(page))
+  }, [page])
 
   return(
     <>
       <NavCrypto />
-      <TableExchanges exchanges={exchanges} />
+      {isLoading
+      ? <CryptoSkeleton />
+      : <TableExchanges />
+      }
+      <div className={style.pagination}>
+        <TablePagination page={page} setPage={setPage}/>
+      </div>
     </>
   );
 };

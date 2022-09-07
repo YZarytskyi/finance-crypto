@@ -18,11 +18,9 @@ import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 const SelectedCoin = () => {
 
   const {coinId} = useParams();
-  const {markets, coinDescription, selectedCoinMarketChart} = useAppSelector((state) => state.crypto);
+  const {markets, coinDescription} = useAppSelector((state) => state.crypto);
   const coin = markets.find((item) => item.id === coinId)
-  const marketChart = selectedCoinMarketChart.prices
-  const coinDescWithoutTags = coinDescription
-    .replace(/<a\s+href=\"(.*?)\">.*?<\/a>/g, "")
+  const coinDescWithoutTags = coinDescription && coinDescription.replace(/<a\s+href="(.*?)">.*?<\/a>/g, "")
 
   const dispatch = useAppDispatch();
   const [days, setDays] = useState<number | 'max'>(30);
@@ -112,13 +110,13 @@ const SelectedCoin = () => {
               {coin.circulating_supply && (
                 <div>
                   <div>Circulating Supply:</div>
-                  <div>{parseNumber(coin.circulating_supply)} $</div>
+                  <div>{parseNumber(+coin.circulating_supply.toFixed(0))} $</div>
                 </div>
               )}
               {coin.total_supply && (
                 <div>
                   <div>Total Supply:</div>
-                  <div>{parseNumber(coin.total_supply)} $</div>
+                  <div>{parseNumber(+coin.total_supply.toFixed(0))} $</div>
                 </div>
               )}
               {coin.max_supply && (
@@ -132,7 +130,7 @@ const SelectedCoin = () => {
 
           <div className={style.chartContainer}>
             <div className={style.chart}>
-              <SelectedCoinMarketChart marketChart={marketChart} setDays={setDays} />
+              <SelectedCoinMarketChart setDays={setDays} />
             </div>
           </div>
         </div>

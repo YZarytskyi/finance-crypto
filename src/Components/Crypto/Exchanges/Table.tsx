@@ -1,11 +1,9 @@
 import style from './Exchanges.module.scss'
 import Table from "react-bootstrap/Table";
 import TableExchangesBody from './TableBody';
-import { Exchanges } from '../../../Types/Types';
 
 
-interface TableExchangesProps { exchanges: Array<Exchanges> }
-const TableExchanges: React.FC<TableExchangesProps> = ({exchanges}) => {
+const TableExchanges = () => {
   return(
     <div className={`${style.table} ${style.tableExchanges}`}>
     <Table
@@ -24,7 +22,7 @@ const TableExchanges: React.FC<TableExchangesProps> = ({exchanges}) => {
         </tr>
       </thead>
       <tbody>
-        <TableExchangesBody exchanges={exchanges}/>
+        <TableExchangesBody />
       </tbody>
     </Table>
   </div>

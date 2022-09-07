@@ -1,10 +1,12 @@
 import { parseNumber } from "../Coins/TableBody";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { Exchanges } from "../../../Types/Types";
+import { useAppSelector } from "../../../Store/hooks";
 
 
-interface TableExchangesBodyProps { exchanges: Array<Exchanges> }
-const TableExchangesBody: React.FC<TableExchangesBodyProps> = ({ exchanges }) => {
+const TableExchangesBody = () => {
+  
+  const exchanges = useAppSelector(state => state.crypto.exchanges)
+
   return (
     <>
     {exchanges.map((item) => (
@@ -12,8 +14,8 @@ const TableExchangesBody: React.FC<TableExchangesBodyProps> = ({ exchanges }) =>
       <td>{item.trust_score_rank}</td>
       <td>
         <div>
-          {item.id === "kraken" ? (
-            <>
+          {item.id === "kraken" 
+          ? <>
               <div>
                 <a href="https://www.kraken.com/en-us" target="_blank" rel="noreferrer">
                   <img src={item.image} alt={item.name} />
@@ -25,8 +27,7 @@ const TableExchangesBody: React.FC<TableExchangesBodyProps> = ({ exchanges }) =>
                 </a>
               </div>
             </>
-          ) : (
-            <>
+          : <>
               <div>
                 <a href={item.url} target="_blank" rel="noreferrer">
                   <img src={item.image} alt={item.name} />
@@ -38,7 +39,7 @@ const TableExchangesBody: React.FC<TableExchangesBodyProps> = ({ exchanges }) =>
                 </a>
               </div>
             </>
-          )}
+          }
         </div>
       </td>
       <td>
