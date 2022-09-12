@@ -1,7 +1,8 @@
 import style from './Exchanges.module.scss'
 import { useEffect, useState } from 'react';
 import NavCrypto from "../NavCrypto";
-import TableExchanges from './Table';
+import Table from "react-bootstrap/Table";
+import TableExchangesBody from './TableBody';
 import {fetchExchanges} from '../../../Store/Reducers/cryptoSlice'
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import TablePagination from '../../Common/TablePagination';
@@ -22,7 +23,27 @@ const Exchanges = () => {
       <NavCrypto />
       {isLoading
       ? <CryptoSkeleton />
-      : <TableExchanges />
+      : <div className={`${style.table} ${style.tableExchanges}`}>
+      <Table
+        hover
+        size="sm"
+        variant="dark"
+      >
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Exchange</th>
+            <th>Trust Score</th>
+            <th>Total Volume 24h</th>
+            <th>Year Established</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <TableExchangesBody />
+        </tbody>
+      </Table>
+      </div>
       }
       <div className={style.pagination}>
         <TablePagination page={page} setPage={setPage}/>

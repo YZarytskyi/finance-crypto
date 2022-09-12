@@ -103,10 +103,9 @@
 
 .inputChartTime {
   input {
+    @include input;
+    font-size: 1rem;
     width: 6rem;
-    color:rgb(66, 63, 63);
-    padding: 0.3rem;
-    border-radius: 7px;
     margin: 0rem 1rem 1rem 0;
   }
 }

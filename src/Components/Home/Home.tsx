@@ -7,6 +7,7 @@ import { ArticlesBlockSkeleton, CoinsBlockSkeleton } from "../Common/HomeSkeleto
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { NavLink } from "react-router-dom";
 import { BiTimeFive } from "react-icons/bi";
+import { RiArrowRightSLine } from "react-icons/ri";
 import CoinsBlock from "./CoinsBlock";
 import { ArticlesCarouselData, CryptoCarouselData } from "./CarouselData";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
@@ -42,9 +43,7 @@ const Home = () => {
       {isLoadingCrypto ? (
         <CoinsBlockSkeleton />
       ) : (
-        <div className={style.coins}>
-          <CoinsBlock />
-        </div>
+        <CoinsBlock />
       )}
 
       {isLoadingArticles ? (
@@ -53,54 +52,47 @@ const Home = () => {
         articles.length !== 0 && (
           <div className={style.articles}>
             <div className={style.articlesLeft}>
-              <div className="w-100 text-left ml-7 text-xl">Top Articles</div>
-              <div className={style.articlesLeftContent}>
+              <NavLink to="/articles">
+                <h2>Top Articles <RiArrowRightSLine style={{display: "inline", marginBottom: 1.3}}/></h2>
+              </NavLink>
+              <div>
                 {articles.slice(0, 2).map((article) => (
                   <NavLink to={`/articles/${article.id}`} key={article.id}>
-                    <div className="w-64 mr-10">
                       <div>
                         <img src={article.urlToImage} alt={article.title} onError={handleImageError}/>
                       </div>
-                      <div className="text-left mt-1 w-72">
-                        {article.title.slice(0, 65)}...
+                      <div>
+                        {article.title.slice(0, 55)}...
                       </div>
-                      <div className="text-left mt-1 text-zinc-600 text-sm flex">
-                        <div style={{ marginTop: "3px", marginRight: "5px" }}>
-                          <BiTimeFive />
-                        </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <BiTimeFive />
                         {article.publishedAt.slice(0, 10)}
                       </div>
-                    </div>
                   </NavLink>
                 ))}
               </div>
             </div>
-
+          
             <div className={style.articlesRight}>
-              <div className="text-left ml-7 text-xl w-11/12">
-                Recent Articles
-              </div>
-
+              <NavLink to="/articles">
+                <h2>Recent Articles <RiArrowRightSLine style={{display: "inline", marginBottom: 1.3}}/></h2>
+              </NavLink>
               {articles.slice(2, 5).map((article) => (
                 <NavLink to={`/articles/${article.id}`} key={article.id}>
-                  <div className={style.articlesRightList}>
                     <div>
                       <div className={style.articlesRightImg}>
                         <img src={article.urlToImage} alt={article.title} onError={handleImageError}/>
                       </div>
                     </div>
                     <div>
-                      <div className="text-left ml-5 text-base">
+                      <div>
                         {article.title}
                       </div>
-                      <div className="text-left mt-1 ml-5 text-zinc-600 text-sm flex">
-                        <div style={{ marginTop: "3px", marginRight: "5px" }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                           <BiTimeFive />
-                        </div>
                         {article.publishedAt.slice(0, 10)}
                       </div>
                     </div>
-                  </div>
                 </NavLink>
               ))}
             </div>
@@ -112,3 +104,13 @@ const Home = () => {
 };
 
 export default Home;
+
+// import { GrInstagram, GrTwitter, GrReddit, GrGithub } from "react-icons/gr";
+// import { FaTelegramPlane } from "react-icons/fa";
+// <div className={style.socialMedia}>
+// <GrInstagram className={style.icon}/>
+// <FaTelegramPlane className={style.icon}/>
+// <GrTwitter className={style.icon}/>
+// <GrReddit className={style.icon}/>
+// <GrGithub className={style.icon}/>
+// </div>

@@ -21,10 +21,10 @@ const Coins = () => {
     <>
       <NavCrypto />
 
-      <div className={style.table}>
         {isLoading 
         ? <CryptoSkeleton /> 
-        : <Table hover size="sm" variant="dark">
+        : <div className={style.table}> 
+          <Table hover size="sm" variant="dark">
             <thead>
               <tr>
                 <th>#</th>
@@ -42,11 +42,11 @@ const Coins = () => {
               <TableCoinsBody />
             </tbody>
           </Table>
+          </div>
         }
         <div className={style.pagination}>
           <TablePagination page={page} setPage={setPage} />
         </div>
-      </div>
     </>
   );
 };

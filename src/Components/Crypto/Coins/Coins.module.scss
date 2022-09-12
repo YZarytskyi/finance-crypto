@@ -5,6 +5,7 @@
   margin-top: 1rem;
   width: 90%;
   font-size: 0.9rem;
+  overflow: auto;
 }
 
 td {
@@ -41,6 +42,9 @@ thead {
     }
     th:nth-child(8) {
       width: 14%; 
+    }
+    th:nth-child(9) {
+      min-width: 10rem; 
     }
   }
 }

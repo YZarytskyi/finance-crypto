@@ -1,29 +1,24 @@
-import { NavLink } from "react-router-dom";
-import brand from "../../assets/images/logo.png";
-import './Header.scss'
+import style from "./Header.module.scss";
+import MobileNav from "./MobileNav";
+import NavLinks from "./NavLinks";
+
 
 const Header = () => {
-  return (
+  return(
     <header>
-      <nav>
-        <NavLink to="/">
-          <img src={brand} width={48} height={48} alt="brand" />
-        </NavLink>
-        <NavLink to="/">
-          <div>Home</div>
-        </NavLink>
-        <NavLink to="/crypto/coins">
-          <div>Crypto</div>
-        </NavLink>
-        <NavLink to="/articles">
-          <div>Articles</div>
-        </NavLink>
-        <NavLink to="/contacts">
-          <div>Contacts</div>
-        </NavLink>
-      </nav>
+      <PCNav />
+      <MobileNav />
     </header>
   );
 };
 
 export default Header;
+
+
+const PCNav = () => {
+  return(
+    <nav className={style.pcNav}>
+      <NavLinks />
+    </nav>
+  );
+};

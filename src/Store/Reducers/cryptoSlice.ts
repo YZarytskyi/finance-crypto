@@ -11,6 +11,7 @@ const initialState: InitialState = {
   selectedCoinMarketChart: {},
   exchanges: [],
   pairs: [],
+  isLoadingPairs: false,
   pair1: null,
   pair2: null,
   pair3: null,
@@ -26,6 +27,7 @@ interface InitialState {
   selectedCoinMarketChart: Partial<SelectedCoinMarketChart>;
   exchanges: Array<Exchanges>;
   pairs: Array<Pairs>;
+  isLoadingPairs: boolean;
   pair1: string | null;
   pair2: string | null;
   pair3: string | null;
@@ -116,9 +118,13 @@ export const cryptoSlice = createSlice({
       state.isLoadingCrypto = false
       })
 
-    builder.addCase(fetchPairs.fulfilled, (state, action) => {
-      state.pairs = action.payload
-    })
+    builder.addCase(fetchPairs.pending, (state, action) => {
+      state.isLoadingPairs = true
+      })
+      .addCase(fetchPairs.fulfilled, (state, action) => {
+        state.pairs = action.payload
+        state.isLoadingPairs = false
+      })
 
     builder.addCase(fetchMarkets.pending, (state) => {
       state.isLoadingCrypto = true;

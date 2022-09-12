@@ -4,6 +4,7 @@ $bg-color-body: rgb(22, 27, 32);
 $bg-color-header: rgb(23, 34, 43);
 $bg-color-content: rgb(45, 49, 54);
 $box-shadow: rgb(95, 93, 168) 0px -1px 8px;
+$input-shadow: rgb(95, 93, 168) 0px 0px 8px 4px;
 $background-img: linear-gradient( rgba(9, 9, 14, 0.95), rgba(9, 9, 14, 0.95) ), url('./assets/images/bg-body.jpg');
 $color-plus: rgb(1, 179, 1);
 $color-minus: rgb(255, 83, 60);
@@ -15,4 +16,16 @@ $color-a-hover: rgb(136, 136, 204);
   background-size: cover;
   background-attachment: fixed;
   background-position: top;
+}
+
+@mixin input {
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.5rem; 
+  color:rgb(24, 24, 24);
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1.1rem;
+  outline: none;
+  &:focus {
+    box-shadow: $input-shadow;
+  }
 }

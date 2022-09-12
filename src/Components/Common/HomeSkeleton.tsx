@@ -17,8 +17,8 @@ export const CoinsBlockSkeleton = () => {
           <Skeleton height={15} width={40} style={{ marginTop: 6 }} />
         </div>
         <div className={style.cryptoRightSide}>
-          <div>
-            <Skeleton height={20} width={130} style={{ marginLeft: 3 }} />
+          <div style={{display: 'flex', justifyContent: 'center' }}>
+            <Skeleton height={20} width={130} />
           </div>
           <div>
             <Skeleton height={58} width={130} />
@@ -30,7 +30,7 @@ export const CoinsBlockSkeleton = () => {
 
   return (
     <>
-      <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+      <SkeletonTheme baseColor="#2b2b2b" highlightColor="#dabdab">
         <div className={style.coins}>
           <Block />
           <Block />
@@ -46,90 +46,96 @@ export const CoinsBlockSkeleton = () => {
 
 export const ArticlesBlockSkeleton = () => {
   return (
-    <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+    <SkeletonTheme baseColor="#2b2b2b" highlightColor="#dabdab">
       <div className={style.articles}>
         <div className={style.articlesLeft}>
-          <div className="w-100 text-left ml-7 text-xl">Top Articles</div>
-          <div className="flex ml-7 mt-3">
-            <div className="w-64 mr-10">
+          <h2>Top Articles</h2>
+          <div>
+            <a>
               <div>
                 <Skeleton height={140} width={258} />
               </div>
-              <div className="text-left mt-1 w-72">
-                <Skeleton height={20} width={258} />
-                <Skeleton height={20} width={258} />
+              <div>
+                <Skeleton height={20} width={258} count={2} />
               </div>
-              <div className="text-left mt-1 text-zinc-600 text-sm">
-                <Skeleton height={16} width={100} />
+              <div>
+                <Skeleton height={20} width={100} />
               </div>
-            </div>
-
-            <div className="w-64 mx-10">
+            </a>
+            <a>
               <div>
                 <Skeleton height={140} width={258} />
               </div>
-              <div className="text-left mt-1 w-72">
-                <Skeleton height={20} width={258} />
-                <Skeleton height={20} width={258} />
+              <div>
+                <Skeleton height={20} width={258} count={2} />
               </div>
-              <div className="text-left mt-1 text-zinc-600 text-sm">
-                <Skeleton height={16} width={100} />
+              <div>
+                <Skeleton height={20} width={100} />
               </div>
-            </div>
+            </a>
           </div>
         </div>
+
         <div className={style.articlesRight}>
-          <div className="text-left ml-7 text-xl w-11/12">Recent Articles</div>
-          <div className={style.articlesRightList}>
+          <a>
+            <h2>Recent Articles</h2>
+          </a>
+          <a>
             <div>
-              <div>
+              <div className={style.articlesRightImg}>
                 <Skeleton height={60} width={60} style={{ borderRadius: 50 }} />
               </div>
             </div>
             <div>
-              <div className="text-left ml-5 text-base">
+              <div>
                 <Skeleton height={20} width={450} />
               </div>
-              <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
-                <Skeleton height={20} width={250} />
-                <Skeleton height={15} width={80} />
+              <div>
+                <div>
+                  <Skeleton height={20} width={250} />
+                  <Skeleton height={19} width={80} />
+                </div>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div className={style.articlesRightList}>
+          <a>
             <div>
-              <div>
+              <div className={style.articlesRightImg}>
                 <Skeleton height={60} width={60} style={{ borderRadius: 50 }} />
               </div>
             </div>
             <div>
-              <div className="text-left ml-5 text-base">
+              <div>
                 <Skeleton height={20} width={450} />
               </div>
-              <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
-                <Skeleton height={20} width={250} />
-                <Skeleton height={15} width={80} />
+              <div>
+                <div>
+                  <Skeleton height={20} width={250} />
+                  <Skeleton height={19} width={80} />
+                </div>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div className={style.articlesRightList}>
+          <a>
             <div>
-              <div>
+              <div className={style.articlesRightImg}>
                 <Skeleton height={60} width={60} style={{ borderRadius: 50 }} />
               </div>
             </div>
             <div>
-              <div className="text-left ml-5 text-base">
+              <div>
                 <Skeleton height={20} width={450} />
               </div>
-              <div className="text-left mt-1 ml-5 text-zinc-600 text-sm">
-                <Skeleton height={20} width={250} />
-                <Skeleton height={15} width={80} />
+              <div>
+                <div>
+                  <Skeleton height={20} width={250} />
+                  <Skeleton height={19} width={80} />
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </SkeletonTheme>

@@ -8,43 +8,39 @@
       color: $color-a-hover;
     }
   }
-  img {
-    filter: brightness(40%);
-    width: 100%;
-    height: 40vh;
-  }
 }
 
-.carousel { 
+.carousel {
   a:hover {
-  color: rgb(166, 166, 252);
-  }
-  .carouselItem {
-    img {
-      position: relative;
-    }
-    h1 {
-      font-size: 1.9rem;
-    }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-    }
+    color: rgb(166, 166, 252);
   }
 }
 
 .coins {
   color: $color-main;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(12.7rem, 17rem));
+  grid-template-rows: 6rem;
+  grid-auto-flow: column;
   gap: 1.05rem;
-  padding: 0.8rem;
+  justify-content: center;
+  padding: 0.8rem 2.5rem;
+  @media (max-width: 1360px) {
+    grid-template-columns: repeat(3, minmax(12.7rem, 17rem));
+    grid-template-rows: repeat(2, 6rem);
+  }
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(2, minmax(12.7rem, 17rem));
+    grid-template-rows: repeat(3, 6rem);
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(1, minmax(12.7rem, 17rem));
+    grid-template-rows: repeat(6, 6rem);
+  }
   .item {
     display: flex;
-    width: 12.7rem;
-    height: 6rem;
+    width: 100%;
+    height: 100%;
     background: $background-img;
     background-size: cover;
     box-shadow: 0px 0px 5px rgb(58, 61, 61);
@@ -76,19 +72,18 @@
       padding: 0.2rem 0.2rem 0.2rem 0;
       > div:first-child {
         display: flex;
+        justify-content: space-between;
         width: 100%;
         height: 30%;
-        .cryptoPercentagePrice {
-          display: flex;
-          margin-top: 0.11rem;
-          margin-left: 0.35rem;
+          > div:nth-child(2) {
+            margin-top: 0.14rem;
+          }
           .price {
-            margin-left: 0.3rem;
             font-weight: 680;
             color: $color-main;
+            margin-top: 0.14rem;
           }
         }
-      }
       .chart {
         width: 100%;
         height: 70%;
@@ -110,56 +105,135 @@
 
 .articles {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   flex-wrap: wrap;
-  height: auto;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  justify-content: center;
+  width: 90%;
   color: $color-main;
-  span {
-    filter: brightness(75%);
+  text-align: left;
+  h2 {
+    text-align: left;
+    font-size: 1.2rem;
   }
 }
 
 .articlesLeft {
-  width: 44rem;
-  border-right: 1px solid $bg-color-content;
-  height: auto;
+  max-width: 57%;
   font-size: 1.05rem;
-  .articlesLeftContent {
+  margin-right: 5rem;
+  @media (max-width: 1210px) {
+    max-width: 100%;
+    margin: 0;
+  }
+  > a > h2 {
+    @media (max-width: 1210px) {
+      text-align: center;
+    }
+  }
+  > div:nth-child(2) {
     display: flex;
+    gap: 5rem;
     flex-wrap: wrap;
+    margin-top: 0.7rem;
+    @media (max-width: 1210px) {
+      gap: 1rem;
+      justify-content: center;
+    }
+    > a {
+      > div:nth-child(1) {
+        height: 9.5rem;
+        width: 15rem;
+        img {
+          width: 100%;
+          height: 100%;
+          filter: brightness(100%);
+        }
+      }
+      > div:nth-child(2) {
+        margin-top: 0.3rem;
+        margin-bottom: -0.2rem;
+        font-size: 1rem;
+        width: 13.5rem;
+      }
+      > div:nth-child(3) {
+        display: flex;
+        margin-top: 0.3rem;
+        color: rgb(103, 103, 109);
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+.articlesRight {
+  max-width: 43%;
+  border-left: 1px solid $bg-color-content;
+  @media (max-width: 1210px) {
+    max-width: 100%;
+    border: none;
+  }
+  > a:first-child {
+    @media (max-width: 1210px) {
+      display: flex;
+      justify-content: center;
+      margin-left: 0;
+    }
+  }
+  > a:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+    @media (max-width: 1210px) {
+      margin-top: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+  > a {
+    display: flex;
+    margin-top: 0.5rem;
     margin-left: 1.75rem;
-    margin-top: 0.75rem;
-    img {
-      width: 100%;
-      height: 151px;
-      filter: brightness(100%);
+    font-size: 1rem;
+    > div:nth-child(1) {
+      .articlesRightImg {
+        width: 59px;
+        height: 59px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        @media (max-width: 1210px) {
+          margin-top: 0.5rem;
+        }
+        img {
+          width: auto;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(100%);
+        }
+      }
+    }
+    > div:nth-child(2) {
+      > div:nth-child(1) {
+        margin-left: 2rem;
+      }
+      > div:nth-child(2) {
+        margin-top: 0.1rem;
+        margin-left: 2rem;
+        display: flex;
+        color: rgb(103, 103, 109);
+        font-size: 0.9rem;
+      }
     }
   }
 }
 
-.articlesRight {
-  width: 36rem;
-  img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(100%);
-  }
-}
 
-.articlesRightList {
-  display: flex;
-  margin-top: 0.5rem;
-  margin-left: 1.75rem;
-  width: 91%;
-}
-
-.articlesRightImg {
-  width: 59px;
-  height: 59px;
-  margin-bottom: 10px;
-  border-radius: 50%;
-  overflow: hidden;
-}
+// .socialMedia {
+//   margin-top: 0rem;
+//   display: flex;
+//   .icon {
+//     height: 2rem;
+//     width: 2rem;
+//     margin: 1rem;
+//   }
+// }

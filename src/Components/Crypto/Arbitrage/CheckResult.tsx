@@ -2,19 +2,20 @@ import style from "./Arbitrage.module.scss";
 import { useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import LoadingButton from '@mui/lab/LoadingButton';
+import { BiRightArrow } from "react-icons/bi"
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import {
   fetchPairs,
   removePairs,
   setPair1,
-  setPair2,
+  setPair2, 
   setPair3,
 } from "../../../Store/Reducers/cryptoSlice";
 import { parseValue } from "../Coins/TableBody";
 
 const CheckResult = () => {
-  const { currencies, pairs, pair1, pair2, pair3 } = useAppSelector(
+  const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } = useAppSelector(
     (state) => state.crypto
   );
   const dispatch = useAppDispatch();
@@ -132,9 +133,14 @@ const CheckResult = () => {
           />
         </div>
       </div>
-      <Button onClick={() => handlePairs()} variant="outlined">
-        Check
-      </Button>
+      <LoadingButton
+        loading={isLoadingPairs}
+        endIcon={<BiRightArrow style={{width: 13}}/>}
+        loadingPosition="end"
+        variant="outlined"
+        onClick={() => handlePairs()}>
+          Check
+      </LoadingButton>
       <div className={style.result}>Result: {result} %</div>
       <hr/>
     </>

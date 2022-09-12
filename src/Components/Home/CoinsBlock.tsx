@@ -3,9 +3,12 @@ import ChartHome from "./ChartHome";
 import Select from "../Common/Select";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const CoinsBlock = () => {
-
   const markets = useAppSelector((state) => state.crypto.markets);
   const dispatch = useAppDispatch();
 
@@ -21,7 +24,7 @@ const CoinsBlock = () => {
 
   if (markets.length !== 0) {
     return (
-      <>
+      <div className={style.coins}>
         {markets.map((coin) => {
           if (
             coin.symbol === "btc" ||
@@ -41,9 +44,7 @@ const CoinsBlock = () => {
                     <img src={coin.image} alt={coin.name} />
                   </div>
                   <div>{ucFirst(coin.id)}</div>
-                  <div>
-                    {coin.symbol.toUpperCase()}
-                  </div>
+                  <div>{coin.symbol.toUpperCase()}</div>
                 </NavLink>
                 <div className={style.cryptoRightSide}>
                   <div>
@@ -55,28 +56,26 @@ const CoinsBlock = () => {
                         coinId={coin.id}
                       />
                     </div>
-                    <div className={style.cryptoPercentagePrice}>
-                      <div
-                        className={
-                          coin.price_change_percentage_24h > 0
-                            ? style.percentagePlus
-                            : style.percentageMinus
-                        }
-                      >
-                        {coin.price_change_percentage_24h.toFixed(1)}%
-                      </div>
-                      <div className={style.price}>
-                        {coin.current_price < 1 &&
-                          coin.current_price.toFixed(4)}
-                        {coin.current_price >= 1 &&
-                          coin.current_price < 100 &&
-                          coin.current_price.toFixed(2)}
-                        {coin.current_price >= 100 &&
-                          coin.current_price < 10000 &&
-                          coin.current_price.toFixed(1)}
-                        {coin.current_price >= 10000 && coin.current_price.toFixed(0)}
-                        {` $`}
-                      </div>
+                    <div
+                      className={
+                        coin.price_change_percentage_24h > 0
+                          ? style.percentagePlus
+                          : style.percentageMinus
+                      }
+                    >
+                      {coin.price_change_percentage_24h.toFixed(1)}%
+                    </div>
+                    <div className={style.price}>
+                      {coin.current_price < 1 && coin.current_price.toFixed(4)}
+                      {coin.current_price >= 1 &&
+                        coin.current_price < 100 &&
+                        coin.current_price.toFixed(2)}
+                      {coin.current_price >= 100 &&
+                        coin.current_price < 10000 &&
+                        coin.current_price.toFixed(1)}
+                      {coin.current_price >= 10000 &&
+                        coin.current_price.toFixed(0)}
+                      {` $`}
                     </div>
                   </div>
                   <div className={style.chart}>
@@ -88,12 +87,12 @@ const CoinsBlock = () => {
                 </div>
               </div>
             );
-          } else return null
+          } else return null;
         })}
-      </>
+      </div>
     );
   }
-  return null
+  return null;
 };
 
 export default CoinsBlock;
