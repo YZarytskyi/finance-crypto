@@ -3,6 +3,7 @@ import { parseValue } from "../Coins/TableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/cryptoSlice";
 import { Result } from "../../../Types/Types";
+import React from "react";
 
 
 const TableArbitrageBody = () => {
@@ -18,7 +19,7 @@ const TableArbitrageBody = () => {
 
   return (
     <>
-      {result.map((pairs: any, index: number) => (
+      {result.map((pairs, index) => (
         <tr
           key={index}
           className={style.arbitrageBody}
@@ -37,4 +38,4 @@ const TableArbitrageBody = () => {
   );
 };
 
-export default TableArbitrageBody;
+export default React.memo(TableArbitrageBody);

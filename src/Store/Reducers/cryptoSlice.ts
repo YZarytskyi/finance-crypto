@@ -43,7 +43,6 @@ interface FetchCurrencies {
 export const fetchCurrencies = createAsyncThunk(
   'currencies/fetch',
   async () => {
-    console.log(await cryptoApi.getAllCurrencies());
     return (await cryptoApi.getAllCurrencies()) as FetchCurrencies
   }
 )

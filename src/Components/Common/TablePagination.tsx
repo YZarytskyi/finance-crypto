@@ -11,7 +11,7 @@ const TablePagination: React.FC<TablePaginationProps> = ({page, setPage}) => {
     setPage(page)
   }
   return (
-      <Pagination count={30} shape="rounded" page={page} onChange={handleChange}/>
+      <Pagination count={30} shape="rounded" page={page} onChange={handleChange} style={{marginBottom: 15}}/>
   );
 }
 

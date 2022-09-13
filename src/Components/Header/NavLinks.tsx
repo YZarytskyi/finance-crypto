@@ -2,8 +2,7 @@ import { NavLink } from "react-router-dom";
 import style from "./Header.module.scss";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import brand from "../../assets/images/logo.png";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface NavLinksProps {
   closeMenu?: () => void;
@@ -11,53 +10,31 @@ interface NavLinksProps {
 }
 
 const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
-  const animateFrom = { opacity: 0, x: -10 };
-  const animateTo = { opacity: 1, x: 0 };
 
-const [display, setDisplay] = useState<'none' | 'flex'>('none')
-const handleCryptoSubList = () => setDisplay('flex')
+  const [display, setDisplay] = useState<'none' | 'block'>('none')
+  const handleCryptoSubList = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (display === 'none') {
+      return setDisplay('block')
+    }
+    return setDisplay('none')
+  }
 
   return (
     <ul>
-      <motion.li className={style.liLogo}>
+      <li className={style.logoPC}>
         <NavLink to="/">
           <img src={brand} width={48} height={48} alt="brand" />
         </NavLink>
-      </motion.li>
-      <motion.li
-        initial={animateFrom}
-        animate={animateTo}
-        onClick={() => isMobile && closeMenu && closeMenu()}
-      >
+      </li>
+      <li onClick={() => isMobile && closeMenu && closeMenu()}>
         <NavLink to="/">Home</NavLink>
-      </motion.li>
-      <motion.li
-        initial={animateFrom}
-        animate={animateTo}
-        transition={{ delay: 0.01 }}
-        onClick={() => isMobile && closeMenu && closeMenu()}
-      >
-        <NavLink to="/crypto/coins">
+      </li>
+      <li>
+        <NavLink to="/crypto/coins" onClick={(e) => isMobile && handleCryptoSubList(e)} style={{display: 'flex', alignItems: 'center'}}>
           Crypto
           <MdKeyboardArrowDown className={style.icon} />
         </NavLink>
-        {/* <div className={style.mobileCrypto} onClick={() => handleCryptoSubList()}>
-          Crypto
-          <MdKeyboardArrowDown className={style.icon} />
-        </div> */}
-        <div className={style.subListMobile}>
-          <ul onClick={() => isMobile && closeMenu && closeMenu()}>
-            <li>
-              <NavLink to="/crypto/coins">Coins</NavLink>
-            </li>
-            <li>
-              <NavLink to="/crypto/exchanges">Exchanges</NavLink>
-            </li>
-            <li>
-              <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
-            </li>
-          </ul>
-        </div>
         <div className={style.subList}>
           <ul>
             <li>
@@ -71,23 +48,26 @@ const handleCryptoSubList = () => setDisplay('flex')
             </li>
           </ul>
         </div>
-      </motion.li>
-      <motion.li
-        initial={animateFrom}
-        animate={animateTo}
-        transition={{ delay: 0.02 }}
-        onClick={() => isMobile && closeMenu && closeMenu()}
-      >
+        <div className={style.subListMobile} style={{display: display}}>
+          <ul>
+            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+              <NavLink to="/crypto/coins">Coins</NavLink>
+            </li>
+            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+              <NavLink to="/crypto/exchanges">Exchanges</NavLink>
+            </li>
+            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+              <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li onClick={() => isMobile && closeMenu && closeMenu()}>
         <NavLink to="/articles">Articles</NavLink>
-      </motion.li>
-      <motion.li
-        initial={animateFrom}
-        animate={animateTo}
-        transition={{ delay: 0.03 }}
-        onClick={() => isMobile && closeMenu && closeMenu()}
-      >
+      </li>
+      <li onClick={() => isMobile && closeMenu && closeMenu()}>
         <NavLink to="/contacts">Contacts</NavLink>
-      </motion.li>
+      </li>
     </ul>
   );
 };

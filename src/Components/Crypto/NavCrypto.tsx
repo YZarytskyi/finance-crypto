@@ -11,8 +11,8 @@ const NavCrypto = () => {
     <div className={style.navCrypto}>
       <div>
         <NavLink to="/crypto/coins">Coins</NavLink>
-        <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
         <NavLink to="/crypto/exchanges">Exchanges</NavLink>
+        <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
       </div>
       <div>
         <NavLink to="/">
