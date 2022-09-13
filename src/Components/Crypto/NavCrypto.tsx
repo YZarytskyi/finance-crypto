@@ -4,6 +4,8 @@ import { RiArrowRightSLine } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
 
 const NavCrypto = () => {
+  let currentPath = window.location.pathname;
+  currentPath = currentPath.replace(/\/crypto\//i, "")
 
   return (
     <div className={style.navCrypto}>
@@ -20,7 +22,7 @@ const NavCrypto = () => {
         <NavLink to="/crypto/coins">
           Crypto <RiArrowRightSLine className={style.arrow} />
         </NavLink>
-        <span></span>
+        <span>{currentPath}</span>
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import { cryptoApi } from "../../API/api";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { Currencies, Exchanges, GlobalData, Markets, MarketsTime, Pairs, SelectedCoinMarketChart } from "../../Types/Types";
+import { Currencies, Exchanges, GlobalData, Markets, MarketsTime, Pairs, Result, SelectedCoinMarketChart } from "../../Types/Types";
 
 const initialState: InitialState = {
   currencies: [],
+  result: [],
   markets: [],
   isLoadingCrypto: false,
   marketsTime: {},
@@ -20,6 +21,7 @@ const initialState: InitialState = {
 
 interface InitialState {
   currencies: Array<Currencies>;
+  result: Array<Result>;
   markets: Array<Markets>;
   isLoadingCrypto: boolean;
   marketsTime: MarketsTime;
@@ -34,10 +36,15 @@ interface InitialState {
   coinDescription: string | null;
 }
 
+interface FetchCurrencies {
+  currencies: Array<Currencies>;
+  result: Array<Result>;
+}
 export const fetchCurrencies = createAsyncThunk(
   'currencies/fetch',
   async () => {
-    return (await cryptoApi.getAllCurrencies()) as Array<Currencies>
+    console.log(await cryptoApi.getAllCurrencies());
+    return (await cryptoApi.getAllCurrencies()) as FetchCurrencies
   }
 )
 export const fetchPairs = createAsyncThunk(
@@ -114,7 +121,8 @@ export const cryptoSlice = createSlice({
       state.isLoadingCrypto = true
       })
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
-      state.currencies = action.payload
+      state.currencies = action.payload.currencies
+      state.result = action.payload.result
       state.isLoadingCrypto = false
       })
 

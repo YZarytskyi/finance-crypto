@@ -109,13 +109,13 @@ header {
         }
       }
       > li:nth-child(1) {
+        &:hover {
+          border: none;
+        }
         a {
           padding: 0 1rem;
           display: flex;
           align-items: center;
-          &:hover {
-            border-bottom: none;
-          }
         }
       }
       > li:nth-child(3) {

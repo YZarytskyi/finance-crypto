@@ -8,8 +8,11 @@
   width: 100%;
     .heading {
       width: 80%;
-      padding: 1.5rem;
+      padding: 1rem 0 0 0;
       margin-bottom: 10px;
+      @media (max-width: 800px) {
+        margin-bottom: 0;
+      }
     }
     .formImg {
       width: 70%;

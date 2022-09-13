@@ -19,23 +19,17 @@
 .coins {
   color: $color-main;
   display: grid;
-  grid-template-columns: repeat(6, minmax(12.7rem, 17rem));
+  grid-template-columns: repeat(6, minmax(12.7rem, 14rem));
   grid-template-rows: 6rem;
   grid-auto-flow: column;
   gap: 1.05rem;
   justify-content: center;
   padding: 0.8rem 2.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
   @media (max-width: 1360px) {
-    grid-template-columns: repeat(3, minmax(12.7rem, 17rem));
-    grid-template-rows: repeat(2, 6rem);
-  }
-  @media (max-width: 720px) {
-    grid-template-columns: repeat(2, minmax(12.7rem, 17rem));
-    grid-template-rows: repeat(3, 6rem);
-  }
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(1, minmax(12.7rem, 17rem));
-    grid-template-rows: repeat(6, 6rem);
+    justify-content: flex-start;
+    padding: 0.8rem 1.2rem 0.5rem 1.2rem;
   }
   .item {
     display: flex;
@@ -111,6 +105,9 @@
   width: 90%;
   color: $color-main;
   text-align: left;
+  @media (max-width: 1360px) {
+    margin-top: 1rem;
+  }
   h2 {
     text-align: left;
     font-size: 1.2rem;

@@ -108,6 +108,12 @@ $bg-main: rgba(0, 0, 0, 0.65);
       flex-direction: column;
       gap: 1.6vw;
       overflow: auto;
+      &::-webkit-scrollbar {
+        width: 12px;
+        @media (max-width: 1240px) {
+          width: 8px;
+        }
+      }
       .topArticlesItem {
         display: grid;
         grid-template-columns: 4vw 1fr;

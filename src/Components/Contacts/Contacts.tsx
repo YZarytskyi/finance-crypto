@@ -7,7 +7,7 @@ const Contacts = () => {
   return(
     <div className={style.contacts}>
       <div className={style.heading}>
-          <h1>Have some questions?</h1>
+          <h1>Any questions?</h1>
           <hr />
       </div>
       <div className={style.formImg}>

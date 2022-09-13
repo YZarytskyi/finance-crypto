@@ -1,5 +1,5 @@
+import { Currencies } from './../Types/Types';
 import axios from "axios";
-import { Currencies } from "../Types/Types";
 
 
 interface getAllCurrenciesResult {
@@ -23,12 +23,59 @@ export const cryptoApi = {
             .map((x: { status: string; symbol: string }) => ({
               symbol: x.symbol,
             })));
-          return result.map((x: { symbol: string }) => {
-            const filterPrice = response2.data.find(
+          const currencies: Array<Currencies> = result.map((x) => {
+            const filterPrice: Currencies = response2.data.find(
               (y: Currencies) => y.symbol === x.symbol
             );
             return filterPrice;
           });
+
+          let currenciesUsdt = currencies.filter((q) => q.symbol.includes("USDT") && !q.symbol.includes("EURUSDT"));
+          let map1 = currenciesUsdt.map((x) => {
+            let filterPair1 = x.symbol.replace(/USDT/, "");
+            let pair2 = currencies.filter((y) => y.symbol.includes(filterPair1));
+            let map2 = pair2.map((w) => {
+              const regexp = new RegExp(filterPair1);
+              let filterPair2 = w.symbol.replace(regexp, "");
+              let pair3 = currencies.filter((z) =>
+                z.symbol.includes(`${filterPair2}USDT`) ||
+                z.symbol.includes(`USDT${filterPair2}`)
+                  ? z.symbol.includes(`${filterPair2}USDT`) ||
+                    z.symbol.includes(`USDT${filterPair2}`)
+                  : ""
+              );
+              let map3 = pair3.map((q) => {
+                const formula = (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
+                const result1 = formula < 4 && formula > -4
+                    ? formula.toFixed(2)
+                    : ((100 / +x.askPrice) * +w.bidPrice * +q.bidPrice - 100).toFixed(2);
+                const result2 =
+                  +result1 < 4 && +result1 > -4
+                    ? result1
+                    : (100 * +x.bidPrice * +w.bidPrice * +q.bidPrice - 100).toFixed(2);
+                const result3 =
+                  +result2 < 4 && +result2 > -4
+                    ? result2
+                    : (((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice - 100).toFixed(2);
+                return {
+                  pair1: x.symbol,
+                  price1: x.askPrice,
+                  pair2: w.symbol,
+                  price2: w.askPrice,
+                  pair3: q.symbol ? q.symbol : "",
+                  price3: q.askPrice ? q.askPrice : "",
+                  result: result3,
+                };
+              });
+              return map3;
+            });
+            return map2;
+          });
+          const result1 = map1.flat(3).filter((x) => +x.result > 0 && +x.result < 2);
+          return ({
+            currencies,
+            result: result1,
+          })
         })
       );
   },

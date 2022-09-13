@@ -6,6 +6,16 @@ export interface Currencies {
   askQty: string;
 }
 
+export interface Result {
+  pair1: string;
+  price1: string;
+  pair2: string;
+  price2: string;
+  pair3: string;
+  price3: string;
+  result: string;
+}
+
 export interface Exchanges {
   id: string;
   name: string;
