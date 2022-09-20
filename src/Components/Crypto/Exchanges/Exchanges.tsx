@@ -13,6 +13,7 @@ const Exchanges = () => {
   const dispatch = useAppDispatch()
   const [page, setPage] = useState<number>(1)
   const isLoading = useAppSelector(state => state.crypto.isLoadingCrypto)
+  const countExchanges: number = 30;
 
   useEffect(() => {
     dispatch(fetchExchanges(page))
@@ -46,7 +47,7 @@ const Exchanges = () => {
       </div>
       }
       <div className={style.pagination}>
-        <TablePagination page={page} setPage={setPage}/>
+        <TablePagination page={page} setPage={setPage} count={countExchanges} />
       </div>
     </>
   );

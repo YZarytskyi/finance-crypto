@@ -20,17 +20,17 @@
       align-items: center;
       justify-content: center;
       gap: 5rem;
-        > div:nth-child(1) {
+        > .img {
           width: 35%;
           display: flex;
           justify-content: center;
-          @media (max-width: 800px) {
+          @media (max-width: 1000px) {
             display: none;
           }
         }
-        > div:nth-child(2) {
+        > form {
           width: 65%;
-          @media (max-width: 800px) {
+          @media (max-width: 1000px) {
             width: 90%;
           }
         }
@@ -42,26 +42,29 @@ form {
     display: block;
     text-align: left;
     font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+    > input, textarea {
+      @include input;
+      width: 100%;
+      margin-top: 0.3rem;
+      background-color: $color-main;
+    }
+    > textarea {
+      min-height: 8rem;
+      max-height: 17rem;
+      margin-top: 0.2rem;
+      margin-bottom: 0;
+      background-color: $color-main;
+    }
+    > p {
+      text-align: left;
+      color:rgb(253, 55, 55);
+      font-size: 0.8rem;
+      margin-bottom: 0.1rem;
+      margin-top: 0.2rem;
+      white-space: pre;
+    }
   }
-  > input, textarea {
-    @include input;
-    width: 100%;
-  }
-  > textarea {
-    min-height: 8rem;
-    max-height: 17rem;
-    margin-bottom: 0;
-  }
-  > p {
-    text-align: left;
-    color:rgb(253, 55, 55);
-    font-size: 0.8rem;
-    margin-bottom: 0.1rem;
-    margin-top: 0.2rem;
-    white-space: pre;
-  }
-  > p:nth-of-type(3) {
+  .formTextarea > p {
     margin-top: -0.25rem;
     margin-bottom: 0.3rem;
   }

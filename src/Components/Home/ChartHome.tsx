@@ -110,7 +110,6 @@ const ChartHome: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
 
   if (sparkline) {
     return (
-      <div>
         <ReactApexChart
           options={options}
           series={series}
@@ -118,7 +117,6 @@ const ChartHome: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
           width="100%"
           height="100%"
         />
-      </div>
     );
   }
   return null

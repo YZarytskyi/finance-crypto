@@ -2,22 +2,21 @@ import style from "./Arbitrage.module.scss";
 import { useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import LoadingButton from '@mui/lab/LoadingButton';
-import { BiRightArrow } from "react-icons/bi"
+import LoadingButton from "@mui/lab/LoadingButton";
+import { BiRightArrow } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import {
   fetchPairs,
   removePairs,
   setPair1,
-  setPair2, 
+  setPair2,
   setPair3,
 } from "../../../Store/Reducers/cryptoSlice";
 import { parseValue } from "../Coins/TableBody";
 
 const CheckResult = () => {
-  const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } = useAppSelector(
-    (state) => state.crypto
-  );
+  const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =
+    useAppSelector((state) => state.crypto);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -89,60 +88,69 @@ const CheckResult = () => {
 
   return (
     <>
-      <div className={style.checkResult}>
-        <div>
-          <div className={style.pairPrice}>{pair1WithPrice?.ask ? parseValue(+pair1WithPrice.ask) : 'Price'}</div>
-          <Autocomplete
-            id="pair-1"
-            value={pair1}
-            onChange={(event, pair1) => {
-              dispatch(setPair1(pair1));
-            }}
-            sx={{ width: 200 }}
-            disablePortal
-            options={pair1Currencies}
-            renderInput={(params) => <TextField {...params} label="Pair 1" />}
-          />
-        </div>
-        <div>
-          <div className={style.pairPrice}>{pair2WithPrice?.ask ? parseValue(+pair2WithPrice.ask) : 'Price'}</div>
-          <Autocomplete
-            id="pair-2"
-            value={pair2}
-            onChange={(event, newValue) => {
-              dispatch(setPair2(newValue));
-            }}
-            sx={{ width: 200 }}
-            disablePortal
-            options={pair2Currencies}
-            renderInput={(params) => <TextField {...params} label="Pair 2" />}
-          />
-        </div>
-        <div>
-          <div className={style.pairPrice}>{pair3WithPrice?.bid ? parseValue(+pair3WithPrice.bid) : 'Price'}</div>
-          <Autocomplete
-            id="pair-3"
-            value={pair3}
-            onChange={(event, newValue) => {
-              dispatch(setPair3(newValue));
-            }}
-            sx={{ width: 200 }}
-            disablePortal
-            options={pair3Currencies}
-            renderInput={(params) => <TextField {...params} label="Pair 3" />}
-          />
-        </div>
-      </div>
+      <section className={style.checkResult}>
+        <ul className={style.checkResultList}>
+          <li>
+            <p className={style.pairPrice}>
+              {pair1WithPrice?.ask ? parseValue(+pair1WithPrice.ask) : "Price"}
+            </p>
+            <Autocomplete
+              id="pair-1"
+              value={pair1}
+              onChange={(event, pair1) => {
+                dispatch(setPair1(pair1));
+              }}
+              sx={{ width: 200 }}
+              disablePortal
+              options={pair1Currencies}
+              renderInput={(params) => <TextField {...params} label="Pair 1" />}
+            />
+          </li>
+          <li>
+            <p className={style.pairPrice}>
+              {pair2WithPrice?.ask ? parseValue(+pair2WithPrice.ask) : "Price"}
+            </p>
+            <Autocomplete
+              id="pair-2"
+              value={pair2}
+              onChange={(event, newValue) => {
+                dispatch(setPair2(newValue));
+              }}
+              sx={{ width: 200 }}
+              disablePortal
+              options={pair2Currencies}
+              renderInput={(params) => <TextField {...params} label="Pair 2" />}
+            />
+          </li>
+          <li>
+            <p className={style.pairPrice}>
+              {pair3WithPrice?.bid ? parseValue(+pair3WithPrice.bid) : "Price"}
+            </p>
+            <Autocomplete
+              id="pair-3"
+              value={pair3}
+              onChange={(event, newValue) => {
+                dispatch(setPair3(newValue));
+              }}
+              sx={{ width: 200 }}
+              disablePortal
+              options={pair3Currencies}
+              renderInput={(params) => <TextField {...params} label="Pair 3" />}
+            />
+          </li>
+        </ul>
+      </section>
       <LoadingButton
         loading={isLoadingPairs}
-        endIcon={<BiRightArrow style={{width: 13}}/>}
+        endIcon={<BiRightArrow style={{ width: 13 }} />}
         loadingPosition="end"
         variant="outlined"
-        onClick={() => handlePairs()}>
-          Check
+        onClick={() => handlePairs()}
+      >
+        Check
       </LoadingButton>
-      <div className={style.result}>Result: {result} %</div>
-      <hr/>
+      <p className={style.result}>Result: {result} %</p>
+      <hr />
     </>
   );
 };

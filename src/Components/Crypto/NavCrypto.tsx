@@ -5,25 +5,37 @@ import { AiFillHome } from "react-icons/ai";
 
 const NavCrypto = () => {
   let currentPath = window.location.pathname;
-  currentPath = currentPath.replace(/\/crypto\//i, "")
+  currentPath = currentPath.replace(/\/crypto\//i, "");
 
   return (
     <div className={style.navCrypto}>
-      <div>
-        <NavLink to="/crypto/coins">Coins</NavLink>
-        <NavLink to="/crypto/exchanges">Exchanges</NavLink>
-        <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
-      </div>
-      <div>
-        <NavLink to="/">
-          <AiFillHome className={style.home}/> 
-          <RiArrowRightSLine className={style.arrow} />
-        </NavLink>
-        <NavLink to="/crypto/coins">
-          Crypto <RiArrowRightSLine className={style.arrow} />
-        </NavLink>
-        <span>{currentPath}</span>
-      </div>
+      <ul className={style.listLeft}>
+        <li>
+          <NavLink to="/" className={style.leftLink}>
+            <AiFillHome className={style.home} />
+            <RiArrowRightSLine className={style.arrow} />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/crypto/coins" className={style.leftLink}>
+            Crypto <RiArrowRightSLine className={style.arrow} />
+          </NavLink>
+        </li>
+        <li>
+          <span className={style.currentPath}>{currentPath}</span>
+        </li>
+      </ul>
+      <ul className={style.listCenter}>
+        <li>
+          <NavLink to="/crypto/coins" className={style.centerLink}>Coins</NavLink>
+        </li>
+        <li>
+          <NavLink to="/crypto/exchanges" className={style.centerLink}>Exchanges</NavLink>
+        </li>
+        <li>
+          <NavLink to="/crypto/arbitrage" className={style.centerLink}>Arbitrage</NavLink>
+        </li>
+      </ul>
     </div>
   );
 };

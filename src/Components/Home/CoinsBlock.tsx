@@ -3,10 +3,6 @@ import ChartHome from "./ChartHome";
 import Select from "../Common/Select";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const CoinsBlock = () => {
   const markets = useAppSelector((state) => state.crypto.markets);
@@ -18,78 +14,79 @@ const CoinsBlock = () => {
     H168 = "168",
   }
 
-  const ucFirst = (name: string) => {
+  const ucFirst = (name: string): string => {
     return name[0].toUpperCase() + name.slice(1);
   };
 
   if (markets.length !== 0) {
     return (
-      <div className={style.coins}>
-        {markets.map((coin) => {
-          if (
-            coin.symbol === "btc" ||
-            coin.symbol === "eth" ||
-            coin.symbol === "xrp" ||
-            coin.symbol === "sol" ||
-            coin.symbol === "ada" ||
-            coin.symbol === "dot"
-          ) {
-            return (
-              <div className={style.item} key={coin.id}>
-                <NavLink
-                  to={`/crypto/coins/${coin.id}`}
-                  className={style.cryptoLeftSide}
-                >
-                  <div>
+      <section className={style.coins}>
+        <ul className={style.coinsList}>
+          {markets.map((coin) => {
+            if (
+              coin.symbol === "btc" ||
+              coin.symbol === "eth" ||
+              coin.symbol === "xrp" ||
+              coin.symbol === "sol" ||
+              coin.symbol === "ada" ||
+              coin.symbol === "dot"
+            ) {
+              return (
+                <li className={style.item} key={coin.id}>
+                  <NavLink
+                    to={`/crypto/coins/${coin.id}`}
+                    className={style.cryptoLeftSide}
+                  >
                     <img src={coin.image} alt={coin.name} />
-                  </div>
-                  <div>{ucFirst(coin.id)}</div>
-                  <div>{coin.symbol.toUpperCase()}</div>
-                </NavLink>
-                <div className={style.cryptoRightSide}>
-                  <div>
-                    <div>
+                    <p>{ucFirst(coin.id)}</p>
+                    <p>{coin.symbol.toUpperCase()}</p>
+                  </NavLink>
+                  <div className={style.cryptoRightSide}>
+                    <div className={style.cryptoRightTop}>
                       <Select
                         H24={Hours.H24}
                         H72={Hours.H72}
                         H168={Hours.H168}
                         coinId={coin.id}
                       />
+                      <p
+                        className={
+                          coin.price_change_percentage_24h > 0
+                            ? style.percentagePlus
+                            : style.percentageMinus
+                        }
+                      >
+                        {coin.price_change_percentage_24h.toFixed(1)}%
+                      </p>
+                      <p className={style.price}>
+                        {coin.current_price < 1 &&
+                          coin.current_price.toFixed(4)}
+                        {coin.current_price >= 1 &&
+                          coin.current_price < 100 &&
+                          coin.current_price.toFixed(2)}
+                        {coin.current_price >= 100 &&
+                          coin.current_price < 10000 &&
+                          coin.current_price.toFixed(1)}
+                        {coin.current_price >= 10000 &&
+                          coin.current_price.toFixed(0)}
+                        {` $`}
+                      </p>
                     </div>
-                    <div
-                      className={
-                        coin.price_change_percentage_24h > 0
-                          ? style.percentagePlus
-                          : style.percentageMinus
-                      }
-                    >
-                      {coin.price_change_percentage_24h.toFixed(1)}%
+                    <NavLink to={`/crypto/coins/${coin.id}`} >
+                    <div className={style.chart}>
+                      <ChartHome
+                        sparkline={coin.sparkline_in_7d.price}
+                        coinId={coin.id}
+                      />
                     </div>
-                    <div className={style.price}>
-                      {coin.current_price < 1 && coin.current_price.toFixed(4)}
-                      {coin.current_price >= 1 &&
-                        coin.current_price < 100 &&
-                        coin.current_price.toFixed(2)}
-                      {coin.current_price >= 100 &&
-                        coin.current_price < 10000 &&
-                        coin.current_price.toFixed(1)}
-                      {coin.current_price >= 10000 &&
-                        coin.current_price.toFixed(0)}
-                      {` $`}
-                    </div>
+                    </NavLink>
                   </div>
-                  <div className={style.chart}>
-                    <ChartHome
-                      sparkline={coin.sparkline_in_7d.price}
-                      coinId={coin.id}
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          } else return null;
-        })}
-      </div>
+                </li>
+              );
+            } else return null;
+          })}
+        </ul>
+      </section>
     );
   }
   return null;

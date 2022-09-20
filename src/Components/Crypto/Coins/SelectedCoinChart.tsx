@@ -110,10 +110,6 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
 
     return (
       <div className={style.chartTools}>
-        <div className={style.inputChartTime}>
-          <input type='number' onChange={(e) => setChartTime(Number(e.target.value))}/>
-          <button onClick={() => setDays(chartTime)}>Show</button>
-        </div>
         <div className={style.chartButtons}>
           <button onClick={() => setDays(1)} >1d</button>
           <button onClick={() => setDays(7)} >7d</button>
@@ -121,16 +117,16 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
           <button onClick={() => setDays(183)} >6m</button>
           <button onClick={() => setDays(365)} >1y</button>
           <button onClick={() => setDays('max')} >All</button>
+          <input type='number' placeholder='Days' onChange={(e) => setChartTime(Number(e.target.value))}/>
+          <button onClick={() => setDays(chartTime)}>Show</button>
         </div>
 
-        <div>
           <ReactApexChart
             options={options}
             series={series}
             type="area"
             height={350}
           />
-        </div>
       </div>
     );
 }

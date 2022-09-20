@@ -7,7 +7,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
   height: 100%;
   display: flex;
   flex-direction: column;
-  font-family: nyt-imperial, georgia, "times new roman", times, serif;
+  font-family: georgia, "times new roman", times, serif;
   > h2 {
     margin: 1.5rem;
     font-size: 1.7rem;
@@ -30,7 +30,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     ". h t ."
     ". b t ."
     ". . t .";
-  grid-template-columns: 5% 57% 28% 10%;
+  grid-template-columns: 5% 57% 28.3% 9.7%;
   grid-template-rows: 5% 52% 38% 5%;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
     url("../../assets/images/q.jpg");
@@ -38,13 +38,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
   background-size: 100% 40vw;
   @media (max-width: 1023px) {
     display: none;
-  }
-  a {
-    text-decoration: none;
-    color: $color-main;
-    &:hover {
-      color: rgb(131, 131, 241);
-    }
   }
   .mainTitle {
     grid-area: h;
@@ -66,28 +59,24 @@ $bg-main: rgba(0, 0, 0, 0.65);
     gap: 1.8rem;
     padding: 1.5rem 1rem 1.5rem 2.5rem;
     overflow: auto;
-    .bottomListItem {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    > .bottomListItem {
       width: 33%;
-      > div:nth-child(1) {
-        img {
-          height: 100%;
+      .bottomListLink {
+        > img {
+          height: 7.5vw;
           width: 90%;
           object-fit: cover;
         }
-      }
-      > div:nth-child(2) {
-        text-align: left;
-        margin-top: 0.6rem;
-        font-size: 1rem;
-        font-size: 1.1vw;
-        line-height: 1.45vw;
+        > p:nth-child(2) {
+          text-align: left;
+          margin-top: 0.6rem;
+          font-size: 1rem;
+          font-size: 1.1vw;
+          line-height: 1.45vw;
+        }
       }
     }
   }
-
   .rightBlock {
     grid-area: t;
     width: 100%;
@@ -114,14 +103,13 @@ $bg-main: rgba(0, 0, 0, 0.65);
           width: 8px;
         }
       }
-      .topArticlesItem {
+      .rightListLink {
         display: grid;
-        grid-template-columns: 4vw 1fr;
+        grid-template-columns: 3.9vw 1fr;
         align-items: center;
-        justify-content: flex-start;
         > div:nth-child(1) {
-          width: 4vw;
-          height: 4vw;
+          width: 3.9vw;
+          height: 3.9vw;
           border-radius: 50%;
           overflow: hidden;
           > img {
@@ -130,7 +118,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
             object-fit: cover;
           }
         }
-        > div:nth-child(2) {
+        > p:nth-child(2) {
           font-size: 1.1vw;
           margin-left: 1.2rem;
           text-align: left;
@@ -140,69 +128,65 @@ $bg-main: rgba(0, 0, 0, 0.65);
   }
 }
 
-
 // Blocks under Heading
-
-.articlesBlock {
-  display: grid;
-  gap: 2.1vw;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 80%;
-  margin: 0 auto;
-  @media (min-width: 1440px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+.allArticles {
+  > h2 {
+    margin: 2.6rem 0 2.3rem 0;
+    font-size: 1.8rem;
   }
-  @media (max-width: 1023px) {
-    grid-template-columns: 1fr 1fr;
-    width: 95%;
-  }
-  @media (max-width: 576px) {
-    grid-template-columns: 1fr;
-  }
-  a {
-    text-decoration: none;
-    color: rgb(167, 149, 238);
-  }
-  .article {
-    height: 100%;
-    backdrop-filter: blur(5px);
-    overflow: auto;
-    .articlesImage {
-      max-height: 65%;
-      overflow: hidden;
+  .articlesBlock {
+    display: grid;
+    gap: 2.1vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+    margin: 0 auto;
+    @media (min-width: 1440px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media (max-width: 1023px) {
+      grid-template-columns: 1fr 1fr;
+      width: 95%;
+    }
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+    .allArticlesLink {
+      display: grid;
+      grid-template-rows: 10rem minmax(7rem, max-content);
+      background-color: rgba(90, 90, 90, 0.1);
+      border: 1px solid rgb(94, 94, 94, 0.2);
       @media (max-width: 1023px) {
-        max-height: 100%;
+        grid-template-rows: 15rem;
       }
-      > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .articlesImage {
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
-    }
-    .articlesTitleDate {
-      padding: 0.7rem;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      color: $color-main;
-      @media (max-width: 576px) {
-        grid-template-columns: 1fr;
-      }
-      > div:first-child {
-        font-size: 100%;
-      }
-      > div:last-child {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 83%;
-        color: rgb(103, 103, 109);
+      .articlesTitleDate {
+        padding: 0.7rem;
+        text-align: left;
+        > p:first-child {
+          font-size: 100%;
+        }
+        > div:last-child {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 83%;
+          color: rgb(103, 103, 109);
+        }
       }
     }
+  }
+  .paginationArticlesBlock {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
   }
 }
-
-
 
 .selectedArticle {
   width: 55%;
@@ -217,7 +201,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     font-size: 2.4rem;
     line-height: 2.8rem;
     font-weight: 500;
-    padding: 1.6rem 0 0.2rem;
+    padding: 1.6rem 0 0.2rem 0;
     @media (max-width: 1000px) {
       font-size: 2.2rem;
       line-height: 2.25rem;
@@ -227,18 +211,19 @@ $bg-main: rgba(0, 0, 0, 0.65);
       line-height: 2.15rem;
     }
     @media (max-width: 576px) {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       line-height: 1.75rem;
     }
   }
   .date {
-    color: rgb(118, 118, 131);
-    font-size: 1rem;
+    margin-top: 0.8rem;
     margin-bottom: 0.8rem;
     display: flex;
     justify-content: center;
+    color: rgb(118, 118, 131);
+    font-size: 1.1rem;
     @media (max-width: 576px) {
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
   }
   img {
@@ -250,17 +235,12 @@ $bg-main: rgba(0, 0, 0, 0.65);
     margin-top: 2rem;
     white-space: pre-line;
     text-align: left;
-    @media (max-width: 576px) {
-      font-size: 1.1rem;
+    font-size: 1.2rem;
+    > a {
+      color:rgb(99, 90, 235);
+      &:hover, &:focus {
+        color:rgb(120, 111, 247)
+      }
     }
   }
-  a {
-    color: rgb(121, 99, 211);
-  }
-}
-
-.articlesDate {
-  color: rgb(153, 153, 168);
-  margin-top: 0.2rem;
-  font-size: 0.8rem;
 }

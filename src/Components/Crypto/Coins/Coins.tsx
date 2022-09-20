@@ -12,6 +12,7 @@ const Coins = () => {
   const isLoading = useAppSelector((state) => state.crypto.isLoadingCrypto);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
+  const countCoins: number = 50;
 
   useEffect(() => {
     dispatch(fetchMarkets(page));
@@ -20,11 +21,11 @@ const Coins = () => {
   return (
     <>
       <NavCrypto />
-
         {isLoading 
         ? <CryptoSkeleton /> 
-        : <div className={style.table}> 
-          <Table hover size="sm" variant="dark">
+        : <section className={style.table}> 
+          <h1 className="hidden">Cryptocurrencies</h1>
+          <Table hover variant="dark">
             <thead>
               <tr>
                 <th>#</th>
@@ -42,10 +43,10 @@ const Coins = () => {
               <TableCoinsBody />
             </tbody>
           </Table>
-          </div>
+          </section>
         }
         <div className={style.pagination}>
-          <TablePagination page={page} setPage={setPage} />
+          <TablePagination page={page} setPage={setPage} count={countCoins} />
         </div>
     </>
   );

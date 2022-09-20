@@ -160,7 +160,7 @@ export const articlesApi = {
   getArticles() {
     return axios
       .get(
-        `https://newsapi.org/v2/everything?language=en&excludeDomains=.ru&q=cryptocurrency OR taxes OR "Federal Reserve Board" OR finance&searchIn=title&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
+        `https://newsapi.org/v2/everything?language=en&excludeDomains=.ru&q=crypto OR taxes OR "Federal Reserve Board" OR finance&searchIn=title&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
       )
       .then((res) => res.data.articles)
       .catch((error) => {

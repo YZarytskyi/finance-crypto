@@ -1,17 +1,17 @@
-$color-main: rgba(255, 255, 255, 0.85);
-$color-data: rgba(255, 255, 255, 0.55);
-$bg-color-body: rgb(22, 27, 32);
-$bg-color-header: rgb(23, 34, 43);
-$bg-color-content: rgb(45, 49, 54);
-$box-shadow: rgb(95, 93, 168) 0px -1px 8px;
-$input-shadow: rgb(95, 93, 168) 0px 0px 8px 4px;
-$background-img: linear-gradient( rgba(9, 9, 14, 0.95), rgba(9, 9, 14, 0.95) ), url('./assets/images/bg-body.jpg');
-$color-plus: rgb(1, 179, 1);
-$color-minus: rgb(255, 83, 60);
-$color-a-hover: rgb(136, 136, 204);
+$color-main: #ffffffd9;
+$color-secondary: rgba(255, 255, 255, 0.4);
+$color-accent: #259dff;
+$bg-color-main: rgb(22, 27, 32);
+$box-shadow: #5f5da8 0px -1px 6px;
+$input-shadow: #259dff 0px 0px 4px 2px;
+$bg-img: linear-gradient(rgba(9, 9, 14, 0.95), rgba(9, 9, 14, 0.95)),
+  url("./assets/images/bg-body.jpg");
+$color-plus: #01b301;
+$color-minus: #fc432a;
+
 
 @mixin bg {
-  background: $background-img;
+  background: $bg-img;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -20,12 +20,37 @@ $color-a-hover: rgb(136, 136, 204);
 
 @mixin input {
   border-radius: 0.3rem;
-  padding: 0.3rem 0.5rem; 
-  color:rgb(24, 24, 24);
+  padding: 0.3rem 0.5rem;
+  color: rgb(24, 24, 24);
   font-family: "Gill Sans", sans-serif;
   font-size: 1.1rem;
   outline: none;
   &:focus {
     box-shadow: $input-shadow;
+  }
+}
+
+@mixin initial {
+  ul,
+  p,
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    color: $color-main;
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  button {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
   }
 }

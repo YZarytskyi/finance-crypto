@@ -23,7 +23,7 @@ const ScannerTable = () => {
         onClick={() => handleRefresh()}
       />    
       {isLoadingCrypto 
-      ? <div style={{marginTop: '0.5rem'}}>Loading...</div>
+      ? <p className={style.fallback}>Loading...</p>
       : <div className={`${style.table} ${style.tableArbitrage}`}>
       <Table
         hover

@@ -1,4 +1,5 @@
 @import "./Home.module.scss";
+@import "../../variables.scss";
 
 .caption {
   height: 100%;
@@ -14,6 +15,8 @@
   }
   .footer {
     grid-area: f;
+    margin: 0 auto;
+    width: fit-content;
     h1 {
       font-size: 1.9rem;
       @media (max-width: 1350px) {
@@ -27,7 +30,11 @@
     }
     p {
       font-size: 1.1rem;
+      margin-top: 0.5rem;
       margin-bottom: 0.3rem;
+      margin-right: auto;
+      margin-left: auto;
+      width: fit-content;
       @media (max-width: 1350px) {
         display: none;
       }
@@ -41,7 +48,7 @@
 }
 
 .image {
-  filter: brightness(40%);
+  filter: brightness(40%) sepia(100%) hue-rotate(190deg) saturate(200%);
   width: 100%;
   height: 19rem;
   > img {
@@ -52,6 +59,7 @@
 }
 
 .imageCrypto {
+  filter: brightness(40%);
   > img {
     height: 100%;
     width: 100%;
@@ -60,28 +68,26 @@
 
 .carouselInfo {
   grid-area: c;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
   gap: 2.5rem;
-  width: 100%;
-  height: 100%;
-  @media (max-width: 1350px) {
-  }
-  > a {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    padding: 0.8rem 0.6rem;
-    min-height: 4.9rem;
-    width: 18rem;
-    border-radius: 0.5rem;
-    border-left: 10px solid rgba(0, 59, 253, 0.35);
+  flex-wrap: wrap;
+  > li > a {
     display: flex;
     align-items: center;
     flex-direction: column;
     word-wrap: break-word;
+    padding: 0.8rem 0.6rem;
+    min-height: 4.9rem;
+    width: 18rem;
+    border-radius: 0.5rem;
+    border-left: 10px solid rgb(0, 140, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
     @media (max-width: 1350px) {
       padding: 0.4rem 0.2rem;
       min-height: 3.5rem;
@@ -93,56 +99,47 @@
   @media (max-width: 880px) {
     gap: 0.5rem;
   }
-  > a {
-    > div {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      > div:nth-child(1) {
-        font-weight: 500;
-      }
-      > div:nth-child(2) {
+  .cryptoLink {
+    > div:nth-child(1) {
+      font-size: 1.1rem;
+      font-weight: 500;
+      > span {
         font-size: 0.9rem;
-        margin-left: 0.5rem;
       }
     }
-    > div:last-child {
+    > p:last-child {
       margin-top: 0.1rem;
       font-size: 0.9rem;
-      color: rgb(141, 142, 143);
-    }
-  }
-  > div:nth-child(2),
-  div:nth-child(3) {
-    > div:first-child {
-      font-weight: 500;
+      color: $color-secondary;
     }
   }
 }
 
 .articlesData {
   @media (max-width: 1350px) {
-    gap: 0.5rem;
+    row-gap: 0.5rem;
   }
-  > a {
+  .articlesLink {
     min-height: 5rem;
     text-align: left;
-    > div:first-child {
+    > p:first-child {
+      margin-left: 0.5rem;
+      font-size: 1.1rem;
       font-weight: 500;
     }
-    > div:last-child {
+    > p:nth-child(2) {
       margin-right: auto;
+      margin-left: 0.5rem;
       display: flex;
       align-items: center;
       gap: 0.3rem;
       margin-top: 0.1rem;
       font-size: 0.9rem;
-      color: rgb(141, 142, 143);
+      color: $color-secondary;
     }
   }
-
-  > a:nth-child(3) {
-    @media (max-width: 835px) {
+  > li:nth-child(3) {
+    @media (max-width: 880px) {
       display: none;
     }
   }
