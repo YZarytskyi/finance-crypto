@@ -24,10 +24,9 @@ const Exchanges = () => {
       <NavCrypto />
       {isLoading
       ? <CryptoSkeleton />
-      : <div className={`${style.table} ${style.tableExchanges}`}>
+      : <section className={`${style.table} ${style.tableExchanges}`}>
       <Table
         hover
-        size="sm"
         variant="dark"
       >
         <thead>
@@ -35,7 +34,7 @@ const Exchanges = () => {
             <th>#</th>
             <th>Exchange</th>
             <th>Trust Score</th>
-            <th>Total Volume 24h</th>
+            <th>Total&nbsp;Volume 24h</th>
             <th>Year Established</th>
             <th>Country</th>
           </tr>
@@ -44,7 +43,7 @@ const Exchanges = () => {
           <TableExchangesBody />
         </tbody>
       </Table>
-      </div>
+      </section>
       }
       <div className={style.pagination}>
         <TablePagination page={page} setPage={setPage} count={countExchanges} />

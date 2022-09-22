@@ -25,10 +25,10 @@ const TableCoinsBody = () => {
       <tr key={coin.id}>
         <td>{coin.market_cap_rank}</td>
         <td>
-          <NavLink to={`/crypto/coins/${coin.id}`}>
+          <NavLink to={`/crypto/coins/${coin.id}`} className={style.link}>
             <img src={coin.image} alt={coin.name} height={30} width={30} />
-            <div>{coin.name}</div>
-            <div>{coin.symbol.toUpperCase()}</div>
+            <p>{coin.name}</p>
+            <p>{coin.symbol.toUpperCase()}</p>
           </NavLink>
         </td>
         <td>{parseValue(coin.current_price)} $</td>

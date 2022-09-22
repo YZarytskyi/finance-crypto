@@ -20,7 +20,7 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
   };
 
   return (
-    <ul>
+    <ul className={style.navLinksList}>
       <li className={style.logoPC}>
         <NavLink to="/" className={style.linkLogo}>
           <img src={brand} width={48} height={48} alt="brand" />
@@ -37,12 +37,12 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
             to="/crypto/coins"
             onClick={(e) => isMobile && handleCryptoSubList(e)}
             style={{ display: "flex", alignItems: "center" }}
-            className={style.link}
+            className={`${style.linkCrypto} ${style.link}`}
           >
             Crypto
             <MdKeyboardArrowDown className={style.icon} />
           </NavLink>
-          <ul className={style.subList}>
+          <ul className={style.subListPC}>
             <li>
               <NavLink to="/crypto/coins" className={style.subListLink}>
                 Coins

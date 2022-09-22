@@ -32,12 +32,12 @@ const ScannerTable = () => {
       >
         <thead className={style.arbitrageHead}>
           <tr>
-            <th>Pair 1</th>
-            <th>Price 1</th>
-            <th>Pair 2</th>
-            <th>Price 2</th>
-            <th>Pair 3</th>
-            <th>Price 3</th>
+            <th>Pair&nbsp;1</th>
+            <th>Price&nbsp;1</th>
+            <th>Pair&nbsp;2</th>
+            <th>Price&nbsp;2</th>
+            <th>Pair&nbsp;3</th>
+            <th>Price&nbsp;3</th>
             <th>Result</th>
           </tr>
         </thead>

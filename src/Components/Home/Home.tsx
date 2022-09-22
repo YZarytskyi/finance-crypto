@@ -64,9 +64,7 @@ const Home = () => {
               <NavLink to="/articles">
                 <h2>
                   Top Articles{" "}
-                  <RiArrowRightSLine
-                    style={{ display: "inline", marginBottom: 1.3 }}
-                  />
+                  <RiArrowRightSLine className={style.arrow}/>
                 </h2>
               </NavLink>
               <ul className={style.articlesLeftList}>
@@ -104,9 +102,7 @@ const Home = () => {
               <NavLink to="/articles">
                 <h2 className={style.articlesRightTitle}>
                   Recent Articles{" "}
-                  <RiArrowRightSLine
-                    style={{ display: "inline", marginBottom: 1.3 }}
-                  />
+                  <RiArrowRightSLine className={style.arrow}/>
                 </h2>
               </NavLink>
               <ul className={style.articlesRightList}>

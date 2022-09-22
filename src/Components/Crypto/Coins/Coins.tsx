@@ -23,7 +23,7 @@ const Coins = () => {
       <NavCrypto />
         {isLoading 
         ? <CryptoSkeleton /> 
-        : <section className={style.table}> 
+        : <section className={`${style.table} ${style.tableCoins}`}> 
           <h1 className="hidden">Cryptocurrencies</h1>
           <Table hover variant="dark">
             <thead>
@@ -36,7 +36,7 @@ const Coins = () => {
                 <th>7d</th>
                 <th>Total Volume</th>
                 <th>Market Capitalization</th>
-                <th>Last 7 days</th>
+                <th>Last&nbsp;7&nbsp;days</th>
               </tr>
             </thead>
             <tbody>

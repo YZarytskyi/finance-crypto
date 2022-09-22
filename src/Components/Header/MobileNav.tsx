@@ -26,14 +26,10 @@ const MobileNav = () => {
   return (
     <nav className={style.mobileNav}>
       <div>{menu ? closeIcon : hamburgerIcon}</div>
-      <div className={style.logoMobile}>
-        <NavLink to="/">
-          <img src={brand} width={48} height={48} alt="brand" />
-        </NavLink>
-      </div>
-      <div>
-        {menu && <NavLinks isMobile={true} closeMenu={closeMenu} />}
-      </div>
+      <NavLink to="/" className={style.logoMobile}>
+        <img src={brand} width={48} height={48} alt="brand" />
+      </NavLink>
+      {menu && <NavLinks isMobile={true} closeMenu={closeMenu} />}
     </nav>
   );
 };

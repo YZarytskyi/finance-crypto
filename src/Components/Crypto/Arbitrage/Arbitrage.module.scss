@@ -36,33 +36,54 @@
 
 .tableArbitrage {
   width: 55%;
-  display: flex;
-  justify-content: center;
-}
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 992px) {
+    width: 80%;
+  }
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+  @media (max-width: 576px) {
+    width: 95%;
+  }
 
-.arbitrageHead {
-  height: 2rem;
-  > tr {
-    > th {
-    text-align: center !important;
-    padding: 0 !important;
+  .arbitrageHead {
+    height: 2rem !important;
+    th:nth-child(1) {
+      padding: 0 1.4rem;
     }
-  }
-} 
-
-.arbitrageBody {
-  > td {
-    text-align: center;
-    cursor: pointer;
-  }
-  > td:nth-child(odd) {
-    color:rgb(150, 150, 150);
-  }
-  > td:nth-child(7) {
-    color: rgb(91, 180, 98);
-  }
-  > td:nth-child(3) {
-    padding: 0;
-    text-align: center;
+    th:nth-child(2) {
+      padding: 0 1.4rem;
+    }
+    th:nth-child(3) {
+      padding: 0 1.4rem;
+    }
+    th:nth-child(4) {
+      padding: 0 1.4rem;
+    }
+    th:nth-child(5) {
+      padding: 0 1.7rem;
+    }
+    th:nth-child(6) {
+      padding: 0 1.4rem;
+    }
+    th:nth-child(7) {
+      padding: 0 1rem;
+    }
+  } 
+  
+  .arbitrageBody {
+    > td {
+      padding: 0.15rem !important;
+      cursor: pointer;
+    }
+    > td:nth-child(odd) {
+      color:rgb(150, 150, 150);
+    }
+    > td:nth-child(7) {
+      color: rgb(58, 173, 67);
+    }
   }
 }

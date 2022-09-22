@@ -2,10 +2,9 @@ import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 
 interface ChartCoinsProps {
-  data: Array<number>
+  data: Array<number>;
 }
 const ChartCoins: React.FC<ChartCoinsProps> = ({ data }) => {
-
   const options: ApexOptions = {
     chart: {
       animations: {
@@ -59,7 +58,7 @@ const ChartCoins: React.FC<ChartCoinsProps> = ({ data }) => {
     },
 
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       labels: {
         show: false,
       },
@@ -72,26 +71,23 @@ const ChartCoins: React.FC<ChartCoinsProps> = ({ data }) => {
       curve: "straight",
       width: 2,
     },
-  }
+  };
   const series = [
     {
       name: "price",
       type: "area",
       data: data,
     },
-  ]
-
+  ];
 
   return (
-    <div>
-      <Chart
-        options={options}
-        series={series}
-        type="line"
-        width="100%"
-        height="100%"
-      />
-    </div>
+    <Chart
+      options={options}
+      series={series}
+      type="line"
+      width="100%"
+      height="60px"
+    />
   );
 };
 

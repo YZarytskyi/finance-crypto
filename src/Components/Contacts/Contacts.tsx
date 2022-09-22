@@ -5,14 +5,9 @@ import ContactsForm from "./ContactsForm";
 const Contacts = () => {
   return (
     <section className={style.contacts}>
-      <div className={style.heading}>
-        <h1>Any questions?</h1>
-        <hr />
-      </div>
+      <h1 className={style.heading}>Any questions?</h1>
       <div className={style.formImg}>
-        <div className={style.img}>
-          <img src={contacts} alt="Contact us" width={250} />
-        </div>
+        <img src={contacts} alt="Contact us" width={250} />
         <ContactsForm />
       </div>
     </section>

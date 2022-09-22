@@ -28,6 +28,7 @@ html {
       color: $color-main;
       background: inherit;
       text-align: center;
+      overflow-x: hidden;
       overflow-y: scroll;
     }
 }
