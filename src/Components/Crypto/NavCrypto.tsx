@@ -35,6 +35,9 @@ const NavCrypto = () => {
         <li>
           <NavLink to="/crypto/arbitrage" className={style.centerLink}>Arbitrage</NavLink>
         </li>
+        <li>
+          <NavLink to="/crypto/converter" className={style.centerLink}>Converter</NavLink>
+        </li>
       </ul>
     </div>
   );

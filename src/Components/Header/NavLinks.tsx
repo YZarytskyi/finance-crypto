@@ -58,6 +58,11 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
                 Arbitrage
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/crypto/converter" className={style.subListLink}>
+                Converter
+              </NavLink>
+            </li>
           </ul>
           <ul className={style.subListMobile} style={{ display: display }}>
             <li onClick={() => isMobile && closeMenu && closeMenu()}>

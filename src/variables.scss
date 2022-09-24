@@ -2,8 +2,8 @@ $color-main: #ffffffd9;
 $color-secondary: rgba(255, 255, 255, 0.4);
 $color-accent: #259dff;
 $bg-color-main: rgb(22, 27, 32);
-$box-shadow: #5f5da8 0px -1px 6px;
-$input-shadow: #259dff 0px 0px 4px 2px;
+$box-shadow: $color-accent 0px -1px 6px;
+$input-shadow: $color-accent 0px 0px 6px 1.5px;
 $bg-img: linear-gradient(rgba(9, 9, 14, 0.95), rgba(9, 9, 14, 0.95)),
   url("./assets/images/bg-body.jpg");
 $color-plus: #01b301;
@@ -19,11 +19,10 @@ $color-minus: #fc432a;
 }
 
 @mixin input {
-  border-radius: 0.3rem;
-  padding: 0.3rem 0.5rem;
   color: rgb(24, 24, 24);
+  background-color: $color-main;
   font-family: "Gill Sans", sans-serif;
-  font-size: 1.1rem;
+  border: none;
   outline: none;
   &:focus {
     box-shadow: $input-shadow;

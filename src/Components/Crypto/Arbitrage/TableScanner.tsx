@@ -1,15 +1,15 @@
 import style from "./Arbitrage.module.scss";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import { fetchCurrencies } from "../../../Store/Reducers/cryptoSlice";
 import { FiRefreshCcw } from "react-icons/fi";
 import Table from "react-bootstrap/Table";
 import TableArbitrageBody from "./TableBody";
+import { fetchCurrencies } from "../../../Store/Reducers/arbitrageSlice";
 
 
 const ScannerTable = () => {
 
-  const { isLoadingCrypto } = useAppSelector((state) => state.crypto);
+  const isLoadingCurrencies = useAppSelector((state) => state.arbitrage.isLoadingCurrencies);
   const dispatch = useAppDispatch();
 
   const handleRefresh = () => {
@@ -22,7 +22,7 @@ const ScannerTable = () => {
         className={style.refreshIcon}
         onClick={() => handleRefresh()}
       />    
-      {isLoadingCrypto 
+      {isLoadingCurrencies 
       ? <p className={style.fallback}>Loading...</p>
       : <div className={`${style.table} ${style.tableArbitrage}`}>
       <Table

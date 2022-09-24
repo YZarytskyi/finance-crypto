@@ -1,14 +1,14 @@
 import style from "./Arbitrage.module.scss";
 import { parseValue } from "../Coins/TableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/cryptoSlice";
+import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/arbitrageSlice";
 import { Result } from "../../../Types/Types";
 import React from "react";
 
 
 const TableArbitrageBody = () => {
 
-  const result = useAppSelector((state) => state.crypto.result);
+  const result = useAppSelector((state) => state.arbitrage.result);
   const dispatch = useAppDispatch();
 
   const handleClickPairs = (pairs: Result) => {

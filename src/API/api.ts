@@ -1,12 +1,54 @@
-import { Currencies } from './../Types/Types';
+import { Currencies } from "../Types/Types";
 import axios from "axios";
-
 
 interface getAllCurrenciesResult {
   symbol: string;
 }
 
 export const cryptoApi = {
+  getMarkets(page: number = 1) {
+    return axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+      )
+      .then((res) => res.data)
+      .catch((error) => alert(error));
+  },
+  getSelectedCoinMarketChart(coinId: string | undefined, days: number | "max") {
+    if (typeof coinId === "string")
+      return axios
+        .get(
+          `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
+        )
+        .then((res) => res.data)
+        .catch((error) => alert(error));
+  },
+  getCoinsDescription(coinId: string | undefined) {
+    if (typeof coinId === "string")
+      return axios
+        .get(
+          `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
+        )
+        .then((res) => res.data.description.en)
+        .catch((error) => alert(error));
+  },
+  getExchanges(page: number) {
+    return axios
+      .get(
+        `https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`
+      )
+      .then((res) => res.data)
+      .catch((error) => alert(error));
+  },
+  getGlobalData() {
+    return axios
+      .get("https://api.coingecko.com/api/v3/global")
+      .then((res) => res.data.data)
+      .catch((error) => alert(error));
+  },
+};
+
+export const arbitrageApi = {
   getAllCurrencies() {
     return axios
       .all([
@@ -15,14 +57,15 @@ export const cryptoApi = {
       ])
       .then(
         axios.spread((response1, response2) => {
-          const result: Array<getAllCurrenciesResult>  = (response1 = response1.data.symbols
-            .filter(
-              (item: { status: string; symbol: string }) =>
-                item.status === "TRADING"
-            )
-            .map((x: { status: string; symbol: string }) => ({
-              symbol: x.symbol,
-            })));
+          const result: Array<getAllCurrenciesResult> = (response1 =
+            response1.data.symbols
+              .filter(
+                (item: { status: string; symbol: string }) =>
+                  item.status === "TRADING"
+              )
+              .map((x: { status: string; symbol: string }) => ({
+                symbol: x.symbol,
+              })));
           const currencies: Array<Currencies> = result.map((x) => {
             const filterPrice: Currencies = response2.data.find(
               (y: Currencies) => y.symbol === x.symbol
@@ -30,10 +73,14 @@ export const cryptoApi = {
             return filterPrice;
           });
 
-          let currenciesUsdt = currencies.filter((q) => q.symbol.includes("USDT") && !q.symbol.includes("EURUSDT"));
+          let currenciesUsdt = currencies.filter(
+            (q) => q.symbol.includes("USDT") && !q.symbol.includes("EURUSDT")
+          );
           let map1 = currenciesUsdt.map((x) => {
             let filterPair1 = x.symbol.replace(/USDT/, "");
-            let pair2 = currencies.filter((y) => y.symbol.includes(filterPair1));
+            let pair2 = currencies.filter((y) =>
+              y.symbol.includes(filterPair1)
+            );
             let map2 = pair2.map((w) => {
               const regexp = new RegExp(filterPair1);
               let filterPair2 = w.symbol.replace(regexp, "");
@@ -45,18 +92,29 @@ export const cryptoApi = {
                   : ""
               );
               let map3 = pair3.map((q) => {
-                const formula = (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
-                const result1 = formula < 4 && formula > -4
+                const formula =
+                  (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
+                const result1 =
+                  formula < 4 && formula > -4
                     ? formula.toFixed(2)
-                    : ((100 / +x.askPrice) * +w.bidPrice * +q.bidPrice - 100).toFixed(2);
+                    : (
+                        (100 / +x.askPrice) * +w.bidPrice * +q.bidPrice -
+                        100
+                      ).toFixed(2);
                 const result2 =
                   +result1 < 4 && +result1 > -4
                     ? result1
-                    : (100 * +x.bidPrice * +w.bidPrice * +q.bidPrice - 100).toFixed(2);
+                    : (
+                        100 * +x.bidPrice * +w.bidPrice * +q.bidPrice -
+                        100
+                      ).toFixed(2);
                 const result3 =
                   +result2 < 4 && +result2 > -4
                     ? result2
-                    : (((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice - 100).toFixed(2);
+                    : (
+                        ((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice -
+                        100
+                      ).toFixed(2);
                 return {
                   pair1: x.symbol,
                   price1: x.askPrice,
@@ -71,19 +129,29 @@ export const cryptoApi = {
             });
             return map2;
           });
-          const result1 = map1.flat(3).filter((x) => +x.result > 0 && +x.result < 2);
-          return ({
+          const result1 = map1
+            .flat(3)
+            .filter((x) => +x.result > 0 && +x.result < 2);
+          return {
             currencies,
             result: result1,
-          })
+          };
         })
-      );
+      )
+      .catch((error) => alert(error));
   },
   getPairs(value1: string, value2: string, value3: string) {
     return axios
-      .all([axios.get(`https://api.binance.com/api/v1/depth?symbol=${value1}&limit=1`),
-        axios.get(`https://api.binance.com/api/v1/depth?symbol=${value2}&limit=1`),
-        axios.get(`https://api.binance.com/api/v1/depth?symbol=${value3}&limit=1`),
+      .all([
+        axios.get(
+          `https://api.binance.com/api/v1/depth?symbol=${value1}&limit=1`
+        ),
+        axios.get(
+          `https://api.binance.com/api/v1/depth?symbol=${value2}&limit=1`
+        ),
+        axios.get(
+          `https://api.binance.com/api/v1/depth?symbol=${value3}&limit=1`
+        ),
       ])
       .then(
         axios.spread((pair1, pair2, pair3) => {
@@ -108,52 +176,6 @@ export const cryptoApi = {
       )
       .catch((error) => alert(error));
   },
-  getMarkets(page: number = 1) {
-    return axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-      )
-      .then((res) => res.data)
-      .catch((error) => {
-        alert(error);
-      });
-  },
-  getSelectedCoinMarketChart(coinId: string | undefined, days: number | "max") {
-    if (typeof coinId === 'string') return axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
-      )
-      .then((res) => res.data)
-      .catch((error) => {
-        alert(error);
-      });
-  },
-  getCoinsDescription(coinId: string | undefined) {
-    if (typeof coinId === 'string') return axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
-      )
-      .then((res) => res.data.description.en)
-      .catch((error) => {
-        alert(error);
-      });
-  },
-  getExchanges(page: number) {
-    return axios
-      .get(`https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`)
-      .then((res) => res.data)
-      .catch((error) => {
-        alert(error);
-      });
-  },
-  getGlobalData() {
-    return axios
-      .get("https://api.coingecko.com/api/v3/global")
-      .then((res) => res.data.data)
-      .catch((error) => {
-        alert(error);
-      });
-  },
 };
 
 export const articlesApi = {
@@ -163,8 +185,37 @@ export const articlesApi = {
         `https://newsapi.org/v2/everything?language=en&excludeDomains=.ru&q=crypto OR taxes OR "Federal Reserve Board" OR finance&searchIn=title&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
       )
       .then((res) => res.data.articles)
-      .catch((error) => {
-        alert(error);
-      });
+      .catch((error) => alert(error));
+  },
+};
+
+interface Coin {
+  status: string;
+  symbol: string;
+}
+
+export const converterApi = {
+  getCoinsList() {
+    return axios
+      .get("https://api.binance.com/api/v1/exchangeInfo")
+      .then((res) => {
+        const coinsList = res.data.symbols
+        .filter((coin: Coin) =>
+            coin.status === "TRADING" && coin.symbol.endsWith("USDT")
+        )
+        .map((coin: Coin) => {
+          return coin.symbol
+        })
+        return coinsList;
+      })
+      .catch((error) => alert(error));
+  },
+  getSelectedCoin(coinId: string) {
+    return axios
+      .get(
+        `https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`
+      )
+      .then((res) => +res.data.price)
+      .catch((error) => alert(error));
   },
 };

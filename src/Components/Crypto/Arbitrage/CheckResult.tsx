@@ -11,12 +11,12 @@ import {
   setPair1,
   setPair2,
   setPair3,
-} from "../../../Store/Reducers/cryptoSlice";
+} from "../../../Store/Reducers/arbitrageSlice";
 import { parseValue } from "../Coins/TableBody";
 
 const CheckResult = () => {
   const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =
-    useAppSelector((state) => state.crypto);
+    useAppSelector((state) => state.arbitrage);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -79,6 +79,15 @@ const CheckResult = () => {
           ).toFixed(2);
   }
 
+  const handlePair1 = (event: React.SyntheticEvent, newValue: string | null): void => {
+    if (typeof newValue === 'string') dispatch(setPair1(newValue))
+  }
+  const handlePair2 = (event: React.SyntheticEvent, newValue: string | null): void => {
+    if (typeof newValue === 'string') dispatch(setPair2(newValue))
+  }
+  const handlePair3 = (event: React.SyntheticEvent, newValue: string | null): void => {
+    if (typeof newValue === 'string') dispatch(setPair3(newValue))
+  }
   const handlePairs = () => {
     if (pair1 && pair2 && pair3) {
       const pairs = { pair1, pair2, pair3 };
@@ -97,9 +106,7 @@ const CheckResult = () => {
             <Autocomplete
               id="pair-1"
               value={pair1}
-              onChange={(event, pair1) => {
-                dispatch(setPair1(pair1));
-              }}
+              onChange={(event, newValue) => handlePair1(event, newValue)}
               sx={{ width: 200 }}
               disablePortal
               options={pair1Currencies}
@@ -113,9 +120,7 @@ const CheckResult = () => {
             <Autocomplete
               id="pair-2"
               value={pair2}
-              onChange={(event, newValue) => {
-                dispatch(setPair2(newValue));
-              }}
+              onChange={handlePair2}
               sx={{ width: 200 }}
               disablePortal
               options={pair2Currencies}
@@ -129,9 +134,7 @@ const CheckResult = () => {
             <Autocomplete
               id="pair-3"
               value={pair3}
-              onChange={(event, newValue) => {
-                dispatch(setPair3(newValue));
-              }}
+              onChange={handlePair3}
               sx={{ width: 200 }}
               disablePortal
               options={pair3Currencies}

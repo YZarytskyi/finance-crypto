@@ -11,6 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Exchanges from "./Components/Crypto/Exchanges/Exchanges";
 import Coins from "./Components/Crypto/Coins/Coins";
 import Header from "./Components/Header/Header";
+import Converter from "./Components/Crypto/Converter/Converter";
 
 
 const darkTheme = createTheme({
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/crypto/coins" element={<Coins />} />
             <Route path="/crypto/exchanges" element={<Exchanges />} />
             <Route path="/crypto/arbitrage" element={<Arbitrage />} />
+            <Route path="/crypto/converter" element={<Converter />} />
             <Route path="/crypto/coins/:coinId" element={<SelectedCoin />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/articles/:articleId" element={<Article />} />

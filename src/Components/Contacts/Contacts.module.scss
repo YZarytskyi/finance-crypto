@@ -50,14 +50,14 @@ form {
       @include input;
       width: 100%;
       margin-top: 0.3rem;
-      background-color: $color-main;
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.3rem;
     }
     > textarea {
       min-height: 8rem;
-      max-height: 17rem;
+      max-height: 13rem;
       margin-top: 0.2rem;
       margin-bottom: 0;
-      background-color: $color-main;
     }
     > p {
       text-align: left;

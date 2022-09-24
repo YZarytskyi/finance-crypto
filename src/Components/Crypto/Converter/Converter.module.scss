@@ -1,0 +1,71 @@
+@import "../../../variables.scss";
+
+.hero {
+  position: relative;
+  height: 20vh;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    border-radius: 1rem;
+    background-image: url(../../../assets/images/converter.jpg);
+    background-size: cover;
+    filter: brightness(30%) sepia(100%) hue-rotate(190deg) saturate(200%);
+  }
+}
+
+.heroInside {
+  position: relative;
+}
+
+.converter {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  padding: 1.8rem 5rem;
+  border-radius: 1rem;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    border-radius: 1rem;
+    background-image: url(../../../assets/images/converter.jpg);
+    background-size: cover;
+    filter: brightness(30%) sepia(100%) hue-rotate(190deg) saturate(200%);
+  }
+}
+
+.converterInside {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .autocomplete {
+    width: 40%;
+    margin-bottom: 1.2rem;
+  }
+  .converterInput {
+    @include input;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    font-size: 1.1rem;
+  }
+}
