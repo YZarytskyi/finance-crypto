@@ -39,6 +39,7 @@
     background: $bg-img;
     background-size: cover;
     box-shadow: rgb(95, 93, 168) 0 0 5px -1px;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
     &:hover,
     &:focus {
       box-shadow: rgb(95, 93, 168) 0 0 5px 2px;

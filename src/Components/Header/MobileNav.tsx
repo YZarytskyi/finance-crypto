@@ -12,20 +12,18 @@ const MobileNav = () => {
   const hamburgerIcon = (
     <GiHamburgerMenu
       className={style.hamburgerIcon}
-      onClick={() => setMenu((prev) => !prev)}
     />
   );
   const closeIcon = (
     <AiOutlineClose
       className={style.closeIcon}
-      onClick={() => setMenu((prev) => !prev)}
     />
   );
   const closeMenu = () => setMenu(false);
 
   return (
     <nav className={style.mobileNav}>
-      <div>{menu ? closeIcon : hamburgerIcon}</div>
+      <div onClick={() => setMenu((prev) => !prev)}>{menu ? closeIcon : hamburgerIcon}</div>
       <NavLink to="/" className={style.logoMobile}>
         <img src={brand} width={48} height={48} alt="brand" />
       </NavLink>

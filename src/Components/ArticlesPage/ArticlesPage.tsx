@@ -9,7 +9,6 @@ import { handleImageError } from "../Home/Home";
 const ArticlesPage = () => {
   const articles = useAppSelector((state) => state.articles.articles);
   const dispatch = useAppDispatch();
-  const [page, setPage] = useState<number>(1)
 
   useEffect(() => {
     if (articles.length === 0) {

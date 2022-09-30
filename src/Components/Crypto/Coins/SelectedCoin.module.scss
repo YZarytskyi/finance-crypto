@@ -2,12 +2,13 @@
 
 .coin {
   padding: 0 4rem;
+  margin-top: 1.5rem;
   @media (max-width: 992px) {
     padding: 0 1.2rem;
   }
   .descriptionChart {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     @media (max-width: 992px) {
       flex-direction: column;
@@ -18,10 +19,8 @@
     align-items: flex-start;
     flex-direction: column;
     width: 40%;
-    padding: 3rem 0;
     @media (max-width: 992px) {
       width: 60%;
-      padding: 1.5rem 0;
     }
     @media (max-width: 768px) {
       width: 75%;
@@ -116,15 +115,15 @@
 }
 
 .chartContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 60%;
-  height: 100%;
   margin-top: 2rem;
+  margin-bottom: -1.3rem;
   @media (max-width: 992px) {
     width: 100%;
-    margin-top: 0;
+    margin-bottom: 0;
+  }
+  @media (max-width: 520px) {
+    width: 100%;
   }
 }
 
@@ -145,8 +144,13 @@
     input {
       @include input;
       margin-left: 2rem;
+      margin-right: 0.3rem;
       width: 6rem;
-      font-size: 1rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      &::placeholder {
+        font-size: 0.9rem;
+      }
     }
     button {
       color: $color-main;

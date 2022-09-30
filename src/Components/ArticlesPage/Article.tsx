@@ -38,6 +38,7 @@ const Article = () => {
         <p className={style.body}>
           {article.content.slice(0, -14)}{" "}
           <a
+            className={style.readMoreLink}
             href={article.url}
             target="_blank"
             rel="noopener noreferrer nofollow"

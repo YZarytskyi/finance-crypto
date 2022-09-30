@@ -1,4 +1,4 @@
-$color-main: #ffffffd9;
+$color-main: #f3f3f3;
 $color-secondary: rgba(255, 255, 255, 0.4);
 $color-accent: #259dff;
 $bg-color-main: rgb(22, 27, 32);
@@ -24,6 +24,7 @@ $color-minus: #fc432a;
   font-family: "Gill Sans", sans-serif;
   border: none;
   outline: none;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:focus {
     box-shadow: $input-shadow;
   }
@@ -43,6 +44,7 @@ $color-minus: #fc432a;
   a {
     text-decoration: none;
     color: $color-main;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     &:hover {
       color: $color-accent;
     }

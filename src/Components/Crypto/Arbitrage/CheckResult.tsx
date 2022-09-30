@@ -54,40 +54,169 @@ const CheckResult = () => {
     : [];
 
   const [pair1WithPrice, pair2WithPrice, pair3WithPrice] = pairs;
-  let result = 0;
 
+  interface Result {
+    price1: number,
+    price2: number,
+    price3: number,
+    result: number,
+  }
+  let result: Partial<Result> = {};
   if (pairs.length !== 0) {
-    const formula =
-      (100 / +pair1WithPrice.ask / +pair2WithPrice.ask) * +pair3WithPrice.bid -
-        100 || 0;
-    const res =
-      formula < 3 && formula > -3
-        ? formula.toFixed(2)
-        : (
-            (100 / +pair1WithPrice.ask) *
-              +pair2WithPrice.bid *
-              +pair3WithPrice.bid -
-            100
-          ).toFixed(2);
-    result =
-      +res < 3 && +res > -3
-        ? +res
-        : +(
-            ((100 * +pair1WithPrice.bid) / +pair2WithPrice.ask) *
-              +pair3WithPrice.bid -
-            100
-          ).toFixed(2);
+    if (
+      pair1WithPrice.symbol.endsWith("USDT") &&
+      pair2WithPrice.symbol.endsWith(filterPair1) &&
+      pair3WithPrice.symbol.endsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.ask,
+        price2: +pair2WithPrice.ask,
+        price3: +pair3WithPrice.bid,
+        result: +(
+          (100 / +pair1WithPrice.ask / +pair2WithPrice.ask) *
+            +pair3WithPrice.bid -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.endsWith("USDT") &&
+      pair2WithPrice.symbol.endsWith(filterPair1) &&
+      pair3WithPrice.symbol.startsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.ask,
+        price2: +pair2WithPrice.ask,
+        price3: +pair3WithPrice.ask,
+        result: +(
+          100 /
+            +pair1WithPrice.ask /
+            +pair2WithPrice.ask /
+            +pair3WithPrice.ask -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.endsWith("USDT") &&
+      pair2WithPrice.symbol.startsWith(filterPair1) &&
+      pair3WithPrice.symbol.endsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.ask,
+        price2: +pair2WithPrice.bid,
+        price3: +pair3WithPrice.bid,
+        result: +(
+          (100 / +pair1WithPrice.ask) *
+            +pair2WithPrice.bid *
+            +pair3WithPrice.bid -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.endsWith("USDT") &&
+      pair2WithPrice.symbol.startsWith(filterPair1) &&
+      pair3WithPrice.symbol.startsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.ask,
+        price2: +pair2WithPrice.bid,
+        price3: +pair3WithPrice.ask,
+        result: +(
+          ((100 / +pair1WithPrice.ask) * +pair2WithPrice.bid) /
+            +pair3WithPrice.ask -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.startsWith("USDT") &&
+      pair2WithPrice.symbol.endsWith(filterPair1) &&
+      pair3WithPrice.symbol.endsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.bid,
+        price2: +pair2WithPrice.ask,
+        price3: +pair3WithPrice.bid,
+        result: +(
+          ((100 * +pair1WithPrice.bid) / +pair2WithPrice.ask) *
+            +pair3WithPrice.bid -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.startsWith("USDT") &&
+      pair2WithPrice.symbol.endsWith(filterPair1) &&
+      pair3WithPrice.symbol.startsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.bid,
+        price2: +pair2WithPrice.ask,
+        price3: +pair3WithPrice.ask,
+        result: +(
+          (100 * +pair1WithPrice.bid) /
+            +pair2WithPrice.ask /
+            +pair3WithPrice.ask -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.startsWith("USDT") &&
+      pair2WithPrice.symbol.startsWith(filterPair1) &&
+      pair3WithPrice.symbol.endsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.bid,
+        price2: +pair2WithPrice.bid,
+        price3: +pair3WithPrice.bid,
+        result: +(
+          100 *
+            +pair1WithPrice.bid *
+            +pair2WithPrice.bid *
+            +pair3WithPrice.bid -
+          100
+        ).toFixed(2),
+      };
+    }
+    if (
+      pair1WithPrice.symbol.startsWith("USDT") &&
+      pair2WithPrice.symbol.startsWith(filterPair1) &&
+      pair3WithPrice.symbol.startsWith("USDT")
+    ) {
+      result = {
+        price1: +pair1WithPrice.bid,
+        price2: +pair2WithPrice.bid,
+        price3: +pair3WithPrice.bid,
+        result: +(
+          (100 * +pair1WithPrice.bid * +pair2WithPrice.bid) /
+            +pair3WithPrice.ask -
+          100
+        ).toFixed(2),
+      };
+    }
   }
 
-  const handlePair1 = (event: React.SyntheticEvent, newValue: string | null): void => {
-    if (typeof newValue === 'string') dispatch(setPair1(newValue))
-  }
-  const handlePair2 = (event: React.SyntheticEvent, newValue: string | null): void => {
-    if (typeof newValue === 'string') dispatch(setPair2(newValue))
-  }
-  const handlePair3 = (event: React.SyntheticEvent, newValue: string | null): void => {
-    if (typeof newValue === 'string') dispatch(setPair3(newValue))
-  }
+  const handlePair1 = (
+    event: React.SyntheticEvent,
+    newValue: string | null
+  ): void => {
+    if (typeof newValue === "string") dispatch(setPair1(newValue));
+  };
+  const handlePair2 = (
+    event: React.SyntheticEvent,
+    newValue: string | null
+  ): void => {
+    if (typeof newValue === "string") dispatch(setPair2(newValue));
+  };
+  const handlePair3 = (
+    event: React.SyntheticEvent,
+    newValue: string | null
+  ): void => {
+    if (typeof newValue === "string") dispatch(setPair3(newValue));
+  };
   const handlePairs = () => {
     if (pair1 && pair2 && pair3) {
       const pairs = { pair1, pair2, pair3 };
@@ -101,7 +230,7 @@ const CheckResult = () => {
         <ul className={style.checkResultList}>
           <li>
             <p className={style.pairPrice}>
-              {pair1WithPrice?.ask ? parseValue(+pair1WithPrice.ask) : "Price"}
+              {result.price1 ? parseValue(result.price1) : "Price"}
             </p>
             <Autocomplete
               id="pair-1"
@@ -115,7 +244,7 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {pair2WithPrice?.ask ? parseValue(+pair2WithPrice.ask) : "Price"}
+              {result.price2 ? parseValue(result.price2) : "Price"}
             </p>
             <Autocomplete
               id="pair-2"
@@ -129,7 +258,7 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {pair3WithPrice?.bid ? parseValue(+pair3WithPrice.bid) : "Price"}
+              {result.price3 ? parseValue(result.price3) : "Price"}
             </p>
             <Autocomplete
               id="pair-3"
@@ -152,7 +281,7 @@ const CheckResult = () => {
       >
         Check
       </LoadingButton>
-      <p className={style.result}>Result: {result} %</p>
+      <p className={style.result}>Result: {result.result ? `${result.result} %` : ''}</p>
       <hr />
     </>
   );

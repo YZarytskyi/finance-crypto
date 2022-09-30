@@ -236,11 +236,12 @@ $bg-main: rgba(0, 0, 0, 0.65);
     white-space: pre-line;
     text-align: left;
     font-size: 1.2rem;
-    > a {
-      color:rgb(99, 90, 235);
-      &:hover, &:focus {
-        color:rgb(120, 111, 247)
-      }
+  }
+  .readMoreLink {
+    color: rgb(75, 108, 255);
+    &:hover,
+    &:focus {
+      color: rgb(33, 73, 252);
     }
   }
 }

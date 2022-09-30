@@ -55,7 +55,7 @@ const SelectedCoin = () => {
               <p>{`${coin.name} (${coin.symbol.toUpperCase()})`}</p>
             </div>
             <div className={style.pricePercentage}>
-              <div>{coin.current_price}</div>
+              <div>{coin.current_price} $</div>
               <div className={setClassName(coin.price_change_percentage_24h)}>
                 {coin.price_change_percentage_24h.toFixed(2)}%
               </div>

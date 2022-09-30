@@ -18,10 +18,10 @@ const ArticlesBlock = () => {
     return (
       <>
         <ul className={style.articlesBlock}>
-          {articles.slice(sliceFrom, sliceTo).map((article, index) => (
-            <li key={index}>
+          {articles.slice(sliceFrom, sliceTo).map((article) => (
+            <li key={article.id}>
               <NavLink
-                to={`/articles/${index + 8}`}
+                to={`/articles/${article.id}`}
                 className={style.allArticlesLink}
               >
                 <div className={style.articlesImage}>

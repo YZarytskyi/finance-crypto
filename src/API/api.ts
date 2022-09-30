@@ -92,29 +92,69 @@ export const arbitrageApi = {
                   : ""
               );
               let map3 = pair3.map((q) => {
-                const formula =
-                  (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
-                const result1 =
-                  formula < 4 && formula > -4
-                    ? formula.toFixed(2)
-                    : (
-                        (100 / +x.askPrice) * +w.bidPrice * +q.bidPrice -
-                        100
-                      ).toFixed(2);
-                const result2 =
-                  +result1 < 4 && +result1 > -4
-                    ? result1
-                    : (
-                        100 * +x.bidPrice * +w.bidPrice * +q.bidPrice -
-                        100
-                      ).toFixed(2);
-                const result3 =
-                  +result2 < 4 && +result2 > -4
-                    ? result2
-                    : (
-                        ((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice -
-                        100
-                      ).toFixed(2);
+                let result = 0;
+                if (
+                  x.symbol === `${filterPair1}USDT` &&
+                  w.symbol === `${filterPair2}${filterPair1}` &&
+                  q.symbol === `${filterPair2}USDT`
+                ) {
+                  result =
+                    (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
+                }
+                if (
+                  x.symbol === `${filterPair1}USDT` &&
+                  w.symbol === `${filterPair2}${filterPair1}` &&
+                  q.symbol === `USDT${filterPair2}`
+                ) {
+                  result = 100 / +x.askPrice / +w.askPrice / +q.askPrice - 100;
+                }
+                if (
+                  x.symbol === `${filterPair1}USDT` &&
+                  w.symbol === `${filterPair1}${filterPair2}` &&
+                  q.symbol === `${filterPair2}USDT`
+                ) {
+                  result =
+                    (100 / +x.askPrice) * +w.bidPrice * +q.bidPrice - 100;
+                }
+                if (
+                  x.symbol === `${filterPair1}USDT` &&
+                  w.symbol === `${filterPair1}${filterPair2}` &&
+                  q.symbol === `USDT${filterPair2}`
+                ) {
+                  result =
+                    ((100 / +x.askPrice) * +w.bidPrice) / +q.askPrice - 100;
+                }
+                if (
+                  x.symbol === `USDT${filterPair1}` &&
+                  w.symbol === `${filterPair2}${filterPair1}` &&
+                  q.symbol === `${filterPair2}USDT`
+                ) {
+                  result =
+                    ((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice - 100;
+                }
+                if (
+                  x.symbol === `USDT${filterPair1}` &&
+                  w.symbol === `${filterPair2}${filterPair1}` &&
+                  q.symbol === `USDT${filterPair2}`
+                ) {
+                  result =
+                    (100 * +x.bidPrice) / +w.askPrice / +q.askPrice - 100;
+                }
+                if (
+                  x.symbol === `USDT${filterPair1}` &&
+                  w.symbol === `${filterPair1}${filterPair2}` &&
+                  q.symbol === `${filterPair2}USDT`
+                ) {
+                  result = 100 * +x.bidPrice * +w.bidPrice * +q.bidPrice - 100;
+                }
+                if (
+                  x.symbol === `USDT${filterPair1}` &&
+                  w.symbol === `${filterPair1}${filterPair2}` &&
+                  q.symbol === `USDT${filterPair2}`
+                ) {
+                  result =
+                    (100 * +x.bidPrice * +w.bidPrice) / +q.askPrice - 100;
+                }
                 return {
                   pair1: x.symbol,
                   price1: x.askPrice,
@@ -122,7 +162,7 @@ export const arbitrageApi = {
                   price2: w.askPrice,
                   pair3: q.symbol ? q.symbol : "",
                   price3: q.askPrice ? q.askPrice : "",
-                  result: result3,
+                  result: +result.toFixed(2),
                 };
               });
               return map3;
@@ -200,21 +240,20 @@ export const converterApi = {
       .get("https://api.binance.com/api/v1/exchangeInfo")
       .then((res) => {
         const coinsList = res.data.symbols
-        .filter((coin: Coin) =>
-            coin.status === "TRADING" && coin.symbol.endsWith("USDT")
-        )
-        .map((coin: Coin) => {
-          return coin.symbol
-        })
+          .filter(
+            (coin: Coin) =>
+              coin.status === "TRADING" && coin.symbol.endsWith("USDT")
+          )
+          .map((coin: Coin) => {
+            return coin.symbol;
+          });
         return coinsList;
       })
       .catch((error) => alert(error));
   },
   getSelectedCoin(coinId: string) {
     return axios
-      .get(
-        `https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`
-      )
+      .get(`https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`)
       .then((res) => +res.data.price)
       .catch((error) => alert(error));
   },

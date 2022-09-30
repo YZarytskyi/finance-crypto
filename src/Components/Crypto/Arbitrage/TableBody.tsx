@@ -16,7 +16,7 @@ const TableArbitrageBody = () => {
     dispatch(setPair2(pairs.pair2));
     dispatch(setPair3(pairs.pair3));
   };
-
+  console.log(result);
   return (
     <>
       {result.map((pairs, index) => (

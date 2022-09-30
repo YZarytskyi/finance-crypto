@@ -13,7 +13,7 @@ export interface Result {
   price2: string;
   pair3: string;
   price3: string;
-  result: string;
+  result: number;
 }
 
 export interface Exchanges {

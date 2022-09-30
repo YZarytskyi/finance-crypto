@@ -6,89 +6,99 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  .heading {
-    width: 90%;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid $color-accent;
-    @media (max-width: 1000px) {
-      width: 95%;
-    }
-  }
-  .formImg {
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5rem;
-    @media (max-width: 1000px) {
-      width: 100%;
-    }
-    > img {
-      width: 35%;
-      padding: 2.5rem;
-      display: flex;
-      justify-content: center;
-      @media (max-width: 1000px) {
-        display: none;
-      }
-    }
+}
+
+.heading {
+  width: 90%;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $color-accent;
+  @media (max-width: 1000px) {
+    width: 95%;
   }
 }
 
-form {
+.formImg {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7rem;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+  @media (max-width: 1350px) {
+    gap: 4rem;
+    width: 80%;
+  }
+  @media (max-width: 1150px) {
+    gap: 4rem;
+    width: 90%;
+  }
+}
+
+.image {
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.contactsForm {
   width: 65%;
   margin: 2rem;
   @media (max-width: 1000px) {
     width: 85%;
   }
-  > label {
-    display: block;
-    text-align: left;
-    font-size: 1.1rem;
-    > input,
-    textarea {
-      @include input;
-      width: 100%;
-      margin-top: 0.3rem;
-      padding: 0.3rem 0.5rem;
-      border-radius: 0.3rem;
-    }
-    > textarea {
-      min-height: 8rem;
-      max-height: 13rem;
-      margin-top: 0.2rem;
-      margin-bottom: 0;
-    }
-    > p {
-      text-align: left;
-      color: rgb(253, 55, 55);
-      font-size: 0.8rem;
-      margin-bottom: 0.1rem;
-      margin-top: 0.2rem;
-      white-space: pre;
-    }
-  }
-  .formTextarea > p {
-    margin-top: -0.25rem;
-    margin-bottom: 0.3rem;
-  }
-  > button {
-    border-color: $color-accent !important;
-    color: $color-accent !important;
-    border-radius: 5px;
+}
+
+.formLabel {
+  display: block;
+  text-align: left;
+  font-size: 1.1rem;
+  .formInput,
+  .formTextarea {
+    @include input;
     width: 100%;
+    margin-top: 0.3rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+  }
+  .formTextarea {
+    min-height: 8rem;
+    max-height: 13rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+  }
+  .formErrorMessage {
+    text-align: left;
+    color: rgb(253, 55, 55);
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+    margin-top: 0.2rem;
+    white-space: pre;
   }
 }
 
-.modal {
+.formLabel:nth-child(3) > .formErrorMessage {
+  margin-top: -0.25rem;
+  margin-bottom: 0.3rem;
+}
+
+.formButton {
+  border-color: $color-accent !important;
+  color: $color-accent !important;
+  border-radius: 5px;
+  width: 100%;
+}
+
+
+
+.modalTitle {
   text-align: center;
-  color: rgb(39, 39, 39);
-  h1 {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    margin-bottom: -0.3rem;
-  }
-  div:first-child {
-    margin-top: 0.8rem;
-  }
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+.modalText {
+  text-align: center;
+  margin-bottom: 1rem;
 }

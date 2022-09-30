@@ -32,11 +32,15 @@ const Converter = () => {
   };
 
   const [value, setValue] = useState<number>(1);
-  const [convertedValue, setConvertedValue] = useState<number>(1);
+  const [convertedValue, setConvertedValue] = useState<number | "">(1);
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(+e.currentTarget.value);
-    setConvertedValue(+e.currentTarget.value * (price ? price : 0))
+    setValue(parseFloat(e.currentTarget.value))
+    if (e.currentTarget.value) {
+      setConvertedValue(parseFloat(e.currentTarget.value) * (price ? price : 0))
+    } else {
+    setConvertedValue("")
+    }
   };
 
   useEffect(() => {
@@ -84,13 +88,13 @@ const Converter = () => {
               renderInput={(params) => <TextField {...params} label="Coin" />}
             />
             <input
+              type="number"
               className={style.converterInput}
               value={value}
               onChange={(e) => handleChangeValue(e)}
             />
             <p>Convert to USDT</p>
             <input
-              type="number"
               className={style.converterInput}
               value={convertedValue}
             />

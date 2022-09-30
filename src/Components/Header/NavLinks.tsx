@@ -74,6 +74,9 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
             <li onClick={() => isMobile && closeMenu && closeMenu()}>
               <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
             </li>
+            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+              <NavLink to="/crypto/converter">Converter</NavLink>
+            </li>
           </ul>
         </div>
       </li>
