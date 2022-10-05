@@ -1,5 +1,5 @@
 import style from "./Arbitrage.module.scss";
-import { parseValue } from "../Coins/TableBody";
+import { parseValue } from "../Coins/CoinsTableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/arbitrageSlice";
 import { Result } from "../../../Types/Types";
@@ -16,7 +16,7 @@ const TableArbitrageBody = () => {
     dispatch(setPair2(pairs.pair2));
     dispatch(setPair3(pairs.pair3));
   };
-  console.log(result);
+  
   return (
     <>
       {result.map((pairs, index) => (

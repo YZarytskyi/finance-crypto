@@ -1,5 +1,5 @@
 import style from "./Arbitrage.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { FiRefreshCcw } from "react-icons/fi";
 import Table from "react-bootstrap/Table";
@@ -11,6 +11,10 @@ const ScannerTable = () => {
 
   const isLoadingCurrencies = useAppSelector((state) => state.arbitrage.isLoadingCurrencies);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrencies());
+  }, []);
 
   const handleRefresh = () => {
     dispatch(fetchCurrencies());

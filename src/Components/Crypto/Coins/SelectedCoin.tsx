@@ -10,7 +10,7 @@ import {
   removeMarketChart,
 } from "../../../Store/Reducers/cryptoSlice";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { parseNumber, setClassName } from "./TableBody";
+import { parseNumber, setClassName } from "./CoinsTableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 
 const SelectedCoin = () => {

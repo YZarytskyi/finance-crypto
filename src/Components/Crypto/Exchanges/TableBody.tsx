@@ -1,4 +1,4 @@
-import { parseNumber } from "../Coins/TableBody";
+import { parseNumber } from "../Coins/CoinsTableBody";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppSelector } from "../../../Store/hooks";
 

@@ -16,7 +16,7 @@ export const setClassName = (value: number) => {
 
 
 
-const TableCoinsBody = () => {
+const CoinsTableBody = () => {
   const markets = useAppSelector((state) => state.crypto.markets);
 
   return (
@@ -52,4 +52,4 @@ const TableCoinsBody = () => {
   )
 };
 
-export default React.memo(TableCoinsBody);
+export default React.memo(CoinsTableBody);

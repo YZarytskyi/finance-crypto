@@ -1,12 +1,12 @@
 import style from "./Coins.module.scss";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import TableCoinsBody from "./TableBody";
+import CoinsTableBody from "./CoinsTableBody";
 import TablePagination from "../../Common/TablePagination";
 import { fetchMarkets } from "../../../Store/Reducers/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
-import { CryptoSkeleton } from "../../Common/CryptoSkeleton";
+import { CryptoSkeleton } from "../CryptoSkeleton";
 
 const Coins = () => {
   const isLoading = useAppSelector((state) => state.crypto.isLoadingCrypto);
@@ -40,7 +40,7 @@ const Coins = () => {
               </tr>
             </thead>
             <tbody>
-              <TableCoinsBody />
+              <CoinsTableBody />
             </tbody>
           </Table>
           </section>

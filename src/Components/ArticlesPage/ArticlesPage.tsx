@@ -4,7 +4,8 @@ import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import ArticlesBlock from "./ArticlesBlock";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import { handleImageError } from "../Home/Home";
+import { handleImageError } from "../Home/Articles";
+
 
 const ArticlesPage = () => {
   const articles = useAppSelector((state) => state.articles.articles);

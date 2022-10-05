@@ -6,7 +6,7 @@ import TableExchangesBody from './TableBody';
 import {fetchExchanges} from '../../../Store/Reducers/cryptoSlice'
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import TablePagination from '../../Common/TablePagination';
-import { CryptoSkeleton } from '../../Common/CryptoSkeleton';
+import { CryptoSkeleton } from '../CryptoSkeleton';
 
 
 const Exchanges = () => {

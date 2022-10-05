@@ -1,10 +1,10 @@
 import style from "./Articles.module.scss";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../Store/hooks";
-import { handleImageError } from "../Home/Home";
 import { BiTimeFive } from "react-icons/bi";
 import TablePagination from "../Common/TablePagination";
 import { useState } from "react";
+import { handleImageError } from "../Home/Articles";
 
 const ArticlesBlock = () => {
   const articles = useAppSelector((state) => state.articles.articles);

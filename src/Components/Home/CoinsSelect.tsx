@@ -3,18 +3,18 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAppDispatch, useAppSelector } from '../../Store/hooks';
 import { setDefaultMarketsTime, setMarketsTime } from '../../Store/Reducers/cryptoSlice';
-import './Select.scss'
+import './CoinsSelect.scss'
 
 interface SelectProps {H24: '24', H72: '72', H168: '168', coinId: string,}
 
-const Select: React.FC<SelectProps> = ({H24, H72, H168, coinId}) => {
+const CoinsSelect: React.FC<SelectProps> = ({H24, H72, H168, coinId}) => {
   enum Options {
     OneDay = '1d',
     ThreeDays = '3d',
     SevenDays = '7d',
   }
   const dispatch = useAppDispatch()
-  const [option, setOption] = useState(Options.SevenDays)
+  const [option, setOption] = useState<Options>(Options.SevenDays)
   const marketsTime = useAppSelector(state => state.crypto.marketsTime)
 
 
@@ -41,16 +41,14 @@ const Select: React.FC<SelectProps> = ({H24, H72, H168, coinId}) => {
     setOption(title)
   }
   return (
-    <>
-        <Dropdown onSelect={(eventKey) => handleSelect(eventKey)}>
-          <DropdownButton variant="primary" menuVariant='dark' id="dropdown-basic" title={option}>
-            <Dropdown.Item eventKey={H24} className='text-xs'>{Options.OneDay}</Dropdown.Item>
-            <Dropdown.Item eventKey={H72} className='text-xs'>{Options.ThreeDays}</Dropdown.Item>
-            <Dropdown.Item eventKey={H168} className='text-xs'>{Options.SevenDays}</Dropdown.Item>
-            </DropdownButton>
-        </Dropdown>
-    </>
+    <Dropdown onSelect={(eventKey) => handleSelect(eventKey)}>
+      <DropdownButton variant="primary" menuVariant='dark' id="dropdown-basic" title={option}>
+        <Dropdown.Item eventKey={H24} className='text-xs'>{Options.OneDay}</Dropdown.Item>
+        <Dropdown.Item eventKey={H72} className='text-xs'>{Options.ThreeDays}</Dropdown.Item>
+        <Dropdown.Item eventKey={H168} className='text-xs'>{Options.SevenDays}</Dropdown.Item>
+        </DropdownButton>
+    </Dropdown>
   );
 }
 
-export default Select;
+export default CoinsSelect;

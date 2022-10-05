@@ -44,7 +44,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
     font-size: 2.9vw;
     height: fit-content;
     width: 85%;
-    text-align: left;
     backdrop-filter: blur(5px);
     padding: 1rem 1.2rem;
   }
@@ -68,7 +67,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
           object-fit: cover;
         }
         > p:nth-child(2) {
-          text-align: left;
           margin-top: 0.6rem;
           font-size: 1rem;
           font-size: 1.1vw;
@@ -90,7 +88,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
     > h2 {
       margin-bottom: -0.7rem;
       font-size: 1.6vw;
-      text-align: left;
     }
     .rightList {
       display: flex;
@@ -121,7 +118,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
         > p:nth-child(2) {
           font-size: 1.1vw;
           margin-left: 1.2rem;
-          text-align: left;
         }
       }
     }
@@ -131,6 +127,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
 // Blocks under Heading
 .allArticles {
   > h2 {
+    text-align: center;
     margin: 2.6rem 0 2.3rem 0;
     font-size: 1.8rem;
   }
@@ -167,7 +164,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
       }
       .articlesTitleDate {
         padding: 0.7rem;
-        text-align: left;
         > p:first-child {
           font-size: 100%;
         }
@@ -198,6 +194,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     width: 90%;
   }
   h1 {
+    text-align: center;
     font-size: 2.4rem;
     line-height: 2.8rem;
     font-weight: 500;
@@ -227,6 +224,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     }
   }
   img {
+    display: block;
     margin: 0 auto;
     width: 75%;
     box-shadow: rgb(77, 74, 74) 1px 1px 5px;
@@ -234,7 +232,6 @@ $bg-main: rgba(0, 0, 0, 0.65);
   .body {
     margin-top: 2rem;
     white-space: pre-line;
-    text-align: left;
     font-size: 1.2rem;
   }
   .readMoreLink {

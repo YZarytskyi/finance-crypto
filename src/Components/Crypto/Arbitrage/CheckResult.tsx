@@ -12,7 +12,7 @@ import {
   setPair2,
   setPair3,
 } from "../../../Store/Reducers/arbitrageSlice";
-import { parseValue } from "../Coins/TableBody";
+import { parseValue } from "../Coins/CoinsTableBody";
 
 const CheckResult = () => {
   const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =
@@ -56,10 +56,10 @@ const CheckResult = () => {
   const [pair1WithPrice, pair2WithPrice, pair3WithPrice] = pairs;
 
   interface Result {
-    price1: number,
-    price2: number,
-    price3: number,
-    result: number,
+    price1: number;
+    price2: number;
+    price3: number;
+    result: number;
   }
   let result: Partial<Result> = {};
   if (pairs.length !== 0) {
@@ -271,18 +271,20 @@ const CheckResult = () => {
             />
           </li>
         </ul>
+        <LoadingButton
+          className={style.checkBtn}
+          loading={isLoadingPairs}
+          endIcon={<BiRightArrow style={{ width: 13 }} />}
+          loadingPosition="end"
+          variant="outlined"
+          onClick={() => handlePairs()}
+        >
+          Check
+        </LoadingButton>
+        <p className={style.result}>
+          Result: {result.result ? `${result.result} %` : ""}
+        </p>
       </section>
-      <LoadingButton
-        loading={isLoadingPairs}
-        endIcon={<BiRightArrow style={{ width: 13 }} />}
-        loadingPosition="end"
-        variant="outlined"
-        onClick={() => handlePairs()}
-      >
-        Check
-      </LoadingButton>
-      <p className={style.result}>Result: {result.result ? `${result.result} %` : ''}</p>
-      <hr />
     </>
   );
 };

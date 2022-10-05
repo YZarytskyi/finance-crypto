@@ -1,19 +1,30 @@
-import { parseNumber } from "../Crypto/Coins/TableBody";
-import style from "./CarouselData.module.scss";
+import style from "./Home.module.scss";
+import { parseNumber } from "../Crypto/Coins/CoinsTableBody";
 import { NavLink } from "react-router-dom";
 import { BiTimeFive } from "react-icons/bi";
 import { Carousel } from "react-bootstrap";
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
-import { useAppSelector } from "../../Store/hooks";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import {
   ActiveCoinsSkeleton,
   MarketCapSkeleton,
   VolumeSkeleton,
-} from "../Common/HomeSkeleton";
+} from "./HomeSkeleton";
+import { useEffect } from "react";
+import { fetchGlobalData } from "../../Store/Reducers/cryptoSlice";
+
 
 export const CryptoCarouselData = () => {
   const globalData = useAppSelector((state) => state.crypto.globalData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (Object.keys(globalData).length === 0) {
+      dispatch(fetchGlobalData());
+    }
+  }, []);
+
   return (
     <>
       <div className={`${style.image} ${style.imageCrypto}`}>
@@ -92,6 +103,7 @@ export const ArticlesCarouselData = () => {
   const filterArticles = articles.filter(
     (article) => article.title.length > 30 && article.title.length <= 50
   );
+
   return (
     <>
       <div className={style.image}>

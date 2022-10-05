@@ -10,10 +10,11 @@
 
 .heading {
   width: 90%;
+  text-align: center;
   padding: 1.5rem 0;
   border-bottom: 1px solid $color-accent;
   @media (max-width: 1000px) {
-    width: 95%;
+    width: 95%; 
   }
 }
 
@@ -52,7 +53,6 @@
 
 .formLabel {
   display: block;
-  text-align: left;
   font-size: 1.1rem;
   .formInput,
   .formTextarea {
@@ -69,7 +69,6 @@
     margin-bottom: 0;
   }
   .formErrorMessage {
-    text-align: left;
     color: rgb(253, 55, 55);
     font-size: 0.8rem;
     margin-bottom: 0.1rem;

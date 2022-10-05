@@ -30,7 +30,7 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
   }
-  > div:first-child {
+  .mobileToggleIcons {
     height: 100%;
     width: 2.7rem;
     display: flex;
@@ -38,16 +38,19 @@ header {
     justify-content: flex-end;
     cursor: pointer;
     .hamburgerIcon {
-      transform: scale(2.2);
+      transform: scale(2);
     }
     .closeIcon {
-      transform: scale(1.7);
+      transform: scale(1.6);
     }
   }
   .logoPC {
     display: none;
   }
-  > .navLinksList {
+  .logoMobile {
+    justify-self: center;
+  }
+  .navLinksList {
     position: absolute;
     top: 3.8rem;
     left: 0;
@@ -80,6 +83,8 @@ header {
     align-items: center;
     .link {
       position: relative;
+      display: flex;
+      align-items: center;
       padding: 1.3rem 1.3rem;
       transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
       &::after {
@@ -104,14 +109,6 @@ header {
     .cryptoContainer {
       position: relative;
       margin-right: -0.4rem;
-      &:hover {
-        .subListPC {
-          opacity: 1;
-          transform: translate(0px, 0px);
-          pointer-events: all;
-          visibility: visible;
-        }
-      }
       &:hover .link::after,
       &:hover .link {
         transform: scale(1);
@@ -130,20 +127,22 @@ header {
 }
 
 .subListPC {
-  transform: translate(0px, 10%);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
   position: absolute;
   top: 100%;
   right: -22%;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
   padding: 0.5rem 0;
   text-align: left;
   font-size: 1rem;
   background-color: rgb(9, 10, 15);
   border-radius: 0.2rem;
   box-shadow: 0px 0px 1px 0.2px rgb(102, 102, 102);
+  transform: translate(0px, 10%);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   > li {
     padding: 0.6rem 0rem;
     &:hover,
@@ -158,10 +157,16 @@ header {
   }
 }
 
+.cryptoContainer:hover .subListPC {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+  transform: translate(0px, 0px);
+}
+
 .subListMobile {
   margin-top: 0.5rem;
   width: 100vw;
-  text-align: left;
   flex-direction: column;
   gap: 1.4rem;
   margin-left: -1.2rem;

@@ -2,22 +2,26 @@ import { NavLink } from "react-router-dom";
 import style from "./Header.module.scss";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import brand from "../../assets/images/logo.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface NavLinksProps {
-  closeMenu?: () => void;
-  isMobile?: boolean;
+  mobileSubMenu?: () => void;
 }
 
-const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
+const NavLinks = ({ mobileSubMenu }: NavLinksProps) => {
+  const [displayPc, setDisplayPc] = useState<boolean>(true);
   const [display, setDisplay] = useState<"none" | "flex">("none");
-  const handleCryptoSubList = (e: React.SyntheticEvent) => {
+  const handleMobileSubList = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (display === "none") {
       return setDisplay("flex");
     }
     return setDisplay("none");
   };
+
+  useEffect(() => {
+    return () => setDisplayPc(true)
+  }, [])
 
   return (
     <ul className={style.navLinksList}>
@@ -26,7 +30,7 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
           <img src={brand} width={48} height={48} alt="brand" />
         </NavLink>
       </li>
-      <li onClick={() => isMobile && closeMenu && closeMenu()}>
+      <li onClick={() => mobileSubMenu && mobileSubMenu()}>
         <NavLink to="/" className={style.link}>
           Home
         </NavLink>
@@ -35,16 +39,15 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
         <div className={style.cryptoContainer}>
           <NavLink
             to="/crypto/coins"
-            onClick={(e) => isMobile && handleCryptoSubList(e)}
-            style={{ display: "flex", alignItems: "center" }}
-            className={`${style.linkCrypto} ${style.link}`}
+            onClick={(e) => mobileSubMenu && handleMobileSubList(e)}
+            className={style.link}
           >
             Crypto
             <MdKeyboardArrowDown className={style.icon} />
           </NavLink>
-          <ul className={style.subListPC}>
+          <ul className={style.subListPC + " " + (displayPc ? style.hidden : "")}>
             <li>
-              <NavLink to="/crypto/coins" className={style.subListLink}>
+              <NavLink to="/crypto/coins" className={style.subListLink} >
                 Coins
               </NavLink>
             </li>
@@ -65,27 +68,27 @@ const NavLinks = ({ isMobile, closeMenu }: NavLinksProps) => {
             </li>
           </ul>
           <ul className={style.subListMobile} style={{ display: display }}>
-            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+            <li onClick={() => mobileSubMenu && mobileSubMenu()}>
               <NavLink to="/crypto/coins">Coins</NavLink>
             </li>
-            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+            <li onClick={() => mobileSubMenu && mobileSubMenu()}>
               <NavLink to="/crypto/exchanges">Exchanges</NavLink>
             </li>
-            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+            <li onClick={() => mobileSubMenu && mobileSubMenu()}>
               <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
             </li>
-            <li onClick={() => isMobile && closeMenu && closeMenu()}>
+            <li onClick={() => mobileSubMenu && mobileSubMenu()}>
               <NavLink to="/crypto/converter">Converter</NavLink>
             </li>
           </ul>
         </div>
       </li>
-      <li onClick={() => isMobile && closeMenu && closeMenu()}>
+      <li onClick={() => mobileSubMenu && mobileSubMenu()}>
         <NavLink to="/articles" className={style.link}>
           Articles
         </NavLink>
       </li>
-      <li onClick={() => isMobile && closeMenu && closeMenu()}>
+      <li onClick={() => mobileSubMenu && mobileSubMenu()}>
         <NavLink to="/contacts" className={style.link}>
           Contacts
         </NavLink>

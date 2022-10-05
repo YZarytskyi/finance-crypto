@@ -27,7 +27,6 @@ export const CoinsBlockSkeleton = () => {
       </div>
     );
   };
-
   return (
     <>
       <SkeletonTheme baseColor="#2b2b2b" highlightColor="#dabdab">

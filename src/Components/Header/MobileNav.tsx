@@ -7,27 +7,28 @@ import brand from "../../assets/images/logo.png";
 import { useState } from "react";
 
 const MobileNav = () => {
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState<boolean>(false);
 
-  const hamburgerIcon = (
-    <GiHamburgerMenu
-      className={style.hamburgerIcon}
-    />
-  );
-  const closeIcon = (
-    <AiOutlineClose
-      className={style.closeIcon}
-    />
-  );
-  const closeMenu = () => setMenu(false);
+  const hamburgerIcon = <GiHamburgerMenu className={style.hamburgerIcon} />;
+  const closeIcon = <AiOutlineClose className={style.closeIcon} />;
+  const mobileSubMenu = (): void => setMenu(false);
 
   return (
     <nav className={style.mobileNav}>
-      <div onClick={() => setMenu((prev) => !prev)}>{menu ? closeIcon : hamburgerIcon}</div>
-      <NavLink to="/" className={style.logoMobile}>
+      <div
+        onClick={() => setMenu((prev) => !prev)}
+        className={style.mobileToggleIcons}
+      >
+        {menu ? closeIcon : hamburgerIcon}
+      </div>
+      <NavLink
+        to="/"
+        className={style.logoMobile}
+        onClick={() => mobileSubMenu()}
+      >
         <img src={brand} width={48} height={48} alt="brand" />
       </NavLink>
-      {menu && <NavLinks isMobile={true} closeMenu={closeMenu} />}
+      {menu && <NavLinks mobileSubMenu={mobileSubMenu} />}
     </nav>
   );
 };

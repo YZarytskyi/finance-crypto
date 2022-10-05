@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Articles, fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import { handleImageError } from "../Home/Home";
 import { BiTimeFive } from "react-icons/bi";
+import { handleImageError } from "../Home/Articles";
 
 const Article = () => {
   const { articleId } = useParams<{ articleId: string }>();

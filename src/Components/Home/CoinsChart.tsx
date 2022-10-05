@@ -7,7 +7,7 @@ interface ChartHomeProps {
   coinId: string;
 }
 
-const ChartHome: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
+const CoinsChart: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
 
   const marketsTime = useAppSelector(state => state.crypto.marketsTime)
   const check = Object.keys(marketsTime);
@@ -122,4 +122,4 @@ const ChartHome: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
   return null
 }
 
-export default ChartHome;
+export default CoinsChart;
