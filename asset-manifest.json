@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/finance-crypto/static/css/main.e423d740.css",
+    "main.js": "/finance-crypto/static/js/main.cd71acbc.js",
+    "static/media/slider2.jpg": "/finance-crypto/static/media/slider2.3fc0a04b12709560ea7a.jpg",
+    "static/media/bg-body.jpg": "/finance-crypto/static/media/bg-body.20d5683fda7c0eb23cc4.jpg",
+    "static/media/news.jpg": "/finance-crypto/static/media/news.2dc6bac234f8cb4332c8.jpg",
+    "static/media/logo.png": "/finance-crypto/static/media/logo.579d693317ae9c17fbf4.png",
+    "static/media/slider1.jpg": "/finance-crypto/static/media/slider1.c859344f3d32e8dd2000.jpg",
+    "static/media/converter.jpg": "/finance-crypto/static/media/converter.460b9739e7884bfea013.jpg",
+    "static/media/q.jpg": "/finance-crypto/static/media/q.51ddad994a4293472ba0.jpg",
+    "static/media/contacts.png": "/finance-crypto/static/media/contacts.2a25cd7283469b50e971.png",
+    "static/media/icons.svg": "/finance-crypto/static/media/icons.7680f66602ae20bbebf0fd2f439b9286.svg",
+    "index.html": "/finance-crypto/index.html",
+    "main.e423d740.css.map": "/finance-crypto/static/css/main.e423d740.css.map",
+    "main.cd71acbc.js.map": "/finance-crypto/static/js/main.cd71acbc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e423d740.css",
+    "static/js/main.cd71acbc.js"
+  ]
+}
