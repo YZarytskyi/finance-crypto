@@ -31,16 +31,21 @@ $color-minus: #fc432a;
 }
 
 @mixin initial {
-  ul,
-  p,
+  ul {
+    list-style: none;
+  }
+  
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  p,
+  ul {
     margin: 0;
     padding: 0;
-    list-style: none;
   }
+  
   a {
     text-decoration: none;
     color: $color-main;
@@ -53,6 +58,11 @@ $color-minus: #fc432a;
     border: none;
     font-family: inherit;
     cursor: pointer;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 }
 

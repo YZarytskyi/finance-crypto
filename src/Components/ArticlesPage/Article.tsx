@@ -22,23 +22,23 @@ const Article = () => {
   if (article) {
     return (
       <article className={style.selectedArticle}>
-        <h1>{article.title}</h1>
-        <p className={style.date}>
+        <h1 className={style.selectedArticleTitle}>{article.title}</h1>
+        <p className={style.selectedArticleDate}>
           <svg className={style.iconTime}>
             <use href={sprite + '#time'}/>
           </svg>
-          {" "}
           {article.publishedAt.slice(0, 10)}
           {article.author && !article.author.startsWith("https")
             ? `, Author: ${article.author}`
             : ""}
         </p>
         <img
+          className={style.selectedArticleImage}
           src={article.urlToImage}
           alt={article.title}
           onError={handleImageError}
         />
-        <p className={style.body}>
+        <p className={style.selectedArticleBody}>
           {article.content.slice(0, -14)}{" "}
           <a
             className={style.readMoreLink}

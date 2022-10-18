@@ -86,6 +86,9 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    .logoPC {
+      margin-right: 1.3rem;
+    }
     .link {
       position: relative;
       display: flex;
@@ -109,7 +112,6 @@ header {
     }
     .linkLogo {
       padding: 1.42rem 0;
-      margin-right: 1.3rem;
     }
     .cryptoContainer {
       position: relative;
