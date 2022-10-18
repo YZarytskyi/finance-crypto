@@ -247,11 +247,11 @@
 
 .articles {
   width: 90%;
-  display: flex;
   margin: 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
   justify-content: center;
   color: $color-main;
-  text-align: left;
   padding: 0 2.5rem;
   @media (max-width: 1360px) {
     margin-top: 1rem;
@@ -268,7 +268,11 @@
       text-align: center;
     }
     .arrow {
-      margin-bottom: 0.06rem;
+      width: 18px;
+      height: 18px;
+      margin-left: 3px;
+      margin-bottom: 1.5px;
+      fill: currentColor;
     }
   }
 }

@@ -1,7 +1,6 @@
 import NavLinks from "./NavLinks";
 import style from "./Header.module.scss";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineClose } from "react-icons/ai";
+import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
 import brand from "../../assets/images/logo.png";
 import { useState } from "react";
@@ -9,8 +8,16 @@ import { useState } from "react";
 const MobileNav = () => {
   const [menu, setMenu] = useState<boolean>(false);
 
-  const hamburgerIcon = <GiHamburgerMenu className={style.hamburgerIcon} />;
-  const closeIcon = <AiOutlineClose className={style.closeIcon} />;
+  const hamburgerIcon = (
+    <svg className={style.hamburgerIcon}>
+      <use href={sprite + "#menu_open"} />
+    </svg>
+  );
+  const closeIcon = (
+    <svg className={style.closeIcon}>
+      <use href={sprite + "#menu_close"} />
+    </svg>
+  );
   const mobileSubMenu = (): void => setMenu(false);
 
   return (

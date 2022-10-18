@@ -1,5 +1,5 @@
 import style from "./Articles.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import ArticlesBlock from "./ArticlesBlock";
 import { NavLink } from "react-router-dom";

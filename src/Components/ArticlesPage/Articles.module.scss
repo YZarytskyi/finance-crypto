@@ -24,6 +24,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
 .heading {
   height: 40vw;
   width: 100%;
+  margin: 0 auto;
   display: grid;
   grid-template-areas:
     ". . . ."
@@ -217,6 +218,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     margin-bottom: 0.8rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: rgb(118, 118, 131);
     font-size: 1.1rem;
     @media (max-width: 576px) {

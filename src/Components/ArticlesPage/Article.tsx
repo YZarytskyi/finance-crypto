@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Articles, fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import { BiTimeFive } from "react-icons/bi";
+import sprite from "../../assets/images/icons.svg"
 import { handleImageError } from "../Home/Articles";
 
 const Article = () => {
@@ -24,7 +24,10 @@ const Article = () => {
       <article className={style.selectedArticle}>
         <h1>{article.title}</h1>
         <p className={style.date}>
-          <BiTimeFive style={{ marginTop: "3.5px", marginRight: "5px" }} />{" "}
+          <svg className={style.iconTime}>
+            <use href={sprite + '#time'}/>
+          </svg>
+          {" "}
           {article.publishedAt.slice(0, 10)}
           {article.author && !article.author.startsWith("https")
             ? `, Author: ${article.author}`

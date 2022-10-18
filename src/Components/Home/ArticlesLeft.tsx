@@ -1,11 +1,8 @@
 import style from "./Home.module.scss";
 import { NavLink } from "react-router-dom";
-import { BiTimeFive } from "react-icons/bi";
-import { RiArrowRightSLine } from "react-icons/ri";
+import sprite from "../../assets/images/icons.svg";
 import { useAppSelector } from "../../Store/hooks";
 import { handleImageError } from "./Articles";
-
-
 
 const ArticlesLeft = () => {
   const articles = useAppSelector((state) => state.articles.articles);
@@ -14,7 +11,10 @@ const ArticlesLeft = () => {
     <section className={style.articlesLeft}>
       <NavLink to="/articles">
         <h2>
-          Top Articles <RiArrowRightSLine className={style.arrow} />
+          Top Articles
+          <svg className={style.arrow}>
+            <use href={sprite + "#arrow_right"} />
+          </svg>
         </h2>
       </NavLink>
       <ul className={style.articlesLeftList}>
@@ -27,7 +27,7 @@ const ArticlesLeft = () => {
               <div className={style.articlesLeftImg}>
                 <img
                   src={article.urlToImage}
-                  alt={article.title}
+                  alt="News"
                   onError={handleImageError}
                 />
               </div>
@@ -39,7 +39,9 @@ const ArticlesLeft = () => {
                   gap: 4,
                 }}
               >
-                <BiTimeFive />
+                <svg className={style.iconTime}>
+                  <use href={sprite + "#time"} />
+                </svg>
                 {article.publishedAt.slice(0, 10)}
               </p>
             </NavLink>

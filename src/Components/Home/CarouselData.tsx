@@ -1,8 +1,8 @@
 import style from "./Home.module.scss";
 import { parseNumber } from "../Crypto/Coins/CoinsTableBody";
 import { NavLink } from "react-router-dom";
-import { BiTimeFive } from "react-icons/bi";
 import { Carousel } from "react-bootstrap";
+import sprite from "../../assets/images/icons.svg";
 import slider1 from "../../assets/images/slider1.jpg";
 import slider2 from "../../assets/images/slider2.jpg";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
@@ -120,7 +120,9 @@ export const ArticlesCarouselData = () => {
               >
                 <p>{article.title}</p>
                 <p>
-                  <BiTimeFive />
+                <svg className={style.iconTime}>
+                  <use href={sprite + "#time"} />
+                </svg>
                   {article.publishedAt.slice(0, 10)}
                 </p>
               </NavLink>

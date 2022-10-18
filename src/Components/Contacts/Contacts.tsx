@@ -7,7 +7,7 @@ const Contacts = () => {
     <section className={style.contacts}>
       <h1 className={style.heading}>Any questions?</h1>
       <div className={style.formImg}>
-        <img src={contacts} alt="Contact us" width="250" height="250"  className={style.image}/>
+        <div className={style.image}></div>
         <ContactsForm />
       </div>
     </section>

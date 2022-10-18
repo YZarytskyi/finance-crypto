@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import style from "./Header.module.scss";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import brand from "../../assets/images/logo.png";
 import React, { useEffect, useState } from "react";
+import sprite from "../../assets/images/icons.svg"
 
 interface NavLinksProps {
   mobileSubMenu?: () => void;
@@ -40,10 +40,12 @@ const NavLinks = ({ mobileSubMenu }: NavLinksProps) => {
           <NavLink
             to="/crypto/coins"
             onClick={(e) => mobileSubMenu && handleMobileSubList(e)}
-            className={style.link}
+            className={style.link + " " + style.linkCrypto}
           >
             Crypto
-            <MdKeyboardArrowDown className={style.icon} />
+            <svg className={style.icon} >
+              <use href={sprite + '#arrow_down'} />
+            </svg>
           </NavLink>
           <ul className={style.subListPC + " " + (displayPc ? style.hidden : "")}>
             <li>

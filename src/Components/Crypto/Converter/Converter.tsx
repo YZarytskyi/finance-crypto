@@ -8,38 +8,56 @@ import {
 } from "../../../Store/Reducers/converterSlice";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import Spinner from "../../Common/Spinner";
 
 interface Autocomplete {
   firstLetter: string;
-  coin: string;
+  pair: string;
 }
 
 const Converter = () => {
   const dispatch = useAppDispatch();
-  const {coinsList, price} = useAppSelector((state) => state.converter);
+  const { coinsList, price, isLoadingConverter } = useAppSelector(
+    (state) => state.converter
+  );
 
   const [coin, setCoin] = useState<Autocomplete>({
     firstLetter: "B",
-    coin: "BTCUSDT",
+    pair: "BTCUSDT",
   });
+  const [value, setValue] = useState<number | "">(1);
+  const [convertedValue, setConvertedValue] = useState<number | "">(1);
+
   const handleChangeCoin = (
     event: React.SyntheticEvent,
     newCoin: Autocomplete | null
   ): void => {
     if (newCoin) {
-      setCoin({ firstLetter: newCoin.firstLetter, coin: newCoin.coin })
+      setCoin({ firstLetter: newCoin.firstLetter, pair: newCoin.pair });
     }
   };
 
-  const [value, setValue] = useState<number>(1);
-  const [convertedValue, setConvertedValue] = useState<number | "">(1);
-
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(parseFloat(e.currentTarget.value))
+    setValue(e.currentTarget.value ? parseFloat(e.currentTarget.value) : "");
     if (e.currentTarget.value) {
-      setConvertedValue(parseFloat(e.currentTarget.value) * (price ? price : 0))
+      setConvertedValue(
+        parseFloat(e.currentTarget.value) * (price ? price : 0)
+      );
     } else {
-    setConvertedValue("")
+      setConvertedValue("");
+    }
+  };
+
+  const handleChangeConvertedValue = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setConvertedValue(
+      e.currentTarget.value ? parseFloat(e.currentTarget.value) : ""
+    );
+    if (e.currentTarget.value) {
+      setValue(parseFloat(e.currentTarget.value) / (price ? price : 0));
+    } else {
+      setValue("");
     }
   };
 
@@ -50,19 +68,20 @@ const Converter = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchPrice(coin.coin));
     setValue(1);
-  }, [coin.coin])
+    setConvertedValue("")
+    dispatch(fetchPrice(coin.pair));
+  }, [coin.pair]);
 
   useEffect(() => {
-    setConvertedValue(price ? price : 0)
-  }, [price])
+    setConvertedValue(price ? price : "");
+  }, [price]);
 
-  const options = coinsList.map((coin) => {
-    const firstLetter = coin[0].toUpperCase();
+  const options = coinsList.map((pair) => {
+    const firstLetter = pair[0].toUpperCase();
     return {
       firstLetter: firstLetter,
-      coin,
+      pair,
     };
   });
 
@@ -84,20 +103,28 @@ const Converter = () => {
                 (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
               )}
               groupBy={(coin) => coin.firstLetter}
-              getOptionLabel={(coin) => coin.coin.replace(/USDT/, "")}
+              getOptionLabel={(coin) => coin.pair.replace(/USDT/, "")}
               renderInput={(params) => <TextField {...params} label="Coin" />}
             />
+
             <input
               type="number"
               className={style.converterInput}
               value={value}
               onChange={(e) => handleChangeValue(e)}
             />
-            <p>Convert to USDT</p>
-            <input
-              className={style.converterInput}
-              value={convertedValue}
-            />
+
+            <p className={style.converterText}>Convert to USDT</p>
+
+            <div className={style.converterInputWrapper}>
+              <input
+                type="number"
+                className={style.converterInput}
+                value={convertedValue}
+                onChange={(e) => handleChangeConvertedValue(e)}
+              />
+              {isLoadingConverter && <Spinner />}
+            </div>
           </div>
         </div>
       </section>

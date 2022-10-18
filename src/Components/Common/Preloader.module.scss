@@ -1,0 +1,85 @@
+.preloader {
+  .preloader1 {
+    margin: 100px auto 0;
+    width: 66px;
+    height: 12px;
+  }
+
+  .preloader2 {
+    margin: 120px auto 0;
+  }
+
+  div {
+    color: #fff;
+    margin: 5px 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .preloader1 .line {
+    width: 1px;
+    height: 12px;
+    background: #fff;
+    margin: 0 1px;
+    display: inline-block;
+    animation: opacity-1 1000ms infinite ease-in-out;
+  }
+
+  .preloader2 .line {
+    width: 1px;
+    height: 12px;
+    background: #fff;
+    margin: 0 1px;
+    display: inline-block;
+    animation: opacity-1 1000ms infinite ease-in-out;
+  }
+
+  .preloader1 .line,
+  .preloader2 .line {
+    animation-delay: 800ms;
+  }
+  .preloader1 .line2,
+  .preloader2 .line2 {
+    animation-delay: 600ms;
+  }
+  .preloader1 .line3,
+  .preloader2 .line3 {
+    animation-delay: 400ms;
+  }
+  .preloader1 .line4,
+  .preloader2 .line4 {
+    animation-delay: 200ms;
+  }
+  .preloader1 .line6,
+  .preloader2 .line6 {
+    animation-delay: 200ms;
+  }
+  .preloader1 .line7,
+  .preloader2 .line7 {
+    animation-delay: 400ms;
+  }
+  .preloader1 .line8,
+  .preloader2 .line8 {
+    animation-delay: 600ms;
+  }
+  .preloader1 .line9,
+  .preloader2 .line9 {
+    animation-delay: 800ms;
+  }
+
+  @keyframes opacity-1 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+}

@@ -4,11 +4,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 interface InitialState {
   coinsList: Array<string>,
   price: number | null,
+  isLoadingConverter: boolean,
 }
 
 const initialState: InitialState = {
   coinsList: [],
   price: null,
+  isLoadingConverter: false,
 }
 
 export const fetchCoinsList = createAsyncThunk(
@@ -33,9 +35,13 @@ export const converterSlice = createSlice({
     builder.addCase(fetchCoinsList.fulfilled, (state, action) => {
       state.coinsList = action.payload;
     })
-    builder.addCase(fetchPrice.fulfilled, (state, action) => {
-      state.price = action.payload
+    builder.addCase(fetchPrice.pending, (state, action) => {
+      state.isLoadingConverter = true;
     })
+      .addCase(fetchPrice.fulfilled, (state, action) => {
+        state.price = action.payload;
+        state.isLoadingConverter = false;
+      })
   },
 })
 

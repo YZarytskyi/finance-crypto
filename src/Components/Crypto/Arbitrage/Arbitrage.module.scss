@@ -37,12 +37,22 @@
   margin: 0 auto !important;
 }
 
+.arrowRight {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  fill: currentColor;
+}
+
 .refreshIcon {
   display: block;
   margin: 0 auto;
-  width: 25px;
-  height: 25px;
+  margin-top: -15px;
+  margin-bottom: -15px;
+  width: 65px;
+  height: 65px;
   cursor: pointer;
+  fill: currentColor;
 }
 
 .fallback {

@@ -1,7 +1,7 @@
 import style from "./Articles.module.scss";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../Store/hooks";
-import { BiTimeFive } from "react-icons/bi";
+import sprite from "../../assets/images/icons.svg";
 import TablePagination from "../Common/TablePagination";
 import { useState } from "react";
 import { handleImageError } from "../Home/Articles";
@@ -27,6 +27,7 @@ const ArticlesBlock = () => {
                 <div className={style.articlesImage}>
                   {article.urlToImage && (
                     <img
+                      loading="lazy"
                       src={article.urlToImage}
                       alt={article.title}
                       onError={handleImageError}
@@ -40,7 +41,9 @@ const ArticlesBlock = () => {
                       : article.title}
                   </p>
                   <div>
-                    <BiTimeFive />
+                    <svg className={style.iconTime}>
+                      <use href={sprite + '#time'}/>
+                    </svg>
                     {article.publishedAt.slice(0, 10)}
                   </div>
                 </div>

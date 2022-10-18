@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { BiRightArrow } from "react-icons/bi";
+import sprite from "../../../assets/images/icons.svg";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import {
   fetchPairs,
@@ -274,7 +274,11 @@ const CheckResult = () => {
         <LoadingButton
           className={style.checkBtn}
           loading={isLoadingPairs}
-          endIcon={<BiRightArrow style={{ width: 13 }} />}
+          endIcon={ 
+            <svg className={style.arrowRight}>
+              <use href={sprite + "#arrow_right"} />
+            </svg>
+          }
           loadingPosition="end"
           variant="outlined"
           onClick={() => handlePairs()}

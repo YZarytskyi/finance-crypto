@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({children, modalShow, setModalShow}) => {
       <div className={style.modal} onClick={() => handleCloseModal()}>
         <button type="button" className={style.modalCloseBtn} onClick={() => handleCloseBtn()}>
           <svg className={style.modalCloseIcon}>
-            <use href={sprite + '#modal-close'}></use>
+            <use href={sprite + '#modal_close'}></use>
           </svg>
         </button>
         {children}

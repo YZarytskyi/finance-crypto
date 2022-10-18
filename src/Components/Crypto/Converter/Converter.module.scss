@@ -80,10 +80,7 @@
   @media (max-width: 620px) {
     width: 95%;
   }
-  > p {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
+
   .autocomplete {
     width: 40%;
     margin-bottom: 1.2rem;
@@ -97,13 +94,23 @@
       width: 80%;
     }
   }
+
+  .converterText {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+
   .converterInput {
     @include input;
     width: 100%;
-    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 0.7rem;
     font-size: 1.1rem;
     font-weight: 600;
+  }
+
+  .converterInputWrapper {
+    width: 100%;
+    position: relative;
   }
 }

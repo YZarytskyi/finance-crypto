@@ -1,7 +1,6 @@
 import style from "./NavCrypto.module.scss";
 import { NavLink } from "react-router-dom";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { AiFillHome } from "react-icons/ai";
+import sprite from "../../assets/images/icons.svg";
 
 const NavCrypto = () => {
   let currentPath = window.location.pathname;
@@ -12,13 +11,20 @@ const NavCrypto = () => {
       <ul className={style.listLeft}>
         <li>
           <NavLink to="/" className={style.leftLink}>
-            <AiFillHome className={style.home} />
-            <RiArrowRightSLine className={style.arrow} />
+            <svg className={style.home}>
+              <use href={sprite + "#home"} />
+            </svg>
+            <svg className={style.arrow}>
+              <use href={sprite + "#arrow_right"} />
+            </svg>
           </NavLink>
         </li>
         <li>
           <NavLink to="/crypto/coins" className={style.leftLink}>
-            Crypto <RiArrowRightSLine className={style.arrow} />
+            Crypto 
+            <svg className={style.arrow}>
+              <use href={sprite + "#arrow_right"} />
+            </svg>
           </NavLink>
         </li>
         <li>

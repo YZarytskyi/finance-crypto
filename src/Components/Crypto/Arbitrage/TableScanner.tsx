@@ -1,7 +1,7 @@
 import style from "./Arbitrage.module.scss";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import { FiRefreshCcw } from "react-icons/fi";
+import sprite from "../../../assets/images/icons.svg";
 import Table from "react-bootstrap/Table";
 import TableArbitrageBody from "./TableBody";
 import { fetchCurrencies } from "../../../Store/Reducers/arbitrageSlice";
@@ -22,10 +22,10 @@ const ScannerTable = () => {
 
   return (
     <>
-      <FiRefreshCcw
-        className={style.refreshIcon}
-        onClick={() => handleRefresh()}
-      />    
+      <svg className={style.refreshIcon} onClick={() => handleRefresh()}>
+        <use href={sprite + "#refresh"} />
+      </svg>
+
       {isLoadingCurrencies 
       ? <p className={style.fallback}>Loading...</p>
       : <div className={`${style.table} ${style.tableArbitrage}`}>

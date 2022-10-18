@@ -38,6 +38,12 @@
 }
 
 .image {
+  background-image: url("../../assets/images/contacts.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 280px;
+  height: 280px;
+
   @media (max-width: 1000px) {
     display: none;
   }
