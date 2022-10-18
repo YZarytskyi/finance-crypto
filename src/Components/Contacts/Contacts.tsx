@@ -1,5 +1,4 @@
 import style from "./Contacts.module.scss";
-import contacts from "../../assets/images/contacts.png";
 import ContactsForm from "./ContactsForm";
 
 const Contacts = () => {

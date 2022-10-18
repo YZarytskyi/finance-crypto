@@ -29,6 +29,9 @@ html {
       background: inherit;
       overflow-x: hidden;
       overflow-y: scroll;
+      &.overflow {
+        overflow: hidden;
+      }
     }
 }
 

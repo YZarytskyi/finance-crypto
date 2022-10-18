@@ -1,10 +1,9 @@
-import style from "./Header.module.scss";
 import MobileNav from "./MobileNav";
-import NavLinks from "./NavLinks";
+import PCNav from "./PCNav";
 
 
 const Header = () => {
-  return(
+  return (
     <header>
       <PCNav />
       <MobileNav />
@@ -13,12 +12,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-const PCNav = () => {
-  return(
-    <nav className={style.pcNav}>
-      <NavLinks />
-    </nav>
-  );
-};
