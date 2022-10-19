@@ -9,7 +9,7 @@
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(7px);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,10 +57,11 @@
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border-color: rgba(0, 0, 0, 0.4);
+    color: $color-main;
   }
 }
 
 .modalCloseIcon {
+  height: 100%;
   fill: currentColor;
 }

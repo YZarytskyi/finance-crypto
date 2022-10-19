@@ -1,0 +1,98 @@
+@import "../../variables.scss";
+
+.modalAuthNav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.modalAuthNavLink {
+  position: relative;
+  padding: 0.2rem 1rem 1rem 1rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: $color-secondary;
+  letter-spacing: 0.04em;
+  &.NavLinkCurrent {
+    color: $color-main;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      height: 5px;
+      width: 60%;
+      background-color: $color-accent;
+      border-radius: 5px;
+      transform: translateX(-50%);
+    }
+  }
+}
+.loginForm {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  .formLabel {
+    display: block;
+    font-size: 1rem;
+    > a {
+      color: $color-accent;
+    }
+  }
+  .formInput {
+    @include input;
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(64, 66, 78);
+    border-radius: 0.5rem;
+    color: $color-main;
+    font-size: 1.05rem;
+    background-color: rgb(23, 25, 36);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+     border-color: $color-accent; 
+     background-color: rgb(23, 25, 36, 0.8);
+    }
+    &::placeholder {
+      font-size: 0.95rem;
+    }
+  }
+  .labelCheckbox {
+    margin-bottom: 0.3rem;
+  }
+  .formCheckbox {
+    &:checked + .formCheckboxIcon {
+      border: none;
+      background-color: $color-accent;
+      fill: $color-main;
+    }
+  }
+  .formCheckboxIcon {
+    margin-right: 8px;
+    margin-bottom: 3px;
+    border: 1px solid $color-secondary;
+    border-radius: 5px;
+    fill: rgb(25, 33, 48);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      border: 1px solid $color-main;
+    }    
+  }
+  .formErrorMessage {
+    margin-bottom: 0.5rem;
+    color: rgb(253, 55, 55);
+    font-size: 0.8rem;
+  }
+  .formButton {
+    margin-top: 1rem;
+    height: 41px;
+    width: 100%;
+    border-color: $color-accent !important;
+    color: $color-accent !important;
+    border-radius: 0.4rem;
+  }
+}

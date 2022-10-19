@@ -2,11 +2,18 @@ import NavLinks from "./NavLinks";
 import style from "./Header.module.scss";
 import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
-import brand from "../../assets/images/logo.png";
 import { useState } from "react";
 
 const MobileNav = () => {
   const [menu, setMenu] = useState<boolean>(false);
+
+  const handleSetMenu = () => {
+    setMenu((prev) => !prev)
+    if (!menu) {
+      document.body.style.overflowY = 'hidden';
+    } else document.body.style.overflowY = 'scroll';
+  }
+  
 
   const hamburgerIcon = (
     <svg className={style.hamburgerIcon}>
@@ -18,24 +25,30 @@ const MobileNav = () => {
       <use href={sprite + "#menu_close"} />
     </svg>
   );
-  const mobileSubMenu = (): void => setMenu(false);
+  const handleClickMobileLink = (): void => {
+    setMenu(false);
+    document.body.style.overflowY = 'scroll';
+  }
 
   return (
     <nav className={style.mobileNav}>
       <div
-        onClick={() => setMenu((prev) => !prev)}
+        onClick={() => handleSetMenu()}
         className={style.mobileToggleIcons}
       >
         {menu ? closeIcon : hamburgerIcon}
       </div>
       <NavLink
         to="/"
-        className={style.logoMobile}
-        onClick={() => mobileSubMenu()}
+        className={style.linkLogo}
+        onClick={() => handleClickMobileLink()}
       >
-        <img src={brand} width={48} height={48} alt="brand" />
+        CRYPTO
+        <svg className={style.iconLogo}>
+          <use href={sprite + '#logo'}/>
+        </svg>
       </NavLink>
-      {menu && <NavLinks mobileSubMenu={mobileSubMenu} />}
+      {menu && <NavLinks handleClickMobileLink={handleClickMobileLink} />}
     </nav>
   );
 };

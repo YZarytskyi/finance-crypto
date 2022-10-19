@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import articlesReducer from "./Reducers/articlesSlice";
 import cryptoReducer from "./Reducers/cryptoSlice";
-import converterReducer from "./Reducers/converterSlice";
 import arbitrageReducer from "./Reducers/arbitrageSlice";
+import converterReducer from "./Reducers/converterSlice";
+import authReducer from "./Reducers/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     crypto: cryptoReducer,
     arbitrage: arbitrageReducer,
     converter: converterReducer,
+    auth: authReducer,
   },
 });
 

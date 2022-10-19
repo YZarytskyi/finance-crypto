@@ -5,13 +5,14 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
   height: 3.8rem;
-  font-size: 1.1rem;
   box-shadow: $box-shadow;
   background: $bg-img;
   background-attachment: fixed;
   background-position: top 1% left 10%;
-  z-index: 10;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
   @media (max-width: 1280px) {
     position: sticky;
     top: 0;
@@ -28,7 +29,7 @@ header {
     width: 100vw;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 4rem 1fr 4rem;
     align-items: center;
   }
   .mobileToggleIcons {
@@ -37,7 +38,6 @@ header {
     padding-left: 0.7rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     cursor: pointer;
     .hamburgerIcon {
       width: 50px;
@@ -50,11 +50,8 @@ header {
       fill: currentColor;
     }
   }
-  .logoPC {
+  .PClogo {
     display: none;
-  }
-  .logoMobile {
-    justify-self: center;
   }
   .navLinksList {
     position: absolute;
@@ -85,10 +82,6 @@ header {
   align-items: center;
   @media (max-width: 1280px) {
     display: none;
-  }
-  .linkLogo {
-    justify-self: left;
-    margin-left: 6rem;
   }
   > ul {
     height: 100%;
@@ -135,7 +128,7 @@ header {
     justify-self: flex-end;
     font-size: 1rem;
     > button {
-      padding: 0.3rem 0.9rem;
+      padding: 0.3rem 0.8rem;
       color: $color-main;
       border-radius: 7px; 
     }
@@ -163,72 +156,46 @@ header {
       }
     }
   }
-  .modalAuthNav {
-    display: flex;
-    justify-content: center;
-    gap: 0.7rem;
-    font-size: 1.6rem;
-    font-weight: 500;
+  .authContainer {
+    justify-self: flex-end;
+    margin-right: 3rem;
+    font-size: 1rem;
   }
-  .modalAuthNavLink {
-    position: relative;
-    padding: 0.2rem 1rem 1rem 1rem;
-    color: $color-secondary;
-    letter-spacing: 0.04em;
-    &.NavLinkCurrent {
-      color: $color-main;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        height: 5px;
-        width: 60%;
-        background-color: $color-accent;
-        border-radius: 5px;
-        transform: translateX(-50%);
-      }
+  .logoutBtn {
+    padding: 0.3rem 0.8rem;
+    color: $color-main;
+    border-radius: 7px; 
+    background-color: transparent;
+    border: 2px solid rgb(13, 110, 253);
+    &:hover {
+      background-color: rgb(9, 90, 212, 0.25);
+      border-color: #095ad4;
+    }
+    &:active {
+      background-color: rgb(9, 90, 212, 0.4);
+      border-color: #034dbd;
     }
   }
-  .loginForm {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    .formLabel {
-      display: block;
-      font-size: 1rem;
-    }
-    .formInput {
-      @include input;
-      width: 100%;
-      margin-top: 0.3rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgb(64, 66, 78);
-      border-radius: 0.5rem;
-      color: $color-main;
-      font-size: 1.05rem;
-      background-color: rgb(23, 25, 36);
-      transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        background-color: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      &:hover {
-       border-color: $color-accent; 
-       background-color: rgb(23, 25, 36, 0.8);
-      }
-    }
-    .formErrorMessage {
-      color: rgb(253, 55, 55);
-      font-size: 0.8rem;
-      margin-bottom: 0.1rem;
-      margin-top: 0.2rem;
-      white-space: pre;
-    }
-    .formButton {
-      height: 41px;
-      width: 100%;
-      border-color: $color-accent !important;
-      color: $color-accent !important;
-      border-radius: 0.4rem;
-    }
+}
+
+.linkLogo {
+  height: 100%;
+  padding-top: 0.75rem;
+  justify-self: left;
+  margin-left: 7rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  @media (max-width: 1280px) {
+    padding-top: 0.45rem;
+    margin-left: 0;
+    justify-self: center;
+  }
+  .iconLogo {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    fill: currentColor;
   }
 }
 

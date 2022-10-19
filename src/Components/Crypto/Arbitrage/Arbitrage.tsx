@@ -1,13 +1,21 @@
 import NavCrypto from "../NavCrypto";
 import TableScanner from "./TableScanner";
 import CheckResult from "./CheckResult";
+import { useAppSelector } from "../../../Store/hooks";
+import { Navigate } from "react-router-dom";
 
 const Arbitrage = () => {
+  const userId = useAppSelector(state => state.auth.user.uid);
   return (
     <>
-      <NavCrypto />
-      <CheckResult />
-      <TableScanner />
+      {userId
+      ? <> 
+        <NavCrypto />
+        <CheckResult />
+        <TableScanner />
+      </>
+      : <Navigate to="/"/>
+      }
     </>
   );
 };

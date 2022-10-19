@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({children, modalShow, setModalShow}) => {
     setModalShow(false)
   }
   const handleCloseModal = () => {
-    // setModalShow((prevValue) => !prevValue)
+    setModalShow((prevValue) => !prevValue)
   }
   return (
     <div className={`${style.backdrop} ${!modalShow && style.isHidden}`} onClick={() => handleCloseModal()}>
