@@ -113,4 +113,13 @@
     width: 100%;
     position: relative;
   }
+
+  .lastUpdateText {
+    margin-top: 1rem;
+    color: rgb(168, 168, 168);
+
+    > span {
+      color: $color-main;
+    }
+  }
 }

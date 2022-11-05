@@ -9,17 +9,19 @@ import {
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Spinner from "../../Common/Spinner";
+import LastUpdateTimer from "./LastUpdateTimer";
 
-interface Autocomplete {
+export interface Autocomplete {
   firstLetter: string;
   pair: string;
 }
 
 const Converter = () => {
-  const dispatch = useAppDispatch();
+
   const { coinsList, price, isLoadingConverter } = useAppSelector(
     (state) => state.converter
   );
+  const dispatch = useAppDispatch();
 
   const [coin, setCoin] = useState<Autocomplete>({
     firstLetter: "B",
@@ -27,6 +29,24 @@ const Converter = () => {
   });
   const [value, setValue] = useState<number | "">(1);
   const [convertedValue, setConvertedValue] = useState<number | "">(1);
+
+
+  useEffect(() => {
+    if (coinsList.length === 0) {
+      dispatch(fetchCoinsList());
+    }
+  }, []);
+
+  useEffect(() => {
+    setValue(1);
+    setConvertedValue("")
+    dispatch(fetchPrice(coin.pair));
+  }, [coin.pair]);
+
+  useEffect(() => {
+    setConvertedValue(price ? price : "");
+  }, [price]);
+
 
   const handleChangeCoin = (
     event: React.SyntheticEvent,
@@ -60,22 +80,6 @@ const Converter = () => {
       setValue("");
     }
   };
-
-  useEffect(() => {
-    if (coinsList.length === 0) {
-      dispatch(fetchCoinsList());
-    }
-  }, []);
-
-  useEffect(() => {
-    setValue(1);
-    setConvertedValue("")
-    dispatch(fetchPrice(coin.pair));
-  }, [coin.pair]);
-
-  useEffect(() => {
-    setConvertedValue(price ? price : "");
-  }, [price]);
 
   const options = coinsList.map((pair) => {
     const firstLetter = pair[0].toUpperCase();
@@ -125,6 +129,7 @@ const Converter = () => {
               />
               {isLoadingConverter && <Spinner />}
             </div>
+            <LastUpdateTimer coin={coin} />
           </div>
         </div>
       </section>
