@@ -171,7 +171,8 @@ export const arbitrageApi = {
           });
           const result1 = map1
             .flat(3)
-            .filter((x) => +x.result > 0 && +x.result < 2);
+            .filter((x) => +x.result > 0)
+            .sort((a, b) => b.result - a.result);
           return {
             currencies,
             result: result1,

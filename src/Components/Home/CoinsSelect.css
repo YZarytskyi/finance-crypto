@@ -1,0 +1,64 @@
+.iconTime {
+  width: 13.5px;
+  height: 13.5px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.dropdown button {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 25px;
+  margin-right: 0px;
+  font-size: 12px;
+  padding: 0px 0px 0px 2.8px;
+}
+.dropdown button::after {
+  border-top: 0;
+  border: none;
+}
+
+.dropdown div a {
+  width: 33px;
+}
+.dropdown div a:hover {
+  color: #f3f3f3;
+}
+
+.btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.dropdown-menu {
+  left: -5px !important;
+  top: -25px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  background-color: rgb(52, 58, 64) !important;
+}
+.dropdown-menu a:active {
+  background-color: rgb(52, 58, 64) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dropdown-item {
+  padding: 5.8px !important;
+  padding-left: 3.7px !important;
+  text-align: center !important;
+  font-size: 12.5px !important;
+}
+.dropdown-item:hover {
+  border-radius: 5px;
+}/*# sourceMappingURL=CoinsSelect.css.map */

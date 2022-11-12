@@ -1,0 +1,230 @@
+.iconTime {
+  width: 13.5px;
+  height: 13.5px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.coin {
+  padding: 0 4rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 992px) {
+  .coin {
+    padding: 0 1.2rem;
+  }
+}
+.coin .descriptionChart {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+@media (max-width: 992px) {
+  .coin .descriptionChart {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.coin .description {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 40%;
+}
+@media (max-width: 992px) {
+  .coin .description {
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .coin .description {
+    width: 75%;
+  }
+}
+@media (max-width: 576px) {
+  .coin .description {
+    width: 95%;
+  }
+}
+.coin .description .rank {
+  background-color: rgb(66, 63, 63);
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+}
+.coin .description .imgName {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+.coin .description .imgName > p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.coin .description .pricePercentage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+.coin .description .pricePercentage div:nth-child(1) {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.coin .description .pricePercentage div:nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.coin .description .progressBar {
+  width: 85%;
+  margin-bottom: 0.2rem;
+}
+@media (max-width: 992px) {
+  .coin .description .progressBar {
+    width: 100%;
+  }
+}
+.coin .description .lowHigh {
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+@media (max-width: 992px) {
+  .coin .description .lowHigh {
+    width: 100%;
+  }
+}
+.coin .description .lowHigh div:nth-child(1) {
+  font-size: 1rem;
+  color: #fc432a;
+}
+.coin .description .lowHigh div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #f3f3f3;
+}
+.coin .description .lowHigh div:nth-child(3) {
+  font-size: 1rem;
+  color: #01b301;
+}
+.coin .description .marketCapInfo {
+  width: 85%;
+  margin-top: 1rem;
+}
+@media (max-width: 992px) {
+  .coin .description .marketCapInfo {
+    width: 100%;
+  }
+}
+.coin .description .marketCapInfo > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 0.3rem;
+  margin-top: 0.6rem;
+  border-bottom: 0.01rem solid rgb(78, 77, 77);
+}
+.coin .description .marketCapInfo > div p:nth-child(1) {
+  font-size: 0.9rem;
+  color: gray;
+}
+.coin .description .marketCapInfo > div div:nth-child(2) {
+  font-size: 0.9rem;
+}
+
+.chartContainer {
+  width: 60%;
+  margin-top: 2rem;
+  margin-bottom: -1.3rem;
+}
+@media (max-width: 992px) {
+  .chartContainer {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 520px) {
+  .chartContainer {
+    width: 100%;
+  }
+}
+
+.chartButtons {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 0.3rem;
+  height: 3rem;
+}
+@media (max-width: 545px) {
+  .chartButtons {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}
+.chartButtons input {
+  color: rgb(24, 24, 24);
+  background-color: #f3f3f3;
+  font-family: "Gill Sans", sans-serif;
+  border: none;
+  outline: none;
+  transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 2rem;
+  margin-right: 0.3rem;
+  width: 6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+.chartButtons input:focus {
+  box-shadow: #259dff 0px 0px 6px 0.5px;
+  border-color: #259dff;
+}
+.chartButtons input::-moz-placeholder {
+  font-size: 0.9rem;
+}
+.chartButtons input:-ms-input-placeholder {
+  font-size: 0.9rem;
+}
+.chartButtons input::placeholder {
+  font-size: 0.9rem;
+}
+.chartButtons button {
+  color: #f3f3f3;
+  background-color: rgb(13, 110, 253);
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.05rem;
+  min-width: 3rem;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.chartButtons button:hover {
+  background-color: #095ad4;
+}
+.chartButtons button:active {
+  background-color: #034dbd;
+}
+
+.coinInfo {
+  padding: 2rem 0;
+  color: rgb(179, 174, 174);
+  text-align: left;
+  font-size: 1.1rem;
+  width: 100%;
+  white-space: pre-line;
+}/*# sourceMappingURL=SelectedCoin.module.css.map */

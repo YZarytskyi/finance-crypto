@@ -5,6 +5,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 
 interface AuthProps {
+  children?: React.ReactNode;
   modalAuthShow: boolean;
   setModalAuthShow: (
     value: boolean | ((prevValue: boolean) => boolean)
@@ -16,11 +17,13 @@ interface AuthProps {
 }
 
 const Auth: React.FC<AuthProps> = ({
+  children,
   modalAuthShow,
   setModalAuthShow,
   toggleLoginSignUp,
   setToggleLoginSignUp,
 }) => {
+  
   const handleClickToggleAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const classes = [...(e.target as Element).classList];
@@ -30,6 +33,7 @@ const Auth: React.FC<AuthProps> = ({
 
   return (
     <Modal modalShow={modalAuthShow} setModalShow={setModalAuthShow}>
+      {children}
       <div className={style.modalAuthContent}>
         <ul className={style.modalAuthNav}>
           <li className={style.modalAuthNavItem}>

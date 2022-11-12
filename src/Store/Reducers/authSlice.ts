@@ -4,10 +4,14 @@ import { User } from '../../Types/Types';
 
 interface AuthState {
   user: Partial<User>;
+  modalShow: boolean;
+  toggleLoginSignUp: boolean;
 }
 
 const initialState: AuthState = {
   user: {},
+  modalShow: false,
+  toggleLoginSignUp: false,
 }
 
 export const authSlice = createSlice({
@@ -17,9 +21,15 @@ export const authSlice = createSlice({
     setCurrentUser(state, action) {
       state.user = action.payload
     },
+    setModalShow(state, action) {
+      state.modalShow = action.payload
+    },
+    setToggleLoginSignUp(state, action) {
+      state.toggleLoginSignUp = action.payload
+    },
   },
 })
 
-export const { setCurrentUser } = authSlice.actions
+export const { setCurrentUser, setModalShow, setToggleLoginSignUp } = authSlice.actions
 
 export default authSlice.reducer

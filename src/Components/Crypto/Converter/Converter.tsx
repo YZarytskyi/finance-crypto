@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import {
   fetchCoinsList,
   fetchPrice,
+  removePrice,
 } from "../../../Store/Reducers/converterSlice";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -41,10 +42,15 @@ const Converter = () => {
     setValue(1);
     setConvertedValue("")
     dispatch(fetchPrice(coin.pair));
+    
+    return () => {
+      dispatch(removePrice())
+    }
   }, [coin.pair]);
 
   useEffect(() => {
     setConvertedValue(price ? price : "");
+    return () => setConvertedValue("");
   }, [price]);
 
 

@@ -3,8 +3,11 @@ import { NavLink } from "react-router-dom";
 import sprite from "../../assets/images/icons.svg";
 
 const NavCrypto = () => {
-  let currentPath = window.location.pathname;
-  currentPath = currentPath.replace(/\/crypto\//i, "");
+  let currentPath = window.location.hash;
+  const regexpCoins = /#\/crypto\//i;
+  const regexpSelectedCoin = /#\/crypto\/coins\//i;
+  const isSelectedCoin = regexpSelectedCoin.test(currentPath);
+  currentPath = currentPath.replace(isSelectedCoin ? regexpSelectedCoin : regexpCoins, "");
 
   return (
     <div className={style.navCrypto}>
@@ -22,6 +25,14 @@ const NavCrypto = () => {
         <li>
           <NavLink to="/crypto/coins" className={style.leftLink}>
             Crypto 
+            <svg className={style.arrow}>
+              <use href={sprite + "#arrow_right"} />
+            </svg>
+          </NavLink>
+        </li>
+        <li className={isSelectedCoin ? "" : "hidden"}>
+          <NavLink to="/crypto/coins" className={style.leftLink}>
+            Coins 
             <svg className={style.arrow}>
               <use href={sprite + "#arrow_right"} />
             </svg>

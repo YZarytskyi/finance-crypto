@@ -378,6 +378,7 @@
       }
       .articlesRightDescription {
         grid-area: p;
+        overflow-x: hidden;
         > p:nth-child(2) {
           display: flex;
           color: $color-secondary;

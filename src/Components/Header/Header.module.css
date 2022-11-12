@@ -1,0 +1,290 @@
+.iconTime {
+  width: 13.5px;
+  height: 13.5px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  height: 3.8rem;
+  box-shadow: #259dff 0px -1px 6px;
+  background: linear-gradient(rgba(9, 9, 14, 0.95), rgba(9, 9, 14, 0.95)), url("./assets/images/bg-body.jpg");
+  background-attachment: fixed;
+  background-position: top 1% left 10%;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1280px) {
+  header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+}
+
+.mobileNav {
+  display: none;
+}
+@media (max-width: 1280px) {
+  .mobileNav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 4rem 1fr 4rem;
+    align-items: center;
+  }
+}
+.mobileNav .mobileToggleIcons {
+  height: 100%;
+  width: 3.4rem;
+  padding-left: 0.7rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mobileNav .mobileToggleIcons .hamburgerIcon {
+  width: 50px;
+  height: 50px;
+  fill: currentColor;
+}
+.mobileNav .mobileToggleIcons .closeIcon {
+  width: 50px;
+  height: 50px;
+  fill: currentColor;
+}
+.mobileNav .PClogo {
+  display: none;
+}
+.mobileNav .navLinksList {
+  position: absolute;
+  top: 3.8rem;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 0.7rem;
+  background-color: rgb(8, 13, 22);
+  box-shadow: inset 0 5px 5px -6px #5f5da8;
+  overflow: hidden;
+}
+.mobileNav .navLinksList > li {
+  margin-right: auto;
+  margin-left: 1.2rem;
+  text-align: left;
+}
+
+.pcNav {
+  width: 100%;
+  max-width: 1500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+@media (max-width: 1280px) {
+  .pcNav {
+    display: none;
+  }
+}
+.pcNav > ul {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pcNav > ul .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.3rem 1.3rem;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pcNav > ul .link::after {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #259dff;
+  content: "";
+  transform: scale(0);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pcNav > ul .link:hover::after {
+  transform: scale(1);
+}
+.pcNav > ul .cryptoContainer {
+  position: relative;
+  margin-right: -0.4rem;
+}
+.pcNav > ul .cryptoContainer:hover .link::after, .pcNav > ul .cryptoContainer:hover .link {
+  transform: scale(1);
+  color: #259dff;
+}
+.pcNav .cryptoContainer:hover .icon,
+.pcNav .cryptoContainer:focus .icon {
+  transform: rotate(0);
+}
+.pcNav .authBtns {
+  margin-right: 3rem;
+  justify-self: flex-end;
+  font-size: 1rem;
+}
+.pcNav .authBtns > button {
+  padding: 0.3rem 0.8rem;
+  color: #f3f3f3;
+  border-radius: 7px;
+}
+.pcNav .authBtns .loginBtn {
+  margin-right: 1rem;
+  background-color: transparent;
+  border: 2px solid rgb(13, 110, 253);
+}
+.pcNav .authBtns .loginBtn:hover {
+  background-color: rgba(9, 90, 212, 0.25);
+  border-color: #095ad4;
+}
+.pcNav .authBtns .loginBtn:active {
+  background-color: rgba(9, 90, 212, 0.4);
+  border-color: #034dbd;
+}
+.pcNav .authBtns .signUpBtn {
+  background-color: rgb(13, 110, 253);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pcNav .authBtns .signUpBtn:hover {
+  background-color: #095ad4;
+}
+.pcNav .authBtns .signUpBtn:active {
+  background-color: #034dbd;
+}
+.pcNav .authContainer {
+  justify-self: flex-end;
+  margin-right: 3rem;
+  font-size: 1rem;
+}
+.pcNav .logoutBtn {
+  padding: 0.3rem 0.8rem;
+  color: #f3f3f3;
+  border-radius: 7px;
+  background-color: transparent;
+  border: 2px solid rgb(13, 110, 253);
+}
+.pcNav .logoutBtn:hover {
+  background-color: rgba(9, 90, 212, 0.25);
+  border-color: #095ad4;
+}
+.pcNav .logoutBtn:active {
+  background-color: rgba(9, 90, 212, 0.4);
+  border-color: #034dbd;
+}
+
+.linkLogo {
+  height: 100%;
+  padding-top: 0.75rem;
+  justify-self: left;
+  margin-left: 7rem;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+}
+@media (max-width: 1280px) {
+  .linkLogo {
+    padding-top: 0.45rem;
+    margin-left: 0;
+    justify-self: center;
+  }
+}
+.linkLogo .iconLogo {
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  fill: currentColor;
+}
+
+.linkCrypto {
+  display: flex;
+  align-items: center;
+}
+.linkCrypto:hover .icon, .linkCrypto:focus .icon {
+  transform: rotate(0);
+}
+
+.icon {
+  width: 9.5px;
+  height: 9.5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  justify-content: center;
+  transform: rotate(-90deg);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentColor;
+}
+
+.subListPC {
+  position: absolute;
+  top: 100%;
+  right: -22%;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  padding: 0.5rem 0;
+  text-align: left;
+  font-size: 1rem;
+  background-color: rgb(9, 10, 15);
+  border-radius: 0.2rem;
+  box-shadow: 0px 0px 1px 0.2px rgb(102, 102, 102);
+  transform: translate(0px, 10%);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.subListPC > li {
+  padding: 0.6rem 0rem;
+}
+.subListPC > li:hover, .subListPC > li:focus {
+  color: inherit;
+  background-color: rgb(97, 97, 97);
+}
+.subListPC > li .subListLink {
+  color: #f3f3f3;
+  padding: 0.7rem 3rem 0.7rem 2rem;
+}
+
+.cryptoContainer:hover .subListPC {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+  transform: translate(0px, 0px);
+}
+
+.subListMobile {
+  margin-top: 0.5rem;
+  width: 100vw;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-left: -1.2rem;
+  margin-bottom: -0.5rem;
+  padding: 0.6rem 0 0.6rem 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+}/*# sourceMappingURL=Header.module.css.map */

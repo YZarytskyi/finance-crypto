@@ -62,6 +62,7 @@ const CheckResult = () => {
     result: number;
   }
   let result: Partial<Result> = {};
+
   if (pairs.length !== 0) {
     if (
       pair1WithPrice.symbol.endsWith("USDT") &&

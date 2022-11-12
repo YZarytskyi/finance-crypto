@@ -37,7 +37,7 @@ const Coins = () => {
                 coin.symbol === "btc" ||
                 coin.symbol === "eth" ||
                 coin.symbol === "xrp" ||
-                coin.symbol === "sol" ||
+                coin.symbol === "doge" ||
                 coin.symbol === "ada" ||
                 coin.symbol === "dot"
               ) {

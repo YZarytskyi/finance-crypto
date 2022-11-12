@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useAppSelector } from "../../Store/hooks";
 import Auth from "../Auth/Auth";
 import style from "./Header.module.scss";
@@ -9,12 +9,13 @@ const PCNav = () => {
   const [toggleLoginSignUp, setToggleLoginSignUp] = useState<boolean>(true);
 
   const userId = useAppSelector(state => state.auth.user.uid);
+  const loginRef = useRef(null);
+
 
   const handleClickModalAuth = (e: React.SyntheticEvent) => {
+    const target = (e.target as Element)
     setModalAuthShow(true);
-    const classes = [...(e.target as Element).classList];
-    const isLogin = classes.find(item => item.includes("login"))
-    if(isLogin) {
+    if (target === loginRef.current) {
       setToggleLoginSignUp(true)
     } else setToggleLoginSignUp(false);
   };
@@ -33,6 +34,7 @@ const PCNav = () => {
       </div>
       : <div className={style.authBtns}>
         <button
+          ref={loginRef}
           type="button"
           className={style.loginBtn}
           onClick={(e) => handleClickModalAuth(e)}

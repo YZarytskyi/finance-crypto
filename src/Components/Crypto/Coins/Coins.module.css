@@ -1,0 +1,125 @@
+.iconTime {
+  width: 13.5px;
+  height: 13.5px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.table {
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 90%;
+  max-width: 1600px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+@media (max-width: 1281px) {
+  .table {
+    width: 95%;
+    overflow-x: auto;
+  }
+}
+.table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -2px;
+  height: 3rem;
+  background-color: rgb(31, 30, 30);
+  z-index: 2;
+}
+.table th {
+  background-color: rgba(73, 73, 73, 0.3) !important;
+  border-top: 1px solid rgb(73, 73, 73) !important;
+}
+.table tr {
+  vertical-align: middle;
+}
+.table td {
+  background-color: rgba(18, 18, 18, 0.4) !important;
+  padding: 0 !important;
+}
+
+.tableCoins thead {
+  height: 3.5rem;
+}
+.tableCoins thead th:nth-child(1) {
+  padding: 0 1.3rem;
+}
+.tableCoins thead th:nth-child(2) {
+  text-align: left;
+  padding-left: 2.5rem;
+  padding-right: 8rem;
+}
+.tableCoins thead th:nth-child(3) {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-left: 3.2rem;
+}
+.tableCoins thead th:nth-child(4) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(5) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(6) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(7) {
+  padding: 0 2.5rem;
+}
+.tableCoins thead th:nth-child(8) {
+  padding: 0 1.2rem;
+}
+.tableCoins thead th:nth-child(9) {
+  padding: 0 4rem;
+}
+.tableCoins tbody .link {
+  display: flex;
+  align-items: center;
+}
+.tableCoins tbody .link p:nth-child(2) {
+  margin-left: 0.8rem;
+  font-size: 0.95rem;
+}
+.tableCoins tbody .link p:nth-child(3) {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.tableCoins tbody td {
+  padding: 0.2rem !important;
+}
+.tableCoins tbody td:nth-child(3) {
+  text-align: right;
+  padding-right: 1rem !important;
+  font-weight: 450;
+}
+.tableCoins tbody td:nth-child(9) {
+  width: 13rem;
+}
+
+.percentagePlus {
+  color: #01b301;
+}
+
+.percentageMinus {
+  color: #fc432a;
+}
+
+.pagination {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=Coins.module.css.map */

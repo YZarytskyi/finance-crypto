@@ -55,4 +55,4 @@ const ScannerTable = () => {
   );
 };
 
-export default React.memo(ScannerTable);
+export default ScannerTable;

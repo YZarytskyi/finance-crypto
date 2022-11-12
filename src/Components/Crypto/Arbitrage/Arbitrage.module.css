@@ -1,0 +1,246 @@
+.iconTime {
+  width: 13.5px;
+  height: 13.5px;
+  margin-right: 5px;
+  fill: currentColor;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.table {
+  margin: 0 auto;
+  margin-top: 1rem;
+  width: 90%;
+  max-width: 1600px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+@media (max-width: 1281px) {
+  .table {
+    width: 95%;
+    overflow-x: auto;
+  }
+}
+.table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -2px;
+  height: 3rem;
+  background-color: rgb(31, 30, 30);
+  z-index: 2;
+}
+.table th {
+  background-color: rgba(73, 73, 73, 0.3) !important;
+  border-top: 1px solid rgb(73, 73, 73) !important;
+}
+.table tr {
+  vertical-align: middle;
+}
+.table td {
+  background-color: rgba(18, 18, 18, 0.4) !important;
+  padding: 0 !important;
+}
+
+.tableCoins thead {
+  height: 3.5rem;
+}
+.tableCoins thead th:nth-child(1) {
+  padding: 0 1.3rem;
+}
+.tableCoins thead th:nth-child(2) {
+  text-align: left;
+  padding-left: 2.5rem;
+  padding-right: 8rem;
+}
+.tableCoins thead th:nth-child(3) {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-left: 3.2rem;
+}
+.tableCoins thead th:nth-child(4) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(5) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(6) {
+  padding: 0 1.5rem;
+}
+.tableCoins thead th:nth-child(7) {
+  padding: 0 2.5rem;
+}
+.tableCoins thead th:nth-child(8) {
+  padding: 0 1.2rem;
+}
+.tableCoins thead th:nth-child(9) {
+  padding: 0 4rem;
+}
+.tableCoins tbody .link {
+  display: flex;
+  align-items: center;
+}
+.tableCoins tbody .link p:nth-child(2) {
+  margin-left: 0.8rem;
+  font-size: 0.95rem;
+}
+.tableCoins tbody .link p:nth-child(3) {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.tableCoins tbody td {
+  padding: 0.2rem !important;
+}
+.tableCoins tbody td:nth-child(3) {
+  text-align: right;
+  padding-right: 1rem !important;
+  font-weight: 450;
+}
+.tableCoins tbody td:nth-child(9) {
+  width: 13rem;
+}
+
+.percentagePlus {
+  color: #01b301;
+}
+
+.percentageMinus {
+  color: #fc432a;
+}
+
+.pagination {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.checkResult {
+  border-bottom: 1px solid rgb(150, 150, 150);
+  margin-bottom: 1rem;
+}
+
+.checkResultList {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .checkResultList {
+    gap: 0.7rem;
+  }
+}
+.checkResultList .pairPrice {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: rgb(136, 135, 135);
+}
+
+.result {
+  margin: 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.checkBtn {
+  display: flex !important;
+  margin: 0 auto !important;
+}
+
+.arrowRight {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  fill: currentColor;
+}
+
+.refreshIcon {
+  display: block;
+  margin: 0 auto;
+  margin-top: -15px;
+  margin-bottom: -15px;
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+  fill: currentColor;
+}
+
+.fallback {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+}
+
+.tableArbitrage {
+  width: 55%;
+}
+@media (max-width: 1200px) {
+  .tableArbitrage {
+    width: 70%;
+  }
+}
+@media (max-width: 992px) {
+  .tableArbitrage {
+    width: 80%;
+  }
+}
+@media (max-width: 768px) {
+  .tableArbitrage {
+    width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .tableArbitrage {
+    width: 95%;
+  }
+}
+.tableArbitrage .arbitrageHead {
+  height: 2rem !important;
+}
+.tableArbitrage .arbitrageHead th:nth-child(1) {
+  padding: 0 1.4rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(2) {
+  padding: 0 1.4rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(3) {
+  padding: 0 1.4rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(4) {
+  padding: 0 1.4rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(5) {
+  padding: 0 1.7rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(6) {
+  padding: 0 1.4rem;
+}
+.tableArbitrage .arbitrageHead th:nth-child(7) {
+  padding: 0 1rem;
+}
+.tableArbitrage .arbitrageBody > td {
+  padding: 0.15rem !important;
+  cursor: pointer;
+}
+.tableArbitrage .arbitrageBody > td:nth-child(odd) {
+  color: rgb(150, 150, 150);
+}
+.tableArbitrage .arbitrageBody > td:nth-child(7) {
+  color: rgb(58, 173, 67);
+}/*# sourceMappingURL=Arbitrage.module.css.map */

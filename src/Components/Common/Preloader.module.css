@@ -1,0 +1,97 @@
+.preloader .preloader1 {
+  margin: 100px auto 0;
+  width: 66px;
+  height: 12px;
+}
+.preloader .preloader2 {
+  margin: 120px auto 0;
+}
+.preloader div {
+  color: #fff;
+  margin: 5px 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.preloader .preloader1 .line {
+  width: 1px;
+  height: 12px;
+  background: #fff;
+  margin: 0 1px;
+  display: inline-block;
+  -webkit-animation: opacity-1 1000ms infinite ease-in-out;
+          animation: opacity-1 1000ms infinite ease-in-out;
+}
+.preloader .preloader2 .line {
+  width: 1px;
+  height: 12px;
+  background: #fff;
+  margin: 0 1px;
+  display: inline-block;
+  -webkit-animation: opacity-1 1000ms infinite ease-in-out;
+          animation: opacity-1 1000ms infinite ease-in-out;
+}
+.preloader .preloader1 .line,
+.preloader .preloader2 .line {
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+}
+.preloader .preloader1 .line2,
+.preloader .preloader2 .line2 {
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+.preloader .preloader1 .line3,
+.preloader .preloader2 .line3 {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+.preloader .preloader1 .line4,
+.preloader .preloader2 .line4 {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+.preloader .preloader1 .line6,
+.preloader .preloader2 .line6 {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+.preloader .preloader1 .line7,
+.preloader .preloader2 .line7 {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+.preloader .preloader1 .line8,
+.preloader .preloader2 .line8 {
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+.preloader .preloader1 .line9,
+.preloader .preloader2 .line9 {
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+}
+@-webkit-keyframes opacity-1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes opacity-1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}/*# sourceMappingURL=Preloader.module.css.map */

@@ -1,4 +1,5 @@
 import style from "./SelectedCoin.module.scss";
+import s from "../NavCrypto.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SelectedCoinMarketChart from "./SelectedCoinChart";
@@ -12,16 +13,14 @@ import {
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { parseNumber, setClassName } from "./CoinsTableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
+import NavCrypto from "../NavCrypto";
+
 
 const SelectedCoin = () => {
   const { coinId } = useParams();
   const { markets, coinDescription } = useAppSelector((state) => state.crypto);
-  const coin = markets.find((item) => item.id === coinId);
-  const coinDescWithoutTags =
-    coinDescription &&
-    coinDescription.replace(/<a\s+href="(.*?)">.*?<\/a>/g, "");
-
   const dispatch = useAppDispatch();
+
   const [days, setDays] = useState<number | "max">(30);
 
   useEffect(() => {
@@ -44,8 +43,15 @@ const SelectedCoin = () => {
     };
   }, []);
 
+  const coin = markets.find((item) => item.id === coinId);
+  const coinDescWithoutTags =
+    coinDescription &&
+    coinDescription.replace(/<a\s+href="(.*?)">.*?<\/a>/g, "");
+
   if (coin) {
     return (
+      <>
+      <NavCrypto />
       <section className={style.coin}>
         <div className={style.descriptionChart}>
           <div className={style.description}>
@@ -131,6 +137,7 @@ const SelectedCoin = () => {
         </div>
         <p className={style.coinInfo}>{coinDescWithoutTags}</p>
       </section>
+      </>
     );
   }
   return null;

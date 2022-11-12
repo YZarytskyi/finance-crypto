@@ -99,11 +99,32 @@ export const ArticlesBlockSkeleton = () => {
                 </div>
                 <div className={style.articlesRightDescription}>
                   <p>
-                    <Skeleton height={15} width={450} />
+                    <Skeleton height={15} width={'100%'} />
                   </p>
                   <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={250} />
-                    <Skeleton height={14} width={80} />
+                    <Skeleton height={15} width={'60%'} />
+                    <Skeleton height={14} width={'25%'} />
+                  </p>
+                </div>
+              </a>
+            </li>
+
+            <li>
+              <a className={style.articlesRightLink}>
+                <div className={style.articlesRightImg}>
+                  <Skeleton
+                    height={60}
+                    width={60}
+                    style={{ borderRadius: 50 }}
+                  />
+                </div>
+                <div className={style.articlesRightDescription}>
+                <p>
+                    <Skeleton height={15} width={'100%'} />
+                  </p>
+                  <p style={{ display: "block" }}>
+                    <Skeleton height={15} width={'60%'} />
+                    <Skeleton height={14} width={'25%'} />
                   </p>
                 </div>
               </a>
@@ -123,29 +144,8 @@ export const ArticlesBlockSkeleton = () => {
                     <Skeleton height={15} width={450} />
                   </p>
                   <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={250} />
-                    <Skeleton height={14} width={80} />
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li>
-              <a className={style.articlesRightLink}>
-                <div className={style.articlesRightImg}>
-                  <Skeleton
-                    height={60}
-                    width={60}
-                    style={{ borderRadius: 50 }}
-                  />
-                </div>
-                <div className={style.articlesRightDescription}>
-                  <p>
-                    <Skeleton height={15} width={450} />
-                  </p>
-                  <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={250} />
-                    <Skeleton height={14} width={80} />
+                    <Skeleton height={15} width={'60%'} />
+                    <Skeleton height={14} width={'25%'} />
                   </p>
                 </div>
               </a>
