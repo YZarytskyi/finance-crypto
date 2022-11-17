@@ -118,6 +118,10 @@
     margin-top: 1rem;
     color: rgb(168, 168, 168);
 
+    @media (max-width: 767px) {
+      font-size: 0.9rem;
+    }
+
     > span {
       color: $color-main;
     }

@@ -5,15 +5,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./Components/Header/Header";
 import PreloaderMain from "./Components/Common/PreloaderMain";
-// import Home from "./Components/Home/Home";
-// import Coins from "./Components/Crypto/Coins/Coins";
-// import Exchanges from "./Components/Crypto/Exchanges/Exchanges";
-// import Arbitrage from "./Components/Crypto/Arbitrage/Arbitrage";
-// import Converter from "./Components/Crypto/Converter/Converter";
-// import SelectedCoin from "./Components/Crypto/Coins/SelectedCoin";
-// import ArticlesPage from "./Components/ArticlesPage/ArticlesPage";
-// import Article from "./Components/ArticlesPage/Article";
-// import Contacts from "./Components/Contacts/Contacts";
 
 const Home = React.lazy(() => import("./Components/Home/Home"));
 const Coins = React.lazy(() => import("./Components/Crypto/Coins/Coins"));

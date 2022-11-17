@@ -3,21 +3,15 @@ import style from "./Coins.module.scss";
 import { NavLink } from "react-router-dom";
 import ChartCoins from "./Chart";
 import { useAppSelector } from "../../../Store/hooks";
-
-
-export const parseNumber = (number: number) => new Intl.NumberFormat("ua-UA").format(number);
-export const parseValue = (value: number) => {
-  const regExp = new RegExp(/\.?0*$/);
-  return value < 1000 ? String(value).replace(regExp, "") : parseNumber(value);
-};
-export const setClassName = (value: number) => {
-  return value > 0 ? style.percentagePlus : style.percentageMinus;
-};
-
+import { removeFloatNull, setNumberFormat } from "../../../utils/utils";
 
 
 const CoinsTableBody = () => {
   const markets = useAppSelector((state) => state.crypto.markets);
+
+  const setClassName = (value: number) => {
+    return (value > 0) ? style.percentagePlus : style.percentageMinus;
+  };
 
   return (
     <>
@@ -31,7 +25,7 @@ const CoinsTableBody = () => {
             <p>{coin.symbol.toUpperCase()}</p>
           </NavLink>
         </td>
-        <td>{parseValue(coin.current_price)} $</td>
+        <td>{removeFloatNull(coin.current_price)} $</td>
         <td className={setClassName(coin.price_change_percentage_1h_in_currency)}>
           {coin.price_change_percentage_1h_in_currency?.toFixed(2)} %
         </td>
@@ -41,8 +35,8 @@ const CoinsTableBody = () => {
         <td className={setClassName(coin.price_change_percentage_7d_in_currency)}>
           {coin.price_change_percentage_7d_in_currency?.toFixed(2)} %
         </td>
-        <td>{parseNumber(coin.total_volume)} $</td>
-        <td>{parseNumber(coin.market_cap)} $</td>
+        <td>{setNumberFormat(coin.total_volume)} $</td>
+        <td>{setNumberFormat(coin.market_cap)} $</td>
         <td>
           <ChartCoins data={coin.sparkline_in_7d.price} />
         </td>

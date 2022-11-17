@@ -24,13 +24,14 @@ export const cryptoApi = {
         .catch((error) => console.log(error));
   },
   getCoinsDescription(coinId: string | undefined) {
-    if (typeof coinId === "string")
+    if (typeof coinId === "string") {
       return axios
         .get(
           `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
         )
         .then((res) => res.data.description.en)
         .catch((error) => console.log(error));
+    }
   },
   getExchanges(page: number) {
     return axios
@@ -57,15 +58,15 @@ export const arbitrageApi = {
       ])
       .then(
         axios.spread((response1, response2) => {
-          const result: Array<getAllCurrenciesResult> = (response1 =
-            response1.data.symbols
-              .filter(
-                (item: { status: string; symbol: string }) =>
-                  item.status === "TRADING"
-              )
-              .map((x: { status: string; symbol: string }) => ({
-                symbol: x.symbol,
-              })));
+          const result: Array<getAllCurrenciesResult> = response1.data.symbols
+            .filter(
+              (item: { status: string; symbol: string }) =>
+                item.status === "TRADING"
+            )
+            .map((x: { status: string; symbol: string }) => ({
+              symbol: x.symbol,
+            }));
+
           const currencies: Array<Currencies> = result.map((x) => {
             const filterPrice: Currencies = response2.data.find(
               (y: Currencies) => y.symbol === x.symbol
@@ -73,109 +74,119 @@ export const arbitrageApi = {
             return filterPrice;
           });
 
-          let currenciesUsdt = currencies.filter(
-            (q) => q.symbol.includes("USDT") && !q.symbol.includes("EURUSDT")
+          const currenciesUSDT = currencies.filter((q) =>
+            q.symbol.includes("USDT")
           );
-          let map1 = currenciesUsdt.map((x) => {
-            let filterPair1 = x.symbol.replace(/USDT/, "");
-            let pair2 = currencies.filter((y) =>
+
+          const map1 = currenciesUSDT.map(({symbol: pair1Symbol, askPrice, bidPrice}) => {
+            const pair1AskPrice = Number(askPrice);
+            const pair1BidPrice = Number(bidPrice);
+
+            const filterPair1 = pair1Symbol.replace(/USDT/, "");
+            const pair2 = currencies.filter((y) =>
               y.symbol.includes(filterPair1)
             );
-            let map2 = pair2.map((w) => {
+            const map2 = pair2.map(({symbol: pair2Symbol, askPrice, bidPrice}) => {
+              const pair2AskPrice = Number(askPrice);
+              const pair2BidPrice = Number(bidPrice);
+
               const regexp = new RegExp(filterPair1);
-              let filterPair2 = w.symbol.replace(regexp, "");
-              let pair3 = currencies.filter((z) =>
-                z.symbol.includes(`${filterPair2}USDT`) ||
-                z.symbol.includes(`USDT${filterPair2}`)
-                  ? z.symbol.includes(`${filterPair2}USDT`) ||
-                    z.symbol.includes(`USDT${filterPair2}`)
-                  : ""
+              const filterPair2 = pair2Symbol.replace(regexp, "");
+              const pair3 = currencies.filter(
+                ({symbol}) =>
+                  symbol.includes(`${filterPair2}USDT`) ||
+                  symbol.includes(`USDT${filterPair2}`) ||
+                  ""
               );
-              let map3 = pair3.map((q) => {
-                let result = 0;
+              const map3 = pair3.map(({symbol: pair3Symbol, askPrice, bidPrice}) => {
+                const pair3AskPrice = Number(askPrice);
+                const pair3BidPrice = Number(bidPrice);
+
+                let result: number = 0;
                 if (
-                  x.symbol === `${filterPair1}USDT` &&
-                  w.symbol === `${filterPair2}${filterPair1}` &&
-                  q.symbol === `${filterPair2}USDT`
+                  pair1Symbol === `${filterPair1}USDT` &&
+                  pair2Symbol === `${filterPair2}${filterPair1}` &&
+                  pair3Symbol === `${filterPair2}USDT`
                 ) {
                   result =
-                    (100 / +x.askPrice / +w.askPrice) * +q.bidPrice - 100;
+                    (100 / pair1AskPrice / pair2AskPrice) * pair3BidPrice - 100;
                 }
                 if (
-                  x.symbol === `${filterPair1}USDT` &&
-                  w.symbol === `${filterPair2}${filterPair1}` &&
-                  q.symbol === `USDT${filterPair2}`
+                  pair1Symbol === `${filterPair1}USDT` &&
+                  pair2Symbol === `${filterPair2}${filterPair1}` &&
+                  pair3Symbol === `USDT${filterPair2}`
                 ) {
-                  result = 100 / +x.askPrice / +w.askPrice / +q.askPrice - 100;
+                  result = 100 / pair1AskPrice / pair2AskPrice / pair3AskPrice - 100;
                 }
                 if (
-                  x.symbol === `${filterPair1}USDT` &&
-                  w.symbol === `${filterPair1}${filterPair2}` &&
-                  q.symbol === `${filterPair2}USDT`
-                ) {
-                  result =
-                    (100 / +x.askPrice) * +w.bidPrice * +q.bidPrice - 100;
-                }
-                if (
-                  x.symbol === `${filterPair1}USDT` &&
-                  w.symbol === `${filterPair1}${filterPair2}` &&
-                  q.symbol === `USDT${filterPair2}`
+                  pair1Symbol === `${filterPair1}USDT` &&
+                  pair2Symbol === `${filterPair1}${filterPair2}` &&
+                  pair3Symbol === `${filterPair2}USDT`
                 ) {
                   result =
-                    ((100 / +x.askPrice) * +w.bidPrice) / +q.askPrice - 100;
+                    (100 / pair1AskPrice) * pair2BidPrice * pair3BidPrice - 100;
                 }
                 if (
-                  x.symbol === `USDT${filterPair1}` &&
-                  w.symbol === `${filterPair2}${filterPair1}` &&
-                  q.symbol === `${filterPair2}USDT`
+                  pair1Symbol === `${filterPair1}USDT` &&
+                  pair2Symbol === `${filterPair1}${filterPair2}` &&
+                  pair3Symbol === `USDT${filterPair2}`
                 ) {
                   result =
-                    ((100 * +x.bidPrice) / +w.askPrice) * +q.bidPrice - 100;
+                    ((100 / pair1AskPrice) * pair2BidPrice) / pair3AskPrice - 100;
                 }
                 if (
-                  x.symbol === `USDT${filterPair1}` &&
-                  w.symbol === `${filterPair2}${filterPair1}` &&
-                  q.symbol === `USDT${filterPair2}`
+                  pair1Symbol === `USDT${filterPair1}` &&
+                  pair2Symbol === `${filterPair2}${filterPair1}` &&
+                  pair3Symbol === `${filterPair2}USDT`
                 ) {
                   result =
-                    (100 * +x.bidPrice) / +w.askPrice / +q.askPrice - 100;
+                    ((100 * pair1BidPrice) / pair2AskPrice) * pair3BidPrice - 100;
                 }
                 if (
-                  x.symbol === `USDT${filterPair1}` &&
-                  w.symbol === `${filterPair1}${filterPair2}` &&
-                  q.symbol === `${filterPair2}USDT`
-                ) {
-                  result = 100 * +x.bidPrice * +w.bidPrice * +q.bidPrice - 100;
-                }
-                if (
-                  x.symbol === `USDT${filterPair1}` &&
-                  w.symbol === `${filterPair1}${filterPair2}` &&
-                  q.symbol === `USDT${filterPair2}`
+                  pair1Symbol === `USDT${filterPair1}` &&
+                  pair2Symbol === `${filterPair2}${filterPair1}` &&
+                  pair3Symbol === `USDT${filterPair2}`
                 ) {
                   result =
-                    (100 * +x.bidPrice * +w.bidPrice) / +q.askPrice - 100;
+                    (100 * pair1BidPrice) / pair2AskPrice / pair3AskPrice - 100;
+                }
+                if (
+                  pair1Symbol === `USDT${filterPair1}` &&
+                  pair2Symbol === `${filterPair1}${filterPair2}` &&
+                  pair3Symbol === `${filterPair2}USDT`
+                ) {
+                  result = 100 * pair1BidPrice * pair2BidPrice * pair3BidPrice - 100;
+                }
+                if (
+                  pair1Symbol === `USDT${filterPair1}` &&
+                  pair2Symbol === `${filterPair1}${filterPair2}` &&
+                  pair3Symbol === `USDT${filterPair2}`
+                ) {
+                  result =
+                    (100 * pair1BidPrice * pair2BidPrice) / pair3AskPrice - 100;
                 }
                 return {
-                  pair1: x.symbol,
-                  price1: x.askPrice,
-                  pair2: w.symbol,
-                  price2: w.askPrice,
-                  pair3: q.symbol ? q.symbol : "",
-                  price3: q.askPrice ? q.askPrice : "",
-                  result: +result.toFixed(2),
+                  pair1: pair1Symbol,
+                  price1: pair1AskPrice,
+                  pair2: pair2Symbol,
+                  price2: pair2AskPrice,
+                  pair3: pair3Symbol || 0,
+                  price3: pair3AskPrice || 0,
+                  result: Number(result.toFixed(2)),
                 };
               });
               return map3;
             });
             return map2;
           });
-          const result1 = map1
+
+          const resultFinal = map1
             .flat(3)
-            .filter((x) => +x.result > 0)
+            .filter(({result}) => result > 0)
             .sort((a, b) => b.result - a.result);
           return {
             currencies,
-            result: result1,
+            result: resultFinal,
           };
         })
       )
@@ -240,7 +251,7 @@ export const converterApi = {
     return axios
       .get("https://api.binance.com/api/v1/exchangeInfo")
       .then((res) => {
-        const coinsList = res.data.symbols
+        return res.data.symbols
           .filter(
             (coin: Coin) =>
               coin.status === "TRADING" && coin.symbol.endsWith("USDT")
@@ -248,14 +259,13 @@ export const converterApi = {
           .map((coin: Coin) => {
             return coin.symbol;
           });
-        return coinsList;
       })
       .catch((error) => console.log(error));
   },
   getSelectedCoin(coinId: string) {
     return axios
       .get(`https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`)
-      .then((res) => +res.data.price)
+      .then((res) => Number(res.data.price))
       .catch((error) => console.log(error));
   },
 };

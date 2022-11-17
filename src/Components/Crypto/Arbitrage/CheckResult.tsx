@@ -12,7 +12,7 @@ import {
   setPair2,
   setPair3,
 } from "../../../Store/Reducers/arbitrageSlice";
-import { parseValue } from "../Coins/CoinsTableBody";
+import { removeFloatNull } from "../../../utils/utils";
 
 const CheckResult = () => {
   const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =
@@ -25,33 +25,30 @@ const CheckResult = () => {
     };
   }, []);
 
-  // All available currencies
-  const allCurrencies =
-    currencies.length !== 0 ? currencies.map((item) => item.symbol) : "";
+  let pair1Currencies: string[] = [];
+  let pair2Currencies: string[] = [];
+  let pair3Currencies: string[] = [];
+  let filterPair1: string = "";
 
-  // Pair 1 Currencies
-  const pair1Currencies = allCurrencies
-    ? allCurrencies.filter((x) => x.includes("USDT"))
-    : [];
+  if (currencies.length) {
+    const allCurrencies = currencies.map((item) => item.symbol);
 
-  const filterPair1 = pair1 ? pair1.replace(/USDT/, "") : "";
+    pair1Currencies = allCurrencies.filter((x) => x.includes("USDT"));
 
-  // Pair 2 Currencies
-  const pair2Currencies = allCurrencies
-    ? allCurrencies.filter(
-        (x) => x.includes(filterPair1) && !x.includes("USDT")
-      )
-    : [];
+    filterPair1 = pair1 ? pair1.replace(/USDT/, "") : "";
 
-  const regexp = new RegExp(filterPair1);
-  const filterPair2 = pair2 ? pair2.replace(regexp, "") : "";
+    pair2Currencies = allCurrencies.filter(
+      (x) => x.includes(filterPair1) && !x.includes("USDT")
+    );
 
-  // Pair 3 Currencies
-  const pair3Currencies = allCurrencies
-    ? allCurrencies.filter((x) =>
-        x.includes(filterPair2 + "USDT" || "USDT" + filterPair2)
-      )
-    : [];
+    const regexp = new RegExp(filterPair1);
+    const filterPair2 = pair2 ? pair2.replace(regexp, "") : "";
+
+    pair3Currencies = allCurrencies.filter(
+      (x) =>
+        x.includes(`${filterPair2}USDT`) || x.includes(`USDT${filterPair2}`)
+    );
+  }
 
   const [pair1WithPrice, pair2WithPrice, pair3WithPrice] = pairs;
 
@@ -63,7 +60,7 @@ const CheckResult = () => {
   }
   let result: Partial<Result> = {};
 
-  if (pairs.length !== 0) {
+  if (pairs.length) {
     if (
       pair1WithPrice.symbol.endsWith("USDT") &&
       pair2WithPrice.symbol.endsWith(filterPair1) &&
@@ -231,7 +228,7 @@ const CheckResult = () => {
         <ul className={style.checkResultList}>
           <li>
             <p className={style.pairPrice}>
-              {result.price1 ? parseValue(result.price1) : "Price"}
+              {result.price1 ? removeFloatNull(result.price1) : "Price"}
             </p>
             <Autocomplete
               id="pair-1"
@@ -245,7 +242,7 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {result.price2 ? parseValue(result.price2) : "Price"}
+              {result.price2 ? removeFloatNull(result.price2) : "Price"}
             </p>
             <Autocomplete
               id="pair-2"
@@ -259,7 +256,7 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {result.price3 ? parseValue(result.price3) : "Price"}
+              {result.price3 ? removeFloatNull(result.price3) : "Price"}
             </p>
             <Autocomplete
               id="pair-3"
@@ -275,7 +272,7 @@ const CheckResult = () => {
         <LoadingButton
           className={style.checkBtn}
           loading={isLoadingPairs}
-          endIcon={ 
+          endIcon={
             <svg className={style.arrowRight}>
               <use href={sprite + "#arrow_right"} />
             </svg>

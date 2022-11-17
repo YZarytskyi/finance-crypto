@@ -13,7 +13,7 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
   const selectedCoinMarketChart = useAppSelector((state) => state.crypto.selectedCoinMarketChart);
   const marketChart = selectedCoinMarketChart.prices
 
-  const parseNumber = (number: number) => new Intl.NumberFormat("ua-UA").format(number);
+  const setNumberFormat = (number: number) => new Intl.NumberFormat("ua-UA").format(number);
   const [chartTime, setChartTime] = useState<number | 'max'>(30)
   
   const series = [
@@ -44,7 +44,7 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
           } else if (value > 1 && value < 100) {
             return value.toFixed(2)
           }
-          return parseNumber(value)
+          return setNumberFormat(value)
         },
     },
     },

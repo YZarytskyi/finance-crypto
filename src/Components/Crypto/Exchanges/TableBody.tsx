@@ -1,6 +1,6 @@
-import { parseNumber } from "../Coins/CoinsTableBody";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppSelector } from "../../../Store/hooks";
+import { setNumberFormat } from "../../../utils/utils";
 
 const TableExchangesBody = () => {
   const exchanges = useAppSelector((state) => state.crypto.exchanges);
@@ -55,7 +55,7 @@ const TableExchangesBody = () => {
               {item.trust_score}
             </div>
           </td>
-          <td>{parseNumber(item.trade_volume_24h_btc)}&nbsp;BTC</td>
+          <td>{setNumberFormat(item.trade_volume_24h_btc)}&nbsp;BTC</td>
           <td>{item.year_established || "Unknown"}</td>
           <td>{item.country || "Unknown"}</td>
         </tr>

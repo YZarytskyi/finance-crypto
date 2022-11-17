@@ -1,5 +1,4 @@
 import style from "./Home.module.scss";
-import { parseNumber } from "../Crypto/Coins/CoinsTableBody";
 import { NavLink } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import sprite from "../../assets/images/icons.svg";
@@ -13,6 +12,7 @@ import {
 } from "./HomeSkeleton";
 import { useEffect } from "react";
 import { fetchGlobalData } from "../../Store/Reducers/cryptoSlice";
+import { setNumberFormat } from "../../utils/utils";
 
 
 export const CryptoCarouselData = () => {
@@ -36,7 +36,7 @@ export const CryptoCarouselData = () => {
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>
                 {globalData.total_market_cap?.usd
-                  ? parseNumber(
+                  ? setNumberFormat(
                       Number(globalData.total_market_cap?.usd.toFixed(0))
                     ) + " $ "
                   : ""}
@@ -64,7 +64,7 @@ export const CryptoCarouselData = () => {
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>
                 {globalData.total_volume?.usd ? (
-                  parseNumber(Number(globalData.total_volume.usd?.toFixed(0))) +
+                  setNumberFormat(Number(globalData.total_volume.usd?.toFixed(0))) +
                   " $"
                 ) : (
                   <VolumeSkeleton />
@@ -77,7 +77,7 @@ export const CryptoCarouselData = () => {
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>
                 {globalData.active_cryptocurrencies ? (
-                  parseNumber(globalData.active_cryptocurrencies)
+                  setNumberFormat(globalData.active_cryptocurrencies)
                 ) : (
                   <ActiveCoinsSkeleton />
                 )}

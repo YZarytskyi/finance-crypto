@@ -1,9 +1,9 @@
 import style from "./Arbitrage.module.scss";
-import { parseValue } from "../Coins/CoinsTableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/arbitrageSlice";
 import { Result } from "../../../Types/Types";
 import React from "react";
+import { removeFloatNull } from "../../../utils/utils";
 
 
 const TableArbitrageBody = () => {
@@ -26,11 +26,11 @@ const TableArbitrageBody = () => {
           onClick={() => handleClickPairs(pairs)}
         >
           <td>{pairs.pair1}</td>
-          <td>{parseValue(+pairs.price1)}</td>
+          <td>{removeFloatNull(+pairs.price1)}</td>
           <td>{pairs.pair2}</td>
-          <td>{parseValue(+pairs.price2)}</td>
+          <td>{removeFloatNull(+pairs.price2)}</td>
           <td>{pairs.pair3}</td>
-          <td>{parseValue(+pairs.price3)}</td>
+          <td>{removeFloatNull(+pairs.price3)}</td>
           <td>{pairs.result}</td>
         </tr>
       ))}

@@ -11,9 +11,9 @@ import {
   removeMarketChart,
 } from "../../../Store/Reducers/cryptoSlice";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { parseNumber, setClassName } from "./CoinsTableBody";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
+import { setNumberFormat } from "../../../utils/utils";
 
 
 const SelectedCoin = () => {
@@ -42,6 +42,10 @@ const SelectedCoin = () => {
       dispatch(removeCoinDescription());
     };
   }, []);
+
+  const setClassName = (value: number) => {
+    return (value > 0) ? style.percentagePlus : style.percentageMinus;
+  };
 
   const coin = markets.find((item) => item.id === coinId);
   const coinDescWithoutTags =
@@ -93,39 +97,39 @@ const SelectedCoin = () => {
               {coin.market_cap && (
                 <div>
                   <p>Market Capitalization:</p>
-                  <div>{parseNumber(coin.market_cap)} $</div>
+                  <div>{setNumberFormat(coin.market_cap)} $</div>
                 </div>
               )}
               {coin.total_volume && (
                 <div>
                   <p>Trading Volume 24h:</p>
-                  <div>{parseNumber(coin.total_volume)} $</div>
+                  <div>{setNumberFormat(coin.total_volume)} $</div>
                 </div>
               )}
               {coin.fully_diluted_valuation && (
                 <div>
                   <p>Fully diluted valuation:</p>
-                  <div>{parseNumber(coin.fully_diluted_valuation)} $</div>
+                  <div>{setNumberFormat(coin.fully_diluted_valuation)} $</div>
                 </div>
               )}
               {coin.circulating_supply && (
                 <div>
                   <p>Circulating Supply:</p>
                   <div>
-                    {parseNumber(+coin.circulating_supply.toFixed(0))} $
+                    {setNumberFormat(+coin.circulating_supply.toFixed(0))} $
                   </div>
                 </div>
               )}
               {coin.total_supply && (
                 <div>
                   <p>Total Supply:</p>
-                  <div>{parseNumber(+coin.total_supply.toFixed(0))} $</div>
+                  <div>{setNumberFormat(+coin.total_supply.toFixed(0))} $</div>
                 </div>
               )}
               {coin.max_supply && (
                 <div>
                   <p>Max Supply:</p>
-                  <div>{parseNumber(coin.max_supply)} $</div>
+                  <div>{setNumberFormat(coin.max_supply)} $</div>
                 </div>
               )}
             </div>

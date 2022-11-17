@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Converter.module.scss";
 import { Autocomplete } from "./Converter"
 
 interface LastUpdateTimerProps {
-  coin: Autocomplete
+  coin: Autocomplete;
 }
 
 const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {

@@ -8,11 +8,11 @@ export interface Currencies {
 
 export interface Result {
   pair1: string;
-  price1: string;
+  price1: number;
   pair2: string;
-  price2: string;
+  price2: number;
   pair3: string;
-  price3: string;
+  price3: number;
   result: number;
 }
 

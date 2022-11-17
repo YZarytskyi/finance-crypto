@@ -82,6 +82,6 @@ export const arbitrageSlice = createSlice({
   }
 })
 
-export const { setPair1, setPair2, setPair3, removePairs} = arbitrageSlice.actions
+export const { setPair1, setPair2, setPair3, removePairs } = arbitrageSlice.actions
 
 export default arbitrageSlice.reducer
