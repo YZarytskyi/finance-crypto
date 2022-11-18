@@ -5,11 +5,11 @@ import { useAppSelector } from "../../../Store/hooks";
 // import { Navigate } from "react-router-dom";
 
 const Arbitrage = () => {
-  const userId = useAppSelector(state => state.auth.user.uid);
+  const userId = useAppSelector((state) => state.auth.user.uid);
   return (
     // <>
     //   {userId
-    //   ? <> 
+    //   ? <>
     //     <NavCrypto />
     //     <CheckResult />
     //     <TableScanner />
@@ -18,10 +18,10 @@ const Arbitrage = () => {
     //   }
     // </>
     <>
-        <NavCrypto />
-        <CheckResult />
-        <TableScanner />
-        </>
+      <NavCrypto />
+      <CheckResult />
+      <TableScanner />
+    </>
   );
 };
 

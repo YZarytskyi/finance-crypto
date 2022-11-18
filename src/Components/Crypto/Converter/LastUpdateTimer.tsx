@@ -15,7 +15,7 @@ const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
   const [timerChange, setTimerChange] = useState<number>(1000);
 
   useEffect(() => {
-    let timer: any;
+    let timer: any = null;
 
     if (!updateCount) {
       clearInterval(timer);

@@ -14,7 +14,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { setNumberFormat } from "../../../utils/utils";
-
+import PreloaderMain from "../../Common/PreloaderMain";
 
 const SelectedCoin = () => {
   const { coinId } = useParams();
@@ -44,7 +44,7 @@ const SelectedCoin = () => {
   }, []);
 
   const setClassName = (value: number) => {
-    return (value > 0) ? style.percentagePlus : style.percentageMinus;
+    return value > 0 ? style.percentagePlus : style.percentageMinus;
   };
 
   const coin = markets.find((item) => item.id === coinId);
@@ -52,9 +52,11 @@ const SelectedCoin = () => {
     coinDescription &&
     coinDescription.replace(/<a\s+href="(.*?)">.*?<\/a>/g, "");
 
-  if (coin) {
-    return (
-      <>
+  if (!coin) {
+    return <PreloaderMain />;
+  }
+  return (
+    <>
       <NavCrypto />
       <section className={style.coin}>
         <div className={style.descriptionChart}>
@@ -141,10 +143,8 @@ const SelectedCoin = () => {
         </div>
         <p className={style.coinInfo}>{coinDescWithoutTags}</p>
       </section>
-      </>
-    );
-  }
-  return null;
+    </>
+  );
 };
 
 export default SelectedCoin;

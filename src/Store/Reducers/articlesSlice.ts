@@ -42,8 +42,8 @@ export const articlesSlice = createSlice({
       })
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<MyData[]>) => {
         if (Array.isArray(action.payload)) {
-        state.articles = action.payload.map((article, index) => ({
-          id: index + 1, ...article
+          state.articles = action.payload.map((article, index) => ({
+            id: index + 1, ...article
         }));
         state.isLoadingArticles = false;
         }

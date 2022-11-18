@@ -5,6 +5,7 @@ import ArticlesBlock from "./ArticlesBlock";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import { handleImageError } from "../Home/Articles";
+import PreloaderMain from "../Common/PreloaderMain";
 
 const ArticlesPage = () => {
   const articles = useAppSelector((state) => state.articles.articles);
@@ -16,23 +17,23 @@ const ArticlesPage = () => {
     }
   }, []);
 
-  if (articles.length) {
-    return (
-      <>
-        <section className={style.heading}>
-          <div className={style.headingContainer}>
-            <NavLink to={`${articles[14].id}`} className={style.mainTitle}>
-              <p>{articles[14]?.title}</p>
-            </NavLink>
-            <BottomList />
-            <TopArticles />
-          </div>
-        </section>
-        <ArticlesBlock />
-      </>
-    );
+  if (!articles.length) {
+    return <PreloaderMain />;
   }
-  return null;
+  return (
+    <>
+      <section className={style.heading}>
+        <div className={style.headingContainer}>
+          <NavLink to={`${articles[14].id}`} className={style.mainTitle}>
+            <p>{articles[14]?.title}</p>
+          </NavLink>
+          <BottomList />
+          <TopArticles />
+        </div>
+      </section>
+      <ArticlesBlock />
+    </>
+  );
 };
 
 export default ArticlesPage;
