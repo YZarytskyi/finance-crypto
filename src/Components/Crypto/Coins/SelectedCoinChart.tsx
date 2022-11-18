@@ -37,7 +37,7 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
             fontWeight: 400,
         },
         formatter: (value: number) => {
-          if (value === 0) {
+          if (!value) {
             return 0
           } else if (value < 1) {
             return value.toFixed(6)

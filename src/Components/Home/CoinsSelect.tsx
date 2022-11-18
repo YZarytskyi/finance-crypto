@@ -20,7 +20,7 @@ const CoinsSelect: React.FC<SelectProps> = ({H24, H72, H168, coinId}) => {
 
   useEffect(() => {
     return () => {
-      if (Object.keys(marketsTime).length !== 0) {
+      if (Object.keys(marketsTime).length) {
       dispatch(setDefaultMarketsTime())
       }
     }

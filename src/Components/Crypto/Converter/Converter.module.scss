@@ -83,7 +83,7 @@
 
   .autocomplete {
     width: 40%;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem;
     @media (max-width: 1280px) {
       width: 50%;
     }
@@ -114,8 +114,25 @@
     position: relative;
   }
 
+  .lastUpdateContainer {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .refreshIcon {
+    width: 50px;
+    height: 50px;
+    fill: currentColor;
+    cursor: pointer;
+
+    @media (max-width: 767px) {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
   .lastUpdateText {
-    margin-top: 1rem;
     color: rgb(168, 168, 168);
 
     @media (max-width: 767px) {

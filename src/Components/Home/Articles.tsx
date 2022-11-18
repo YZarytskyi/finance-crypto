@@ -17,7 +17,7 @@ const Articles = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (articles.length === 0) {
+    if (!articles.length) {
       dispatch(fetchArticles());
     }
   }, []);
@@ -27,7 +27,7 @@ const Articles = () => {
       {isLoadingArticles ? (
         <ArticlesBlockSkeleton />
       ) : (
-        articles.length !== 0 && (
+        articles.length && (
           <div className={style.articles}>
             <ArticlesLeft />
             <ArticlesRight />

@@ -20,7 +20,7 @@ export const CryptoCarouselData = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (Object.keys(globalData).length === 0) {
+    if (!Object.keys(globalData).length) {
       dispatch(fetchGlobalData());
     }
   }, []);
@@ -88,7 +88,7 @@ export const CryptoCarouselData = () => {
         </ul>
         <NavLink
           to="/crypto/coins"
-          className={`${style.footer} ${style.footerCrypto}`}
+          className={style.footer + " " + style.footerCrypto}
         >
           <h1>CRYPTOCURRENCIES MARKETS</h1>
           <p>CHECK OUT LIVE DATA</p>
@@ -111,7 +111,7 @@ export const ArticlesCarouselData = () => {
       </div>
 
       <Carousel.Caption className={style.caption}>
-        <ul className={`${style.carouselInfo} ${style.articlesData}`}>
+        <ul className={style.carouselInfo + " " + style.articlesData}>
           {filterArticles.slice(0, 3).map((article) => (
             <li key={article.id}>
               <NavLink

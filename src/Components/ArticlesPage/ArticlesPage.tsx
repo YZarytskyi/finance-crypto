@@ -11,12 +11,12 @@ const ArticlesPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (articles.length === 0) {
+    if (!articles.length) {
       dispatch(fetchArticles());
     }
   }, []);
 
-  if (articles.length !== 0) {
+  if (articles.length) {
     return (
       <>
         <section className={style.heading}>

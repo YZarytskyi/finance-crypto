@@ -12,6 +12,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Spinner from "../../Common/Spinner";
 import LastUpdateTimer from "./LastUpdateTimer";
 
+
 export interface Autocomplete {
   firstLetter: string;
   pair: string;
@@ -33,7 +34,7 @@ const Converter = () => {
 
 
   useEffect(() => {
-    if (coinsList.length === 0) {
+    if (!coinsList.length) {
       dispatch(fetchCoinsList());
     }
   }, []);
@@ -49,7 +50,7 @@ const Converter = () => {
   }, [coin.pair]);
 
   useEffect(() => {
-    setConvertedValue(price ? price : "");
+    setConvertedValue(price || "");
     return () => setConvertedValue("");
   }, [price]);
 
@@ -64,12 +65,13 @@ const Converter = () => {
   };
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.currentTarget.value ? parseFloat(e.currentTarget.value) : "");
     if (e.currentTarget.value) {
+      setValue(parseFloat(e.currentTarget.value))
       setConvertedValue(
-        parseFloat(e.currentTarget.value) * (price ? price : 0)
+        parseFloat(e.currentTarget.value) * (price || 0)
       );
     } else {
+      setValue(parseFloat(""))
       setConvertedValue("");
     }
   };
@@ -81,7 +83,7 @@ const Converter = () => {
       e.currentTarget.value ? parseFloat(e.currentTarget.value) : ""
     );
     if (e.currentTarget.value) {
-      setValue(parseFloat(e.currentTarget.value) / (price ? price : 0));
+      setValue(parseFloat(e.currentTarget.value) / (price || 0));
     } else {
       setValue("");
     }
