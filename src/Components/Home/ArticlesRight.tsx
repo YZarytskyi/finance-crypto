@@ -6,6 +6,7 @@ import { handleImageError } from "./Articles";
 
 const ArticlesRight = () => {
   const articles = useAppSelector((state) => state.articles.articles);
+  const filterArticles = articles.filter(({title}) => title.length > 65)
 
   return (
     <section className={style.articlesRight}>
@@ -18,7 +19,7 @@ const ArticlesRight = () => {
         </h2>
       </NavLink>
       <ul className={style.articlesRightList}>
-        {articles.slice(2, 5).map((article) => (
+        {filterArticles.slice(0, 3).map((article) => (
           <li key={article.id} className={style.articlesRightItem}>
             <NavLink
               to={`/articles/${article.id}`}

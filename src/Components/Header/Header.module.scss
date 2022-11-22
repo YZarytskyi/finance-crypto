@@ -74,6 +74,14 @@ header {
   }
 }
 
+.profileBtn {
+  height: 100%;
+  width: 256px;
+  .profileIcon {
+    width: 256px;
+  }
+} 
+
 .pcNav {
   width: 100%;
   max-width: 1500px;

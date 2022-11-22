@@ -8,12 +8,11 @@ const MobileNav = () => {
   const [menu, setMenu] = useState<boolean>(false);
 
   const handleSetMenu = () => {
-    setMenu((prev) => !prev)
+    setMenu((prev) => !prev);
     if (!menu) {
-      document.body.style.overflowY = 'hidden';
-    } else document.body.style.overflowY = 'scroll';
-  }
-  
+      document.body.style.overflowY = "hidden";
+    } else document.body.style.overflowY = "scroll";
+  };
 
   const hamburgerIcon = (
     <svg className={style.hamburgerIcon}>
@@ -27,29 +26,31 @@ const MobileNav = () => {
   );
   const handleClickMobileLink = (): void => {
     setMenu(false);
-    document.body.style.overflowY = 'scroll';
-  }
+    document.body.style.overflowY = "scroll";
+  };
 
   return (
-    <nav className={style.mobileNav}>
-      <div
-        onClick={() => handleSetMenu()}
-        className={style.mobileToggleIcons}
-      >
-        {menu ? closeIcon : hamburgerIcon}
-      </div>
-      <NavLink
-        to="/"
-        className={style.linkLogo}
-        onClick={() => handleClickMobileLink()}
-      >
-        CRYPTO
-        <svg className={style.iconLogo}>
-          <use href={sprite + '#logo'}/>
-        </svg>
-      </NavLink>
-      {menu && <NavLinks handleClickMobileLink={handleClickMobileLink} />}
-    </nav>
+    <>
+      <nav className={style.mobileNav}>
+        <div
+          onClick={() => handleSetMenu()}
+          className={style.mobileToggleIcons}
+        >
+          {menu ? closeIcon : hamburgerIcon}
+        </div>
+        <NavLink
+          to="/"
+          className={style.linkLogo}
+          onClick={() => handleClickMobileLink()}
+        >
+          CRYPTO
+          <svg className={style.iconLogo}>
+            <use href={sprite + "#logo"} />
+          </svg>
+        </NavLink>
+        {menu && <NavLinks handleClickMobileLink={handleClickMobileLink} />}
+      </nav>
+    </>
   );
 };
 

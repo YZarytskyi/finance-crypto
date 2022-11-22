@@ -43,7 +43,6 @@ const SignUp: React.FC<SignUpProps> = ({setModalAuthShow}) => {
         setModalAuthShow(false)
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message.slice(10);
         setError(`⚠ ${errorMessage}`);
       });

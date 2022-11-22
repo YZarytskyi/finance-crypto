@@ -348,7 +348,7 @@
       margin-bottom: 1.5rem;
     }
     .articlesRightItem {
-      min-height: 4.85rem;
+     min-height: 4.8rem; 
     }
     .articlesRightLink {
       display: grid;
@@ -379,7 +379,10 @@
       .articlesRightDescription {
         grid-area: p;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
         > p:nth-child(2) {
+          flex-grow: 1;
           display: flex;
           color: $color-secondary;
           font-size: 0.9rem;

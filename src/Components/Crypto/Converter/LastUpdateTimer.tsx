@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from "./Converter.module.scss";
 import { Autocomplete } from "./Converter";
 import sprite from "../../../assets/images/icons.svg";
-import { useAppDispatch } from "../../../Store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { fetchPrice, removePrice } from "../../../Store/Reducers/converterSlice";
 
 interface LastUpdateTimerProps {
@@ -11,16 +11,17 @@ interface LastUpdateTimerProps {
 
 const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
   const dispatch = useAppDispatch();
+  const price = useAppSelector((state) => state.converter.price);
   const [updateCount, setUpdateCount] = useState<number>(0);
   const [timerChange, setTimerChange] = useState<number>(1000);
 
+  let timer: any = null;
+
   useEffect(() => {
-    let timer: any = null;
-
-    if (!updateCount) {
-      clearInterval(timer);
+    clearInterval(timer);
+    if (!price) {
+      return
     }
-
     timer = setTimeout(() => {
       setUpdateCount((prev) => prev + 1);
       if (updateCount === 59) {
@@ -30,7 +31,7 @@ const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
     }, timerChange);
 
     return () => clearInterval(timer);
-  }, [updateCount]);
+  }, [updateCount, price])
 
   useEffect(() => {
     setUpdateCount(0);

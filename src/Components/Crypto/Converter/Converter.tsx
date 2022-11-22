@@ -1,7 +1,7 @@
 import style from "./Converter.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   fetchCoinsList,
   fetchPrice,
@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Spinner from "../../Common/Spinner";
 import LastUpdateTimer from "./LastUpdateTimer";
+import { numberToFixed2, setNumberFormat } from "../../../utils/utils";
 
 
 export interface Autocomplete {
@@ -30,7 +31,7 @@ const Converter = () => {
     pair: "BTCUSDT",
   });
   const [value, setValue] = useState<number | "">(1);
-  const [convertedValue, setConvertedValue] = useState<number | "">(1);
+  const [convertedValue, setConvertedValue] = useState<number | "">("");
 
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const Converter = () => {
   }, [coin.pair]);
 
   useEffect(() => {
-    setConvertedValue(price || "");
+    setConvertedValue(price && value ? price * value : "");
     return () => setConvertedValue("");
   }, [price]);
 
@@ -66,12 +67,12 @@ const Converter = () => {
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.currentTarget.value) {
-      setValue(parseFloat(e.currentTarget.value))
+      setValue(Number(e.currentTarget.value))
       setConvertedValue(
-        parseFloat(e.currentTarget.value) * (price || 0)
+        numberToFixed2(Number(e.currentTarget.value) * (price || 0))
       );
     } else {
-      setValue(parseFloat(""))
+      setValue("")
       setConvertedValue("");
     }
   };
@@ -80,10 +81,10 @@ const Converter = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
     setConvertedValue(
-      e.currentTarget.value ? parseFloat(e.currentTarget.value) : ""
+      Number(e.currentTarget.value) || ""
     );
     if (e.currentTarget.value) {
-      setValue(parseFloat(e.currentTarget.value) / (price || 0));
+      setValue(numberToFixed2(Number(e.currentTarget.value) / (price as number)));
     } else {
       setValue("");
     }
@@ -112,7 +113,7 @@ const Converter = () => {
               value={coin}
               onChange={(event, newCoin) => handleChangeCoin(event, newCoin)}
               options={options.sort(
-                (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
+                (a, b) => a.firstLetter.localeCompare(b.firstLetter)
               )}
               groupBy={(coin) => coin.firstLetter}
               getOptionLabel={(coin) => coin.pair.replace(/USDT/, "")}
@@ -123,6 +124,7 @@ const Converter = () => {
               type="number"
               className={style.converterInput}
               value={value}
+              disabled={!price}
               onChange={(e) => handleChangeValue(e)}
             />
 
@@ -133,6 +135,7 @@ const Converter = () => {
                 type="number"
                 className={style.converterInput}
                 value={convertedValue}
+                disabled={!price}
                 onChange={(e) => handleChangeConvertedValue(e)}
               />
               {isLoadingConverter && <Spinner />}

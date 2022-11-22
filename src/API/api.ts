@@ -1,51 +1,69 @@
 import { Currencies } from "../Types/Types";
 import axios from "axios";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 interface getAllCurrenciesResult {
   symbol: string;
 }
 
 export const cryptoApi = {
-  getMarkets(page: number = 1) {
-    return axios
-      .get(
+  async getMarkets(page: number = 1) {
+    try {
+      const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-      )
-      .then((res) => res.data)
-      .catch((error) => console.log(error));
-  },
-  getSelectedCoinMarketChart(coinId: string | undefined, days: number | "max") {
-    if (typeof coinId === "string")
-      return axios
-        .get(
-          `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
-        )
-        .then((res) => res.data)
-        .catch((error) => console.log(error));
-  },
-  getCoinsDescription(coinId: string | undefined) {
-    if (typeof coinId === "string") {
-      return axios
-        .get(
-          `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
-        )
-        .then((res) => res.data.description.en)
-        .catch((error) => console.log(error));
+      );
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message as string);
     }
   },
-  getExchanges(page: number) {
-    return axios
-      .get(
-        `https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`
-      )
-      .then((res) => res.data)
-      .catch((error) => console.log(error));
+
+  async getSelectedCoinMarketChart(
+    coinId: string | undefined,
+    days: number | "max"
+  ) {
+    if (typeof coinId === "string") {
+      try {
+        const { data } = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
+        );
+        return data;
+      } catch ({ message }) {
+        Notify.failure(message as string);
+      }
+    }
   },
-  getGlobalData() {
-    return axios
-      .get("https://api.coingecko.com/api/v3/global")
-      .then((res) => res.data.data)
-      .catch((error) => console.log(error));
+  async getCoinsDescription(coinId: string | undefined) {
+    if (typeof coinId === "string") {
+      try {
+        const { data } = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&developer_data=false&sparkline=false`
+        );
+        return data.description.en;
+      } catch ({ message }) {
+        Notify.failure(message as string);
+      }
+    }
+  },
+  async getExchanges(page: number) {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`
+      );
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message as string);
+    }
+  },
+  async getGlobalData() {
+    try {
+      const { data } = await axios.get(
+        "https://api.coingecko.com/api/v3/global"
+      );
+      return data.data;
+    } catch ({ message }) {
+      Notify.failure(message as string);
+    }
   },
 };
 
@@ -78,111 +96,135 @@ export const arbitrageApi = {
             q.symbol.includes("USDT")
           );
 
-          const map1 = currenciesUSDT.map(({symbol: pair1Symbol, askPrice, bidPrice}) => {
-            const pair1AskPrice = Number(askPrice);
-            const pair1BidPrice = Number(bidPrice);
+          const map1 = currenciesUSDT.map(
+            ({ symbol: pair1Symbol, askPrice, bidPrice }) => {
+              const pair1AskPrice = Number(askPrice);
+              const pair1BidPrice = Number(bidPrice);
 
-            const filterPair1 = pair1Symbol.replace(/USDT/, "");
-            const pair2 = currencies.filter((y) =>
-              y.symbol.includes(filterPair1)
-            );
-            const map2 = pair2.map(({symbol: pair2Symbol, askPrice, bidPrice}) => {
-              const pair2AskPrice = Number(askPrice);
-              const pair2BidPrice = Number(bidPrice);
-
-              const regexp = new RegExp(filterPair1);
-              const filterPair2 = pair2Symbol.replace(regexp, "");
-              const pair3 = currencies.filter(
-                ({symbol}) =>
-                  symbol.includes(`${filterPair2}USDT`) ||
-                  symbol.includes(`USDT${filterPair2}`) ||
-                  ""
+              const filterPair1 = pair1Symbol.replace(/USDT/, "");
+              const pair2 = currencies.filter((y) =>
+                y.symbol.includes(filterPair1)
               );
-              const map3 = pair3.map(({symbol: pair3Symbol, askPrice, bidPrice}) => {
-                const pair3AskPrice = Number(askPrice);
-                const pair3BidPrice = Number(bidPrice);
+              const map2 = pair2.map(
+                ({ symbol: pair2Symbol, askPrice, bidPrice }) => {
+                  const pair2AskPrice = Number(askPrice);
+                  const pair2BidPrice = Number(bidPrice);
 
-                let result: number = 0;
-                if (
-                  pair1Symbol === `${filterPair1}USDT` &&
-                  pair2Symbol === `${filterPair2}${filterPair1}` &&
-                  pair3Symbol === `${filterPair2}USDT`
-                ) {
-                  result =
-                    (100 / pair1AskPrice / pair2AskPrice) * pair3BidPrice - 100;
+                  const regexp = new RegExp(filterPair1);
+                  const filterPair2 = pair2Symbol.replace(regexp, "");
+                  const pair3 = currencies.filter(
+                    ({ symbol }) =>
+                      symbol.includes(`${filterPair2}USDT`) ||
+                      symbol.includes(`USDT${filterPair2}`) ||
+                      ""
+                  );
+                  const map3 = pair3.map(
+                    ({ symbol: pair3Symbol, askPrice, bidPrice }) => {
+                      const pair3AskPrice = Number(askPrice);
+                      const pair3BidPrice = Number(bidPrice);
+
+                      let result: number = 0;
+                      if (
+                        pair1Symbol === `${filterPair1}USDT` &&
+                        pair2Symbol === `${filterPair2}${filterPair1}` &&
+                        pair3Symbol === `${filterPair2}USDT`
+                      ) {
+                        result =
+                          (100 / pair1AskPrice / pair2AskPrice) *
+                            pair3BidPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `${filterPair1}USDT` &&
+                        pair2Symbol === `${filterPair2}${filterPair1}` &&
+                        pair3Symbol === `USDT${filterPair2}`
+                      ) {
+                        result =
+                          100 / pair1AskPrice / pair2AskPrice / pair3AskPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `${filterPair1}USDT` &&
+                        pair2Symbol === `${filterPair1}${filterPair2}` &&
+                        pair3Symbol === `${filterPair2}USDT`
+                      ) {
+                        result =
+                          (100 / pair1AskPrice) *
+                            pair2BidPrice *
+                            pair3BidPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `${filterPair1}USDT` &&
+                        pair2Symbol === `${filterPair1}${filterPair2}` &&
+                        pair3Symbol === `USDT${filterPair2}`
+                      ) {
+                        result =
+                          ((100 / pair1AskPrice) * pair2BidPrice) /
+                            pair3AskPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `USDT${filterPair1}` &&
+                        pair2Symbol === `${filterPair2}${filterPair1}` &&
+                        pair3Symbol === `${filterPair2}USDT`
+                      ) {
+                        result =
+                          ((100 * pair1BidPrice) / pair2AskPrice) *
+                            pair3BidPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `USDT${filterPair1}` &&
+                        pair2Symbol === `${filterPair2}${filterPair1}` &&
+                        pair3Symbol === `USDT${filterPair2}`
+                      ) {
+                        result =
+                          (100 * pair1BidPrice) /
+                            pair2AskPrice /
+                            pair3AskPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `USDT${filterPair1}` &&
+                        pair2Symbol === `${filterPair1}${filterPair2}` &&
+                        pair3Symbol === `${filterPair2}USDT`
+                      ) {
+                        result =
+                          100 * pair1BidPrice * pair2BidPrice * pair3BidPrice -
+                          100;
+                      }
+                      if (
+                        pair1Symbol === `USDT${filterPair1}` &&
+                        pair2Symbol === `${filterPair1}${filterPair2}` &&
+                        pair3Symbol === `USDT${filterPair2}`
+                      ) {
+                        result =
+                          (100 * pair1BidPrice * pair2BidPrice) /
+                            pair3AskPrice -
+                          100;
+                      }
+                      return {
+                        pair1: pair1Symbol,
+                        price1: pair1AskPrice,
+                        pair2: pair2Symbol,
+                        price2: pair2AskPrice,
+                        pair3: pair3Symbol || 0,
+                        price3: pair3AskPrice || 0,
+                        result: Number(result.toFixed(2)),
+                      };
+                    }
+                  );
+                  return map3;
                 }
-                if (
-                  pair1Symbol === `${filterPair1}USDT` &&
-                  pair2Symbol === `${filterPair2}${filterPair1}` &&
-                  pair3Symbol === `USDT${filterPair2}`
-                ) {
-                  result = 100 / pair1AskPrice / pair2AskPrice / pair3AskPrice - 100;
-                }
-                if (
-                  pair1Symbol === `${filterPair1}USDT` &&
-                  pair2Symbol === `${filterPair1}${filterPair2}` &&
-                  pair3Symbol === `${filterPair2}USDT`
-                ) {
-                  result =
-                    (100 / pair1AskPrice) * pair2BidPrice * pair3BidPrice - 100;
-                }
-                if (
-                  pair1Symbol === `${filterPair1}USDT` &&
-                  pair2Symbol === `${filterPair1}${filterPair2}` &&
-                  pair3Symbol === `USDT${filterPair2}`
-                ) {
-                  result =
-                    ((100 / pair1AskPrice) * pair2BidPrice) / pair3AskPrice - 100;
-                }
-                if (
-                  pair1Symbol === `USDT${filterPair1}` &&
-                  pair2Symbol === `${filterPair2}${filterPair1}` &&
-                  pair3Symbol === `${filterPair2}USDT`
-                ) {
-                  result =
-                    ((100 * pair1BidPrice) / pair2AskPrice) * pair3BidPrice - 100;
-                }
-                if (
-                  pair1Symbol === `USDT${filterPair1}` &&
-                  pair2Symbol === `${filterPair2}${filterPair1}` &&
-                  pair3Symbol === `USDT${filterPair2}`
-                ) {
-                  result =
-                    (100 * pair1BidPrice) / pair2AskPrice / pair3AskPrice - 100;
-                }
-                if (
-                  pair1Symbol === `USDT${filterPair1}` &&
-                  pair2Symbol === `${filterPair1}${filterPair2}` &&
-                  pair3Symbol === `${filterPair2}USDT`
-                ) {
-                  result = 100 * pair1BidPrice * pair2BidPrice * pair3BidPrice - 100;
-                }
-                if (
-                  pair1Symbol === `USDT${filterPair1}` &&
-                  pair2Symbol === `${filterPair1}${filterPair2}` &&
-                  pair3Symbol === `USDT${filterPair2}`
-                ) {
-                  result =
-                    (100 * pair1BidPrice * pair2BidPrice) / pair3AskPrice - 100;
-                }
-                return {
-                  pair1: pair1Symbol,
-                  price1: pair1AskPrice,
-                  pair2: pair2Symbol,
-                  price2: pair2AskPrice,
-                  pair3: pair3Symbol || 0,
-                  price3: pair3AskPrice || 0,
-                  result: Number(result.toFixed(2)),
-                };
-              });
-              return map3;
-            });
-            return map2;
-          });
+              );
+              return map2;
+            }
+          );
 
           const resultFinal = map1
             .flat(3)
-            .filter(({result}) => result > 0)
+            .filter(({ result }) => result > 0)
             .sort((a, b) => b.result - a.result);
           return {
             currencies,
@@ -190,7 +232,9 @@ export const arbitrageApi = {
           };
         })
       )
-      .catch((error) => console.log(error));
+      .catch(({ message }) => {
+        Notify.failure(message as string);
+      });
   },
   getPairs(value1: string, value2: string, value3: string) {
     return axios
@@ -226,18 +270,22 @@ export const arbitrageApi = {
           ];
         })
       )
-      .catch((error) => console.log(error));
+      .catch(({ message }) => {
+        Notify.failure(message as string);
+      });
   },
 };
 
 export const articlesApi = {
-  getArticles() {
-    return axios
-      .get(
+  async getArticles() {
+    try {
+      const { data } = await axios.get(
         `https://newsapi.org/v2/everything?language=en&excludeDomains=.ru&q=crypto OR taxes OR "Federal Reserve Board" OR finance&searchIn=title&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY_NEWS}`
-      )
-      .then((res) => res.data.articles)
-      .catch((error) => console.log(error));
+      );
+      return data.articles;
+    } catch ({ message }) {
+      Notify.failure(message as string);
+    }
   },
 };
 
@@ -247,25 +295,31 @@ interface Coin {
 }
 
 export const converterApi = {
-  getCoinsList() {
-    return axios
-      .get("https://api.binance.com/api/v1/exchangeInfo")
-      .then((res) => {
-        return res.data.symbols
-          .filter(
-            (coin: Coin) =>
-              coin.status === "TRADING" && coin.symbol.endsWith("USDT")
-          )
-          .map((coin: Coin) => {
-            return coin.symbol;
-          });
-      })
-      .catch((error) => console.log(error));
+  async getCoinsList() {
+    try {
+      const { data } = await axios.get(
+        "https://api.binance.com/api/v1/exchangeInfo"
+      );
+      return data.symbols
+        .filter(
+          (coin: Coin) =>
+            coin.status === "TRADING" && coin.symbol.endsWith("USDT")
+        )
+        .map((coin: Coin) => {
+          return coin.symbol;
+        });
+    } catch ({ message }) {
+      Notify.failure(message as string);
+    }
   },
-  getSelectedCoin(coinId: string) {
-    return axios
-      .get(`https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`)
-      .then((res) => Number(res.data.price))
-      .catch((error) => console.log(error));
+  async getSelectedCoin(coinId: string) {
+    try {
+      const { data } = await axios.get(
+        `https://api.binance.com/api/v3/ticker/price?symbol=${coinId}`
+      );
+      return Number(data.price);
+    } catch ({ message }) {
+      Notify.failure(message as string);
+    }
   },
 };
