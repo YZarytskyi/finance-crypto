@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/finance-crypto/static/css/main.ab285e01.css",
-    "main.js": "/finance-crypto/static/js/main.2b50efa2.js",
-    "static/css/640.0feb546c.chunk.css": "/finance-crypto/static/css/640.0feb546c.chunk.css",
+    "main.css": "/finance-crypto/static/css/main.e46aba45.css",
+    "main.js": "/finance-crypto/static/js/main.e3b1b414.js",
+    "static/css/640.ae2f4617.chunk.css": "/finance-crypto/static/css/640.ae2f4617.chunk.css",
     "static/js/640.66750406.chunk.js": "/finance-crypto/static/js/640.66750406.chunk.js",
     "static/css/607.db8520e5.chunk.css": "/finance-crypto/static/css/607.db8520e5.chunk.css",
     "static/js/607.d5024a7f.chunk.js": "/finance-crypto/static/js/607.d5024a7f.chunk.js",
@@ -14,9 +14,9 @@
     "static/js/85.dab31c86.chunk.js": "/finance-crypto/static/js/85.dab31c86.chunk.js",
     "static/css/830.3c4c3f54.chunk.css": "/finance-crypto/static/css/830.3c4c3f54.chunk.css",
     "static/js/830.84e3d96e.chunk.js": "/finance-crypto/static/js/830.84e3d96e.chunk.js",
-    "static/css/418.223881b0.chunk.css": "/finance-crypto/static/css/418.223881b0.chunk.css",
+    "static/css/418.7f47de1a.chunk.css": "/finance-crypto/static/css/418.7f47de1a.chunk.css",
     "static/js/418.3557c9e2.chunk.js": "/finance-crypto/static/js/418.3557c9e2.chunk.js",
-    "static/css/866.223881b0.chunk.css": "/finance-crypto/static/css/866.223881b0.chunk.css",
+    "static/css/866.7f47de1a.chunk.css": "/finance-crypto/static/css/866.7f47de1a.chunk.css",
     "static/js/866.cf97f790.chunk.js": "/finance-crypto/static/js/866.cf97f790.chunk.js",
     "static/css/941.fd89b484.chunk.css": "/finance-crypto/static/css/941.fd89b484.chunk.css",
     "static/js/941.991909e1.chunk.js": "/finance-crypto/static/js/941.991909e1.chunk.js",
@@ -36,9 +36,9 @@
     "static/media/contacts.png": "/finance-crypto/static/media/contacts.f78e30cf193151b8af10.png",
     "static/media/icons.svg": "/finance-crypto/static/media/icons.3d9a708e845202455d1b3b705be342bc.svg",
     "index.html": "/finance-crypto/index.html",
-    "main.ab285e01.css.map": "/finance-crypto/static/css/main.ab285e01.css.map",
-    "main.2b50efa2.js.map": "/finance-crypto/static/js/main.2b50efa2.js.map",
-    "640.0feb546c.chunk.css.map": "/finance-crypto/static/css/640.0feb546c.chunk.css.map",
+    "main.e46aba45.css.map": "/finance-crypto/static/css/main.e46aba45.css.map",
+    "main.e3b1b414.js.map": "/finance-crypto/static/js/main.e3b1b414.js.map",
+    "640.ae2f4617.chunk.css.map": "/finance-crypto/static/css/640.ae2f4617.chunk.css.map",
     "640.66750406.chunk.js.map": "/finance-crypto/static/js/640.66750406.chunk.js.map",
     "607.db8520e5.chunk.css.map": "/finance-crypto/static/css/607.db8520e5.chunk.css.map",
     "607.d5024a7f.chunk.js.map": "/finance-crypto/static/js/607.d5024a7f.chunk.js.map",
@@ -50,9 +50,9 @@
     "85.dab31c86.chunk.js.map": "/finance-crypto/static/js/85.dab31c86.chunk.js.map",
     "830.3c4c3f54.chunk.css.map": "/finance-crypto/static/css/830.3c4c3f54.chunk.css.map",
     "830.84e3d96e.chunk.js.map": "/finance-crypto/static/js/830.84e3d96e.chunk.js.map",
-    "418.223881b0.chunk.css.map": "/finance-crypto/static/css/418.223881b0.chunk.css.map",
+    "418.7f47de1a.chunk.css.map": "/finance-crypto/static/css/418.7f47de1a.chunk.css.map",
     "418.3557c9e2.chunk.js.map": "/finance-crypto/static/js/418.3557c9e2.chunk.js.map",
-    "866.223881b0.chunk.css.map": "/finance-crypto/static/css/866.223881b0.chunk.css.map",
+    "866.7f47de1a.chunk.css.map": "/finance-crypto/static/css/866.7f47de1a.chunk.css.map",
     "866.cf97f790.chunk.js.map": "/finance-crypto/static/js/866.cf97f790.chunk.js.map",
     "941.fd89b484.chunk.css.map": "/finance-crypto/static/css/941.fd89b484.chunk.css.map",
     "941.991909e1.chunk.js.map": "/finance-crypto/static/js/941.991909e1.chunk.js.map",
@@ -65,7 +65,7 @@
     "894.4d24b7a1.chunk.js.map": "/finance-crypto/static/js/894.4d24b7a1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab285e01.css",
-    "static/js/main.2b50efa2.js"
+    "static/css/main.e46aba45.css",
+    "static/js/main.e3b1b414.js"
   ]
 }
