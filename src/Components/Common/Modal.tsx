@@ -13,24 +13,21 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
 
   const handleCloseModal = (e: React.SyntheticEvent) => {
     const target = e.target as Element;
-    if (
-      target === backdropRef.current ||
-      target.nodeName === "svg" ||
-      target.nodeName === "use"
-    ) {
+    if (target === backdropRef.current || 
+      (e.target as Element).classList.contains('jsCloseModal')) {
       setModalShow(false);
     }
   };
   return (
     <div
       ref={backdropRef}
-      className={`${style.backdrop} ${!modalShow && style.isHidden}`}
+      className={`${style.backdrop} ${!modalShow ? style.isHidden : ""} jsCloseModal`}
       onClick={(e) => handleCloseModal(e)}
     >
       <div className={style.modal}>
-        <button type="button" className={style.modalCloseBtn}>
-          <svg className={style.modalCloseIcon}>
-            <use href={sprite + "#modal_close"}></use>
+        <button type="button" className={style.modalCloseBtn + " jsCloseModal"}>
+          <svg className={style.modalCloseIcon + " jsCloseModal"}>
+            <use href={sprite + "#modal_close"} className="jsCloseModal"></use>
           </svg>
         </button>
         {children}

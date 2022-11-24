@@ -11,7 +11,7 @@ header {
   background: $bg-img;
   background-attachment: fixed;
   background-position: top 1% left 10%;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.04em;
   @media (max-width: 1280px) {
     position: sticky;
@@ -131,48 +131,22 @@ header {
   .cryptoContainer:focus .icon {
     transform: rotate(0);
   }
-  .authBtns {
-    margin-right: 3rem;
-    justify-self: flex-end;
-    font-size: 1rem;
-    > button {
-      padding: 0.3rem 0.8rem;
-      color: $color-main;
-      border-radius: 7px; 
-    }
-    .loginBtn {
-      margin-right: 1rem;
-      background-color: transparent;
-      border: 2px solid rgb(13, 110, 253);
-      &:hover {
-        background-color: rgb(9, 90, 212, 0.25);
-        border-color: #095ad4;
-      }
-      &:active {
-        background-color: rgb(9, 90, 212, 0.4);
-        border-color: #034dbd;
-      }
-    }
-    .signUpBtn {
-      background-color: rgb(13, 110, 253);
-      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      &:hover {
-        background-color: #095ad4;
-      }
-      &:active {
-        background-color: #034dbd;
-      }
-    }
+}
+
+.authBtns {
+  margin-right: 3rem;
+  justify-self: flex-end;
+  font-size: 1rem;
+  @media (max-width: 1280px) {
+    display: none;
   }
-  .authContainer {
-    justify-self: flex-end;
-    margin-right: 3rem;
-    font-size: 1rem;
-  }
-  .logoutBtn {
+  > button {
     padding: 0.3rem 0.8rem;
     color: $color-main;
     border-radius: 7px; 
+  }
+  .loginBtn {
+    margin-right: 1rem;
     background-color: transparent;
     border: 2px solid rgb(13, 110, 253);
     &:hover {
@@ -183,6 +157,36 @@ header {
       background-color: rgb(9, 90, 212, 0.4);
       border-color: #034dbd;
     }
+  }
+  .signUpBtn {
+    background-color: rgb(13, 110, 253);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      background-color: #095ad4;
+    }
+    &:active {
+      background-color: #034dbd;
+    }
+  }
+}
+.authContainer {
+  justify-self: flex-end;
+  margin-right: 3rem;
+  font-size: 1rem;
+}
+.logoutBtn {
+  padding: 0.3rem 0.8rem;
+  color: $color-main;
+  border-radius: 7px; 
+  background-color: transparent;
+  border: 2px solid rgb(13, 110, 253);
+  &:hover {
+    background-color: rgb(9, 90, 212, 0.25);
+    border-color: #095ad4;
+  }
+  &:active {
+    background-color: rgb(9, 90, 212, 0.4);
+    border-color: #034dbd;
   }
 }
 
@@ -198,6 +202,12 @@ header {
     padding-top: 0.45rem;
     margin-left: 0;
     justify-self: center;
+  }
+  @media (max-width: 415px) {
+    padding-top: 0.7rem;
+    margin-left: 0;
+    justify-self: center;
+    font-size: 1.8rem;
   }
   .iconLogo {
     width: 24px;
@@ -265,13 +275,22 @@ header {
   transform: translate(0px, 0px);
 }
 
-.subListMobile {
-  margin-top: 0.5rem;
+.subListMobileOpen {
+  position: static;
+  visibility: visible;
+  margin-top: 0.7rem;
   width: 100vw;
+  display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.5rem;
   margin-left: -1.2rem;
   margin-bottom: -0.5rem;
-  padding: 0.6rem 0 0.6rem 2rem;
+  padding: 0.7rem 0 0.7rem 2rem;
   background-color: rgb(0, 0, 0, 0.3);
+}
+
+.subListMobileHidden {
+  position: absolute;
+  top: -9999px;
+  visibility: hidden;
 }
