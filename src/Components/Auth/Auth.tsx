@@ -28,7 +28,9 @@ const Auth: React.FC<AuthProps> = ({
     e.preventDefault();
     const classes = [...(e.target as Element).classList];
     const isCurrent = classes.find((item) => item.includes("Current"));
-    if (!isCurrent) setToggleLoginSignUp((prev) => !prev);
+    if (!isCurrent) {
+      setToggleLoginSignUp((prev) => !prev);
+    }
   };
 
   return (

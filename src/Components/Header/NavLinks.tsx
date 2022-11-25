@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import sprite from "../../assets/images/icons.svg";
 
 interface NavLinksProps {
-  handleClickMobileLink?: () => void;
+  onClickMobileLink?: () => void;
 }
 
-const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
+const NavLinks = ({ onClickMobileLink }: NavLinksProps) => {
   const [isSubListMobileOpen, setSubListMobileOpen] = useState<boolean>(false);
 
   const handleMobileSubList = (e: React.SyntheticEvent) => {
@@ -25,7 +25,7 @@ const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
       </NavLink>
 
       <ul className={style.navLinksList}>
-        <li onClick={() => handleClickMobileLink && handleClickMobileLink()}>
+        <li onClick={() => onClickMobileLink && onClickMobileLink()}>
           <NavLink to="/" className={style.link}>
             Home
           </NavLink>
@@ -34,7 +34,7 @@ const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
           <div className={style.cryptoContainer}>
             <NavLink
               to="/crypto/coins"
-              onClick={(e) => handleClickMobileLink && handleMobileSubList(e)}
+              onClick={(e) => onClickMobileLink && handleMobileSubList(e)}
               className={style.link + " " + style.linkCrypto}
             >
               Crypto
@@ -70,34 +70,34 @@ const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
               }`}
             >
               <li
-                onClick={() => handleClickMobileLink && handleClickMobileLink()}
+                onClick={() => onClickMobileLink && onClickMobileLink()}
               >
                 <NavLink to="/crypto/coins">Coins</NavLink>
               </li>
               <li
-                onClick={() => handleClickMobileLink && handleClickMobileLink()}
+                onClick={() => onClickMobileLink && onClickMobileLink()}
               >
                 <NavLink to="/crypto/exchanges">Exchanges</NavLink>
               </li>
               <li
-                onClick={() => handleClickMobileLink && handleClickMobileLink()}
+                onClick={() => onClickMobileLink && onClickMobileLink()}
               >
                 <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
               </li>
               <li
-                onClick={() => handleClickMobileLink && handleClickMobileLink()}
+                onClick={() => onClickMobileLink && onClickMobileLink()}
               >
                 <NavLink to="/crypto/converter">Converter</NavLink>
               </li>
             </ul>
           </div>
         </li>
-        <li onClick={() => handleClickMobileLink && handleClickMobileLink()}>
+        <li onClick={() => onClickMobileLink && onClickMobileLink()}>
           <NavLink to="/articles" className={style.link}>
             Articles
           </NavLink>
         </li>
-        <li onClick={() => handleClickMobileLink && handleClickMobileLink()}>
+        <li onClick={() => onClickMobileLink && onClickMobileLink()}>
           <NavLink to="/contacts" className={style.link}>
             Contacts
           </NavLink>

@@ -3,7 +3,13 @@ import { useRef, useState } from "react";
 import Auth from "../Auth/Auth";
 import { COOKIE_TOKEN_NAME, deleteCookie, getCookie } from "../../utils/cookie";
 
-const AuthButtons = () => {
+interface AuthButtonsProps {
+  setIsProfileOpen?: (
+    value: boolean | ((prevValue: boolean) => boolean)
+  ) => void;
+}
+
+const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen }) => {
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const [toggleLoginSignUp, setToggleLoginSignUp] = useState<boolean>(true);
 
@@ -15,9 +21,12 @@ const AuthButtons = () => {
     e.preventDefault();
     const target = e.target as Element;
     setModalAuthShow(true);
+    // setIsProfileOpen && setIsProfileOpen(false);
     if (target === loginRef.current) {
       setToggleLoginSignUp(true);
-    } else setToggleLoginSignUp(false);
+    } else {
+      setToggleLoginSignUp(false);
+    }
   };
 
   const onClickLogout = (e: React.SyntheticEvent) => {

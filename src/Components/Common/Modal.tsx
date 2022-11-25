@@ -1,5 +1,5 @@
 import style from "./Modal.module.scss";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import sprite from "../../assets/images/icons.svg";
 
 interface ModalProps {

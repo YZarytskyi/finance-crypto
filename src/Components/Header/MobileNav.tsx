@@ -2,18 +2,30 @@ import NavLinks from "./NavLinks";
 import style from "./Header.module.scss";
 import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import AuthButtons from "./AuthButtons";
 
 const MobileNav = () => {
-  const [menu, setMenu] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
 
-  const handleSetMenu = () => {
-    setMenu((prev) => !prev);
-    if (!menu) {
+  const handleToggleMenu = () => {
+    openMenu(isMenuOpen, setIsMenuOpen);
+  };
+
+  const onClickProfileOpen = (): void => {
+    openMenu(isProfileOpen, setIsProfileOpen);
+  };
+
+  function openMenu(
+    state: boolean,
+    setState: (value: boolean | ((prevValue: boolean) => boolean)) => void
+  ) {
+    setState((prev) => !prev);
+    if (!state) {
       document.body.style.overflowY = "hidden";
     } else document.body.style.overflowY = "scroll";
-  };
+  }
 
   const hamburgerIcon = (
     <svg className={style.hamburgerIcon}>
@@ -25,33 +37,57 @@ const MobileNav = () => {
       <use href={sprite + "#menu_close"} />
     </svg>
   );
-  const handleClickMobileLink = (): void => {
-    setMenu(false);
+
+  const onClickMobileLink = (): void => {
+    setIsMenuOpen(false);
     document.body.style.overflowY = "scroll";
+  };
+
+  const onClickCloseProfile = (e: React.SyntheticEvent): void => {
+    if (e.target === e.currentTarget) {
+      setIsProfileOpen(false);
+    }
   };
 
   return (
     <div className={style.mobileContainer}>
       <nav className={style.mobileNav}>
         <div
-          onClick={() => handleSetMenu()}
+          onClick={() => handleToggleMenu()}
           className={style.mobileToggleIcons}
         >
-          {menu ? closeIcon : hamburgerIcon}
+          {isMenuOpen ? closeIcon : hamburgerIcon}
         </div>
         <NavLink
           to="/"
           className={style.linkLogo}
-          onClick={() => handleClickMobileLink()}
+          onClick={() => onClickMobileLink()}
         >
           CRYPTO
           <svg className={style.iconLogo}>
             <use href={sprite + "#logo"} />
           </svg>
         </NavLink>
-        {menu && <NavLinks handleClickMobileLink={handleClickMobileLink} />}
+        {isMenuOpen && <NavLinks onClickMobileLink={onClickMobileLink} />}
       </nav>
-      <AuthButtons />
+      <div className={style.profileAuth}>
+        <button
+          className={style.profileButton}
+          onClick={() => onClickProfileOpen()}
+        >
+          <svg className={style.profileIcon}>
+            <use href={sprite + "#profile"} />
+          </svg>
+        </button>
+        {isProfileOpen && (
+          <div
+            className={style.authBtnsContainer}
+            onClick={(e) => onClickCloseProfile(e)}
+          >
+            <AuthButtons setIsProfileOpen={setIsProfileOpen}/>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

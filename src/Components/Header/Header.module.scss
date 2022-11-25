@@ -28,13 +28,14 @@ header {
     top: 0;
     width: 100%;
     height: 100%;
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 5rem;
   }
 }
 
 .mobileNav {
   display: grid;
-  grid-template-columns: 4rem 1fr 4rem;
+  grid-template-columns: 5rem 1fr;
   align-items: center;
   .mobileToggleIcons {
     height: 100%;
@@ -78,13 +79,25 @@ header {
   }
 }
 
-.profileBtn {
-  height: 100%;
-  width: 256px;
-  .profileIcon {
-    width: 256px;
+.profileAuth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .profileButton {
+    height: 100%;
+    width: 55px;
+    background-color: transparent;
+    .profileIcon {
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+      width: 32px;
+      height: 32px;
+      fill: $color-main;
+    }
   }
 }
+
+
 
 .pcContainer {
   width: 100%;
@@ -143,13 +156,33 @@ header {
   }
 }
 
+.authBtnsContainer {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+}
+
 .authContainer {
   justify-self: right;
   margin-right: 3rem;
   font-size: 1rem;
   display: flex;
   @media (max-width: 1280px) {
-    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 0;
+    padding: 2rem;
+    padding-right: 1.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: rgb(8, 13, 22);
+    box-shadow: inset 0 5px 5px -6px #5f5da8;
+    border-bottom-left-radius: 10px;
+    font-size: 1.3rem;
   }
 }
 
@@ -163,6 +196,9 @@ header {
   margin-right: 1rem;
   background-color: transparent;
   border: 2px solid rgb(13, 110, 253);
+  @media (max-width: 1280px) {
+    margin-right: 0;
+  }
   &:hover {
     background-color: rgb(9, 90, 212, 0.25);
     border-color: #095ad4;
