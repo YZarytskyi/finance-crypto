@@ -4,10 +4,25 @@ import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import AuthButtons from "./AuthButtons";
+import { COOKIE_TOKEN_NAME, getCookie } from "../../utils/cookie";
+import Auth from "../Auth/Auth";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
+
+  const userId: string | null = getCookie(COOKIE_TOKEN_NAME);
+
+  const hamburgerIcon = (
+    <svg className={style.hamburgerIcon}>
+      <use href={sprite + "#menu_open"} />
+    </svg>
+  );
+  const closeIcon = (
+    <svg className={style.closeIcon}>
+      <use href={sprite + "#menu_close"} />
+    </svg>
+  );
 
   const handleToggleMenu = () => {
     openMenu(isMenuOpen, setIsMenuOpen);
@@ -26,17 +41,6 @@ const MobileNav = () => {
       document.body.style.overflowY = "hidden";
     } else document.body.style.overflowY = "scroll";
   }
-
-  const hamburgerIcon = (
-    <svg className={style.hamburgerIcon}>
-      <use href={sprite + "#menu_open"} />
-    </svg>
-  );
-  const closeIcon = (
-    <svg className={style.closeIcon}>
-      <use href={sprite + "#menu_close"} />
-    </svg>
-  );
 
   const onClickMobileLink = (): void => {
     setIsMenuOpen(false);
@@ -79,14 +83,22 @@ const MobileNav = () => {
             <use href={sprite + "#profile"} />
           </svg>
         </button>
-        {isProfileOpen && (
-          <div
-            className={style.authBtnsContainer}
-            onClick={(e) => onClickCloseProfile(e)}
-          >
-            <AuthButtons setIsProfileOpen={setIsProfileOpen}/>
-          </div>
-        )}
+        {userId
+          ? (
+            <div
+              className={`${style.authBtnsBackdropHidden} ${isProfileOpen ? style.authBtnsBackdropOpen : ""}`}
+              onClick={(e) => onClickCloseProfile(e)}
+            >
+              <AuthButtons setIsProfileOpen={setIsProfileOpen} isProfileOpen={isProfileOpen} userId={userId} />
+            </div>
+          )
+          : (
+            <Auth
+              modalAuthShow={isProfileOpen}
+              setModalAuthShow={setIsProfileOpen}
+              isLogin
+            />
+          )}
       </div>
     </div>
   );
