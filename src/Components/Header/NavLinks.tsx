@@ -1,31 +1,14 @@
 import { NavLink } from "react-router-dom";
 import style from "./Header.module.scss";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import sprite from "../../assets/images/icons.svg";
-import { useAppSelector } from "../../Store/hooks";
-import Auth from "../Auth/Auth";
 
 interface NavLinksProps {
   handleClickMobileLink?: () => void;
 }
 
 const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
-
-  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
-  const [toggleLoginSignUp, setToggleLoginSignUp] = useState<boolean>(true);
   const [isSubListMobileOpen, setSubListMobileOpen] = useState<boolean>(false);
-
-  const userId = useAppSelector(state => state.auth.user.uid);
-  const loginRef = useRef(null);
-
-
-  const handleClickModalAuth = (e: React.SyntheticEvent) => {
-    const target = (e.target as Element)
-    setModalAuthShow(true);
-    if (target === loginRef.current) {
-      setToggleLoginSignUp(true)
-    } else setToggleLoginSignUp(false);
-  };
 
   const handleMobileSubList = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -82,7 +65,9 @@ const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
               </li>
             </ul>
             <ul
-              className={`${style.subListMobileHidden} ${isSubListMobileOpen ? style.subListMobileOpen : ""}`}
+              className={`${style.subListMobileHidden} ${
+                isSubListMobileOpen ? style.subListMobileOpen : ""
+              }`}
             >
               <li
                 onClick={() => handleClickMobileLink && handleClickMobileLink()}
@@ -118,41 +103,6 @@ const NavLinks = ({ handleClickMobileLink }: NavLinksProps) => {
           </NavLink>
         </li>
       </ul>
-
-      {userId
-      ? <div className={style.authContainer}>
-          <button
-            type="button"
-            className={style.logoutBtn}
-          >
-            Log&nbsp;Out
-          </button>
-      </div>
-      : <div className={style.authBtns}>
-        <button
-          ref={loginRef}
-          type="button"
-          className={style.loginBtn}
-          onClick={(e) => handleClickModalAuth(e)}
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          className={style.signUpBtn}
-          onClick={(e) => handleClickModalAuth(e)}
-        >
-          Sign&nbsp;Up
-        </button>
-
-        <Auth
-          modalAuthShow={modalAuthShow}
-          setModalAuthShow={setModalAuthShow}
-          toggleLoginSignUp={toggleLoginSignUp}
-          setToggleLoginSignUp={setToggleLoginSignUp}
-        />
-      </div>
-      }
     </>
   );
 };

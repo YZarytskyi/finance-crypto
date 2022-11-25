@@ -3,6 +3,7 @@ import style from "./Header.module.scss";
 import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import AuthButtons from "./AuthButtons";
 
 const MobileNav = () => {
   const [menu, setMenu] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const MobileNav = () => {
   };
 
   return (
-    <>
+    <div className={style.mobileContainer}>
       <nav className={style.mobileNav}>
         <div
           onClick={() => handleSetMenu()}
@@ -50,7 +51,8 @@ const MobileNav = () => {
         </NavLink>
         {menu && <NavLinks handleClickMobileLink={handleClickMobileLink} />}
       </nav>
-    </>
+      <AuthButtons />
+    </div>
   );
 };
 

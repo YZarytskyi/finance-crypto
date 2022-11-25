@@ -1,7 +1,6 @@
 import MobileNav from "./MobileNav";
 import PCNav from "./PCNav";
 
-
 const Header = () => {
   return (
     <header>

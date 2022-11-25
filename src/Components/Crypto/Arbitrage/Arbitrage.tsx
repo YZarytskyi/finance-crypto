@@ -1,11 +1,12 @@
 import NavCrypto from "../NavCrypto";
 import TableScanner from "./TableScanner";
 import CheckResult from "./CheckResult";
-import { useAppSelector } from "../../../Store/hooks";
+import { COOKIE_TOKEN_NAME, getCookie } from "../../../utils/cookie";
 // import { Navigate } from "react-router-dom";
 
 const Arbitrage = () => {
-  const userId = useAppSelector((state) => state.auth.user.uid);
+  const userId: string | null = getCookie(COOKIE_TOKEN_NAME);
+  
   return (
     // <>
     //   {userId
