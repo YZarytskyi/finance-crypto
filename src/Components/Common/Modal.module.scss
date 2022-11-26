@@ -45,6 +45,9 @@
     width: 90%;
     transform: translate(-50%, -60%) scale(1);
   }
+  @media (max-width: 500px) {
+    padding: 2rem 1.5rem;
+   }
 }
 
 .modalCloseBtn {

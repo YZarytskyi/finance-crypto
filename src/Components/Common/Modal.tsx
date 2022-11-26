@@ -16,6 +16,7 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
     if (target === backdropRef.current || 
       (e.target as Element).classList.contains('jsCloseModal')) {
       setModalShow(false);
+      document.body.style.overflowY = "scroll";
     }
   };
   return (

@@ -58,11 +58,11 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm}>
-      <label htmlFor="email" className={style.formLabel}>
+      <label htmlFor="emailLogin" className={style.formLabel}>
         Email
       </label>
       <input
-        id="email"
+        id="emailLogin"
         {...register("email")}
         placeholder="Enter your email..."
         className={style.formInput}
@@ -71,11 +71,11 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
         {errors.email?.message ? errors.email?.message : " "}
       </p>
 
-      <label htmlFor="password" className={style.formLabel}>
+      <label htmlFor="passwordLogin" className={style.formLabel}>
         Password
       </label>
       <input
-        id="password"
+        id="passwordLogin"
         {...register("password")}
         type="password"
         placeholder="Enter your password..."

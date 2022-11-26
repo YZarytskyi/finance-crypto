@@ -39,18 +39,14 @@ const MobileNav = () => {
     setState((prev) => !prev);
     if (!state) {
       document.body.style.overflowY = "hidden";
-    } else document.body.style.overflowY = "scroll";
+    } else {
+      document.body.style.overflowY = "scroll";
+    }
   }
 
   const onClickMobileLink = (): void => {
     setIsMenuOpen(false);
     document.body.style.overflowY = "scroll";
-  };
-
-  const onClickCloseProfile = (e: React.SyntheticEvent): void => {
-    if (e.target === e.currentTarget) {
-      setIsProfileOpen(false);
-    }
   };
 
   return (
@@ -72,7 +68,7 @@ const MobileNav = () => {
             <use href={sprite + "#logo"} />
           </svg>
         </NavLink>
-        {isMenuOpen && <NavLinks onClickMobileLink={onClickMobileLink} />}
+        <NavLinks onClickMobileLink={onClickMobileLink} isMenuOpen={isMenuOpen} />
       </nav>
       <div className={style.profileAuth}>
         <button
@@ -87,7 +83,6 @@ const MobileNav = () => {
           ? (
             <div
               className={`${style.authBtnsBackdropHidden} ${isProfileOpen ? style.authBtnsBackdropOpen : ""}`}
-              onClick={(e) => onClickCloseProfile(e)}
             >
               <AuthButtons setIsProfileOpen={setIsProfileOpen} isProfileOpen={isProfileOpen} userId={userId} />
             </div>

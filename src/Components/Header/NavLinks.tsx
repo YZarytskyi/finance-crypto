@@ -5,9 +5,10 @@ import sprite from "../../assets/images/icons.svg";
 
 interface NavLinksProps {
   onClickMobileLink?: () => void;
+  isMenuOpen?: boolean;
 }
 
-const NavLinks = ({ onClickMobileLink }: NavLinksProps) => {
+const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
   const [isSubListMobileOpen, setSubListMobileOpen] = useState<boolean>(false);
 
   const handleMobileSubList = (e: React.SyntheticEvent) => {
@@ -24,7 +25,7 @@ const NavLinks = ({ onClickMobileLink }: NavLinksProps) => {
         </svg>
       </NavLink>
 
-      <ul className={style.navLinksList}>
+      <ul className={`${style.navLinksListHidden} ${isMenuOpen ? style.navLinksListOpen : ""}`}>
         <li onClick={() => onClickMobileLink && onClickMobileLink()}>
           <NavLink to="/" className={style.link}>
             Home
