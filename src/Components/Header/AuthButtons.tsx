@@ -1,7 +1,7 @@
 import style from "./Header.module.scss";
 import { useRef, useState } from "react";
 import Auth from "../Auth/Auth";
-import { COOKIE_TOKEN_NAME, deleteCookie } from "../../utils/cookie";
+import { COOKIE_TOKEN_NAME, deleteCookie, getCookie } from "../../utils/cookie";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 import { Notify } from "notiflix";
@@ -12,14 +12,15 @@ interface AuthButtonsProps {
     value: boolean | ((prevValue: boolean) => boolean)
   ) => void;
   isProfileOpen?: boolean;
-  userId?: string | undefined;
 }
 
-const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen, isProfileOpen, userId }) => {
+const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen, isProfileOpen }) => {
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const loginRef = useRef(null);
+
+  const userId: string | null = getCookie(COOKIE_TOKEN_NAME);
 
   const onClickModalAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();

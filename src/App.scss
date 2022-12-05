@@ -39,14 +39,6 @@ html {
       @media screen and (max-width: 767px) {
         margin-right: 0;
       }
-      & header {
-        @media screen and (max-width: 1280px) {
-          width: calc(100% + 14px);
-        }
-        @media screen and (max-width: 767px) {
-          width: 100%;
-        }
-      }
       & .Header_mobileContainer__5-kQq {
         @media screen and (max-width: 1280px) {
           padding-right: 14px;

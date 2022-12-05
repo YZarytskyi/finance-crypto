@@ -32,6 +32,7 @@
 }
 .loginForm {
   margin-top: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   .formLabel {
@@ -99,5 +100,54 @@
     border-color: $color-accent !important;
     color: $color-accent !important;
     border-radius: 0.4rem;
+  }
+}
+
+.orText {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: $color-accent;
+    width: 100%;
+    border-radius: 50%;
+  }
+  &::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: $color-accent;
+    width: 100%;
+    border-radius: 50%;
+  }
+}
+
+.googleAuth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  background-color: transparent;
+  color: $color-main;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  border: 1px solid $color-accent;
+  border-radius: 0.4rem;
+
+  &:hover {
+    background-color: rgba(101, 101, 255, 0.1);
+  }
+
+  .iconGoogle {
+    width: 28px;
+    height: 28px;
   }
 }
