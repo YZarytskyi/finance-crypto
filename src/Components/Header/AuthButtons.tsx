@@ -2,6 +2,10 @@ import style from "./Header.module.scss";
 import { useRef, useState } from "react";
 import Auth from "../Auth/Auth";
 import { COOKIE_TOKEN_NAME, deleteCookie, getCookie } from "../../utils/cookie";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/Firebase";
+import { Notify } from "notiflix";
+
 
 interface AuthButtonsProps {
   setIsProfileOpen?: (
@@ -21,7 +25,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen }) => {
     e.preventDefault();
     const target = e.target as Element;
     setModalAuthShow(true);
-    // setIsProfileOpen && setIsProfileOpen(false);
+    document.body.classList.add('overflow');
     if (target === loginRef.current) {
       setToggleLoginSignUp(true);
     } else {
@@ -29,10 +33,17 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen }) => {
     }
   };
 
-  const onClickLogout = (e: React.SyntheticEvent) => {
+
+  const onClickLogout = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    deleteCookie(COOKIE_TOKEN_NAME);
-    window.location.reload();
+    try {
+      await signOut(auth);
+      deleteCookie(COOKIE_TOKEN_NAME);
+      window.location.reload();
+    } catch (error: any) {
+      console.log(error)
+      Notify.failure(error.message)
+    }
   };
 
   return (

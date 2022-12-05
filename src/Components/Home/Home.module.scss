@@ -157,7 +157,7 @@
 
 .coinsList {
   display: grid;
-  grid-template-columns: repeat(6, minmax(13rem, 14rem));
+  grid-template-columns: repeat(6, minmax(12.5rem, 13.5rem));
   grid-template-rows: 6rem;
   grid-auto-flow: column;
   gap: 1.05rem;

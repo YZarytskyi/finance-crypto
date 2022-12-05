@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 import sprite from "../../assets/images/icons.svg";
 import { useNavigate } from "react-router-dom";
+import { Notify } from "notiflix";
 
 const schema = yup.object({
   email: yup
@@ -41,6 +42,7 @@ const SignUp: React.FC<SignUpProps> = ({setModalAuthShow}) => {
         const user = userCredential.user;
         navigate("/")
         setModalAuthShow(false)
+        Notify.success('You successfully signed up')
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);

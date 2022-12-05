@@ -1,12 +1,17 @@
 @import "../../variables.scss";
 
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  box-shadow: 0 5px 4px -6px #5f5da8;
+}
+
 .navCrypto {
-  height: 1.8rem;
-  margin: 0.5rem 0;
+  height: 3rem;
   display: grid;
   grid-template-areas: ". l c .";
-  grid-template-columns: 0.15fr 0.85fr 1fr 1fr;
-  box-shadow: 0 5px 4px -6px #5f5da8;
+  grid-template-columns: 0.11fr 0.89fr 1fr 1fr;
+  align-items: center;
   @media (max-width: 1000px) {
     display: none;
   }

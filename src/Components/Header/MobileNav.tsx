@@ -23,8 +23,10 @@ const MobileNav = () => {
   ) {
     setState((prev) => !prev);
     if (!state) {
-      document.body.style.overflowY = "hidden";
-    } else document.body.style.overflowY = "scroll";
+      document.body.classList.add('overflow');
+    } else {
+      document.body.classList.remove('overflow');
+    }
   }
 
   const hamburgerIcon = (
@@ -40,7 +42,7 @@ const MobileNav = () => {
 
   const onClickMobileLink = (): void => {
     setIsMenuOpen(false);
-    document.body.style.overflowY = "scroll";
+    document.body.classList.remove('overflow');
   };
 
   const onClickCloseProfile = (e: React.SyntheticEvent): void => {

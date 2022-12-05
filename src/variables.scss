@@ -14,7 +14,7 @@ $color-minus: #fc432a;
 @mixin bg {
   background: $bg-img;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 105vw 105vh;
   background-attachment: fixed;
   background-position: top;
 }

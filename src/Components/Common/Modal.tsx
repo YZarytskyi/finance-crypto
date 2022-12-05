@@ -1,5 +1,5 @@
 import style from "./Modal.module.scss";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import sprite from "../../assets/images/icons.svg";
 
 interface ModalProps {
@@ -9,20 +9,45 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
-  const backdropRef = useRef(null);
 
-  const handleCloseModal = (e: React.SyntheticEvent) => {
+  useEffect(() => {
+    if (modalShow) {
+      document.body.addEventListener('keydown', onEscPress)
+    } 
+
+    return () => {
+      document.body.removeEventListener('keydown', onEscPress)
+    }
+  }, [modalShow])
+
+  const handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as Element;
-    if (target === backdropRef.current || 
-      (e.target as Element).classList.contains('jsCloseModal')) {
+    if (target.classList.contains('jsCloseModal')) {
       setModalShow(false);
+      document.body.classList.remove('overflow');
     }
   };
+
+  function handleMouseDownBackdrop(e: React.MouseEvent<HTMLDivElement>) {
+    const target = e.target as Element;
+    if (target === e.currentTarget) {
+      setModalShow(false);
+      document.body.classList.remove('overflow');
+    }
+  }
+
+  function onEscPress(e: KeyboardEvent) {
+    if (e.key === "Escape") {
+      setModalShow(false);
+      document.body.classList.remove('overflow');
+    }
+  }
+
   return (
     <div
-      ref={backdropRef}
-      className={`${style.backdrop} ${!modalShow ? style.isHidden : ""} jsCloseModal`}
+      className={`${style.backdrop} ${!modalShow ? style.isHidden : ""}`}
       onClick={(e) => handleCloseModal(e)}
+      onMouseDown={(e) => handleMouseDownBackdrop(e)}
     >
       <div className={style.modal}>
         <button type="button" className={style.modalCloseBtn + " jsCloseModal"}>

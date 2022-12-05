@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 import { useState } from "react";
 import { COOKIE_TOKEN_NAME, setCookie } from "../../utils/cookie";
+import { Notify } from "notiflix";
 
 const schema = yup.object({
   email: yup
@@ -37,6 +38,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
         setCookie(COOKIE_TOKEN_NAME, user.uid);
         setModalAuthShow(false);
         window.location.reload();
+        Notify.success('You successfully logged in')
       })
       .catch((error) => {
         const errorMessage = error.message.slice(10);
