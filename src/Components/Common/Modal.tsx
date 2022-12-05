@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
     const target = e.target as Element;
     if (target.classList.contains('jsCloseModal')) {
       setModalShow(false);
-      document.body.style.overflowY = "scroll";
+      document.body.classList.remove('overflow');
     }
   };
 
