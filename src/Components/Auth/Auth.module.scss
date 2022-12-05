@@ -12,6 +12,9 @@
   font-weight: 500;
   color: $color-secondary;
   letter-spacing: 0.04em;
+  @media (max-width: 500px) {
+    font-size: 1.3rem;
+  }
   &.NavLinkCurrent {
     color: $color-main;
     &::after {
@@ -34,6 +37,9 @@
   .formLabel {
     display: block;
     font-size: 1rem;
+    @media (max-width: 500px) {
+      font-size: 0.9rem;
+     }
     > a {
       color: $color-accent;
     }
@@ -90,7 +96,6 @@
   .formButton {
     margin-top: 1rem;
     height: 41px;
-    width: 100%;
     border-color: $color-accent !important;
     color: $color-accent !important;
     border-radius: 0.4rem;

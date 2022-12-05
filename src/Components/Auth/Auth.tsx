@@ -1,5 +1,5 @@
 import style from "./Auth.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../Common/Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -10,25 +10,30 @@ interface AuthProps {
   setModalAuthShow: (
     value: boolean | ((prevValue: boolean) => boolean)
   ) => void;
-  toggleLoginSignUp: boolean;
-  setToggleLoginSignUp: (
-    value: boolean | ((prevValue: boolean) => boolean)
-  ) => void;
+  isLogin: boolean;
 }
 
 const Auth: React.FC<AuthProps> = ({
   children,
   modalAuthShow,
   setModalAuthShow,
-  toggleLoginSignUp,
-  setToggleLoginSignUp,
+  isLogin,
 }) => {
-  
+  const [toggleLoginSignUp, setToggleLoginSignUp] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (isLogin) {
+      setToggleLoginSignUp(true)
+    } else {
+      setToggleLoginSignUp(false)
+    }
+  }, [isLogin])
+
   const handleClickToggleAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const classes = [...(e.target as Element).classList];
     const isCurrent = classes.find((item) => item.includes("Current"));
-    if (!isCurrent) {
+    if (!isCurrent && setToggleLoginSignUp) {
       setToggleLoginSignUp((prev) => !prev);
     }
   };

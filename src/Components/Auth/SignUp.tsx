@@ -38,9 +38,7 @@ const SignUp: React.FC<SignUpProps> = ({setModalAuthShow}) => {
 
   const signUp = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        navigate("/")
+      .then(() => {
         setModalAuthShow(false)
         Notify.success('You successfully signed up')
       })
@@ -55,20 +53,20 @@ const SignUp: React.FC<SignUpProps> = ({setModalAuthShow}) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInputs>({ resolver: yupResolver(schema) });
-  const onSubmit = async (data: IFormInputs) => {
+  const onSubmit = (data: IFormInputs) => {
     setError("");
     setLoading(true);
-    await signUp(data.email, data.password);
+    signUp(data.email, data.password);
     setLoading(false);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm}>
-      <label htmlFor="email" className={style.formLabel}>
+      <label htmlFor="emailSignUp" className={style.formLabel}>
         Email
       </label>
       <input
-        id="email"
+        id="emailSignUp"
         {...register("email")}
         placeholder="Enter your email"
         className={style.formInput}
@@ -77,11 +75,11 @@ const SignUp: React.FC<SignUpProps> = ({setModalAuthShow}) => {
         {errors.email?.message ? errors.email?.message : " "}
       </p>
 
-      <label htmlFor="password" className={style.formLabel}>
+      <label htmlFor="passwordSignUp" className={style.formLabel}>
         Password
       </label>
       <input
-        id="password"
+        id="passwordSignUp"
         {...register("password")}
         type="password"
         placeholder="Enter your password..."
