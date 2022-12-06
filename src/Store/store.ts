@@ -4,6 +4,7 @@ import cryptoReducer from "./Reducers/cryptoSlice";
 import arbitrageReducer from "./Reducers/arbitrageSlice";
 import converterReducer from "./Reducers/converterSlice";
 import authReducer from "./Reducers/authSlice";
+import appReducer from "./Reducers/appSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     arbitrage: arbitrageReducer,
     converter: converterReducer,
     auth: authReducer,
+    app: appReducer,
   },
 });
 

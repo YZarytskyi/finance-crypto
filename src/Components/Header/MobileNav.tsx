@@ -4,14 +4,14 @@ import sprite from "../../assets/images/icons.svg";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import AuthButtons from "./AuthButtons";
-import { COOKIE_TOKEN_NAME, getCookie } from "../../utils/cookie";
-import Auth from "../Auth/Auth";
+import Auth from "../Auth/ModalAuth";
+import { useAppSelector } from "../../Store/hooks";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
 
-  const userId: string | null = getCookie(COOKIE_TOKEN_NAME);
 
   const hamburgerIcon = (
     <svg className={style.hamburgerIcon}>
@@ -79,7 +79,7 @@ const MobileNav = () => {
             <use href={sprite + "#profile"} />
           </svg>
         </button>
-        {userId
+        {isAuth
           ? (
             <div
               className={`${style.authBtnsBackdropHidden} ${isProfileOpen ? style.authBtnsBackdropOpen : ""}`}

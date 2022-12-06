@@ -62,7 +62,7 @@
   font-size: 1.1rem;
   .formInput,
   .formTextarea {
-    @include input;
+    @extend %input;
     width: 100%;
     margin-top: 0.3rem;
     padding: 0.3rem 0.5rem;

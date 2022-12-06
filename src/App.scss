@@ -1,26 +1,12 @@
 @import "./variables.scss";
 
-::-webkit-scrollbar {
-  width: 14px;
-  @media (max-width: 767px) {
-    display: none;
-  }
-}
-::-webkit-scrollbar-track {
-  background-color: rgb(9, 10, 15);
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgb(32, 32, 32);
-  border-radius: 0.2rem;
-}
-
 html {
-  @include bg;
+  @extend %bg;
   overflow-x: hidden;
   box-sizing: border-box;
   height: 100%;
   body {
-    @include initial;
+    @extend %initial;
     margin: 0;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -35,9 +21,18 @@ html {
     overflow-y: scroll;
     &.overflow {
       overflow: hidden;
-      margin-right: 14px;
+      padding-right: 14px;
       @media screen and (max-width: 767px) {
-        margin-right: 0;
+        padding-right: 0;
+      }
+
+      & header {
+        @media screen and (max-width: 1280px) {
+          width: calc(100% + 14px);
+        }
+        @media screen and (max-width: 767px) {
+          width: 100%;
+        }
       }
       & .Header_mobileContainer__5-kQq {
         @media screen and (max-width: 1280px) {

@@ -1,10 +1,12 @@
 import style from "./Header.module.scss";
 import { useRef, useState } from "react";
-import Auth from "../Auth/Auth";
+import Auth from "../Auth/ModalAuth";
 import { COOKIE_TOKEN_NAME, deleteCookie, getCookie } from "../../utils/cookie";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 import { Notify } from "notiflix";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
+import { setIsAuth } from "../../Store/Reducers/authSlice";
 
 
 interface AuthButtonsProps {
@@ -17,10 +19,9 @@ interface AuthButtonsProps {
 const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen, isProfileOpen }) => {
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
-
   const loginRef = useRef(null);
-
-  const userId: string | null = getCookie(COOKIE_TOKEN_NAME);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const dispatch = useAppDispatch();
 
   const onClickModalAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -40,7 +41,8 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen, isProfileOp
     try {
       await signOut(auth);
       deleteCookie(COOKIE_TOKEN_NAME);
-      window.location.reload();
+      dispatch(setIsAuth(false));
+      Notify.success('You logged out successfully')
     } catch (error: any) {
       console.log(error)
       Notify.failure(error.message)
@@ -50,7 +52,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({ setIsProfileOpen, isProfileOp
   return (
     <>
       <div className={`${style.authContainerHidden} ${isProfileOpen ? style.authContainerOpen : ""}`}>
-        {userId ? (
+        {isAuth ? (
           <button
             type="button"
             className={style.logoutBtn}

@@ -11,7 +11,7 @@ $color-plus: #01b301;
 $color-minus: #fc432a;
 
 
-@mixin bg {
+%bg {
   background: $bg-img;
   background-repeat: no-repeat;
   background-size: 105vw 105vh;
@@ -19,7 +19,7 @@ $color-minus: #fc432a;
   background-position: top;
 }
 
-@mixin input {
+%input {
   color: $color-main;
   background-color: $bg-color-secondary;
   font-family: "Gill Sans", sans-serif;
@@ -37,7 +37,7 @@ $color-minus: #fc432a;
   }
 }
 
-@mixin initial {
+%initial {
   ul {
     list-style: none;
   }

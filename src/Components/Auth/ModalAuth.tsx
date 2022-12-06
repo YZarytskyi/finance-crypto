@@ -4,7 +4,7 @@ import Modal from "../Common/Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
-interface AuthProps {
+interface ModalAuthProps {
   children?: React.ReactNode;
   modalAuthShow: boolean;
   setModalAuthShow: (
@@ -13,7 +13,7 @@ interface AuthProps {
   isLogin: boolean;
 }
 
-const Auth: React.FC<AuthProps> = ({
+const ModalAuth: React.FC<ModalAuthProps> = ({
   children,
   modalAuthShow,
   setModalAuthShow,
@@ -23,11 +23,11 @@ const Auth: React.FC<AuthProps> = ({
 
   useEffect(() => {
     if (isLogin) {
-      setToggleLoginSignUp(true)
+      setToggleLoginSignUp(true);
     } else {
-      setToggleLoginSignUp(false)
+      setToggleLoginSignUp(false);
     }
-  }, [isLogin])
+  }, [isLogin]);
 
   const handleClickToggleAuth = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -81,4 +81,4 @@ const Auth: React.FC<AuthProps> = ({
   );
 };
 
-export default Auth;
+export default ModalAuth;

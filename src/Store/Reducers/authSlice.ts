@@ -1,14 +1,15 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 interface AuthState {
   modalShow: boolean;
   toggleLoginSignUp: boolean;
+  isAuth: boolean;
 }
 
 const initialState: AuthState = {
   modalShow: false,
   toggleLoginSignUp: false,
+  isAuth: false,
 }
 
 export const authSlice = createSlice({
@@ -21,9 +22,12 @@ export const authSlice = createSlice({
     setToggleLoginSignUp(state, action) {
       state.toggleLoginSignUp = action.payload
     },
+    setIsAuth(state, action) {
+      state.isAuth = action.payload
+    },
   },
 })
 
-export const { setModalShow, setToggleLoginSignUp } = authSlice.actions
+export const { setModalShow, setToggleLoginSignUp, setIsAuth } = authSlice.actions
 
 export default authSlice.reducer

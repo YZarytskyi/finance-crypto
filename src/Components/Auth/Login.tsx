@@ -10,6 +10,8 @@ import { COOKIE_TOKEN_NAME, setCookie } from "../../utils/cookie";
 import { Notify } from "notiflix";
 import sprite from "../../assets/images/icons.svg";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { setIsAuth } from "../../Store/Reducers/authSlice";
+import { useAppDispatch } from "../../Store/hooks";
 
 const schema = yup.object({
   email: yup
@@ -33,18 +35,37 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const dispatch = useAppDispatch();
 
-  const login = (email: string, password: string) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        setCookie(COOKIE_TOKEN_NAME, user.uid);
-        setModalAuthShow(false);
-        window.location.reload();
-      })
-      .catch((error) => {
-        const errorMessage = error.message.slice(10);
-        setError(`⚠ ${errorMessage}`);
-      });
+  const handleLogIn = async (email: string, password: string) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      setCookie(COOKIE_TOKEN_NAME, user.uid);
+      setModalAuthShow(false);
+      dispatch(setIsAuth(true))
+      Notify.success(`Hi ${user}, you logged in successfully`);
+    } catch (error: any) {
+      const errorMessage = error.message.slice(10);
+      setError(`⚠ ${errorMessage}`);
+    }
+  };
+
+  const handleClickGoogleAuth = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken as string;
+      const user = result.user.displayName;
+      setCookie(COOKIE_TOKEN_NAME, token);
+      setModalAuthShow(false);
+      dispatch(setIsAuth(true))
+      Notify.success(`Hi ${user}, you logged in successfully`);
+    } catch (error: any) {
+      console.log(error);
+      Notify.failure(error.message);
+    }
   };
 
   const {
@@ -55,26 +76,8 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
   const onSubmit = (data: IFormInputs) => {
     setError("");
     setLoading(true);
-    login(data.email, data.password);
+    handleLogIn(data.email, data.password);
     setLoading(false);
-  };
-
-  const handleClickGoogleAuth = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken as string;
-        const user = result.user.displayName;
-        setCookie(COOKIE_TOKEN_NAME, token);
-        setModalAuthShow(false);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-        Notify.failure(error.message);
-      });
   };
 
   return (
