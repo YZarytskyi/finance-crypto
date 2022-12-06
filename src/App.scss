@@ -27,17 +27,16 @@ html {
       }
 
       & header {
-        @media screen and (max-width: 1280px) {
           width: calc(100% + 14px);
-        }
         @media screen and (max-width: 767px) {
           width: 100%;
         }
       }
-      & .Header_mobileContainer__5-kQq {
-        @media screen and (max-width: 1280px) {
-          padding-right: 14px;
-        }
+      & .Header_pcContainer__rbIU0 {
+        padding-right: 14px;
+      }
+      & .Header_mobileContainer__Bn5xm {
+        padding-right: 14px;
         @media screen and (max-width: 767px) {
           padding-right: 0;
         }

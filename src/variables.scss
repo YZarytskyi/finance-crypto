@@ -12,11 +12,11 @@ $color-minus: #fc432a;
 
 
 %bg {
+  background-color: $bg-color-main;
   background: $bg-img;
   background-repeat: no-repeat;
-  background-size: 105vw 105vh;
+  background-size: cover;
   background-attachment: fixed;
-  background-position: top;
 }
 
 %input {

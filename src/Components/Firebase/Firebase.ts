@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth"
 
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBEROZE5z6di_RP9LlWDgV9dgl1ImYOEHQ",
+  authDomain: "crypto-project-b461e.firebaseapp.com",
+  projectId: "crypto-project-b461e",
+  storageBucket: "crypto-project-b461e.appspot.com",
+  messagingSenderId: "1049773235878",
+  appId: "1:1049773235878:web:a3c7e20b023a3069c79e67"
 }
 
 const firebaseSetup = initializeApp(firebaseConfig);
