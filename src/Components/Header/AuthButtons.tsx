@@ -27,7 +27,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const onClickModalAuth = (e: React.SyntheticEvent) => {
+  const onClickAuthBtn = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as Element;
     setModalAuthShow(true);
@@ -74,14 +74,14 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
                 ref={loginRef}
                 type="button"
                 className={style.loginBtn}
-                onClick={(e) => onClickModalAuth(e)}
+                onClick={(e) => onClickAuthBtn(e)}
               >
                 Login
               </button>
               <button
                 type="button"
                 className={style.signUpBtn}
-                onClick={(e) => onClickModalAuth(e)}
+                onClick={(e) => onClickAuthBtn(e)}
               >
                 Sign&nbsp;Up
               </button>

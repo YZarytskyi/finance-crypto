@@ -2,7 +2,7 @@ export const COOKIE_TOKEN_NAME = 'token';
 
 export function setCookie(name: string, value: string): void {
   let encodedValue = encodeURIComponent(value);
-  document.cookie = `${name}=${encodedValue}`;
+  document.cookie = `${name}=${encodedValue}; path=/`;
 }
 
 export function getCookie(name: string): string | null {

@@ -43,6 +43,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
       setCookie(COOKIE_TOKEN_NAME, user.uid);
       setModalAuthShow(false);
       dispatch(setIsAuth(true))
+      document.body.classList.remove('overflow');
       Notify.success(`Hi ${user}, you logged in successfully`);
     } catch (error: any) {
       const errorMessage = error.message.slice(10);
@@ -61,6 +62,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
       setCookie(COOKIE_TOKEN_NAME, token);
       setModalAuthShow(false);
       dispatch(setIsAuth(true))
+      document.body.classList.remove('overflow');
       Notify.success(`Hi ${user}, you logged in successfully`);
     } catch (error: any) {
       console.log(error);
