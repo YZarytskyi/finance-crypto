@@ -101,7 +101,7 @@ export const CryptoCarouselData = () => {
 export const ArticlesCarouselData = () => {
   const articles = useAppSelector((state) => state.articles.articles);
   const filterArticles = articles.filter(
-    (article) => article.title.length > 30 && article.title.length <= 50
+    (article) => article.headline.main.length > 30 && article.headline.main.length <= 50
   );
 
   return (
@@ -118,12 +118,12 @@ export const ArticlesCarouselData = () => {
                 to={`/articles/${article.id}`}
                 className={style.articlesLink}
               >
-                <p>{article.title}</p>
+                <p>{article.headline.main}</p>
                 <p>
                 <svg className={style.iconTime}>
                   <use href={sprite + "#time"} />
                 </svg>
-                  {article.publishedAt.slice(0, 10)}
+                  {article.pub_date.slice(0, 10)}
                 </p>
               </NavLink>
             </li>

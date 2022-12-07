@@ -289,7 +289,7 @@ export const articlesApi = {
   async getArticles() {
     try {
       const { data } = await axios.get(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=crypto&api-key=mScVMtCvTO7fBzSIQmgG1N6TAs3IXnic`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=crypto&page=2&api-key=mScVMtCvTO7fBzSIQmgG1N6TAs3IXnic`
       );
       return data.response;
     } catch ({ message }) {

@@ -6,7 +6,7 @@ import { handleImageError } from "./Articles";
 
 const ArticlesLeft = () => {
   const articles = useAppSelector((state) => state.articles.articles);
-
+  console.log(articles[0].multimedia[0].legacy.xlarge)
   return (
     <section className={style.articlesLeft}>
       <NavLink to="/articles">
@@ -26,12 +26,12 @@ const ArticlesLeft = () => {
             >
               <div className={style.articlesLeftImg}>
                 <img
-                  src={article.urlToImage}
+                  src={`https://static01.nyt.com${article.multimedia[0]?.legacy?.xlarge}`}
                   alt="News"
                   onError={handleImageError}
                 />
               </div>
-              <p>{article.title.slice(0, 40)}...</p>
+              <p>{article.headline.main.slice(0, 40)}...</p>
               <p
                 style={{
                   display: "flex",
@@ -42,7 +42,7 @@ const ArticlesLeft = () => {
                 <svg className={style.iconTime}>
                   <use href={sprite + "#time"} />
                 </svg>
-                {article.publishedAt.slice(0, 10)}
+                {article.pub_date.slice(0, 10)}
               </p>
             </NavLink>
           </li>

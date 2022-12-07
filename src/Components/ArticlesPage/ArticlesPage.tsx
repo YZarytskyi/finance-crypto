@@ -25,7 +25,7 @@ const ArticlesPage = () => {
       <section className={style.heading}>
         <div className={style.headingContainer}>
           <NavLink to={`${articles[14].id}`} className={style.mainTitle}>
-            <p>{articles[14]?.title}</p>
+            <p>{articles[14]?.headline.main}</p>
           </NavLink>
           <BottomList />
           <TopArticles />
@@ -47,11 +47,11 @@ const BottomList = () => {
           <NavLink to={`${article.id}`} className={style.bottomListLink}>
             <img
               className={style.bottomListImage}
-              src={article.urlToImage}
-              alt={article.title}
+              src={article.web_url}
+              alt={article.headline.main}
               onError={handleImageError}
             />
-            <p className={style.bottomListArticleTitle}>{article.title}</p>
+            <p className={style.bottomListArticleTitle}>{article.headline.main}</p>
           </NavLink>
         </li>
       ))}
@@ -70,11 +70,11 @@ const TopArticles = () => {
             <NavLink to={`${article.id}`} className={style.rightListLink}>
               <img
                 className={style.rightListArticleImage}
-                src={article.urlToImage}
-                alt={article.title}
+                src={article.web_url}
+                alt={article.headline.main}
                 onError={handleImageError}
               />
-              <p className={style.rightListArticleTitle}>{article.title}</p>
+              <p className={style.rightListArticleTitle}>{article.headline.main}</p>
             </NavLink>
           </li>
         ))}

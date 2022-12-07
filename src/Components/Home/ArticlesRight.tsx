@@ -6,7 +6,6 @@ import { handleImageError } from "./Articles";
 
 const ArticlesRight = () => {
   const articles = useAppSelector((state) => state.articles.articles);
-  const filterArticles = articles.filter(({title}) => title.length > 65)
 
   return (
     <section className={style.articlesRight}>
@@ -19,7 +18,7 @@ const ArticlesRight = () => {
         </h2>
       </NavLink>
       <ul className={style.articlesRightList}>
-        {filterArticles.slice(0, 3).map((article) => (
+        {articles.slice(2, 5).map((article) => (
           <li key={article.id} className={style.articlesRightItem}>
             <NavLink
               to={`/articles/${article.id}`}
@@ -27,13 +26,13 @@ const ArticlesRight = () => {
             >
               <div className={style.articlesRightImg}>
                 <img
-                  src={article.urlToImage}
-                  alt={article.title}
+                  src={article.web_url}
+                  alt={article.headline.main}
                   onError={handleImageError}
                 />
               </div>
               <div className={style.articlesRightDescription}>
-                <p>{article.title}</p>
+                <p>{article.headline.main}</p>
                 <p
                   style={{
                     display: "flex",
@@ -44,7 +43,7 @@ const ArticlesRight = () => {
                   <svg className={style.iconTime}>
                     <use href={sprite + "#time"} />
                   </svg>
-                  {article.publishedAt.slice(0, 10)}
+                  {article.pub_date.slice(0, 10)}
                 </p>
               </div>
             </NavLink>

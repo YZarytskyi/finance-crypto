@@ -25,27 +25,27 @@ const Article = () => {
   }
   return (
     <article className={style.selectedArticle}>
-      <h1 className={style.selectedArticleTitle}>{article.title}</h1>
+      <h1 className={style.selectedArticleTitle}>{article.headline.main}</h1>
       <p className={style.selectedArticleDate}>
         <svg className={style.iconTime}>
           <use href={sprite + "#time"} />
         </svg>
-        {article.publishedAt.slice(0, 10)}
-        {article.author && !article.author.startsWith("https")
-          ? `, Author: ${article.author}`
+        {article.web_url.slice(0, 10)}
+        {!article?.byline?.original?.startsWith("https")
+          ? `, Author: ${article.byline.original}`
           : ""}
       </p>
       <img
         className={style.selectedArticleImage}
-        src={article.urlToImage}
-        alt={article.title}
+        src={article.web_url}
+        alt={article.headline.main}
         onError={handleImageError}
       />
       <p className={style.selectedArticleBody}>
-        {article.content.slice(0, -14)}{" "}
+        {article.lead_paragraph}{" "}
         <a
           className={style.readMoreLink}
-          href={article.url}
+          href={article.web_url}
           target="_blank"
           rel="noopener noreferrer nofollow"
         >

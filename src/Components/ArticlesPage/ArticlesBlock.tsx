@@ -25,26 +25,26 @@ const ArticlesBlock = () => {
                 to={`/articles/${article.id}`}
                 className={style.allArticlesLink}
               >
-                {article.urlToImage && (
+                {article.web_url && (
                   <img
                     className={style.articlesImage}
                     loading="lazy"
-                    src={article.urlToImage}
-                    alt={article.title}
+                    src={article.web_url}
+                    alt={article.headline.main}
                     onError={handleImageError}
                   />
                 )}
                 <div className={style.articlesTitleDate}>
                   <p className={style.articleTitle}>
-                    {article.title.length > 76
-                      ? article.title.slice(0, 76) + "..."
-                      : article.title}
+                    {article.headline.main.length > 76
+                      ? article.headline.main.slice(0, 76) + "..."
+                      : article.headline.main}
                   </p>
                   <div className={style.articleDate}>
                     <svg className={style.iconTime}>
                       <use href={sprite + "#time"} />
                     </svg>
-                    {article.publishedAt.slice(0, 10)}
+                    {article.web_url.slice(0, 10)}
                   </div>
                 </div>
               </NavLink>
