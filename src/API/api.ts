@@ -289,9 +289,9 @@ export const articlesApi = {
   async getArticles() {
     try {
       const { data } = await axios.get(
-        `https://newsapi.org/v2/everything?language=en&excludeDomains=.ru&q=crypto OR taxes OR "Federal Reserve Board" OR finance&searchIn=title&sortBy=popularity&apiKey=3e357e40692a4ac29776579c9e6c6592`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=crypto&api-key=mScVMtCvTO7fBzSIQmgG1N6TAs3IXnic`
       );
-      return data.articles;
+      return data.response;
     } catch ({ message }) {
       Notify.failure(message as string, options);
     }
