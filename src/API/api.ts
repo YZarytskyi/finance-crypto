@@ -1,10 +1,19 @@
 import { Currencies } from "../Types/Types";
 import axios from "axios";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { INotifyOptions, Notify } from "notiflix/build/notiflix-notify-aio";
 
 interface getAllCurrenciesResult {
   symbol: string;
 }
+
+const options: INotifyOptions = {
+  width: '280px',
+  position: 'right-bottom',
+  timeout: 2500,
+  showOnlyTheLastOne: true,
+  clickToClose: true,
+  zindex: 4001,
+  }
 
 export const cryptoApi = {
   async getMarkets(page: number = 1) {
@@ -14,7 +23,7 @@ export const cryptoApi = {
       );
       return data;
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
 
@@ -29,7 +38,7 @@ export const cryptoApi = {
         );
         return data;
       } catch ({ message }) {
-        Notify.failure(message as string);
+        Notify.failure(message as string, options);
       }
     }
   },
@@ -41,7 +50,7 @@ export const cryptoApi = {
         );
         return data.description.en;
       } catch ({ message }) {
-        Notify.failure(message as string);
+        Notify.failure(message as string, options);
       }
     }
   },
@@ -52,7 +61,7 @@ export const cryptoApi = {
       );
       return data;
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
   async getGlobalData() {
@@ -62,7 +71,7 @@ export const cryptoApi = {
       );
       return data.data;
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
 };
@@ -233,7 +242,7 @@ export const arbitrageApi = {
         })
       )
       .catch(({ message }) => {
-        Notify.failure(message as string);
+        Notify.failure(message as string, options);
       });
   },
   getPairs(value1: string, value2: string, value3: string) {
@@ -271,7 +280,7 @@ export const arbitrageApi = {
         })
       )
       .catch(({ message }) => {
-        Notify.failure(message as string);
+        Notify.failure(message as string, options);
       });
   },
 };
@@ -284,7 +293,7 @@ export const articlesApi = {
       );
       return data.articles;
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
 };
@@ -309,7 +318,7 @@ export const converterApi = {
           return coin.symbol;
         });
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
   async getSelectedCoin(coinId: string) {
@@ -319,7 +328,7 @@ export const converterApi = {
       );
       return Number(data.price);
     } catch ({ message }) {
-      Notify.failure(message as string);
+      Notify.failure(message as string, options);
     }
   },
 };

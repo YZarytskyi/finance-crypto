@@ -1,7 +1,7 @@
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix';
 
 export const notifyInit = () => {
-  Notiflix.Notify.init({
+  Notify.init({
   width: '280px',
   position: 'left-top',
   distance: '3.8rem',

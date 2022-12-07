@@ -9,10 +9,9 @@ import { COOKIE_TOKEN_NAME, getCookie } from "./utils/cookie";
 import { useAppDispatch, useAppSelector } from "./Store/hooks";
 import { initializedSuccess } from "./Store/Reducers/appSlice";
 import { setIsAuth } from "./Store/Reducers/authSlice";
-import Home from "./Components/Home/Home";
 import { notifyInit } from "./utils/notify";
 
-// const Home = React.lazy(() => import("./Components/Home/Home"));
+const Home = React.lazy(() => import("./Components/Home/Home"));
 const Coins = React.lazy(() => import("./Components/Crypto/Coins/Coins"));
 const Exchanges = React.lazy(
   () => import("./Components/Crypto/Exchanges/Exchanges")
