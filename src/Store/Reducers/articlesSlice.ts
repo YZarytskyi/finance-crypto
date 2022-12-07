@@ -4,16 +4,16 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface ArticlesState {
   articles: Array<Articles>,
+  recentArticles: Array<Articles>,
   isLoadingArticles: boolean,
   total: number,
-  page: number,
 }
 
 const initialState: ArticlesState = {
   articles: [],
+  recentArticles: [],
   isLoadingArticles: false,
   total: 0,
-  page: 0,
 }
 
 interface Docs {
@@ -35,8 +35,7 @@ interface MyData {
   web_url: string,
   pub_date: string,
   byline: {original: string},
-  multimedia: Array<{legacy: {xlarge: string}}>,
-  
+  multimedia: Array<{url: string}>,
 }
 
 export interface Articles extends MyData {
@@ -50,6 +49,13 @@ export const fetchArticles = createAsyncThunk(
   }
 )
 
+export const fetchRecentArticles = createAsyncThunk(
+  'recentArticles/fetchAll', 
+  async (page: number) => {
+    return (await articlesApi.getArticles(page)) as Docs;
+  }
+)
+
 export const articlesSlice = createSlice({
   name: 'articles',
   initialState,
@@ -59,11 +65,22 @@ export const articlesSlice = createSlice({
         state.isLoadingArticles = true;
       })
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<Docs>) => {
-        console.log(action.payload)
         state.articles = action.payload.docs.map((article, index) => ({
               id: index + 1, ...article
           }));
+          if (!state.recentArticles.length) {
+            state.recentArticles = state.articles
+          }
         state.total = action.payload.meta.hits;
+        state.isLoadingArticles = false;
+      })
+      builder.addCase(fetchRecentArticles.pending, (state) => {
+        state.isLoadingArticles = true;
+      })
+      .addCase(fetchRecentArticles.fulfilled, (state, action: PayloadAction<Docs>) => {
+        state.recentArticles = action.payload.docs.map((article, index) => ({
+              id: index + 1, ...article
+          }));
         state.isLoadingArticles = false;
       })
   }

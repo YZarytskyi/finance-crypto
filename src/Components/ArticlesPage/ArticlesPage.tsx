@@ -24,8 +24,8 @@ const ArticlesPage = () => {
     <>
       <section className={style.heading}>
         <div className={style.headingContainer}>
-          <NavLink to={`${articles[14].id}`} className={style.mainTitle}>
-            <p>{articles[14]?.headline.main}</p>
+          <NavLink to={`${articles[9].id}`} className={style.mainTitle}>
+            <p>{articles[9]?.headline.main}</p>
           </NavLink>
           <BottomList />
           <TopArticles />
@@ -47,7 +47,7 @@ const BottomList = () => {
           <NavLink to={`${article.id}`} className={style.bottomListLink}>
             <img
               className={style.bottomListImage}
-              src={article.web_url}
+              src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
               alt={article.headline.main}
               onError={handleImageError}
             />
@@ -65,12 +65,12 @@ const TopArticles = () => {
     <div className={style.rightBlock}>
       <h2 className={style.rightListTitle}>Top Articles</h2>
       <ul className={style.rightList}>
-        {articles.slice(15, 27).map((article) => (
+        {articles.slice(0, 11).map((article) => (
           <li key={article.id}>
             <NavLink to={`${article.id}`} className={style.rightListLink}>
               <img
                 className={style.rightListArticleImage}
-                src={article.web_url}
+                src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
                 alt={article.headline.main}
                 onError={handleImageError}
               />

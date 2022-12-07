@@ -1,39 +1,43 @@
 import style from "./Articles.module.scss";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../Store/hooks";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import sprite from "../../assets/images/icons.svg";
 import TablePagination from "../Common/TablePagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleImageError } from "../Home/Articles";
+import { fetchRecentArticles } from "../../Store/Reducers/articlesSlice";
 
 const ArticlesBlock = () => {
-  const articles = useAppSelector((state) => state.articles.articles);
-  const [page, setPage] = useState<number>(1);
-  const articlesPerPage: number = 12;
-  const countArticles = Math.ceil(articles.length / articlesPerPage);
-  const sliceFrom = (page - 1) * articlesPerPage;
-  const sliceTo = articlesPerPage * page;
+  const {recentArticles, total} = useAppSelector((state) => state.articles);
+  const dispatch = useAppDispatch();
+
+  const [page, setPage] = useState<number>(0);
+  const articlesPerPage: 10 = 10;
+  let totalPages = Math.ceil(total / articlesPerPage)
+  totalPages = totalPages > 100 ? 100 : totalPages;
+
+  useEffect(() => {
+    dispatch(fetchRecentArticles(page))
+  }, [page])
 
   return (
     <section className={style.allArticles}>
       <div className="container">
         <h2 className={style.allArticlesTitle}>Recent Articles</h2>
         <ul className={style.articlesBlock}>
-          {articles.slice(sliceFrom, sliceTo).map((article) => (
+          {recentArticles.map((article) => (
             <li key={article.id}>
               <NavLink
                 to={`/articles/${article.id}`}
                 className={style.allArticlesLink}
               >
-                {article.web_url && (
-                  <img
-                    className={style.articlesImage}
-                    loading="lazy"
-                    src={article.web_url}
-                    alt={article.headline.main}
-                    onError={handleImageError}
-                  />
-                )}
+                <img
+                  className={style.articlesImage}
+                  loading="lazy"
+                  src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
+                  alt={article.headline.main}
+                  onError={handleImageError}
+                />
                 <div className={style.articlesTitleDate}>
                   <p className={style.articleTitle}>
                     {article.headline.main.length > 76
@@ -44,7 +48,7 @@ const ArticlesBlock = () => {
                     <svg className={style.iconTime}>
                       <use href={sprite + "#time"} />
                     </svg>
-                    {article.web_url.slice(0, 10)}
+                    {article.pub_date.slice(0, 10)}
                   </div>
                 </div>
               </NavLink>
@@ -53,9 +57,9 @@ const ArticlesBlock = () => {
         </ul>
         <div className={style.paginationArticlesBlock}>
           <TablePagination
-            page={page}
+            page={page + 1}
             setPage={setPage}
-            count={countArticles}
+            count={totalPages}
           />
         </div>
       </div>

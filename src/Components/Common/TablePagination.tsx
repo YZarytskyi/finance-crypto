@@ -9,7 +9,7 @@ interface TablePaginationProps {
 
 const TablePagination: React.FC<TablePaginationProps> = ({page, setPage, count}) => {
   const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
-    setPage(page)
+    setPage(page - 1)
   }
   return (
       <Pagination count={count} shape="rounded" page={page} onChange={handleChange} style={{marginBottom: 15}}/>

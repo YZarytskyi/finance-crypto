@@ -26,7 +26,7 @@ const ArticlesRight = () => {
             >
               <div className={style.articlesRightImg}>
                 <img
-                  src={article.web_url}
+                  src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
                   alt={article.headline.main}
                   onError={handleImageError}
                 />

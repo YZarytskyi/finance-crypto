@@ -12,7 +12,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
     display: none;
   }
   .headingContainer {
-    max-width: 1320px;
+    max-width: 1600px;
     height: 100%;
     margin: 0 auto;
     padding: 0 50px;
@@ -78,12 +78,14 @@ $bg-main: rgba(0, 0, 0, 0.65);
           }
         }
         .rightListLink {
-          display: flex;
+          display: grid;
+          grid-template-columns: 3.5rem 1fr;
+          grid-template-rows: 3.5rem;
           gap: 1.2rem;
           align-items: center;
           .rightListArticleImage {
-            width: 3.9vw;
-            height: 3.9vw;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             border-radius: 50%;
           }
@@ -130,8 +132,13 @@ $bg-main: rgba(0, 0, 0, 0.65);
       background-color: rgba(90, 90, 90, 0.1);
       border: 1px solid rgb(94, 94, 94, 0.2);
       .articlesImage {
+        max-height: 12rem;
         flex-grow: 1;
         object-fit: cover;
+        @media (max-width: 576px) {
+          flex-grow: 0;
+          max-height: 20rem;
+        }
       }
       .articlesTitleDate {
         padding: 0.7rem;

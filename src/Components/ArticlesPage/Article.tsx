@@ -30,14 +30,14 @@ const Article = () => {
         <svg className={style.iconTime}>
           <use href={sprite + "#time"} />
         </svg>
-        {article.web_url.slice(0, 10)}
+        {article.pub_date.slice(0, 10)}
         {!article?.byline?.original?.startsWith("https")
-          ? `, Author: ${article.byline.original}`
+          ? `, Author: ${article.byline.original.slice(3)}`
           : ""}
       </p>
       <img
         className={style.selectedArticleImage}
-        src={article.web_url}
+        src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
         alt={article.headline.main}
         onError={handleImageError}
       />
