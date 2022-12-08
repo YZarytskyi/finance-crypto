@@ -6,7 +6,7 @@ import { handleImageError } from "./Articles";
 
 const ArticlesRight = () => {
   const articles = useAppSelector((state) => state.articles.articles);
-
+  
   return (
     <section className={style.articlesRight}>
       <NavLink to="/articles">

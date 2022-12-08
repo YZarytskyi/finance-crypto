@@ -16,7 +16,7 @@ const initialState: ArticlesState = {
   total: 0,
 }
 
-interface Docs {
+export interface Docs {
   docs: Array<MyData>,
   meta: Meta
 }
