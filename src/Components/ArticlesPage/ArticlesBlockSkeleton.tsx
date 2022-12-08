@@ -26,9 +26,7 @@ export const ArticlesBlockSkeleton = () => {
 function Block() {
   return (
     <li className={style.allArticlesLink}>
-      <div className={style.articlesImage}>
-        <Skeleton height={"12rem"} width={"100%"} />
-      </div>
+      <Skeleton className={style.articlesImage} />
       <div className={style.articlesTitleDate}>
         <Skeleton height={"1rem"} width={"100%"} />
         <Skeleton height={"1rem"} width={"100%"} />
