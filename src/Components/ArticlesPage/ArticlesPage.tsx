@@ -24,8 +24,8 @@ const ArticlesPage = () => {
     <>
       <section className={style.heading}>
         <div className={style.headingContainer}>
-          <NavLink to={`${articles[9].id}`} className={style.mainTitle}>
-            <p>{articles[9]?.headline.main}</p>
+          <NavLink to={`${articles[1].id}`} className={style.mainTitle}>
+            <p>{articles[1].headline.main}</p>
           </NavLink>
           <BottomList />
           <TopArticles />

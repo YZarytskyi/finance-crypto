@@ -15,7 +15,7 @@ const ArticlesBlock = () => {
   const dispatch = useAppDispatch();
   const articlesTitle = useRef<HTMLHeadingElement>(null);
 
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
   const articlesPerPage: 10 = 10;
   let totalPages = Math.ceil(total / articlesPerPage);
   totalPages = totalPages > 100 ? 100 : totalPages;
