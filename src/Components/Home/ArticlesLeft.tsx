@@ -31,7 +31,7 @@ const ArticlesLeft = () => {
                   onError={handleImageError}
                 />
               </div>
-              <p>{article.headline.main.slice(0, 40)}...</p>
+              <p>{article.headline.main.slice(0, 50)}...</p>
               <p
                 style={{
                   display: "flex",
