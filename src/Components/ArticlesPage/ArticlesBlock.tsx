@@ -13,7 +13,7 @@ const ArticlesBlock = () => {
     (state) => state.articles
   );
   const dispatch = useAppDispatch();
-  const articlesTitle = useRef<HTMLHeadingElement>(null);
+  const articlesTitleRef = useRef<HTMLHeadingElement>(null);
 
   const [page, setPage] = useState<number>(0);
   const articlesPerPage: 10 = 10;
@@ -27,7 +27,7 @@ const ArticlesBlock = () => {
   return (
     <section className={style.allArticles}>
       <div className="container">
-        <h2 className={style.allArticlesTitle} ref={articlesTitle}>Articles</h2>
+        <h2 className={style.allArticlesTitle} ref={articlesTitleRef}>Articles</h2>
 
         {isLoadingArticles ? (
           <ArticlesBlockSkeleton />
@@ -70,7 +70,8 @@ const ArticlesBlock = () => {
             page={page + 1}
             setPage={setPage}
             count={totalPages}
-            articlesTitle={articlesTitle}
+            ref={articlesTitleRef}
+            articles
           />
         </div>
       </div>

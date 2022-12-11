@@ -1,5 +1,5 @@
 import style from "./Coins.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Table from "react-bootstrap/Table";
 import CoinsTableBody from "./CoinsTableBody";
 import TablePagination from "../../Common/TablePagination";
@@ -9,7 +9,7 @@ import NavCrypto from "../NavCrypto";
 import { CryptoSkeleton } from "../CryptoSkeleton";
 
 const Coins = () => {
-  const isLoading = useAppSelector((state) => state.crypto.isLoadingCrypto);
+  let isLoading = useAppSelector((state) => state.crypto.isLoadingCrypto);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const countCoins: number = 50;
@@ -21,9 +21,10 @@ const Coins = () => {
   return (
     <>
       <NavCrypto />
-        {isLoading 
-        ? <CryptoSkeleton /> 
-        : <section className={`${style.table} ${style.tableCoins}`}> 
+      {isLoading ? (
+        <CryptoSkeleton />
+      ) : (
+        <section className={`${style.table} ${style.tableCoins}`}>
           <h1 className="hidden">Cryptocurrencies</h1>
           <Table hover variant="dark">
             <thead>
@@ -43,11 +44,11 @@ const Coins = () => {
               <CoinsTableBody />
             </tbody>
           </Table>
-          </section>
-        }
-        <div className={style.pagination}>
-          <TablePagination page={page} setPage={setPage} count={countCoins} />
-        </div>
+        </section>
+      )}
+      <div className={style.pagination}>
+        <TablePagination page={page} setPage={setPage} count={countCoins} />
+      </div>
     </>
   );
 };
