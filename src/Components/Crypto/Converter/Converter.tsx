@@ -51,6 +51,9 @@ const Converter = () => {
   }, [coin.pair]);
 
   useEffect(() => {
+    if(!value) {
+      setValue(1);
+    }
     setConvertedValue(price && value ? price * value : "");
     return () => setConvertedValue("");
   }, [price]);

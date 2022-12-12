@@ -10,6 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { CryptoSkeleton } from "../CryptoSkeleton";
+import { Notify } from "notiflix";
 
 const Coins = () => {
   const { isLoadingCrypto, markets } = useAppSelector((state) => state.crypto);
@@ -24,8 +25,8 @@ const Coins = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputValue = e.currentTarget.searchQuery?.value?.trim().toLowerCase();
-    console.log(inputValue)
     if (!inputValue) {
+      dispatch(fetchMarkets(page));
       return
     }
     dispatch(fetchCoinsByQuery(inputValue));

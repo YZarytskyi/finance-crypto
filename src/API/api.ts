@@ -44,6 +44,11 @@ export const cryptoApi = {
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/search?query=${query}`
       );
+      console.log(data)
+      if (!data.coins.length) {
+        Notify.failure('Coins not found');
+        return;
+      }
       const arrId = data.coins.map((coin: CoinByQuery) => {
         return coin.id
       });

@@ -39,7 +39,7 @@ export const fetchMarkets = createAsyncThunk(
 export const fetchCoinsByQuery = createAsyncThunk(
   'coinsByQuery/fetch',
   async (query: string) => {
-    return (await cryptoApi.getCoinsByQuery(query)) as Array<Markets>;
+    return (await cryptoApi.getCoinsByQuery(query)) as Array<Markets> | undefined;
   }
 )
 export const fetchCoinDescription = createAsyncThunk(
@@ -103,7 +103,9 @@ export const cryptoSlice = createSlice({
       state.isLoadingCrypto = true;
       })
       .addCase(fetchCoinsByQuery.fulfilled, (state, action) => {
-      state.markets = action.payload;
+      if (action.payload) {
+        state.markets = action.payload;
+      }
       state.isLoadingCrypto = false;
       })  
     builder.addCase(fetchCoinDescription.fulfilled, (state, action) => {
