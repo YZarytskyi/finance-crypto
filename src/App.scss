@@ -8,6 +8,7 @@ html {
   scroll-behavior: smooth;
   body {
     @extend %initial;
+    @extend %bg;
     margin: 0;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -17,7 +18,6 @@ html {
     -moz-osx-font-smoothing: grayscale;
     font-size: 1rem;
     color: $color-main;
-    background: inherit;
     overflow-x: hidden;
     overflow-y: scroll;
     &.overflow {

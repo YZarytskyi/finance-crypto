@@ -46,9 +46,8 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
       deleteCookie(COOKIE_TOKEN_NAME);
       dispatch(setIsAuth(false));
       Notify.success("You logged out successfully");
-    } catch (error: any) {
-      console.log(error);
-      Notify.failure(error.message);
+    } catch ({message}) {
+      Notify.failure(message as string);
     }
   };
 

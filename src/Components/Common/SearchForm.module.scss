@@ -1,0 +1,77 @@
+@import "../../variables.scss";
+
+.searchForm {
+  display: flex;
+  align-items: center;
+
+  .searchContainer {
+    position: relative;
+    min-width: 13rem;
+    width: 95%;
+    border-radius: 25px;
+    position: relative;
+    border: none;
+
+    > input {
+      width: 100%;
+      padding: 8px 15px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      background-color: rgb(31, 31, 31);
+      color: rgb(240, 240, 240);
+      font-size: 1rem;
+      line-height: 1;
+      
+      @media screen and (max-width: 767px) {
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        background-color: rgb(37, 36, 36);
+      }
+      &:focus {
+        background-color: rgb(27, 27, 27);
+      }
+    }
+
+    > button {
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      height: 70%;
+      padding: 0.2rem 0.8rem;
+      background-color: transparent;
+      cursor: pointer;
+      transform: translateY(-55%);
+
+      > svg {
+        fill: rgb(240, 240, 240);
+      }
+    }
+  }
+}
+
+.searchList {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 90%;
+  border-radius: 0.5rem;
+  border: 1px solid $color-accent;
+  background-color: $bg-color-main;
+  font-weight: 500;
+  transform: translate(-50%, 101%);
+
+  @media screen and (max-width: 767px) {
+    font-size: 0.9rem;
+  }
+
+  > li {
+    padding: 0.7rem 1.5rem;
+    text-align: left;
+    &:not(:last-child) {
+     border-bottom: 1px solid rgb(63, 63, 63);
+    }
+  }
+}

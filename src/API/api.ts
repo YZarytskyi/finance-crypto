@@ -6,7 +6,7 @@ interface getAllCurrenciesResult {
   symbol: string;
 }
 
-const options: INotifyOptions = {
+export const notifyOptions: INotifyOptions = {
   width: '280px',
   position: 'right-bottom',
   timeout: 2500,
@@ -23,11 +23,11 @@ export const cryptoApi = {
       );
       return data;
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
 
-  async getMarkets(page: number = 1, arrId?: string[]) {
+  async getMarkets(page: number, arrId?: string[]) {
 
     try {
       const { data } = await axios.get(
@@ -35,7 +35,29 @@ export const cryptoApi = {
       );
       return data;
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
+    }
+  },
+  
+  async getExchanges(page: number, id?: string) {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`, {params: id && {id: id}}
+      );
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message as string, notifyOptions);
+    }
+  },
+
+  async getExchangesList(id?: string) {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/exchanges/${id ? id : 'list'}`,
+      );
+      return id ? {id, ...data} : data.slice(0,5);
+    } catch ({ message }) {
+      Notify.failure(message as string, notifyOptions);
     }
   },
 
@@ -44,9 +66,8 @@ export const cryptoApi = {
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/search?query=${query}`
       );
-      console.log(data)
       if (!data.coins.length) {
-        Notify.failure('Coins not found');
+        Notify.failure('Coins not found', notifyOptions);
         return;
       }
       const arrId = data.coins.map((coin: CoinByQuery) => {
@@ -54,10 +75,10 @@ export const cryptoApi = {
       });
       return this.getMarkets(1, arrId)
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
-
+  
   async getSelectedCoinMarketChart(
     coinId: string | undefined,
     days: number | "max"
@@ -69,7 +90,7 @@ export const cryptoApi = {
         );
         return data;
       } catch ({ message }) {
-        Notify.failure(message as string, options);
+        Notify.failure(message as string, notifyOptions);
       }
     }
   },
@@ -81,18 +102,8 @@ export const cryptoApi = {
         );
         return data.description.en;
       } catch ({ message }) {
-        Notify.failure(message as string, options);
+        Notify.failure(message as string, notifyOptions);
       }
-    }
-  },
-  async getExchanges(page: number) {
-    try {
-      const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`
-      );
-      return data;
-    } catch ({ message }) {
-      Notify.failure(message as string, options);
     }
   },
   async getGlobalData() {
@@ -102,7 +113,7 @@ export const cryptoApi = {
       );
       return data.data;
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
 };
@@ -273,7 +284,7 @@ export const arbitrageApi = {
         })
       )
       .catch(({ message }) => {
-        Notify.failure(message as string, options);
+        Notify.failure(message as string, notifyOptions);
       });
   },
   getPairs(value1: string, value2: string, value3: string) {
@@ -311,7 +322,7 @@ export const arbitrageApi = {
         })
       )
       .catch(({ message }) => {
-        Notify.failure(message as string, options);
+        Notify.failure(message as string, notifyOptions);
       });
   },
 };
@@ -324,7 +335,7 @@ export const articlesApi = {
       );
       return data.response;
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
 };
@@ -349,7 +360,7 @@ export const converterApi = {
           return coin.symbol;
         });
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
   async getSelectedCoin(coinId: string) {
@@ -359,7 +370,7 @@ export const converterApi = {
       );
       return Number(data.price);
     } catch ({ message }) {
-      Notify.failure(message as string, options);
+      Notify.failure(message as string, notifyOptions);
     }
   },
 };

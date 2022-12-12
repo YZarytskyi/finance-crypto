@@ -3,9 +3,6 @@
 .tableExchanges {
   th:nth-child(1) {
     padding: 0 1.3rem;
-  }  
-  th:nth-child(2) {
-    padding: 0 4.5rem;
   }
   th:nth-child(3) {
     padding: 0 2.3rem;
@@ -27,6 +24,7 @@
     > div {
       display: flex;
       align-items: center;
+      text-align: left;
       font-weight: 500;
       > a:first-child {
         width: 2.5rem;
