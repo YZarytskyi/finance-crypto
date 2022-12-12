@@ -167,11 +167,11 @@ export const cryptoSlice = createSlice({
       });
 
     builder.addCase(fetchExchangeById.pending, (state) => {
-        state.isLoadingExchangesList = true;
+        state.isLoadingCrypto = true;
       })
       .addCase(fetchExchangeById.fulfilled, (state, action) => {
         state.exchanges = [action.payload];
-        state.isLoadingExchangesList = false;
+        state.isLoadingCrypto = false;
       });      
 
     builder.addCase(fetchGlobalData.fulfilled, (state, action) => {

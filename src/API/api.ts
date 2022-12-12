@@ -55,7 +55,7 @@ export const cryptoApi = {
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/exchanges/${id ? id : 'list'}`,
       );
-      return id ? {id, ...data} : data.slice(0,5);
+      return id ? {id, ...data} : data;
     } catch ({ message }) {
       Notify.failure(message as string, notifyOptions);
     }

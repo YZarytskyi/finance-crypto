@@ -1,5 +1,5 @@
 import style from "./SearchForm.module.scss";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import {
   fetchCoinsByQuery,
@@ -15,29 +15,84 @@ interface SearchFormProps {
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ page, fetch, component }) => {
-  const { exchangesList } = useAppSelector((state) => state.crypto);
+  const { exchangesList, isLoadingExchangesList } = useAppSelector(
+    (state) => state.crypto
+  );
   const dispatch = useAppDispatch();
   const listRef = useRef<HTMLUListElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [showList, setShowList] = useState<boolean>(false);
+  const [filterExchangesList, setFilterExchangesList] = useState<
+    {
+      id: string;
+      name: string;
+    }[]
+  >([]);
 
-  const onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (component === "exchanges") {
-      dispatch(fetchExchangesList());
-      setShowList(true);
+  useEffect(() => {
+    setFilterExchangesList(exchangesList.slice(0, 5));
+  }, [exchangesList]);
+
+  useEffect(() => {
+    if (!filterExchangesList?.length) {
+      setFilterExchangesList([{ id: "error", name: "Exchanges not found" }]);
+    }
+  }, [filterExchangesList]);
+
+  useEffect(() => {
+    if (showList) {
+      document.body.addEventListener("mousedown", onClickCloseList);
+    }
+
+    return () =>
+      document.body.removeEventListener("mousedown", onClickCloseList);
+  }, [showList]);
+
+  const onClickCloseList = (e: MouseEvent) => {
+    if ((e.target as Element).parentNode !== listRef.current) {
+      setShowList(false);
     }
   };
 
-  const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    // if (e.target === listRef.current) {
-      // return
-    // }
-    // setShowList(false);
+  const onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (component === "exchanges") {
+      if (!exchangesList.length) {
+        dispatch(fetchExchangesList());
+      } else {
+        setFilterExchangesList(
+          exchangesList
+            .filter((el) =>
+              el.name
+                .toLowerCase()
+                .includes(e.target.value.toLowerCase().trim())
+            )
+            .slice(0, 5)
+        );
+      }
+      setShowList(true);
+    }
   };
 
   const onListItemClick = (e: any) => {
     const id = e.target.dataset.id;
     dispatch(fetchExchangeById(id));
+    if (inputRef.current) {
+      inputRef.current.value = e.target.textContent;
+    }
     setShowList(false);
+  };
+
+  const onInputChange = (e: React.FormEvent<HTMLFormElement>) => {
+    const value = (e.target as HTMLInputElement).value?.trim().toLowerCase();
+    if (value) {
+      setFilterExchangesList(
+        exchangesList
+          .filter((el) => el.name.toLowerCase().includes(value))
+          .slice(0, 5)
+      );
+    } else {
+      setFilterExchangesList(exchangesList.slice(0, 5));
+    }
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +109,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ page, fetch, component }) => {
   };
 
   return (
-    <form className={style.searchForm} onSubmit={(e) => onSubmit(e)}>
+    <form
+      className={style.searchForm}
+      onSubmit={(e) => onSubmit(e)}
+      onChange={(e) => onInputChange(e)}
+    >
       <div className={style.searchContainer}>
         <input
           type="text"
@@ -62,7 +121,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ page, fetch, component }) => {
           placeholder="Coin"
           name="searchQuery"
           onFocus={(e) => onInputFocus(e)}
-          onBlur={(e) => onInputBlur(e)}
+          ref={inputRef}
         />
         <button type="submit">
           <svg
@@ -75,12 +134,22 @@ const SearchForm: React.FC<SearchFormProps> = ({ page, fetch, component }) => {
           </svg>
         </button>
         {showList && (
-          <ul className={style.searchList} onClick={(e) => onListItemClick(e)} ref={listRef}>
-            {exchangesList.map((el) => (
-              <li key={el.id} data-id={el.id}>
-                {el.name}
-              </li>
-            ))}
+          <ul
+            className={style.searchList}
+            onClick={(e) => onListItemClick(e)}
+            ref={listRef}
+          >
+            {isLoadingExchangesList ? (
+              <li>Loading...</li>
+            ) : (
+              <>
+                {filterExchangesList.map((el) => (
+                  <li key={el.id} data-id={el.id}>
+                    {el.name}
+                  </li>
+                ))}
+              </>
+            )}
           </ul>
         )}
       </div>
