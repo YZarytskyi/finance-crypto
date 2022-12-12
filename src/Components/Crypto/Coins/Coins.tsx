@@ -1,7 +1,7 @@
 import style from "./Coins.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import CoinsTableBody from "./CoinsTableBody";
+import CoinsTableBodyItem from "./CoinsTableBodyItem";
 import TablePagination from "../../Common/TablePagination";
 import { fetchMarkets } from "../../../Store/Reducers/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
@@ -9,7 +9,7 @@ import NavCrypto from "../NavCrypto";
 import { CryptoSkeleton } from "../CryptoSkeleton";
 
 const Coins = () => {
-  let isLoading = useAppSelector((state) => state.crypto.isLoadingCrypto);
+  const { isLoadingCrypto, markets } = useAppSelector((state) => state.crypto);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const countCoins: number = 50;
@@ -21,7 +21,7 @@ const Coins = () => {
   return (
     <>
       <NavCrypto />
-      {isLoading ? (
+      {isLoadingCrypto ? (
         <CryptoSkeleton />
       ) : (
         <section className={`${style.table} ${style.tableCoins}`}>
@@ -41,7 +41,9 @@ const Coins = () => {
               </tr>
             </thead>
             <tbody>
-              <CoinsTableBody />
+            {markets.map((coin) => (
+              <CoinsTableBodyItem coin={coin}/>
+            ))}
             </tbody>
           </Table>
         </section>

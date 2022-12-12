@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Exchanges, GlobalData, Markets, MarketsTime, SelectedCoinMarketChart } from "../../Types/Types";
 
 const initialState: InitialState = {
+  marketsHome: [],
   markets: [],
   isLoadingCrypto: false,
   marketsTime: {},
@@ -13,6 +14,7 @@ const initialState: InitialState = {
 }
 
 interface InitialState {
+  marketsHome: Array<Markets>;
   markets: Array<Markets>;
   isLoadingCrypto: boolean;
   marketsTime: MarketsTime;
@@ -22,7 +24,12 @@ interface InitialState {
   coinDescription: string | null;
 }
 
-
+export const fetchMarketsHome = createAsyncThunk(
+  'marketsHome/fetch',
+  async () => {
+    return (await cryptoApi.getMarketsHome()) as Array<Markets>;
+  }
+)
 export const fetchMarkets = createAsyncThunk(
   'markets/fetch',
   async (page?: number) => {
@@ -72,6 +79,13 @@ export const cryptoSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchMarketsHome.pending, (state) => {
+      state.isLoadingCrypto = true;
+      })
+      .addCase(fetchMarketsHome.fulfilled, (state, action) => {
+      state.marketsHome = action.payload;
+      state.isLoadingCrypto = false;
+      })
     builder.addCase(fetchMarkets.pending, (state) => {
       state.isLoadingCrypto = true;
       })

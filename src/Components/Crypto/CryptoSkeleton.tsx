@@ -6,7 +6,7 @@ export const CryptoSkeleton = () => {
   return (
     <>
       <SkeletonTheme baseColor="#2c2b2b" highlightColor="#4d4d4d">
-        <div className={style.table} style={{marginBottom: -17, marginTop: -1}}>
+        <div className={style.table} style={{marginBottom: -17, marginTop: 13}}>
           <div>
            <Skeleton height={50} width={'100%'} />
           </div>

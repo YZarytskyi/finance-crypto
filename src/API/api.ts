@@ -16,10 +16,21 @@ const options: INotifyOptions = {
   }
 
 export const cryptoApi = {
+  async getMarketsHome() {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20ripple%2C%20dogecoin%2C%20cardano%2C%20polkadot&order=market_cap_desc&per_page=6&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+      );
+      return data;
+    } catch ({ message }) {
+      Notify.failure(message as string, options);
+    }
+  },
+
   async getMarkets(page: number = 1) {
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
       return data;
     } catch ({ message }) {
@@ -57,7 +68,7 @@ export const cryptoApi = {
   async getExchanges(page: number) {
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/exchanges?per_page=15&page=${page}`
+        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`
       );
       return data;
     } catch ({ message }) {
