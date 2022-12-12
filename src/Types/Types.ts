@@ -85,6 +85,16 @@ export interface Markets {
   price_change_percentage_7d_in_currency: number;
 }
 
+export interface CoinByQuery {
+  id: string;
+  name: string;
+  api_symbol: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  large: string;
+}
+
 export interface Pairs {
   symbol: string;
   ask: string;

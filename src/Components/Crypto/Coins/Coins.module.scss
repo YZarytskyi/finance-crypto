@@ -39,8 +39,6 @@
     }
     th:nth-child(2) {
       text-align: left;
-      padding-left: 2.5rem;
-      padding-right: 8rem;
     }
     th:nth-child(3) {
       text-align: right;
@@ -74,7 +72,7 @@
         margin-left: 0.8rem;
         font-size: 0.95rem;
       }
-      p:nth-child(3) {
+      span {
         margin-left: 0.4rem;
         font-size: 0.8rem;
         color: $color-secondary;
@@ -82,6 +80,9 @@
     }
     td {
       padding: 0.2rem !important;
+    }
+    td:nth-child(2) {
+      text-align: left;
     }
     td:nth-child(3) {
       text-align: right;
@@ -107,4 +108,50 @@
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+}
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .searchContainer {
+    border-radius: 25px;
+    position: relative;
+    border: none;
+
+    > input {
+      width: 250px;
+      padding: 8px 15px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      background-color: rgb(31, 31, 31);
+      color: rgb(240, 240, 240);
+      font-size: 1rem;
+      line-height: 1;
+
+      &:hover {
+        background-color: rgb(37, 36, 36);
+      }
+      &:focus {
+        background-color: rgb(27, 27, 27);
+      }
+    }
+
+    > button {
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      height: 70%;
+      padding: 0.2rem 0.8rem;
+      background-color: transparent;
+      cursor: pointer;
+      transform: translateY(-55%);
+
+      > svg {
+        fill: rgb(240, 240, 240);
+      }
+    }
+  }
 }

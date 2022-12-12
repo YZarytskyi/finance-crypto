@@ -15,13 +15,15 @@ const CoinsTableBodyItem: React.FC<CoinsTableBodyItemProps> = ({ coin }) => {
   };
 
   return (
-    <tr key={coin.id}>
+    <tr>
       <td>{coin.market_cap_rank}</td>
       <td>
         <NavLink to={`/crypto/coins/${coin.id}`} className={style.link}>
           <img src={coin.image} alt={coin.name} height={30} width={30} />
-          <p>{coin.name}</p>
-          <p>{coin.symbol.toUpperCase()}</p>
+          <p>
+            {coin.name}
+            <span>{coin.symbol.toUpperCase()}</span>
+          </p>
         </NavLink>
       </td>
       <td>{removeFloatNull(coin.current_price)} $</td>

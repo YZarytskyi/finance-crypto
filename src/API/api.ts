@@ -1,4 +1,4 @@
-import { Currencies } from "../Types/Types";
+import { CoinByQuery, Currencies } from "../Types/Types";
 import axios from "axios";
 import { INotifyOptions, Notify } from "notiflix/build/notiflix-notify-aio";
 
@@ -27,12 +27,27 @@ export const cryptoApi = {
     }
   },
 
-  async getMarkets(page: number = 1) {
+  async getMarkets(page: number = 1, arrId?: string[]) {
+
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`, {params: arrId && {ids: arrId.join(',')}}
       );
       return data;
+    } catch ({ message }) {
+      Notify.failure(message as string, options);
+    }
+  },
+
+  async getCoinsByQuery(query: string) {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/search?query=${query}`
+      );
+      const arrId = data.coins.map((coin: CoinByQuery) => {
+        return coin.id
+      });
+      return this.getMarkets(1, arrId)
     } catch ({ message }) {
       Notify.failure(message as string, options);
     }
