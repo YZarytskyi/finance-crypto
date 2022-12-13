@@ -29,6 +29,7 @@ const Coins = () => {
             <tr>
               <th>#</th>
               <th>
+                Coin
                 {/* <SearchForm
                   page={page}
                   fetch={fetchMarkets}

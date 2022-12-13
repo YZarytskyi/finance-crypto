@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import AuthButtons from "./AuthButtons";
 import Auth from "../Auth/ModalAuth";
 import { useAppSelector } from "../../Store/hooks";
+import SearchForm from "../Common/SearchForm";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -58,6 +59,7 @@ const MobileNav = () => {
         >
           {isMenuOpen ? closeIcon : hamburgerIcon}
         </div>
+        <SearchForm />
         <NavLink
           to="/"
           className={style.linkLogo}

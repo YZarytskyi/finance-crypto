@@ -29,13 +29,13 @@ header {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 5rem;
+    grid-template-columns: 1fr 6rem;
   }
 }
 
 .mobileNav {
   display: grid;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 4rem 2rem 1fr;
   align-items: center;
   .mobileToggleIcons {
     height: 100%;

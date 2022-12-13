@@ -30,6 +30,7 @@ const Exchanges = () => {
             <tr>
               <th>#</th>
               <th>
+                Exchange
                 {/* <SearchForm
                   page={page}
                   fetch={fetchExchanges}

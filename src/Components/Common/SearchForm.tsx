@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { cryptoApi } from "../../API/api";
 import { debounce } from "@mui/material";
 import { Link } from "react-router-dom";
+import sprite from "../../assets/images/icons.svg";
 
 const SearchForm = () => {
-  // const inputRef = useRef<HTMLInputElement>(null);
   const [showList, setShowList] = useState<boolean>(false);
   const [data, setData] = useState<any>({});
 
@@ -24,7 +24,12 @@ const SearchForm = () => {
     }
   };
 
-  const onInputFocus = async (e: React.FocusEvent<HTMLInputElement>) => {
+  const onLinkClick = () => {
+    setShowList(false);
+  };
+
+  const onSearchOpen = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     setShowList(true);
   };
 
@@ -49,42 +54,37 @@ const SearchForm = () => {
       <div className={style.searchContainer}>
         <input
           type="text"
-          className={style.inputCoin}
+          className={style.inputData}
           placeholder="Search"
-          onFocus={(e) => onInputFocus(e)}
+          onFocus={onSearchOpen}
         />
-        <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        <button className={style.searchBtn} onClick={(e) => onSearchOpen(e)}>
+          <svg className={style.searchIcon}>
+            <use href={sprite + "#search"} />
           </svg>
         </button>
       </div>
 
       {showList && (
         <div className={style.searchContainerOut} id="searchAbsolute">
+          <button className={style.closeBtn} onClick={onLinkClick}>
+            <svg className={style.iconClose}>
+              <use href={sprite + "#modal_close"} />
+            </svg>
+          </button>
           <form onChange={(e) => onInputChange(e)}>
             <div className={style.searchContainer}>
               <input
                 type="text"
-                className={style.inputCoin}
+                className={style.inputData}
                 placeholder="Search"
                 name="searchQuery"
                 onFocus={(e) => onFormInputFocus(e)}
                 autoFocus
               />
-              <button type="submit">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              <button type="submit" className={style.searchBtn}>
+                <svg className={style.searchIcon}>
+                  <use href={sprite + "#search"} />
                 </svg>
               </button>
             </div>
@@ -99,14 +99,22 @@ const SearchForm = () => {
                     {data.coins?.length ? (
                       data.coins.map((el: any) => (
                         <li key={el.id}>
-                          <Link to={"/"} className={style.listLink}>
+                          <Link
+                            to={`crypto/coins/${el.id}`}
+                            onClick={onLinkClick}
+                            className={style.listLink}
+                          >
                             <img
                               src={el.thumb}
                               alt={el.name}
                               className={style.itemImage}
                             />
-                            <p>{el.name}<span className={style.itemSymbol}>{el.symbol}</span></p>
-                            
+                            <p>
+                              {el.name}
+                              <span className={style.itemSymbol}>
+                                {el.symbol}
+                              </span>
+                            </p>
                           </Link>
                         </li>
                       ))
