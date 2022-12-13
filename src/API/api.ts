@@ -78,6 +78,22 @@ export const cryptoApi = {
       Notify.failure(message as string, notifyOptions);
     }
   },
+
+  async getSearchDataByQuery(query: string = "") {
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/search?query=${query}`
+      );
+      if (!data.coins.length && !data.exchanges.length) {
+        return {coins: [], exchanges: []}
+      }
+      const coins = data.coins.slice(0,6);
+      const exchanges = data.exchanges.slice(0,6);
+      return {coins, exchanges}
+    } catch ({ message }) {
+      Notify.failure(message as string, notifyOptions);
+    }
+  },
   
   async getSelectedCoinMarketChart(
     coinId: string | undefined,

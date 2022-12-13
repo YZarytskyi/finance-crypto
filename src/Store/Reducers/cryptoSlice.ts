@@ -55,6 +55,16 @@ export const fetchCoinsByQuery = createAsyncThunk(
       | undefined;
   }
 );
+
+// export const fetchSearchDataByQuery = createAsyncThunk(
+//   "searchDataByQuery/fetch",
+//   async (query: string) => {
+//     return (await cryptoApi.getCoinsByQuery(query)) as
+//       | Array<Markets>
+//       | undefined;
+//   }
+// );
+
 export const fetchCoinDescription = createAsyncThunk(
   "coinDescription/fetch",
   async (coinId: string | undefined) => {
