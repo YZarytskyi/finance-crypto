@@ -30,11 +30,11 @@ const Exchanges = () => {
             <tr>
               <th>#</th>
               <th>
-                <SearchForm
+                {/* <SearchForm
                   page={page}
                   fetch={fetchExchanges}
                   component="exchanges"
-                />
+                /> */}
               </th>
               <th>Trust Score</th>
               <th>Total&nbsp;Volume 24h</th>

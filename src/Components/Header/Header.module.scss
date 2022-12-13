@@ -111,7 +111,7 @@ header {
   width: 100%;
   max-width: 1600px;
   display: grid;
-  grid-template-columns: 1fr 15rem;
+  grid-template-columns: 1fr 11rem 14rem;
   align-items: center;
   @media (max-width: 1280px) {
     display: none;
@@ -120,7 +120,7 @@ header {
 .pcNav {
   width: 100%;
   display: grid;
-  grid-template-columns: 15rem 1fr;
+  grid-template-columns: 25rem 1fr;
   align-items: center;
   > ul {
     height: 100%;
@@ -186,8 +186,8 @@ header {
 .authContainerHidden {
   justify-self: right;
   margin-right: 3rem;
-  font-size: 1rem;
   display: flex;
+  font-size: 0.85rem;
   @media (max-width: 1280px) {
     position: absolute;
     top: 0;
@@ -209,12 +209,12 @@ header {
 
 .loginBtn,
 .signUpBtn {
-  padding: 0.3rem 0.8rem;
+  padding: 0.35rem 0.7rem;
   color: $color-main;
-  border-radius: 7px;
+  border-radius: 6px;
 }
 .loginBtn {
-  margin-right: 1rem;
+  margin-right: 0.7rem;
   background-color: transparent;
   border: 2px solid rgb(13, 110, 253);
   &:hover {
@@ -238,7 +238,7 @@ header {
 }
 
 .logoutBtn {
-  padding: 0.3rem 0.8rem;
+  padding: 0.35rem 0.7rem;
   color: $color-main;
   border-radius: 7px;
   background-color: transparent;

@@ -29,11 +29,11 @@ const Coins = () => {
             <tr>
               <th>#</th>
               <th>
-                <SearchForm
+                {/* <SearchForm
                   page={page}
                   fetch={fetchMarkets}
                   component="coins"
-                />
+                /> */}
               </th>
               <th>Price</th>
               <th>1h</th>
