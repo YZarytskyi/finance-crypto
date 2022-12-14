@@ -1,49 +1,49 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { useAppSelector } from "../../../Store/hooks";
+import { Exchanges } from "../../../Types/Types";
 import { setNumberFormat } from "../../../utils/utils";
 
-const TableExchangesBody = () => {
-  const exchanges = useAppSelector((state) => state.crypto.exchanges);
+interface TableExchangesBodyItemProps {
+  exchange: Exchanges
+}
 
+const TableExchangesBodyItem: React.FC<TableExchangesBodyItemProps> = ({exchange}) => {
   return (
-    <>
-      {exchanges.map((item) => (
-        <tr key={item.id}>
-          <td>{item.trust_score_rank}</td>
+        <tr key={exchange.id}>
+          <td>{exchange.trust_score_rank}</td>
           <td>
             <div>
-              {item.id === "kraken" ? (
+              {exchange.id === "kraken" ? (
                 <>
                   <a
                     href="https://www.kraken.com/en-us"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
-                    <img src={item.image} alt={item.name} />
+                    <img src={exchange.image} alt={exchange.name} />
                   </a>
                   <a
                     href="https://www.kraken.com/en-us"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
-                    {item.name}
+                    {exchange.name}
                   </a>
                 </>
               ) : (
                 <>
                   <a
-                    href={item.url}
+                    href={exchange.url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
-                    <img src={item.image} alt={item.name} />
+                    <img src={exchange.image} alt={exchange.name} />
                   </a>
                   <a
-                    href={item.url}
+                    href={exchange.url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
-                    {item.name}
+                    {exchange.name}
                   </a>
                 </>
               )}
@@ -51,17 +51,17 @@ const TableExchangesBody = () => {
           </td>
           <td>
             <div>
-              <ProgressBar now={item.trust_score} min={1} max={10} />
-              {item.trust_score}
+              <ProgressBar now={exchange.trust_score} min={1} max={10} />
+              {exchange.trust_score}
             </div>
           </td>
-          <td>{setNumberFormat(item.trade_volume_24h_btc)}&nbsp;BTC</td>
-          <td>{item.year_established || "Unknown"}</td>
-          <td>{item.country || "Unknown"}</td>
+          <td>{setNumberFormat(exchange.trade_volume_24h_btc)}&nbsp;BTC</td>
+          <td>{exchange.year_established || "Unknown"}</td>
+          <td>{exchange.country || "Unknown"}</td>
         </tr>
-      ))}
-    </>
+
+
   );
 };
 
-export default TableExchangesBody;
+export default TableExchangesBodyItem;

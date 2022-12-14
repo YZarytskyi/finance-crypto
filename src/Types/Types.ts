@@ -95,6 +95,14 @@ export interface CoinByQuery {
   large: string;
 }
 
+export interface ExchangeByQuery {
+  id: string;
+  large: string;
+  market_type: string;
+  name: string;
+  thumb: string;
+}
+
 export interface Pairs {
   symbol: string;
   ask: string;

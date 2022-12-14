@@ -1,3 +1,4 @@
+import SearchForm from "../Common/SearchForm";
 import AuthButtons from "./AuthButtons";
 import style from "./Header.module.scss";
 import NavLinks from "./NavLinks";
@@ -8,6 +9,7 @@ const PCNav = () => {
       <nav className={style.pcNav}>
         <NavLinks />
       </nav>
+      <SearchForm />
       <AuthButtons />
     </div>
   );

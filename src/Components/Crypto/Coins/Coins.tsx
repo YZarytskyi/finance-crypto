@@ -3,14 +3,11 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import CoinsTableBodyItem from "./CoinsTableBodyItem";
 import TablePagination from "../../Common/TablePagination";
-import {
-  fetchCoinsByQuery,
-  fetchMarkets,
-} from "../../../Store/Reducers/cryptoSlice";
+import { fetchMarkets } from "../../../Store/Reducers/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { CryptoSkeleton } from "../CryptoSkeleton";
-import { Notify } from "notiflix";
+import SearchForm from "../../Common/SearchForm";
 
 const Coins = () => {
   const { isLoadingCrypto, markets } = useAppSelector((state) => state.crypto);
@@ -22,16 +19,6 @@ const Coins = () => {
     dispatch(fetchMarkets(page));
   }, [page]);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const inputValue = e.currentTarget.searchQuery?.value?.trim().toLowerCase();
-    if (!inputValue) {
-      dispatch(fetchMarkets(page));
-      return
-    }
-    dispatch(fetchCoinsByQuery(inputValue));
-  };
-
   return (
     <>
       <NavCrypto />
@@ -42,26 +29,12 @@ const Coins = () => {
             <tr>
               <th>#</th>
               <th>
-                <form className={style.searchForm} onSubmit={(e) => onSubmit(e)}>
-                  <div className={style.searchContainer}>
-                    <input
-                      type="text"
-                      className={style.inputCoin}
-                      placeholder="Coin"
-                      name="searchQuery"
-                    />
-                    <button type="submit">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="13"
-                        height="13"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                      </svg>
-                    </button>
-                  </div>
-                </form>
+                Coin
+                {/* <SearchForm
+                  page={page}
+                  fetch={fetchMarkets}
+                  component="coins"
+                /> */}
               </th>
               <th>Price</th>
               <th>1h</th>

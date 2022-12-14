@@ -64,9 +64,8 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
       dispatch(setIsAuth(true))
       document.body.classList.remove('overflow');
       Notify.success(`Hi ${user}, you logged in successfully`);
-    } catch (error: any) {
-      console.log(error);
-      Notify.failure(error.message);
+    } catch ({message}) {
+      Notify.failure(message as string);
     }
   };
 
