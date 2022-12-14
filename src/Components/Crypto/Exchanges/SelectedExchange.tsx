@@ -1,162 +1,97 @@
-// import style from "./SelectedCoin.module.scss";
+import style from "./SelectedExchange.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchExchangeById } from "../../../Store/Reducers/cryptoSlice";
-// import SelectedCoinMarketChart from "./SelectedCoinChart";
-// import {
-//   fetchSelectedCoinMarketChart,
-//   removeSelectedCoin,
-//   removeMarketChart,
-//   fetchCoinsById,
-// } from "../../../Store/Reducers/cryptoSlice";
-// import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
+import {
+  fetchExchangeById,
+  removeSelectedExchange,
+} from "../../../Store/Reducers/exchangeSlice";
 import NavCrypto from "../NavCrypto";
-// import { setNumberFormat } from "../../../utils/utils";
-// import PreloaderMain from "../../Common/PreloaderMain";
+import PreloaderMain from "../../Common/PreloaderMain";
+import { setNumberFormat } from "../../../utils/utils";
 
 const SelectedExchange = () => {
   const { exchangeId } = useParams();
-  const selectedExchange = useAppSelector((state) => state.crypto.selectedExchange);
+  const selectedExchange = useAppSelector(
+    (state) => state.exchange.selectedExchange
+  );
   const dispatch = useAppDispatch();
-
-  // const [days, setDays] = useState<number | "max">(30);
-
-  // useEffect(() => {
-  //   dispatch(fetchSelectedCoinMarketChart([coinId, days]));
-  //   return () => {
-  //     dispatch(removeMarketChart());
-  //   };
-  // }, [days]);
 
   useEffect(() => {
     exchangeId && dispatch(fetchExchangeById(exchangeId));
-    // return () => {
-    //   dispatch(removeSelectedCoin());
-    // };
-  }, []);
+    return () => {
+      dispatch(removeSelectedExchange());
+    };
+  }, [exchangeId]);
 
-  // const setClassName = (value: number) => {
-  //   return value > 0 ? style.percentagePlus : style.percentageMinus;
-  // };
-  
-
-  // const coinDescWithoutTags = selectedCoin?.description.replace(
-  //   /<a\s+href="(.*?)">.*?<\/a>,?/g,
-  //   ""
-  // );
-
-  // if (!selectedCoin) {
-  //   return <PreloaderMain />;
-  // }
+  if (!selectedExchange) {
+    return <PreloaderMain />;
+  }
 
   return (
     <>
       <NavCrypto />
-      {selectedExchange && selectedExchange.id}
-      {/* <section className={style.coin}>
-        <div className={style.descriptionChart}>
-          <div className={style.description}>
-            <p className={style.rank}>Rank #{selectedCoin.market_cap_rank}</p>
-            <div className={style.imgName}>
-              <img
-                src={selectedCoin.image}
-                width={55}
-                height={55}
-                alt={selectedCoin.name}
-              />
-              <p>{`${
-                selectedCoin.name
-              } (${selectedCoin.symbol.toUpperCase()})`}</p>
-            </div>
-            <div className={style.pricePercentage}>
-              <div>{selectedCoin.current_price} $</div>
-              <div
-                className={setClassName(
-                  selectedCoin?.price_change_percentage_24h
-                )}
-              >
-                {selectedCoin.price_change_percentage_24h.toFixed(2)}%
-              </div>
-            </div>
-            <div className={style.progressBar}>
-              <ProgressBar
-                now={selectedCoin.current_price}
-                min={selectedCoin.low_24h}
-                max={selectedCoin.high_24h}
-              />
-            </div>
-            <div className={style.lowHigh}>
-              <div>
-                {selectedCoin.low_24h > selectedCoin.current_price
-                  ? selectedCoin.current_price
-                  : selectedCoin.low_24h}{" "}
-                $
-              </div>
-              <div>24h</div>
-              <div>
-                {selectedCoin.high_24h < selectedCoin.current_price
-                  ? selectedCoin.current_price
-                  : selectedCoin.high_24h}{" "}
-                $
-              </div>
-            </div>
-
-            <div className={style.marketCapInfo}>
-              {selectedCoin.market_cap && (
-                <div>
-                  <p>Market Capitalization:</p>
-                  <div>{setNumberFormat(selectedCoin.market_cap)} $</div>
-                </div>
-              )}
-              {selectedCoin.total_volume && (
-                <div>
-                  <p>Trading Volume 24h:</p>
-                  <div>{setNumberFormat(selectedCoin.total_volume)} $</div>
-                </div>
-              )}
-              {selectedCoin.fully_diluted_valuation && (
-                <div>
-                  <p>Fully diluted valuation:</p>
-                  <div>
-                    {setNumberFormat(selectedCoin.fully_diluted_valuation)} $
-                  </div>
-                </div>
-              )}
-              {selectedCoin.circulating_supply && (
-                <div>
-                  <p>Circulating Supply:</p>
-                  <div>
-                    {setNumberFormat(
-                      +selectedCoin.circulating_supply.toFixed(0)
-                    )}{" "}
-                    $
-                  </div>
-                </div>
-              )}
-              {selectedCoin.total_supply && (
-                <div>
-                  <p>Total Supply:</p>
-                  <div>
-                    {setNumberFormat(+selectedCoin.total_supply.toFixed(0))} $
-                  </div>
-                </div>
-              )}
-              {selectedCoin.max_supply && (
-                <div>
-                  <p>Max Supply:</p>
-                  <div>{setNumberFormat(selectedCoin.max_supply)} $</div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className={style.chartContainer}>
-            <SelectedCoinMarketChart setDays={setDays} />
-          </div>
-        </div>
-        <p className={style.coinInfo}>{coinDescWithoutTags}</p>
-      </section> */}
+      <section className={style.exchange}>
+        <img
+          src={selectedExchange.image}
+          alt={selectedExchange.name}
+          className={style.logo}
+        />
+        <p className={style.name}>{selectedExchange.name}</p>
+        <ul className={style.list}>
+          <li>
+            <p className={style.textMain}>{selectedExchange.country}</p>
+            <p className={style.textSecondary}>Country</p>
+          </li>
+          <li>
+            <p className={style.textMain}>
+              {setNumberFormat(selectedExchange.trade_volume_24h_btc)} BTC
+            </p>
+            <p className={style.textSecondary}>Trade volume 24h</p>
+          </li>
+          <li>
+            <p className={style.textMain}>
+              {setNumberFormat(
+                selectedExchange.trade_volume_24h_btc_normalized
+              )}{" "}
+              BTC
+            </p>
+            <p className={style.textSecondary}>Trade volume 24h normalized</p>
+          </li>
+          <li>
+            <p className={style.textMain}>
+              {selectedExchange.year_established}
+            </p>
+            <p className={style.textSecondary}>Established Year</p>
+          </li>
+          <li>
+            <a
+              href={selectedExchange.name}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className={style.siteLink}
+            >
+              {selectedExchange.name}
+            </a>
+            <p className={style.textSecondary}>Official Web-site</p>
+          </li>
+        </ul>
+        {selectedExchange.description && (
+          <p className={style.description}>{selectedExchange.description}</p>
+        )}
+        <p className={style.description}>
+          If you would like to see more details you can go to{" "}
+          <a
+            href={selectedExchange.name}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className={style.siteLink}
+          >
+            {selectedExchange.name}
+          </a>{" "}
+          official web-site
+        </p>
+      </section>
     </>
   );
 };

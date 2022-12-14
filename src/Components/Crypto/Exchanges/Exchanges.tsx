@@ -2,18 +2,18 @@ import style from "./Exchanges.module.scss";
 import { useEffect, useState } from "react";
 import NavCrypto from "../NavCrypto";
 import Table from "react-bootstrap/Table";
-import { fetchExchanges } from "../../../Store/Reducers/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import TablePagination from "../../Common/TablePagination";
 import { CryptoSkeleton } from "../CryptoSkeleton";
 import SearchForm from "../../Common/SearchForm";
 import TableExchangesBodyItem from "./TableExchangesBodyItem";
+import { fetchExchanges } from "../../../Store/Reducers/exchangeSlice";
 
 const Exchanges = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
-  const { isLoadingCrypto, exchanges } = useAppSelector(
-    (state) => state.crypto
+  const { isLoadingExchanges, exchanges } = useAppSelector(
+    (state) => state.exchange
   );
   const countExchanges: number = 30;
 
@@ -44,7 +44,7 @@ const Exchanges = () => {
             </tr>
           </thead>
           <tbody>
-            {isLoadingCrypto ? (
+            {isLoadingExchanges ? (
               <CryptoSkeleton />
             ) : (
               <>

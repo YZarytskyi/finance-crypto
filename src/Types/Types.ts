@@ -114,6 +114,18 @@ export interface CoinByQuery {
   large: string;
 }
 
+export interface SelectedExchange {
+  id: string;
+  country: string;
+  description: string;
+  image: string;
+  name: string;
+  trade_volume_24h_btc: number;
+  trade_volume_24h_btc_normalized: number;
+  url: string;
+  year_established: number;
+}
+
 export interface ExchangeByQuery {
   id: string;
   large: string;

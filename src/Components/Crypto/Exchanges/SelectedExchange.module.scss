@@ -1,185 +1,65 @@
 @import "../../../variables.scss";
 
-.coin {
-  padding: 0 4rem;
-  margin-top: 1.5rem;
-  @media (max-width: 992px) {
-    padding: 0 1.2rem;
-  }
-  .descriptionChart {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-    @media (max-width: 992px) {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  .description {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 40%;
-    @media (max-width: 992px) {
-      width: 60%;
-    }
-    @media (max-width: 768px) {
-      width: 75%;
-    }
-    @media (max-width: 576px) {
-      width: 95%;
-    }
-    .rank {
-      background-color: rgb(66, 63, 63);
-      border-radius: 10px;
-      padding: 2px 6px;
-      font-size: 0.9rem;
-    }
-    .imgName {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-top: 0.8rem;
-      > p {
-        font-size: 1.5rem;
-        font-weight: 700;
-      }
-    }
-    .pricePercentage {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0.3rem;
-      div:nth-child(1) {
-        font-size: 2rem;
-        font-weight: 700;
-      }
-      div:nth-child(2) {
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-    }
-    .progressBar {
-      width: 85%;
-      margin-bottom: 0.2rem;
-      @media (max-width: 992px) {
-        width: 100%;
-      }
-    }
-    .lowHigh {
-      display: flex;
-      width: 85%;
-      justify-content: space-between;
-      margin-bottom: 0.2rem;
-      @media (max-width: 992px) {
-        width: 100%;
-      }
-      div:nth-child(1) {
-        font-size: 1rem;
-        color: $color-minus;
-      }
-      div:nth-child(2) {
-        display: flex;
-        align-items: center;
-        font-size: 0.8rem;
-        color: $color-main;
-      }
-      div:nth-child(3) {
-        font-size: 1rem;
-        color: $color-plus;
-      }
-    }
-    .marketCapInfo {
-      width: 85%;
-      margin-top: 1rem;
-      @media (max-width: 992px) {
-        width: 100%;
-      }
-      > div {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding-bottom: 0.3rem;
-        margin-top: 0.6rem;
-        border-bottom: 0.01rem solid rgb(78, 77, 77);
-        p:nth-child(1) {
-          font-size: 0.9rem;
-          color: gray;
-        }
-        div:nth-child(2) {
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
-}
-
-.chartContainer {
-  width: 60%;
-  margin-top: 2rem;
-  margin-bottom: -1.3rem;
-  @media (max-width: 992px) {
-    width: 100%;
-    margin-bottom: 0;
-  }
-  @media (max-width: 520px) {
-    width: 100%;
-  }
-}
-
-.chartButtons {
+.exchange {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 3rem 4rem;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: right;
-  gap: 0.3rem;
-  height: 3rem;
-  @media (max-width: 545px) {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 2rem;
+  @media (max-width: 992px) {
+    padding: 2rem 1.2rem;
   }
-  input {
-    @extend %input;
-    margin-left: 2rem;
-    margin-right: 0.3rem;
-    width: 6rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    &::placeholder {
-      font-size: 0.9rem;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+.name {
+  margin-bottom: 3rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.list {
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+  > li {
+    word-wrap: break-word;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    background: linear-gradient( rgba(164, 164, 255, 0.37), rgba(39, 39, 254, 0.3));
+    backdrop-filter: blur(5px);
+    .textMain, .siteLink {
+      font-size: 1.2rem;
     }
-  }
-  button {
-    color: $color-main;
-    background-color: rgb(13, 110, 253);
-    border-radius: 5px;
-    padding: 0.2rem 0.5rem;
-    font-size: 1.05rem;
-    min-width: 3rem;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover {
-      background-color: #095ad4;
+    .siteLink {
+
     }
-    &:active {
-      background-color: #034dbd;
+    .textSecondary {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: $color-secondary;
+      @media (max-width: 400px) {
+        font-size: 0.8rem;
+      }
     }
   }
 }
 
-.coinInfo {
-  padding: 2rem 0;
-  color: rgb(179, 174, 174);
-  text-align: left;
+
+
+.description {
+  margin-bottom: 2rem;
   font-size: 1.1rem;
-  width: 100%;
-  white-space: pre-line;
-}
-
-.percentagePlus {
-  color: $color-plus;
-}
-
-.percentageMinus {
-  color: $color-minus;
+  color: gray;
 }
