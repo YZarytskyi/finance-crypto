@@ -22,7 +22,7 @@
     margin: 0 auto;
     width: fit-content;
     @media (max-width: 400px) {
-      padding-top: 0.1rem;
+      padding-top: 0.25rem;
     }
 
     h1 {
@@ -85,7 +85,7 @@
   flex-wrap: wrap;
   > li {
     width: 18rem;
-    max-height: 6rem;
+    max-height: 6.5rem;
     overflow-y: auto;
     @media (max-width: 400px) {
       width: 100%;

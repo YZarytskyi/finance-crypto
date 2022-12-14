@@ -51,7 +51,7 @@ const SearchForm = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.searchContainer}>
+      <div className={style.searchInputContainer}>
         <input
           type="text"
           className={style.inputData}
@@ -66,23 +66,23 @@ const SearchForm = () => {
       </div>
 
       {showList && (
-        <div className={style.searchContainerOut} id="searchAbsolute">
+        <div className={style.searchMainContainerOut} id="searchAbsolute">
           <button className={style.closeBtn} onClick={onLinkClick}>
             <svg className={style.iconClose}>
               <use href={sprite + "#modal_close"} />
             </svg>
           </button>
           <form onChange={(e) => onInputChange(e)}>
-            <div className={style.searchContainer}>
+            <div className={style.searchInputContainerOut}>
               <input
                 type="text"
-                className={style.inputData}
+                className={style.inputDataOut}
                 placeholder="Search"
                 name="searchQuery"
                 onFocus={(e) => onFormInputFocus(e)}
                 autoFocus
               />
-              <button type="submit" className={style.searchBtn}>
+              <button type="submit" className={style.searchBtnOut}>
                 <svg className={style.searchIcon}>
                   <use href={sprite + "#search"} />
                 </svg>
