@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "./Store/hooks";
 import { initializedSuccess } from "./Store/Reducers/appSlice";
 import { setIsAuth } from "./Store/Reducers/authSlice";
 import { notifyInit } from "./utils/notify";
+import SelectedExchange from "./Components/Crypto/Exchanges/SelectedExchange";
 
 const Home = React.lazy(() => import("./Components/Home/Home"));
 const Coins = React.lazy(() => import("./Components/Crypto/Coins/Coins"));
@@ -58,6 +59,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/crypto/coins" element={<Coins />} />
               <Route path="/crypto/exchanges" element={<Exchanges />} />
+              <Route path="/crypto/exchanges/:exchangeId" element={<SelectedExchange />} />
               <Route path="/crypto/arbitrage" element={<Arbitrage />} />
               <Route path="/crypto/converter" element={<Converter />} />
               <Route path="/crypto/coins/:coinId" element={<SelectedCoin />} />

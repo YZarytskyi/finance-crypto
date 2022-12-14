@@ -1,58 +1,60 @@
-import style from "./SelectedCoin.module.scss";
+// import style from "./SelectedCoin.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SelectedCoinMarketChart from "./SelectedCoinChart";
-import {
-  fetchSelectedCoinMarketChart,
-  removeSelectedCoin,
-  removeMarketChart,
-  fetchCoinsById,
-} from "../../../Store/Reducers/cryptoSlice";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import { fetchExchangeById } from "../../../Store/Reducers/cryptoSlice";
+// import SelectedCoinMarketChart from "./SelectedCoinChart";
+// import {
+//   fetchSelectedCoinMarketChart,
+//   removeSelectedCoin,
+//   removeMarketChart,
+//   fetchCoinsById,
+// } from "../../../Store/Reducers/cryptoSlice";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
-import { setNumberFormat } from "../../../utils/utils";
-import PreloaderMain from "../../Common/PreloaderMain";
+// import { setNumberFormat } from "../../../utils/utils";
+// import PreloaderMain from "../../Common/PreloaderMain";
 
-const SelectedCoin = () => {
-  const { coinId } = useParams();
-  const selectedCoin = useAppSelector((state) => state.crypto.selectedCoin);
+const SelectedExchange = () => {
+  const { exchangeId } = useParams();
+  const selectedExchange = useAppSelector((state) => state.crypto.selectedExchange);
   const dispatch = useAppDispatch();
 
-  const [days, setDays] = useState<number | "max">(30);
+  // const [days, setDays] = useState<number | "max">(30);
+
+  // useEffect(() => {
+  //   dispatch(fetchSelectedCoinMarketChart([coinId, days]));
+  //   return () => {
+  //     dispatch(removeMarketChart());
+  //   };
+  // }, [days]);
 
   useEffect(() => {
-    dispatch(fetchSelectedCoinMarketChart([coinId, days]));
-    return () => {
-      dispatch(removeMarketChart());
-    };
-  }, [days]);
-
-  useEffect(() => {
-    coinId && dispatch(fetchCoinsById(coinId));
-    return () => {
-      dispatch(removeSelectedCoin());
-    };
+    exchangeId && dispatch(fetchExchangeById(exchangeId));
+    // return () => {
+    //   dispatch(removeSelectedCoin());
+    // };
   }, []);
 
-  const setClassName = (value: number) => {
-    return value > 0 ? style.percentagePlus : style.percentageMinus;
-  };
+  // const setClassName = (value: number) => {
+  //   return value > 0 ? style.percentagePlus : style.percentageMinus;
+  // };
   
 
-  const coinDescWithoutTags = selectedCoin?.description.replace(
-    /<a\s+href="(.*?)">.*?<\/a>,?/g,
-    ""
-  );
+  // const coinDescWithoutTags = selectedCoin?.description.replace(
+  //   /<a\s+href="(.*?)">.*?<\/a>,?/g,
+  //   ""
+  // );
 
-  if (!selectedCoin) {
-    return <PreloaderMain />;
-  }
+  // if (!selectedCoin) {
+  //   return <PreloaderMain />;
+  // }
 
   return (
     <>
       <NavCrypto />
-      <section className={style.coin}>
+      {selectedExchange && selectedExchange.id}
+      {/* <section className={style.coin}>
         <div className={style.descriptionChart}>
           <div className={style.description}>
             <p className={style.rank}>Rank #{selectedCoin.market_cap_rank}</p>
@@ -154,9 +156,9 @@ const SelectedCoin = () => {
           </div>
         </div>
         <p className={style.coinInfo}>{coinDescWithoutTags}</p>
-      </section>
+      </section> */}
     </>
   );
 };
 
-export default SelectedCoin;
+export default SelectedExchange;

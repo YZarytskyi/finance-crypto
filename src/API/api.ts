@@ -61,6 +61,17 @@ export const cryptoApi = {
     }
   },
 
+  // async getExchangeById(id: string) {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `https://api.coingecko.com/api/v3/exchanges/${id}`,
+  //     );
+  //     return data;
+  //   } catch ({ message }) {
+  //     Notify.failure(message as string, notifyOptions);
+  //   }
+  // },
+
   async getCoinsByQuery(query: string) {
     try {
       const { data } = await axios.get(
@@ -74,6 +85,40 @@ export const cryptoApi = {
         return coin.id
       });
       return this.getMarkets(1, arrId)
+    } catch ({ message }) {
+      Notify.failure(message as string, notifyOptions);
+    }
+  },
+
+  async getCoinsById(id: string | string[]) {
+    id = typeof id === 'string' ? id : id.join(',')
+    try {
+      const { data } = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${id}?market_data=true&vs_currency=usd&localization=false&tickers=false`
+      );
+      return { id: data.id,
+        symbol: data.symbol,
+        name: data.name,
+        description: data.description.en,
+        image: data.image.large,
+        homepage: data.links.homepage[0] || "",
+        current_price: data.market_data.current_price.usd,
+        market_cap: data.market_data.market_cap.usd,
+        market_cap_rank: data.market_cap_rank.usd,
+        fully_diluted_valuation: data.market_data.fully_diluted_valuation.usd,
+        total_volume: data.market_data.total_volume.usd,
+        high_24h: data.market_data.high_24h.usd,
+        low_24h: data.market_data.low_24h.usd,
+        price_change_24h: data.market_data.price_change_24h.usd,
+        price_change_percentage_24h: data.market_data.price_change_percentage_24h,
+        market_cap_change_24h: data.market_data.market_cap_change_24h,
+        market_cap_change_percentage_24h: data.market_data.market_cap_change_percentage_24h,
+        circulating_supply: data.market_data.circulating_supply,
+        total_supply: data.market_data.total_supply,
+        max_supply: data.market_data.max_supply,
+        price_change_percentage_1h_in_currency: data.market_data.price_change_percentage_1h_in_currency,
+        price_change_percentage_24h_in_currency: data.market_data.price_change_percentage_24h_in_currency,
+        price_change_percentage_7d_in_currency: data.market_data.price_change_percentage_7d_in_currency}
     } catch ({ message }) {
       Notify.failure(message as string, notifyOptions);
     }

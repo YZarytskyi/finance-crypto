@@ -5,33 +5,36 @@ import {
   GlobalData,
   Markets,
   MarketsTime,
+  SelectedCoin,
   SelectedCoinMarketChart,
 } from "../../Types/Types";
 
 const initialState: InitialState = {
   marketsHome: [],
   markets: [],
+  selectedCoin: null,
   isLoadingCrypto: false,
   marketsTime: {},
   globalData: {},
   selectedCoinMarketChart: {},
   exchanges: [],
   exchangesList: [],
+  selectedExchange: null,
   isLoadingExchangesList: false,
-  coinDescription: null,
 };
 
 interface InitialState {
   marketsHome: Array<Markets>;
   markets: Array<Markets>;
+  selectedCoin: SelectedCoin | null,
   isLoadingCrypto: boolean;
   marketsTime: MarketsTime;
   globalData: Partial<GlobalData>;
   selectedCoinMarketChart: Partial<SelectedCoinMarketChart>;
   isLoadingExchangesList: boolean,
   exchanges: Array<Exchanges>;
+  selectedExchange: any,
   exchangesList: Array<{id: string, name: string}>;
-  coinDescription: string | null;
 }
 
 export const fetchMarketsHome = createAsyncThunk(
@@ -56,6 +59,13 @@ export const fetchCoinsByQuery = createAsyncThunk(
   }
 );
 
+export const fetchCoinsById = createAsyncThunk(
+  "coinsById/fetch",
+  async (id: string) => {
+    return (await cryptoApi.getCoinsById(id)) as SelectedCoin
+  }
+);
+
 // export const fetchSearchDataByQuery = createAsyncThunk(
 //   "searchDataByQuery/fetch",
 //   async (query: string) => {
@@ -65,12 +75,6 @@ export const fetchCoinsByQuery = createAsyncThunk(
 //   }
 // );
 
-export const fetchCoinDescription = createAsyncThunk(
-  "coinDescription/fetch",
-  async (coinId: string | undefined) => {
-    return (await cryptoApi.getCoinsDescription(coinId)) as string;
-  }
-);
 export const fetchSelectedCoinMarketChart = createAsyncThunk(
   "marketChart/fetch",
   async ([coinId, days]: [
@@ -118,8 +122,8 @@ export const cryptoSlice = createSlice({
     setDefaultMarketsTime(state) {
       state.marketsTime = {};
     },
-    removeCoinDescription(state) {
-      state.coinDescription = null;
+    removeSelectedCoin(state) {
+      state.selectedCoin = null;
     },
     removeMarketChart(state) {
       state.selectedCoinMarketChart = {};
@@ -143,6 +147,14 @@ export const cryptoSlice = createSlice({
         state.isLoadingCrypto = false;
       });
     builder
+      .addCase(fetchCoinsById.pending, (state) => {
+        state.isLoadingCrypto = true;
+      })
+      .addCase(fetchCoinsById.fulfilled, (state, action) => {
+        state.selectedCoin = action.payload;
+        state.isLoadingCrypto = false;
+      });
+    builder
       .addCase(fetchCoinsByQuery.pending, (state) => {
         state.isLoadingCrypto = true;
       })
@@ -152,10 +164,6 @@ export const cryptoSlice = createSlice({
         }
         state.isLoadingCrypto = false;
       });
-    builder.addCase(fetchCoinDescription.fulfilled, (state, action) => {
-      state.coinDescription = action.payload;
-    });
-
     builder.addCase(fetchSelectedCoinMarketChart.fulfilled, (state, action) => {
       state.selectedCoinMarketChart = action.payload;
     });
@@ -175,12 +183,15 @@ export const cryptoSlice = createSlice({
         state.exchangesList = action.payload;
         state.isLoadingExchangesList = false;
       });
-
     builder.addCase(fetchExchangeById.pending, (state) => {
         state.isLoadingCrypto = true;
       })
       .addCase(fetchExchangeById.fulfilled, (state, action) => {
-        state.exchanges = [action.payload];
+        if (Array.isArray(action.payload)) {
+          state.exchanges = action.payload;
+        } else {
+          state.selectedExchange = action.payload;
+        }
         state.isLoadingCrypto = false;
       });      
 
@@ -193,7 +204,7 @@ export const cryptoSlice = createSlice({
 export const {
   setMarketsTime,
   setDefaultMarketsTime,
-  removeCoinDescription,
+  removeSelectedCoin,
   removeMarketChart,
 } = cryptoSlice.actions;
 

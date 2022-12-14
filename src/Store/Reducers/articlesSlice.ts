@@ -65,7 +65,7 @@ export const articlesSlice = createSlice({
         state.isLoadingArticles = true;
       })
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<Docs>) => {
-        state.articles = action.payload.docs.map((article, index) => ({
+        state.articles = action.payload?.docs?.map((article, index) => ({
               id: index + 1, ...article
           }));
           if (!state.recentArticles.length) {
@@ -78,7 +78,7 @@ export const articlesSlice = createSlice({
         state.isLoadingArticles = true;
       })
       .addCase(fetchRecentArticles.fulfilled, (state, action: PayloadAction<Docs>) => {
-        state.recentArticles = action.payload.docs.map((article, index) => ({
+        state.recentArticles = action.payload?.docs?.map((article, index) => ({
               id: index + 1, ...article
           }));
         state.isLoadingArticles = false;

@@ -22,16 +22,14 @@ const SearchForm = () => {
     if (!(e.target as Element).closest("#searchAbsolute")) {
       setShowList(false);
       if (window.innerWidth <= 1280 || document.body.classList.contains("overflow")) {
-        document.body.classList.add("overflow");
+        document.body.classList.remove("overflow");
       }
     }
   };
 
   const onLinkClick = () => {
     setShowList(false);
-    if (window.innerWidth <= 1280 || document.body.classList.contains("overflow")) {
-      document.body.classList.add("overflow");
-    }
+    document.body.classList.remove("overflow");
   };
 
   const onSearchOpen = (e: React.SyntheticEvent) => {
@@ -138,7 +136,7 @@ const SearchForm = () => {
                       {data.exchanges?.length ? (
                         data.exchanges.map((el: any) => (
                           <li key={el.id}>
-                            <Link to={"/"} className={style.listLink}>
+                            <Link to={`crypto/exchanges/${el.id}`} className={style.listLink}>
                               <img
                                 src={el.thumb}
                                 alt={el.name}
