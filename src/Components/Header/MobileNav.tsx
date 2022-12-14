@@ -85,6 +85,7 @@ const MobileNav = () => {
           ? (
             <div
               className={`${style.authBtnsBackdropHidden} ${isProfileOpen ? style.authBtnsBackdropOpen : ""}`}
+              onClick={onClickProfileOpen}
             >
               <AuthButtons setIsProfileOpen={setIsProfileOpen} isProfileOpen={isProfileOpen} />
             </div>
