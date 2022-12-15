@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/finance-crypto/static/css/main.6772c3ca.css",
-    "main.js": "/finance-crypto/static/js/main.d1ca4bc1.js",
+    "main.css": "/finance-crypto/static/css/main.aa453c0e.css",
+    "main.js": "/finance-crypto/static/js/main.a8490bc4.js",
     "static/css/640.79d39050.chunk.css": "/finance-crypto/static/css/640.79d39050.chunk.css",
     "static/js/640.ac7ad0c9.chunk.js": "/finance-crypto/static/js/640.ac7ad0c9.chunk.js",
-    "static/css/816.fd5bb046.chunk.css": "/finance-crypto/static/css/816.fd5bb046.chunk.css",
+    "static/css/816.a2093f12.chunk.css": "/finance-crypto/static/css/816.a2093f12.chunk.css",
     "static/js/816.97c1cf2d.chunk.js": "/finance-crypto/static/js/816.97c1cf2d.chunk.js",
-    "static/css/362.075031e1.chunk.css": "/finance-crypto/static/css/362.075031e1.chunk.css",
+    "static/css/362.2ff4c4cd.chunk.css": "/finance-crypto/static/css/362.2ff4c4cd.chunk.css",
     "static/js/362.4ed90ff6.chunk.js": "/finance-crypto/static/js/362.4ed90ff6.chunk.js",
-    "static/css/945.b2d1c862.chunk.css": "/finance-crypto/static/css/945.b2d1c862.chunk.css",
+    "static/css/945.00fe8c6b.chunk.css": "/finance-crypto/static/css/945.00fe8c6b.chunk.css",
     "static/js/945.fe00fd49.chunk.js": "/finance-crypto/static/js/945.fe00fd49.chunk.js",
     "static/css/85.607332ef.chunk.css": "/finance-crypto/static/css/85.607332ef.chunk.css",
     "static/js/85.640d237e.chunk.js": "/finance-crypto/static/js/85.640d237e.chunk.js",
@@ -36,15 +36,15 @@
     "static/media/contacts.png": "/finance-crypto/static/media/contacts.f78e30cf193151b8af10.png",
     "static/media/icons.svg": "/finance-crypto/static/media/icons.4f8b2f987a5f65397ff1b94682dda577.svg",
     "index.html": "/finance-crypto/index.html",
-    "main.6772c3ca.css.map": "/finance-crypto/static/css/main.6772c3ca.css.map",
-    "main.d1ca4bc1.js.map": "/finance-crypto/static/js/main.d1ca4bc1.js.map",
+    "main.aa453c0e.css.map": "/finance-crypto/static/css/main.aa453c0e.css.map",
+    "main.a8490bc4.js.map": "/finance-crypto/static/js/main.a8490bc4.js.map",
     "640.79d39050.chunk.css.map": "/finance-crypto/static/css/640.79d39050.chunk.css.map",
     "640.ac7ad0c9.chunk.js.map": "/finance-crypto/static/js/640.ac7ad0c9.chunk.js.map",
-    "816.fd5bb046.chunk.css.map": "/finance-crypto/static/css/816.fd5bb046.chunk.css.map",
+    "816.a2093f12.chunk.css.map": "/finance-crypto/static/css/816.a2093f12.chunk.css.map",
     "816.97c1cf2d.chunk.js.map": "/finance-crypto/static/js/816.97c1cf2d.chunk.js.map",
-    "362.075031e1.chunk.css.map": "/finance-crypto/static/css/362.075031e1.chunk.css.map",
+    "362.2ff4c4cd.chunk.css.map": "/finance-crypto/static/css/362.2ff4c4cd.chunk.css.map",
     "362.4ed90ff6.chunk.js.map": "/finance-crypto/static/js/362.4ed90ff6.chunk.js.map",
-    "945.b2d1c862.chunk.css.map": "/finance-crypto/static/css/945.b2d1c862.chunk.css.map",
+    "945.00fe8c6b.chunk.css.map": "/finance-crypto/static/css/945.00fe8c6b.chunk.css.map",
     "945.fe00fd49.chunk.js.map": "/finance-crypto/static/js/945.fe00fd49.chunk.js.map",
     "85.607332ef.chunk.css.map": "/finance-crypto/static/css/85.607332ef.chunk.css.map",
     "85.640d237e.chunk.js.map": "/finance-crypto/static/js/85.640d237e.chunk.js.map",
@@ -65,7 +65,7 @@
     "894.4d24b7a1.chunk.js.map": "/finance-crypto/static/js/894.4d24b7a1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6772c3ca.css",
-    "static/js/main.d1ca4bc1.js"
+    "static/css/main.aa453c0e.css",
+    "static/js/main.a8490bc4.js"
   ]
 }
