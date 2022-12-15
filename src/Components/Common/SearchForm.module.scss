@@ -108,7 +108,6 @@
   width: 180%;
   max-width: 21rem;
   background-color: transparent;
-  border-radius: 0.5rem;
   transform: translateX(-50%);
   
   @media screen and (max-width: 1280px) {
@@ -118,7 +117,6 @@
     max-width: none;
     height: calc(100vh - 3.8rem);
     backdrop-filter: blur(5px);
-    border-radius: 0 0 0.2rem 0;
     transform: translateX(0%);
   }
 }
@@ -131,9 +129,11 @@
   width: 100%;
   max-width: 21rem;
   padding: 0.5rem 1rem 1.5rem 1.5rem;
+  border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.03), 0 4px 6px -2px rgba(238, 238, 238, 0.05);
   @media screen and (max-width: 1280px) {
     height: calc(100vh - 3.8rem);
+    border-radius: 0;
   }
   @media screen and (max-width: 767px) {
     max-width: 20.5rem;

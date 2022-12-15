@@ -56,13 +56,24 @@
 .formLabel {
   display: block;
   font-size: 1.1rem;
+  @media screen and (max-width: 1280px) {
+    font-size: 1rem;
+  }
+
   .formInput,
   .formTextarea {
     @extend %input;
     width: 100%;
     margin-top: 0.3rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 0.3rem;
+
+    @media screen and (max-width: 1280px) {
+      padding: 0.3rem 0.8rem;
+    }
+    &::placeholder {
+      font-size: 0.9em;
+    }
   }
   .formTextarea {
     min-height: 8rem;
@@ -85,6 +96,7 @@
 }
 
 .formButton {
+  margin-top: 0.2rem !important;
   border-color: $color-accent !important;
   color: $color-accent !important;
   border-radius: 5px;
