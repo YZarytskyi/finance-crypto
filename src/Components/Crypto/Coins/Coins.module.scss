@@ -40,7 +40,7 @@
     }
     th:nth-child(2) {
       text-align: left;
-
+      padding: 0 8rem 0 0.7rem;
       @media screen and (max-width: 767px) {
         max-width: 12rem;
       }

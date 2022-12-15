@@ -1,7 +1,7 @@
 $color-main: #f3f3f3;
 $color-secondary: rgba(255, 255, 255, 0.4);
 $color-accent: #259dff;
-$bg-color-main: #161b20;
+$bg-color-main: #08090e;
 $bg-color-secondary: #171924;
 $box-shadow: $color-accent 0px -1px 6px;
 $input-shadow: $color-accent 0px 0px 6px 0.5px;
@@ -13,10 +13,14 @@ $color-minus: #fc432a;
 
 %bg {
   background-color: $bg-color-main;
-  background: $bg-img;
+  background-image: $bg-img;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  @media screen and (max-width: 768px) {
+    background-image: none;
+  }
+
 }
 
 %input {

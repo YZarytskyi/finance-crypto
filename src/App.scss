@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 html {
-  @extend %bg;
+  background-color: $bg-color-main;
   overflow-x: hidden;
   box-sizing: border-box;
   height: 100%;
