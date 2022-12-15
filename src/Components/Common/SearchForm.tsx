@@ -21,7 +21,10 @@ const SearchForm = () => {
   const onClickCloseList = (e: MouseEvent) => {
     if (!(e.target as Element).closest("#searchAbsolute")) {
       setShowList(false);
-      if (window.innerWidth <= 1280 || document.body.classList.contains("overflow")) {
+      if (
+        window.innerWidth <= 1280 ||
+        document.body.classList.contains("overflow")
+      ) {
         document.body.classList.remove("overflow");
       }
     }
@@ -87,6 +90,7 @@ const SearchForm = () => {
                   className={style.inputDataOut}
                   placeholder="Search"
                   name="searchQuery"
+                  autoComplete="off"
                   onFocus={(e) => onFormInputFocus(e)}
                   autoFocus
                 />
@@ -136,7 +140,11 @@ const SearchForm = () => {
                       {data.exchanges?.length ? (
                         data.exchanges.map((el: any) => (
                           <li key={el.id}>
-                            <Link to={`crypto/exchanges/${el.id}`} className={style.listLink}>
+                            <Link
+                              to={`crypto/exchanges/${el.id}`}
+                              className={style.listLink}
+                              onClick={onLinkClick}
+                            >
                               <img
                                 src={el.thumb}
                                 alt={el.name}

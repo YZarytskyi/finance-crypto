@@ -4,6 +4,10 @@
   max-width: 1600px;
   margin: 0 auto;
   box-shadow: 0 5px 4px -6px #5f5da8;
+  @media (max-width: 1199px) {
+    margin-top: 0.5rem;
+    box-shadow: none;
+  }
 }
 
 .navCrypto {
@@ -12,13 +16,18 @@
   grid-template-areas: ". l c .";
   grid-template-columns: 0.11fr 0.89fr 1fr 1fr;
   align-items: center;
-  @media (max-width: 1000px) {
-    display: none;
+  @media (max-width: 1199px) {
+    display: flex;
+    margin-left: 1.25rem;
   }
   > .listLeft {
     grid-area: l;
     display: flex;
     gap: 0.5rem;
+    > li {
+      display: flex;
+      align-items: center;
+    }
     .leftLink {
       display: flex;
       align-items: center;
@@ -46,5 +55,8 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
+    @media (max-width: 1199px) {
+      display: none;
+    }
   }
 }

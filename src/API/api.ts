@@ -104,7 +104,7 @@ export const cryptoApi = {
         homepage: data.links.homepage[0] || "",
         current_price: data.market_data.current_price.usd,
         market_cap: data.market_data.market_cap.usd,
-        market_cap_rank: data.market_cap_rank.usd,
+        market_cap_rank: data.market_cap_rank,
         fully_diluted_valuation: data.market_data.fully_diluted_valuation.usd,
         total_volume: data.market_data.total_volume.usd,
         high_24h: data.market_data.high_24h.usd,

@@ -11,6 +11,9 @@ const NavCrypto = () => {
     isSelectedCoin ? regexpSelectedCoin : regexpCoins,
     ""
   );
+  currentPath = isSelectedCoin
+    ? currentPath.substring(0, 17) + (currentPath.length > 18 ? "..." : "")
+    : currentPath;
 
   return (
     <div className={style.container}>
@@ -34,7 +37,7 @@ const NavCrypto = () => {
               </svg>
             </NavLink>
           </li>
-          <li className={isSelectedCoin ? "" : "hidden"}>
+          <li className={isSelectedCoin ? "" : style.hidden}>
             <NavLink to="/crypto/coins" className={style.leftLink}>
               Coins
               <svg className={style.arrow}>

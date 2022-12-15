@@ -40,12 +40,16 @@ const SelectedExchange = () => {
         <p className={style.name}>{selectedExchange.name}</p>
         <ul className={style.list}>
           <li>
-            <p className={style.textMain}>{selectedExchange.country}</p>
+            <p className={style.textMain}>
+              {selectedExchange.country || "Unknown"}
+            </p>
             <p className={style.textSecondary}>Country</p>
           </li>
           <li>
             <p className={style.textMain}>
-              {setNumberFormat(selectedExchange.trade_volume_24h_btc)} BTC
+              {setNumberFormat(selectedExchange.trade_volume_24h_btc) ||
+                "Unknown"}{" "}
+              BTC
             </p>
             <p className={style.textSecondary}>Trade volume 24h</p>
           </li>
@@ -53,20 +57,20 @@ const SelectedExchange = () => {
             <p className={style.textMain}>
               {setNumberFormat(
                 selectedExchange.trade_volume_24h_btc_normalized
-              )}{" "}
+              ) || "Unknown"}{" "}
               BTC
             </p>
             <p className={style.textSecondary}>Trade volume 24h normalized</p>
           </li>
           <li>
             <p className={style.textMain}>
-              {selectedExchange.year_established}
+              {selectedExchange.year_established || "Unknown"}
             </p>
             <p className={style.textSecondary}>Established Year</p>
           </li>
           <li>
             <a
-              href={selectedExchange.name}
+              href={selectedExchange.url}
               target="_blank"
               rel="noopener noreferrer nofollow"
               className={style.siteLink}

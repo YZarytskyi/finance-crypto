@@ -5,27 +5,30 @@
   height: 100%;
   display: flex;
   align-items: center;
-
-  @media screen and (max-width: 1280px) {
+  justify-content: center;
+  @media screen and (max-width: 1199px) {
     position: static;
   }
 }
 
 %searchInputContainer {
   position: relative;
-  width: 90%;
   border-radius: 25px;
   border: none;
 }
 
 .searchInputContainer {
  @extend %searchInputContainer;
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1300px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 1199px) {
     position: static;
   }
 }
 
 .searchInputContainerOut {
+  width: 90%;
   margin-bottom: 1rem;
   @extend %searchInputContainer;
 }
@@ -50,7 +53,7 @@
 
 .inputData {
   @extend %inputData;
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1199px) {
     display: none;
   }
 }
@@ -76,7 +79,7 @@
 
 .searchBtn {
  @extend %searchBtn;
- @media screen and (max-width: 1280px) {
+ @media screen and (max-width: 1199px) {
   position: static;
   margin-left: 0.5rem;
   height: 3rem;
@@ -110,7 +113,7 @@
   background-color: transparent;
   transform: translateX(-50%);
   
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1199px) {
     top: 3.8rem;
     left: 0;
     width: 100%;
@@ -131,7 +134,7 @@
   padding: 0.5rem 1rem 1.5rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.03), 0 4px 6px -2px rgba(238, 238, 238, 0.05);
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1199px) {
     height: calc(100vh - 3.8rem);
     border-radius: 0;
   }
@@ -148,7 +151,7 @@
   max-height: 80vh;
   overflow-y: auto;
 
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1199px) {
     max-height: 75vh;
   }
 

@@ -33,7 +33,7 @@ const SelectedCoin = () => {
     return () => {
       dispatch(removeSelectedCoin());
     };
-  }, []);
+  }, [coinId]);
 
   const setClassName = (value: number) => {
     return value > 0 ? style.percentagePlus : style.percentageMinus;
