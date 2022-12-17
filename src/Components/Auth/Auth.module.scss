@@ -104,7 +104,7 @@
 }
 
 .orText {
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -117,6 +117,9 @@
     background-color: $color-accent;
     width: 100%;
     border-radius: 50%;
+    @media (max-width: 767px) {
+      height: 1px;
+     }
   }
   &::after {
     content: '';
@@ -125,6 +128,9 @@
     background-color: $color-accent;
     width: 100%;
     border-radius: 50%;
+    @media (max-width: 767px) {
+      height: 1px;
+     }
   }
 }
 
@@ -141,6 +147,10 @@
   letter-spacing: 0.04em;
   border: 1px solid $color-accent;
   border-radius: 0.4rem;
+  @media (max-width: 767px) {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+   }
 
   &:hover {
     background-color: rgba(101, 101, 255, 0.1);
@@ -149,5 +159,9 @@
   .iconGoogle {
     width: 28px;
     height: 28px;
+    @media (max-width: 500px) {
+      width: 26px;
+      height: 26px;
+    }
   }
 }

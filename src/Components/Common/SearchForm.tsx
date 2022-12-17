@@ -4,6 +4,7 @@ import { cryptoApi } from "../../API/api";
 import { debounce } from "@mui/material";
 import { Link } from "react-router-dom";
 import sprite from "../../assets/images/icons.svg";
+import Spinner from "./Spinner";
 
 const SearchForm = () => {
   const [showList, setShowList] = useState<boolean>(false);
@@ -48,7 +49,7 @@ const SearchForm = () => {
     setData(data);
   };
 
-  const onInputChange = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value?.trim().toLowerCase();
     if (value) {
       const data = await cryptoApi.getSearchDataByQuery(value);
@@ -68,11 +69,11 @@ const SearchForm = () => {
           placeholder="Search"
           onFocus={onSearchOpen}
         />
-        <button className={style.searchBtn} onClick={(e) => onSearchOpen(e)}>
+        <span className={style.searchIconContainer}>
           <svg className={style.searchIcon}>
             <use href={sprite + "#search"} />
           </svg>
-        </button>
+        </span>
       </div>
 
       {showList && (
@@ -83,85 +84,87 @@ const SearchForm = () => {
                 <use href={sprite + "#modal_close"} />
               </svg>
             </button>
-            <form onChange={(e) => onInputChange(e)}>
-              <div className={style.searchInputContainerOut}>
-                <input
-                  type="text"
-                  className={style.inputDataOut}
-                  placeholder="Search"
-                  name="searchQuery"
-                  autoComplete="off"
-                  onFocus={(e) => onFormInputFocus(e)}
-                  autoFocus
-                />
-                <button type="submit" className={style.searchBtnOut}>
-                  <svg className={style.searchIcon}>
-                    <use href={sprite + "#search"} />
-                  </svg>
-                </button>
-              </div>
 
-              <div className={style.listContainer}>
-                {!Object.keys(data).length ? (
-                  <p className={style.loading}>Loading...</p>
-                ) : (
-                  <>
-                    <p className={style.label}>Cryptocurrencies</p>
-                    <ul>
-                      {data.coins?.length ? (
-                        data.coins.map((el: any) => (
-                          <li key={el.id}>
-                            <Link
-                              to={`crypto/coins/${el.id}`}
-                              onClick={onLinkClick}
-                              className={style.listLink}
-                            >
-                              <img
-                                src={el.thumb}
-                                alt={el.name}
-                                className={style.itemImage}
-                              />
-                              <p>
-                                {el.name}
-                                <span className={style.itemSymbol}>
-                                  {el.symbol}
-                                </span>
-                              </p>
-                            </Link>
-                          </li>
-                        ))
-                      ) : (
-                        <p className={style.warning}>Coins not found</p>
-                      )}
-                    </ul>
+            <div className={style.searchInputContainerOut}>
+              <input
+                type="text"
+                className={style.inputDataOut}
+                placeholder="Search"
+                name="searchQuery"
+                autoComplete="off"
+                onFocus={(e) => onFormInputFocus(e)}
+                onChange={(e) => onInputChange(e)}
+                autoFocus
+              />
+              <span className={style.searchIconContainerOut}>
+                <svg className={style.searchIcon}>
+                  <use href={sprite + "#search"} />
+                </svg>
+              </span>
+            </div>
 
-                    <p className={style.label}>Exchanges</p>
-                    <ul>
-                      {data.exchanges?.length ? (
-                        data.exchanges.map((el: any) => (
-                          <li key={el.id}>
-                            <Link
-                              to={`crypto/exchanges/${el.id}`}
-                              className={style.listLink}
-                              onClick={onLinkClick}
-                            >
-                              <img
-                                src={el.thumb}
-                                alt={el.name}
-                                className={style.itemImage}
-                              />
-                              <p>{el.name}</p>
-                            </Link>
-                          </li>
-                        ))
-                      ) : (
-                        <p className={style.warning}>Exchanges not found</p>
-                      )}
-                    </ul>
-                  </>
-                )}
-              </div>
-            </form>
+            <div className={style.listContainer}>
+              {!Object.keys(data).length ? (
+                <p className={style.loading}>
+                  Loading <Spinner className={"spinnerSearch"} />
+                </p>
+              ) : (
+                <>
+                  <p className={style.label}>Cryptocurrencies</p>
+                  <ul>
+                    {data.coins?.length ? (
+                      data.coins.map((el: any) => (
+                        <li key={el.id}>
+                          <Link
+                            to={`crypto/coins/${el.id}`}
+                            onClick={onLinkClick}
+                            className={style.listLink}
+                          >
+                            <img
+                              src={el.thumb}
+                              alt={el.name}
+                              className={style.itemImage}
+                            />
+                            <p>
+                              {el.name}
+                              <span className={style.itemSymbol}>
+                                {el.symbol}
+                              </span>
+                            </p>
+                          </Link>
+                        </li>
+                      ))
+                    ) : (
+                      <p className={style.warning}>Coins not found</p>
+                    )}
+                  </ul>
+
+                  <p className={style.label}>Exchanges</p>
+                  <ul>
+                    {data.exchanges?.length ? (
+                      data.exchanges.map((el: any) => (
+                        <li key={el.id}>
+                          <Link
+                            to={`crypto/exchanges/${el.id}`}
+                            className={style.listLink}
+                            onClick={onLinkClick}
+                          >
+                            <img
+                              src={el.thumb}
+                              alt={el.name}
+                              className={style.itemImage}
+                            />
+                            <p>{el.name}</p>
+                          </Link>
+                        </li>
+                      ))
+                    ) : (
+                      <p className={style.warning}>Exchanges not found</p>
+                    )}
+                  </ul>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}

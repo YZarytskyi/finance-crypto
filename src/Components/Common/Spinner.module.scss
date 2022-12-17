@@ -1,8 +1,14 @@
-.spinner {
+.spinnerConverter {
   position: absolute;
   top: 50%;
   left: 1rem;
   width: 22px;
   height: 22px;
   transform: translateY(-50%);
+}
+
+.spinnerSearch {
+  margin-left: 3px;
+  width: 18px;
+  height: 18px;
 }

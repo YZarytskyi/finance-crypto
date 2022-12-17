@@ -141,7 +141,7 @@ const Converter = () => {
                 disabled={!price}
                 onChange={(e) => handleChangeConvertedValue(e)}
               />
-              {isLoadingConverter && <Spinner />}
+              {isLoadingConverter && <Spinner className={'spinnerConverter'} />}
             </div>
             <LastUpdateTimer coin={coin} />
           </div>

@@ -1,9 +1,9 @@
 import style from "./Spinner.module.scss";
 
-const Spinner = () => {
+const Spinner = ({className}) => {
   return (
     <svg
-      className={style.spinner}
+      className={style[className]}
       xmlns="http://www.w3.org/2000/svg"
       version="1.0"
       viewBox="0 0 128 128"
