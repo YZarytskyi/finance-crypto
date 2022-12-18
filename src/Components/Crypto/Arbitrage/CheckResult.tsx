@@ -233,7 +233,7 @@ const CheckResult = () => {
             <Autocomplete
               id="pair-1"
               value={pair1}
-              onChange={(event, newValue) => handlePair1(event, newValue)}
+              onChange={handlePair1}
               sx={{ width: 200 }}
               disablePortal
               options={pair1Currencies}

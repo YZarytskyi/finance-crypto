@@ -69,11 +69,11 @@ const SearchForm = () => {
           placeholder="Search"
           onFocus={onSearchOpen}
         />
-        <span className={style.searchIconContainer}>
+        <button className={style.searchIconContainer} onClick={onSearchOpen}>
           <svg className={style.searchIcon}>
             <use href={sprite + "#search"} />
           </svg>
-        </span>
+        </button>
       </div>
 
       {showList && (
@@ -92,8 +92,8 @@ const SearchForm = () => {
                 placeholder="Search"
                 name="searchQuery"
                 autoComplete="off"
-                onFocus={(e) => onFormInputFocus(e)}
-                onChange={(e) => onInputChange(e)}
+                onFocus={onFormInputFocus}
+                onChange={onInputChange}
                 autoFocus
               />
               <span className={style.searchIconContainerOut}>

@@ -51,7 +51,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
     }
   };
 
-  const handleClickGoogleAuth = async (e: React.MouseEvent) => {
+  const handleClickGoogleAuth = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
     try {
@@ -123,7 +123,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
       <p className={style.orText}>Or</p>
       <button
         className={style.googleAuth}
-        onClick={(e) => handleClickGoogleAuth(e)}
+        onClick={handleClickGoogleAuth}
       >
         <svg className={style.iconGoogle}>
           <use href={sprite + "#google"} />

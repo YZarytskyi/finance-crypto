@@ -114,7 +114,7 @@ const Converter = () => {
               id="coinsList"
               className={style.autocomplete}
               value={coin}
-              onChange={(event, newCoin) => handleChangeCoin(event, newCoin)}
+              onChange={handleChangeCoin}
               options={options.sort(
                 (a, b) => a.firstLetter.localeCompare(b.firstLetter)
               )}
@@ -128,7 +128,7 @@ const Converter = () => {
               className={style.converterInput}
               value={value}
               disabled={!price}
-              onChange={(e) => handleChangeValue(e)}
+              onChange={handleChangeValue}
             />
 
             <p className={style.converterText}>Convert to USDT</p>
@@ -139,7 +139,7 @@ const Converter = () => {
                 className={style.converterInput}
                 value={convertedValue}
                 disabled={!price}
-                onChange={(e) => handleChangeConvertedValue(e)}
+                onChange={handleChangeConvertedValue}
               />
               {isLoadingConverter && <Spinner className={'spinnerConverter'} />}
             </div>

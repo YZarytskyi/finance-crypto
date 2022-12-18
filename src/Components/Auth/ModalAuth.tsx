@@ -29,7 +29,7 @@ const ModalAuth: React.FC<ModalAuthProps> = ({
     }
   }, [isLogin]);
 
-  const handleClickToggleAuth = (e: React.SyntheticEvent) => {
+  const handleClickToggleAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const classes = [...(e.target as Element).classList];
     const isCurrent = classes.find((item) => item.includes("Current"));
@@ -44,30 +44,28 @@ const ModalAuth: React.FC<ModalAuthProps> = ({
       <div className={style.modalAuthContent}>
         <ul className={style.modalAuthNav}>
           <li className={style.modalAuthNavItem}>
-            <a
-              href=""
+            <button
               className={
                 style.modalAuthNavLink +
                 " " +
-                (toggleLoginSignUp && style.NavLinkCurrent)
+                (toggleLoginSignUp ? style.NavLinkCurrent : "")
               }
-              onClick={(e) => handleClickToggleAuth(e)}
+              onClick={handleClickToggleAuth}
             >
               Login
-            </a>
+            </button>
           </li>
           <li className={style.modalAuthNavItem}>
-            <a
-              href=""
+            <button
               className={
                 style.modalAuthNavLink +
                 " " +
                 (toggleLoginSignUp ? "" : style.NavLinkCurrent)
               }
-              onClick={(e) => handleClickToggleAuth(e)}
+              onClick={handleClickToggleAuth}
             >
               Sign Up
-            </a>
+            </button>
           </li>
         </ul>
 

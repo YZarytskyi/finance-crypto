@@ -46,8 +46,8 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
   return (
     <div
       className={`${style.backdrop} ${!modalShow ? style.isHidden : ""}`}
-      onClick={(e) => handleCloseModal(e)}
-      onMouseDown={(e) => handleMouseDownBackdrop(e)}
+      onClick={handleCloseModal}
+      onMouseDown={handleMouseDownBackdrop}
     >
       <div className={style.modal}>
         <button type="button" className={style.modalCloseBtn + " jsCloseModal"}>

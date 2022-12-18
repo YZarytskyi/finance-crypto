@@ -27,7 +27,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const onClickAuthBtn = (e: React.SyntheticEvent) => {
+  const onClickAuthBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const target = e.target as Element;
     setModalAuthShow(true);
@@ -39,7 +39,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
     }
   };
 
-  const onClickLogout = async (e: React.SyntheticEvent) => {
+  const onClickLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await signOut(auth);
@@ -63,7 +63,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
             <button
               type="button"
               className={style.logoutBtn}
-              onClick={(e) => onClickLogout(e)}
+              onClick={onClickLogout}
             >
               Log&nbsp;Out
             </button>
@@ -73,14 +73,14 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
                 ref={loginRef}
                 type="button"
                 className={style.loginBtn}
-                onClick={(e) => onClickAuthBtn(e)}
+                onClick={onClickAuthBtn}
               >
                 Login
               </button>
               <button
                 type="button"
                 className={style.signUpBtn}
-                onClick={(e) => onClickAuthBtn(e)}
+                onClick={onClickAuthBtn}
               >
                 Sign&nbsp;Up
               </button>

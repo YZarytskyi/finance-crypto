@@ -11,7 +11,7 @@ interface NavLinksProps {
 const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
   const [isSubListMobileOpen, setSubListMobileOpen] = useState<boolean>(false);
 
-  const handleMobileSubList = (e: React.SyntheticEvent) => {
+  const handleMobileSubList = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setSubListMobileOpen((prev) => !prev);
   };
