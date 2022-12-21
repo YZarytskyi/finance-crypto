@@ -31,8 +31,7 @@ const ModalAuth: React.FC<ModalAuthProps> = ({
 
   const handleClickToggleAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const classes = [...(e.target as Element).classList];
-    const isCurrent = classes.find((item) => item.includes("Current"));
+    const isCurrent = (e.target as Element).classList.contains(style.NavLinkCurrent);
     if (!isCurrent && setToggleLoginSignUp) {
       setToggleLoginSignUp((prev) => !prev);
     }

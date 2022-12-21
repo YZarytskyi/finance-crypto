@@ -1,9 +1,6 @@
 import { cryptoApi } from "../../API/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  Exchanges,
-  SelectedExchange,
-} from "../../Types/Types";
+import { Exchanges, SelectedExchange } from "../../Types/Types";
 
 const initialState: InitialState = {
   exchanges: [],
@@ -14,7 +11,7 @@ const initialState: InitialState = {
 
 interface InitialState {
   exchanges: Array<Exchanges>;
-  exchangesList: Array<{id: string, name: string}>;
+  exchangesList: Array<{ id: string; name: string }>;
   selectedExchange: SelectedExchange | null;
   isLoadingExchanges: boolean;
 }
@@ -28,7 +25,10 @@ export const fetchExchanges = createAsyncThunk(
 export const fetchExchangesList = createAsyncThunk(
   "exchangesList/fetch",
   async (query?: string) => {
-    return (await cryptoApi.getExchangesList(query)) as Array<{id: string, name: string}>;
+    return (await cryptoApi.getExchangesList(query)) as Array<{
+      id: string;
+      name: string;
+    }>;
   }
 );
 export const fetchExchangeById = createAsyncThunk(
@@ -47,7 +47,8 @@ export const exchangeSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchExchanges.pending, (state) => {
+    builder
+      .addCase(fetchExchanges.pending, (state) => {
         state.isLoadingExchanges = true;
       })
       .addCase(fetchExchanges.fulfilled, (state, action) => {
@@ -55,29 +56,19 @@ export const exchangeSlice = createSlice({
         state.isLoadingExchanges = false;
       });
 
-    builder.addCase(fetchExchangesList.pending, (state) => {
-        state.isLoadingExchanges = true;
-      })
-      .addCase(fetchExchangesList.fulfilled, (state, action) => {
-        state.exchangesList = action.payload;
-        state.isLoadingExchanges = false;
-      });
-    builder.addCase(fetchExchangeById.pending, (state) => {
-        state.isLoadingExchanges = true;
-      })
-      .addCase(fetchExchangeById.fulfilled, (state, action) => {
-        if (Array.isArray(action.payload)) {
-          state.exchanges = action.payload;
-        } else {
-          state.selectedExchange = action.payload;
-        }
-        state.isLoadingExchanges = false;
-      });
+    builder.addCase(fetchExchangesList.fulfilled, (state, action) => {
+      state.exchangesList = action.payload;
+    });
+    builder.addCase(fetchExchangeById.fulfilled, (state, action) => {
+      if (Array.isArray(action.payload)) {
+        state.exchanges = action.payload;
+      } else {
+        state.selectedExchange = action.payload;
+      }
+    });
   },
 });
 
-export const {
-  removeSelectedExchange,
-} = exchangeSlice.actions;
+export const { removeSelectedExchange } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;
