@@ -51,7 +51,7 @@ export const ArticlesBlockSkeleton = () => {
       <section className={style.articles}>
         <div className={style.articlesLeft}>
           <a>
-          <h2>Top Articles</h2>
+            <h2>Top Articles</h2>
           </a>
           <ul className={style.articlesLeftList}>
             <li>
@@ -84,12 +84,12 @@ export const ArticlesBlockSkeleton = () => {
         </div>
 
         <div className={style.articlesRight}>
-          <a>
+          <div>
             <h2 className={style.articlesRightTitle}>Recent Articles</h2>
-          </a>
+          </div>
           <ul className={style.articlesRightList}>
             <li>
-              <a className={style.articlesRightLink}>
+              <div className={style.articlesRightLink}>
                 <div className={style.articlesRightImg}>
                   <Skeleton
                     height={59}
@@ -99,18 +99,18 @@ export const ArticlesBlockSkeleton = () => {
                 </div>
                 <div className={style.articlesRightDescription}>
                   <p>
-                    <Skeleton height={15} width={'100%'} />
+                    <Skeleton height={15} width={"100%"} />
                   </p>
                   <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={'60%'} />
-                    <Skeleton height={14} width={'25%'} />
+                    <Skeleton height={15} width={"60%"} />
+                    <Skeleton height={14} width={"25%"} />
                   </p>
                 </div>
-              </a>
+              </div>
             </li>
 
             <li>
-              <a className={style.articlesRightLink}>
+              <div className={style.articlesRightLink}>
                 <div className={style.articlesRightImg}>
                   <Skeleton
                     height={60}
@@ -119,19 +119,19 @@ export const ArticlesBlockSkeleton = () => {
                   />
                 </div>
                 <div className={style.articlesRightDescription}>
-                <p>
-                    <Skeleton height={15} width={'100%'} />
+                  <p>
+                    <Skeleton height={15} width={"100%"} />
                   </p>
                   <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={'60%'} />
-                    <Skeleton height={14} width={'25%'} />
+                    <Skeleton height={15} width={"60%"} />
+                    <Skeleton height={14} width={"25%"} />
                   </p>
                 </div>
-              </a>
+              </div>
             </li>
 
             <li>
-              <a className={style.articlesRightLink}>
+              <div className={style.articlesRightLink}>
                 <div className={style.articlesRightImg}>
                   <Skeleton
                     height={60}
@@ -144,11 +144,11 @@ export const ArticlesBlockSkeleton = () => {
                     <Skeleton height={15} width={450} />
                   </p>
                   <p style={{ display: "block" }}>
-                    <Skeleton height={15} width={'60%'} />
-                    <Skeleton height={14} width={'25%'} />
+                    <Skeleton height={15} width={"60%"} />
+                    <Skeleton height={14} width={"25%"} />
                   </p>
                 </div>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
@@ -186,6 +186,30 @@ export const ActiveCoinsSkeleton = () => {
         <div>
           <Skeleton height={23} width={65} />
         </div>
+      </SkeletonTheme>
+    </>
+  );
+};
+
+const CarouselArticleItem = () => {
+  return (
+    <li>
+      <a className={style.articlesLink}>
+        <Skeleton height={18} width={240} style={{marginLeft: 5}} />
+        <Skeleton height={18} width={240} style={{marginLeft: 5}} />
+        <Skeleton height={16} width={110} style={{marginLeft: 5}} />
+      </a>
+    </li>
+  );
+};
+
+export const CarouselArticleSkeleton = () => {
+  return (
+    <>
+      <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
+        <CarouselArticleItem />
+        <CarouselArticleItem />
+        <CarouselArticleItem />
       </SkeletonTheme>
     </>
   );
