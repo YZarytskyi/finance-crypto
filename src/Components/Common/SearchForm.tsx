@@ -1,10 +1,10 @@
-import style from "./SearchForm.module.scss";
 import React, { useEffect, useState } from "react";
+// import { debounce } from "@mui/material";
 import { cryptoApi } from "../../API/api";
-import { debounce } from "@mui/material";
 import { Link } from "react-router-dom";
 import sprite from "../../assets/images/icons.svg";
 import Spinner from "./Spinner";
+import style from "./SearchForm.module.scss";
 
 const SearchForm = () => {
   const [showList, setShowList] = useState<boolean>(false);

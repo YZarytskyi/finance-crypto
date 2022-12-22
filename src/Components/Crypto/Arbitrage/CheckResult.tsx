@@ -284,7 +284,7 @@ const CheckResult = () => {
           Check
         </LoadingButton>
         <p className={style.result}>
-          Result: {result.result ? `${result.result} %` : ""}
+          Result {result.result ? `${result.result} %` : ""}
         </p>
       </section>
     </>

@@ -1,11 +1,11 @@
-import style from "./Articles.module.scss";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Articles, fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
+import Preloader from "../Common/Preloader";
+import { handleImageError } from "../../utils/imageErrorHandler";
 import sprite from "../../assets/images/icons.svg";
-import { handleImageError } from "../Home/Articles";
-import PreloaderMain from "../Common/PreloaderMain";
+import style from "./Articles.module.scss";
 
 const Article = () => {
   const { articleId } = useParams<{ articleId: string }>();
@@ -21,19 +21,20 @@ const Article = () => {
   }, []);
 
   if (!article) {
-    return <PreloaderMain />;
+    return <Preloader />;
   }
   return (
     <article className={style.selectedArticle}>
       <h1 className={style.selectedArticleTitle}>{article.headline.main}</h1>
-      <p className={style.selectedArticleDate}>
-        <svg className={style.iconTime}>
+      <p className={style.selectedArticleSnippet}>{article.snippet}</p>
+      <p className={style.selectedArticleDateAuthor}>
+        <span>
+      <svg className={style.iconTime}>
           <use href={sprite + "#time"} />
         </svg>
         {article.pub_date.slice(0, 10)}
-        {!article?.byline?.original?.startsWith("https")
-          ? `, Author: ${article.byline.original.slice(3)}`
-          : ""}
+        </span>
+        Author: {article.byline.original.slice(3)}
       </p>
       <img
         className={style.selectedArticleImage}

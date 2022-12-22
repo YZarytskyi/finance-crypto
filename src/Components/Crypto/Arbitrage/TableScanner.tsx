@@ -1,11 +1,11 @@
-import style from "./Arbitrage.module.scss";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import sprite from "../../../assets/images/icons.svg";
 import Table from "react-bootstrap/Table";
 import TableArbitrageBody from "./TableBody";
 import { fetchCurrencies } from "../../../Store/Reducers/arbitrageSlice";
 import Preloader from "../../Common/Preloader";
+import sprite from "../../../assets/images/icons.svg";
+import style from "./Arbitrage.module.scss";
 
 
 const ScannerTable = () => {
@@ -28,7 +28,7 @@ const ScannerTable = () => {
       </svg>
 
       {isLoadingCurrencies 
-      ? <div className={style.tablePreloader}><Preloader /></div>
+      ? <div className={style.tablePreloader}><Preloader className='small' /></div>
       : <div className={`${style.table} ${style.tableArbitrage}`}>
       <Table
         hover

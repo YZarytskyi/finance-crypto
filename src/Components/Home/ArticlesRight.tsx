@@ -1,12 +1,13 @@
-import style from "./Home.module.scss";
 import { NavLink } from "react-router-dom";
-import sprite from "../../assets/images/icons.svg";
+import { handleImageError } from "../../utils/imageErrorHandler";
 import { useAppSelector } from "../../Store/hooks";
-import { handleImageError } from "./Articles";
+import sprite from "../../assets/images/icons.svg";
+import style from "./Home.module.scss";
 
 const ArticlesRight = () => {
   const articles = useAppSelector((state) => state.articles.articles);
-  
+  const filteredArticles = articles.slice(2, 5)
+
   return (
     <section className={style.articlesRight}>
       <NavLink to="/articles">
@@ -18,7 +19,7 @@ const ArticlesRight = () => {
         </h2>
       </NavLink>
       <ul className={style.articlesRightList}>
-        {articles.slice(2, 5).map((article) => (
+        {filteredArticles.map((article) => (
           <li key={article.id} className={style.articlesRightItem}>
             <NavLink
               to={`/articles/${article.id}`}
@@ -33,13 +34,7 @@ const ArticlesRight = () => {
               </div>
               <div className={style.articlesRightDescription}>
                 <p>{article.headline.main}</p>
-                <p
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                  }}
-                >
+                <p className={style.articlesDate}>
                   <svg className={style.iconTime}>
                     <use href={sprite + "#time"} />
                   </svg>

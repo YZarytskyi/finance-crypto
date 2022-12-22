@@ -1,4 +1,3 @@
-import style from "./SelectedCoin.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SelectedCoinMarketChart from "./SelectedCoinChart";
@@ -12,7 +11,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { setNumberFormat } from "../../../utils/utils";
-import PreloaderMain from "../../Common/PreloaderMain";
+import Preloader from "../../Common/Preloader";
+import style from "./SelectedCoin.module.scss";
 
 const SelectedCoin = () => {
   const { coinId } = useParams();
@@ -46,7 +46,7 @@ const SelectedCoin = () => {
   );
 
   if (!selectedCoin) {
-    return <PreloaderMain />;
+    return <Preloader />;
   }
 
   return (
