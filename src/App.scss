@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./Components/Header/Header.module.scss";
 
 html {
   background-color: $bg-color-main;
@@ -20,6 +21,7 @@ html {
     color: $color-main;
     overflow-x: hidden;
     overflow-y: scroll;
+    
     &.overflow {
       overflow: hidden;
       padding-right: 14px;
@@ -33,10 +35,10 @@ html {
           width: 100%;
         }
       }
-      & .Header_pcContainer__rbIU0 {
+      & .pcContainerOverflow {
         padding-right: 14px;
       }
-      & .Header_mobileContainer__Bn5xm {
+      & .mobileContainerOverflow {
         padding-right: 14px;
         @media screen and (max-width: 767px) {
           padding-right: 0;

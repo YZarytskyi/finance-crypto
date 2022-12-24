@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks";
 
 const PCNav = () => {
   return (
-    <div className={style.pcContainer}>
+    <div className={`${style.pcContainer} pcContainerOverflow`}>
       <nav className={style.pcNav}>
         <NavLinks />
       </nav>

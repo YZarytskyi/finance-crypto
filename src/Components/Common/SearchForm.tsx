@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 // import { debounce } from "@mui/material";
-import { cryptoApi } from "../../API/api";
-import { Link } from "react-router-dom";
-import sprite from "../../assets/images/icons.svg";
-import Spinner from "./Spinner";
-import style from "./SearchForm.module.scss";
+import { cryptoApi } from '../../API/api';
+import { Link } from 'react-router-dom';
+import sprite from '../../assets/images/icons.svg';
+import Spinner from './Spinner';
+import style from './SearchForm.module.scss';
 
 const SearchForm = () => {
   const [showList, setShowList] = useState<boolean>(false);
@@ -12,35 +12,35 @@ const SearchForm = () => {
 
   useEffect(() => {
     if (showList) {
-      window.addEventListener("mousedown", onClickCloseList);
+      window.addEventListener('mousedown', onClickCloseList);
     }
 
-    return () =>
-      window.removeEventListener("mousedown", onClickCloseList);
+    return () => window.removeEventListener('mousedown', onClickCloseList);
   }, [showList]);
 
   const onClickCloseList = (e: MouseEvent) => {
-    if (!(e.target as Element).closest("#searchAbsolute")) {
-      setShowList(false);
-      if (
-        window.innerWidth <= 1280 ||
-        document.body.classList.contains("overflow")
-      ) {
-        document.body.classList.remove("overflow");
-      }
+    if ((e.target as Element).closest('#searchAbsolute')) {
+      return;
+    }
+    setShowList(false);
+    if (
+      window.innerWidth <= 1280 ||
+      document.body.classList.contains('overflow')
+    ) {
+      document.body.classList.remove('overflow');
     }
   };
 
   const onLinkClick = () => {
     setShowList(false);
-    document.body.classList.remove("overflow");
+    document.body.classList.remove('overflow');
   };
 
   const onSearchOpen = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setShowList(true);
     if (window.innerWidth <= 1280) {
-      document.body.classList.add("overflow");
+      document.body.classList.add('overflow');
     }
   };
 
@@ -71,7 +71,7 @@ const SearchForm = () => {
         />
         <button className={style.searchIconContainer} onClick={onSearchOpen}>
           <svg className={style.searchIcon}>
-            <use href={sprite + "#search"} />
+            <use href={sprite + '#search'} />
           </svg>
         </button>
       </div>
@@ -81,7 +81,7 @@ const SearchForm = () => {
           <div className={style.searchMainContainerOut} id="searchAbsolute">
             <button className={style.closeBtn} onClick={onLinkClick}>
               <svg className={style.iconClose}>
-                <use href={sprite + "#modal_close"} />
+                <use href={sprite + '#modal_close'} />
               </svg>
             </button>
 
@@ -98,7 +98,7 @@ const SearchForm = () => {
               />
               <span className={style.searchIconContainerOut}>
                 <svg className={style.searchIcon}>
-                  <use href={sprite + "#search"} />
+                  <use href={sprite + '#search'} />
                 </svg>
               </span>
             </div>
@@ -106,7 +106,7 @@ const SearchForm = () => {
             <div className={style.listContainer}>
               {!Object.keys(data).length ? (
                 <p className={style.loading}>
-                  Loading <Spinner className={"spinnerSearch"} />
+                  Loading <Spinner className={'spinnerSearch'} />
                 </p>
               ) : (
                 <>

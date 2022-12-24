@@ -46,7 +46,7 @@ const App = () => {
 
   useEffect(() => {
     const user = getCookie(COOKIE_TOKEN_NAME);
-    dispatch(setIsAuth(!!user));
+    dispatch(setIsAuth(Boolean(user)));
     dispatch(initializedSuccess());
     notifyInit();
   }, []);

@@ -87,8 +87,9 @@ const MobileNav = () => {
     </svg>
   );
 
+
   return (
-    <div className={style.mobileContainer}>
+    <div className={`${style.mobileContainer} mobileContainerOverflow`}>
       <nav className={style.mobileNav}>
         <div onClick={onClickToggleMenu} className={style.mobileToggleIcons}>
           {isMenuOpen ? closeIcon : hamburgerIcon}
