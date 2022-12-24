@@ -5,8 +5,8 @@ import * as yup from "yup";
 import SendButton from "@mui/material/Button";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Firebase/Firebase";
-import sprite from "../../assets/images/icons.svg";
+import { auth } from "../../Firebase/Firebase";
+import sprite from "../../../assets/images/icons.svg";
 import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix";
 

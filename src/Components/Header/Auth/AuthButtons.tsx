@@ -1,37 +1,34 @@
-import style from "./Header.module.scss";
-import { useRef, useState } from "react";
-import Auth from "../Auth/ModalAuth";
-import { COOKIE_TOKEN_NAME, deleteCookie, getCookie } from "../../utils/cookie";
-import { signOut } from "firebase/auth";
-import { auth } from "../Firebase/Firebase";
-import { Notify } from "notiflix";
-import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import { setIsAuth } from "../../Store/Reducers/authSlice";
+import { useRef, useState } from 'react';
+import { signOut } from 'firebase/auth';
+import { Notify } from 'notiflix';
+import {
+  COOKIE_TOKEN_NAME,
+  deleteCookie,
+  getCookie,
+} from '../../../utils/cookie';
+import { auth } from '../../Firebase/Firebase';
+import Auth from '../Auth/ModalAuth';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import { setIsAuth } from '../../../Store/Reducers/authSlice';
+import style from './Auth.module.scss';
 
 interface AuthButtonsProps {
-  setIsProfileOpen?: (
-    value: boolean | ((prevValue: boolean) => boolean)
-  ) => void;
   isProfileOpen?: boolean;
 }
 
-const AuthButtons: React.FC<AuthButtonsProps> = ({
-  setIsProfileOpen,
-  isProfileOpen,
-}) => {
+const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
-  const loginRef = useRef(null);
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
-  const isInitialized = useAppSelector((state) => state.app.isInitialized);
-
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const loginRef = useRef(null);
 
-  const onClickAuthBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickAuthBtn: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
     const target = e.target as Element;
     setModalAuthShow(true);
-    document.body.classList.add("overflow");
+    document.body.classList.add('overflow');
     if (target === loginRef.current) {
       setIsLogin(true);
     } else {
@@ -39,14 +36,14 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
     }
   };
 
-  const onClickLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickLogout: React.MouseEventHandler<HTMLButtonElement> = async e => {
     e.preventDefault();
     try {
       await signOut(auth);
       deleteCookie(COOKIE_TOKEN_NAME);
       dispatch(setIsAuth(false));
-      Notify.success("You logged out successfully");
-    } catch ({message}) {
+      Notify.success('You logged out successfully');
+    } catch ({ message }) {
       Notify.failure(message as string);
     }
   };
@@ -54,9 +51,10 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
   if (isInitialized) {
     return (
       <>
-        <div
+        <div 
+          id='authBtnContainer'
           className={`${style.authContainerHidden} ${
-            isProfileOpen ? style.authContainerOpen : ""
+            isProfileOpen ? style.authContainerOpen : ''
           }`}
         >
           {isAuth ? (
@@ -95,7 +93,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
       </>
     );
   }
-  return null
+  return null;
 };
 
 export default AuthButtons;

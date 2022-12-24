@@ -1,39 +1,38 @@
-import style from "./Auth.module.scss";
-import React, { useEffect, useState } from "react";
-import Modal from "../Common/Modal";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import React, { useEffect, useState } from 'react';
+import Modal from '../../Common/Modal';
+import Login from './Login';
+import SignUp from './SignUp';
+import style from './Auth.module.scss';
 
 interface ModalAuthProps {
   children?: React.ReactNode;
   modalAuthShow: boolean;
-  setModalAuthShow: (
-    value: boolean | ((prevValue: boolean) => boolean)
-  ) => void;
+  setModalAuthShow: React.Dispatch<React.SetStateAction<boolean>>;
   isLogin: boolean;
 }
 
-const ModalAuth: React.FC<ModalAuthProps> = ({
+const ModalAuth = ({
   children,
   modalAuthShow,
   setModalAuthShow,
   isLogin,
-}) => {
+}: ModalAuthProps) => {
   const [toggleLoginSignUp, setToggleLoginSignUp] = useState<boolean>(true);
 
   useEffect(() => {
     if (isLogin) {
       setToggleLoginSignUp(true);
-    } else {
-      setToggleLoginSignUp(false);
+      return;
     }
+    setToggleLoginSignUp(false);
   }, [isLogin]);
 
-  const handleClickToggleAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickToggleAuth: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
-    const isCurrent = (e.target as Element).classList.contains(style.NavLinkCurrent);
+    const target = e.target as Element;
+    const isCurrent = target.classList.contains(style.NavLinkCurrent);
     if (!isCurrent && setToggleLoginSignUp) {
-      setToggleLoginSignUp((prev) => !prev);
+      setToggleLoginSignUp(prev => !prev);
     }
   };
 
@@ -44,24 +43,20 @@ const ModalAuth: React.FC<ModalAuthProps> = ({
         <ul className={style.modalAuthNav}>
           <li className={style.modalAuthNavItem}>
             <button
-              className={
-                style.modalAuthNavLink +
-                " " +
-                (toggleLoginSignUp ? style.NavLinkCurrent : "")
-              }
-              onClick={handleClickToggleAuth}
+              className={`${style.modalAuthNavLink} ${
+                toggleLoginSignUp ? style.NavLinkCurrent : ''
+              }`}
+              onClick={onClickToggleAuth}
             >
               Login
             </button>
           </li>
           <li className={style.modalAuthNavItem}>
             <button
-              className={
-                style.modalAuthNavLink +
-                " " +
-                (toggleLoginSignUp ? "" : style.NavLinkCurrent)
-              }
-              onClick={handleClickToggleAuth}
+              className={`${style.modalAuthNavLink} ${
+                toggleLoginSignUp ? '' : style.NavLinkCurrent
+              }`}
+              onClick={onClickToggleAuth}
             >
               Sign Up
             </button>

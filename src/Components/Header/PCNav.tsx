@@ -1,5 +1,5 @@
 import SearchForm from "../Common/SearchForm";
-import AuthButtons from "./AuthButtons";
+import AuthButtons from "./Auth/AuthButtons";
 import style from "./Header.module.scss";
 import NavLinks from "./NavLinks";
 

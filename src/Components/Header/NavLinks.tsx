@@ -25,7 +25,7 @@ const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
         </svg>
       </NavLink>
 
-      <ul className={`${style.navLinksListHidden} ${isMenuOpen ? style.navLinksListOpen : ""}`}>
+      <ul className={`${style.navLinksListHidden} ${isMenuOpen ? style.navLinksListOpen : ""}`} id='navLinksList'>
         <li onClick={() => onClickMobileLink && onClickMobileLink()}>
           <NavLink to="/" className={style.link}>
             Home

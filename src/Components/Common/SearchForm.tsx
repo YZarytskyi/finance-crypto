@@ -12,11 +12,11 @@ const SearchForm = () => {
 
   useEffect(() => {
     if (showList) {
-      document.body.addEventListener("mousedown", onClickCloseList);
+      window.addEventListener("mousedown", onClickCloseList);
     }
 
     return () =>
-      document.body.removeEventListener("mousedown", onClickCloseList);
+      window.removeEventListener("mousedown", onClickCloseList);
   }, [showList]);
 
   const onClickCloseList = (e: MouseEvent) => {
