@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Articles, fetchArticles } from "../../Store/Reducers/articlesSlice";
+import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import Preloader from "../Common/Preloader";
+import { Article as ArticleType } from "../../Types/Types";
 import { handleImageError } from "../../utils/imageErrorHandler";
 import sprite from "../../assets/images/icons.svg";
 import style from "./Articles.module.scss";
 
 const Article = () => {
   const { articleId } = useParams<{ articleId: string }>();
-  const article: Articles | undefined = useAppSelector(
-    (state) => state.articles.articles[Number(articleId) - 1]
-  );
   const dispatch = useAppDispatch();
+  const article: ArticleType | undefined = useAppSelector(
+    (state) => state.articles.recentArticles.find((article) => article._id === articleId)
+  );
 
   useEffect(() => {
     if (!article) {

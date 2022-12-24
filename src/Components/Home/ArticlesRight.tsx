@@ -20,9 +20,9 @@ const ArticlesRight = () => {
       </NavLink>
       <ul className={style.articlesRightList}>
         {filteredArticles.map((article) => (
-          <li key={article.id} className={style.articlesRightItem}>
+          <li key={article._id} className={style.articlesRightItem}>
             <NavLink
-              to={`/articles/${article.id}`}
+              to={`/articles/${article._id}`}
               className={style.articlesRightLink}
             >
               <div className={style.articlesRightImg}>

@@ -1,35 +1,40 @@
-import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import TablePagination from "../Common/TablePagination";
-import {
-  Articles,
-  fetchRecentArticles,
-} from "../../Store/Reducers/articlesSlice";
-import { ArticlesBlockSkeleton } from "./ArticlesBlockSkeleton";
-import { handleImageError } from "../../utils/imageErrorHandler";
-import sprite from "../../assets/images/icons.svg";
-import style from "./Articles.module.scss";
+import { useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../Store/hooks';
+import TablePagination from '../Common/TablePagination';
+import { fetchRecentArticles, setCurrentPage } from '../../Store/Reducers/articlesSlice';
+import { ArticlesBlockSkeleton } from './ArticlesBlockSkeleton';
+import { Article } from '../../Types/Types';
+import { handleImageError } from '../../utils/imageErrorHandler';
+import sprite from '../../assets/images/icons.svg';
+import style from './Articles.module.scss';
+import usePrevious from '../../hooks/usePrevious';
+
+const ARTICLES_PER_PAGE: 10 = 10;
 
 const ArticlesBlock = () => {
-  const { recentArticles, total, isLoadingArticles } = useAppSelector(
-    (state) => state.articles
+  const { recentArticles, articles, total, currentPage, isLoadingArticles } = useAppSelector(
+    state => state.articles
   );
   const dispatch = useAppDispatch();
   const articlesTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const [page, setPage] = useState<number>(0);
-  const articlesPerPage: 10 = 10;
-  let totalPages = Math.ceil(total / articlesPerPage);
+  let totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
   totalPages = totalPages > 100 ? 100 : totalPages;
+  
+  const prevPage: number = usePrevious<number>(currentPage) || 0;
 
   useEffect(() => {
-    dispatch(fetchRecentArticles(page));
-  }, [page]);
+    console.log(prevPage, currentPage)
+    if (prevPage === currentPage) {
+      return
+    }
+    dispatch(fetchRecentArticles(currentPage));
+  }, [currentPage]);
 
-  const articleTitle = (article: Articles) => {
+  const articleTitle = (article: Article) => {
     return article.headline?.main?.length > 76
-      ? article.headline.main.slice(0, 76) + "..."
+      ? article.headline.main.slice(0, 76) + '...'
       : article.headline.main;
   };
 
@@ -44,10 +49,10 @@ const ArticlesBlock = () => {
           <ArticlesBlockSkeleton />
         ) : (
           <ul className={style.articlesBlock}>
-            {recentArticles.map((article) => (
-              <li key={article.id}>
+            {recentArticles.map(article => (
+              <li key={article._id}>
                 <NavLink
-                  to={`/articles/${article.id}`}
+                  to={`/articles/${article._id}`}
                   className={style.allArticlesLink}
                 >
                   <img
@@ -63,7 +68,7 @@ const ArticlesBlock = () => {
                     </p>
                     <div className={style.articleDate}>
                       <svg className={style.iconTime}>
-                        <use href={sprite + "#time"} />
+                        <use href={sprite + '#time'} />
                       </svg>
                       {article.pub_date.slice(0, 10)}
                     </div>
@@ -76,8 +81,7 @@ const ArticlesBlock = () => {
 
         <div className={style.paginationArticlesBlock}>
           <TablePagination
-            page={page + 1}
-            setPage={setPage}
+            page={currentPage + 1}
             count={totalPages}
             ref={articlesTitleRef}
             articles

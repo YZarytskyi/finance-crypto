@@ -1,15 +1,19 @@
 import Pagination from "@mui/material/Pagination";
 import { forwardRef } from "react";
+import { useAppDispatch } from "../../Store/hooks";
+import { setCurrentPage } from "../../Store/Reducers/articlesSlice";
 
 interface TablePaginationProps {
   page: number;
-  setPage: (e: number) => void;
+  setPage?: React.Dispatch<React.SetStateAction<number>>;
   count: number;
   articles?: true;
 }
 
 const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
   ({ page, setPage, count, articles }, ref) => {
+    const dispatch = useAppDispatch();
+
     const executeScroll = (ref: HTMLHeadingElement) => {
       ref.scrollIntoView({
         behavior: "smooth",
@@ -19,9 +23,9 @@ const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
 
     const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
       if (articles) {
-        setPage(page - 1);
+        dispatch(setCurrentPage(page - 1));
       } else {
-        setPage(page);
+        setPage && setPage(page);
       }
 
       if (ref) {

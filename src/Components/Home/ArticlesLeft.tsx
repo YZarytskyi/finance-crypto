@@ -19,9 +19,9 @@ const ArticlesLeft = () => {
       </NavLink>
       <ul className={style.articlesLeftList}>
         {articles.slice(0, 2).map((article) => (
-          <li key={article.id}>
+          <li key={article._id}>
             <NavLink
-              to={`/articles/${article.id}`}
+              to={`/articles/${article._id}`}
               className={style.articlesLeftLink}
             >
               <div className={style.articlesLeftImg}>

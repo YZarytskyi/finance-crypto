@@ -118,9 +118,9 @@ export const ArticlesCarouselData = () => {
 
           {filterArticles.length ? (
             filterArticles.map((article) => (
-              <li key={article.id}>
+              <li key={article._id}>
                 <NavLink
-                  to={`/articles/${article.id}`}
+                  to={`/articles/${article._id}`}
                   className={style.articlesLink}
                 >
                   <p>{article.headline.main}</p>

@@ -24,7 +24,7 @@ const ArticlesPage = () => {
     <>
       <section className={style.heading}>
         <div className={style.headingContainer}>
-          <NavLink to={`${articles[1].id}`} className={style.mainTitle}>
+          <NavLink to={`${articles[1]._id}`} className={style.mainTitle}>
             <p>{articles[1].headline.main}</p>
           </NavLink>
           <BottomList />
@@ -43,8 +43,8 @@ const BottomList = () => {
   return (
     <ul className={style.bottomList}>
       {articles.slice(2, 5).map((article) => (
-        <li className={style.bottomListItem} key={article.id}>
-          <NavLink to={`${article.id}`} className={style.bottomListLink}>
+        <li className={style.bottomListItem} key={article._id}>
+          <NavLink to={`${article._id}`} className={style.bottomListLink}>
             <img
               className={style.bottomListImage}
               src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
@@ -66,8 +66,8 @@ const TopArticles = () => {
       <h2 className={style.rightListTitle}>Top Articles</h2>
       <ul className={style.rightList}>
         {articles.slice(0, 11).map((article) => (
-          <li key={article.id}>
-            <NavLink to={`${article.id}`} className={style.rightListLink}>
+          <li key={article._id}>
+            <NavLink to={`${article._id}`} className={style.rightListLink}>
               <img
                 className={style.rightListArticleImage}
                 src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}

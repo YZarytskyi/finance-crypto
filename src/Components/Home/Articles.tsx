@@ -7,8 +7,8 @@ import ArticlesRight from "./ArticlesRight";
 import style from "./Home.module.scss";
 
 const Articles = () => {
-  const { articles, isLoadingArticles } = useAppSelector(
-    (state) => state.articles
+  const articles = useAppSelector(
+    (state) => state.articles.articles
   );
   const dispatch = useAppDispatch();
 
@@ -18,7 +18,7 @@ const Articles = () => {
     }
   }, []);
 
-  if (isLoadingArticles) {
+  if (!articles.length) {
     return <ArticlesBlockSkeleton />;
   }
 
