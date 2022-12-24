@@ -1,8 +1,8 @@
-import style from "./Home.module.scss";
 import { NavLink } from "react-router-dom";
-import sprite from "../../assets/images/icons.svg";
 import { useAppSelector } from "../../Store/hooks";
-import { handleImageError } from "./Articles";
+import { handleImageError } from "../../utils/imageErrorHandler";
+import sprite from "../../assets/images/icons.svg";
+import style from "./Home.module.scss";
 
 const ArticlesLeft = () => {
   const articles = useAppSelector((state) => state.articles.articles);
@@ -32,13 +32,7 @@ const ArticlesLeft = () => {
                 />
               </div>
               <p>{article.headline.main.slice(0, 50)}...</p>
-              <p
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                }}
-              >
+              <p className={style.articlesDate}>
                 <svg className={style.iconTime}>
                   <use href={sprite + "#time"} />
                 </svg>

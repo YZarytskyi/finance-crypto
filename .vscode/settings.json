@@ -1,0 +1,6 @@
+{
+  "window.zoomLevel": -0.1,
+  "editor.mouseWheelZoom": true,
+  "editor.suggest.showStatusBar": false,
+  "workbench.statusBar.visible": true
+}

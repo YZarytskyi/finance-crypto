@@ -1,4 +1,4 @@
-import style from "./Home.module.scss";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import sprite from "../../assets/images/icons.svg";
@@ -7,23 +7,39 @@ import slider2 from "../../assets/images/slider2.jpg";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import {
   ActiveCoinsSkeleton,
+  CarouselArticleSkeleton,
   MarketCapSkeleton,
   VolumeSkeleton,
 } from "./HomeSkeleton";
-import { useEffect } from "react";
 import { fetchGlobalData } from "../../Store/Reducers/cryptoSlice";
-import { setNumberFormat } from "../../utils/utils";
-
+import { setClassNamePlusOrMinus, setNumberFormat } from "../../utils/utils";
+import style from "./Home.module.scss";
 
 export const CryptoCarouselData = () => {
   const globalData = useAppSelector((state) => state.crypto.globalData);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!Object.keys(globalData).length) {
+    const isGlobalData = Object.keys(globalData).length;
+    if (!isGlobalData) {
       dispatch(fetchGlobalData());
     }
   }, []);
+
+  const {
+    total_market_cap,
+    market_cap_change_percentage_24h_usd,
+    total_volume,
+    active_cryptocurrencies,
+  } = globalData;
+
+  const marketCap =
+    setNumberFormat(Number(total_market_cap?.usd.toFixed(0))) + " $ ";
+  const marketCapChange =
+    market_cap_change_percentage_24h_usd?.toFixed(2) + "%";
+
+  const totalVolume =
+    setNumberFormat(Number(total_volume?.usd?.toFixed(0))) + " $";
 
   return (
     <>
@@ -34,50 +50,34 @@ export const CryptoCarouselData = () => {
         <ul className={`${style.carouselInfo} ${style.cryptoData}`}>
           <li>
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
-              <div>
-                {globalData.total_market_cap?.usd
-                  ? setNumberFormat(
-                      Number(globalData.total_market_cap?.usd.toFixed(0))
-                    ) + " $ "
-                  : ""}
-                <span
-                  className={
-                    globalData.market_cap_change_percentage_24h_usd &&
-                    globalData.market_cap_change_percentage_24h_usd > 0
-                      ? style.percentagePlus
-                      : style.percentageMinus
-                  }
-                >
-                  {globalData.market_cap_change_percentage_24h_usd ? (
-                    globalData.market_cap_change_percentage_24h_usd?.toFixed(
-                      2
-                    ) + "%"
-                  ) : (
-                    <MarketCapSkeleton />
-                  )}
-                </span>
-              </div>
+              {market_cap_change_percentage_24h_usd ? (
+                <div>
+                  {marketCap}
+                  <span
+                    className={setClassNamePlusOrMinus(
+                      market_cap_change_percentage_24h_usd
+                    )}
+                  >
+                    {marketCapChange}
+                  </span>
+                </div>
+              ) : (
+                <MarketCapSkeleton />
+              )}
               <p>Market Capitalization</p>
             </NavLink>
           </li>
           <li>
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
-              <div>
-                {globalData.total_volume?.usd ? (
-                  setNumberFormat(Number(globalData.total_volume.usd?.toFixed(0))) +
-                  " $"
-                ) : (
-                  <VolumeSkeleton />
-                )}
-              </div>
+              <div>{total_volume?.usd ? totalVolume : <VolumeSkeleton />}</div>
               <p>Trading Volume 24h</p>
             </NavLink>
           </li>
           <li>
             <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>
-                {globalData.active_cryptocurrencies ? (
-                  setNumberFormat(globalData.active_cryptocurrencies)
+                {active_cryptocurrencies ? (
+                  setNumberFormat(active_cryptocurrencies)
                 ) : (
                   <ActiveCoinsSkeleton />
                 )}
@@ -100,9 +100,12 @@ export const CryptoCarouselData = () => {
 
 export const ArticlesCarouselData = () => {
   const articles = useAppSelector((state) => state.articles.articles);
-  const filterArticles = articles.filter(
-    (article) => article.headline.main.length > 30 && article.headline.main.length <= 50
-  );
+  const filterArticles = articles
+    .filter(
+      (article) =>
+        article.headline.main.length > 30 && article.headline.main.length <= 50
+    )
+    .slice(0, 3);
 
   return (
     <>
@@ -111,23 +114,29 @@ export const ArticlesCarouselData = () => {
       </div>
 
       <Carousel.Caption className={style.caption}>
-        <ul className={style.carouselInfo + " " + style.articlesData}>
-          {filterArticles.slice(0, 3).map((article) => (
-            <li key={article.id}>
-              <NavLink
-                to={`/articles/${article.id}`}
-                className={style.articlesLink}
-              >
-                <p>{article.headline.main}</p>
-                <p>
-                <svg className={style.iconTime}>
-                  <use href={sprite + "#time"} />
-                </svg>
-                  {article.pub_date.slice(0, 10)}
-                </p>
-              </NavLink>
-            </li>
-          ))}
+        <ul className={`${style.carouselInfo} ${style.articlesData}`}>
+
+          {filterArticles.length ? (
+            filterArticles.map((article) => (
+              <li key={article.id}>
+                <NavLink
+                  to={`/articles/${article.id}`}
+                  className={style.articlesLink}
+                >
+                  <p>{article.headline.main}</p>
+                  <p>
+                    <svg className={style.iconTime}>
+                      <use href={sprite + "#time"} />
+                    </svg>
+                    {article.pub_date.slice(0, 10)}
+                  </p>
+                </NavLink>
+              </li>
+            ))
+          ) : (
+            <CarouselArticleSkeleton />
+          )}
+
         </ul>
         <NavLink to="/articles" className={style.footer}>
           <h1>ECONOMIC ANALYSIS</h1>

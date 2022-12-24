@@ -17,3 +17,7 @@ export const numberToFixed2 = (number: number): number => {
   }
   return ((Math.trunc(number * 100)) / 100)
 }
+
+export const setClassNamePlusOrMinus = (value: number) => {
+  return value > 0 ? 'percentagePlus' : 'percentageMinus';
+}

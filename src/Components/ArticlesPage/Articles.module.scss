@@ -184,7 +184,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
       font-size: 2.2rem;
       line-height: 2.25rem;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       font-size: 2rem;
       line-height: 2.15rem;
     }
@@ -193,20 +193,38 @@ $bg-main: rgba(0, 0, 0, 0.65);
       line-height: 1.75rem;
     }
   }
-  .selectedArticleDate {
-    margin-top: 0.8rem;
-    margin-bottom: 0.8rem;
+
+  .selectedArticleSnippet {
+    margin: 2rem 0;
+    font-style: italic;
+    text-align: justify;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    @media (max-width: 767px) {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+    }
+  }
+
+  .selectedArticleDateAuthor {
+    margin: 0.8rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     color: rgb(118, 118, 131);
-    font-size: 1.1rem;
-
+    font-size: 1rem;
     @media (max-width: 576px) {
-      font-size: 1rem;
+      font-size: 0.9rem;
+    }
+    > span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
   }
+
   .selectedArticleImage {
     margin: 0 auto;
     width: 75%;
@@ -215,6 +233,7 @@ $bg-main: rgba(0, 0, 0, 0.65);
   .selectedArticleBody {
     margin: 2rem 0;
     white-space: pre-line;
+    text-align: justify;
     font-size: 1.2rem;
   }
   .readMoreLink {

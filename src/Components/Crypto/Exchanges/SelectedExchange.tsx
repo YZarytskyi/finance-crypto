@@ -1,4 +1,3 @@
-import style from "./SelectedExchange.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
@@ -7,8 +6,9 @@ import {
   removeSelectedExchange,
 } from "../../../Store/Reducers/exchangeSlice";
 import NavCrypto from "../NavCrypto";
-import PreloaderMain from "../../Common/PreloaderMain";
+import Preloader from "../../Common/Preloader";
 import { setNumberFormat } from "../../../utils/utils";
+import style from "./SelectedExchange.module.scss";
 
 const SelectedExchange = () => {
   const { exchangeId } = useParams();
@@ -25,7 +25,7 @@ const SelectedExchange = () => {
   }, [exchangeId]);
 
   if (!selectedExchange) {
-    return <PreloaderMain />;
+    return <Preloader />;
   }
 
   return (

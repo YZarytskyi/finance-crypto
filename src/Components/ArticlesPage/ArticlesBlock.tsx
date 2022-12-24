@@ -1,12 +1,15 @@
-import style from "./Articles.module.scss";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import sprite from "../../assets/images/icons.svg";
 import TablePagination from "../Common/TablePagination";
-import { useEffect, useRef, useState } from "react";
-import { handleImageError } from "../Home/Articles";
-import { fetchRecentArticles } from "../../Store/Reducers/articlesSlice";
+import {
+  Articles,
+  fetchRecentArticles,
+} from "../../Store/Reducers/articlesSlice";
 import { ArticlesBlockSkeleton } from "./ArticlesBlockSkeleton";
+import { handleImageError } from "../../utils/imageErrorHandler";
+import sprite from "../../assets/images/icons.svg";
+import style from "./Articles.module.scss";
 
 const ArticlesBlock = () => {
   const { recentArticles, total, isLoadingArticles } = useAppSelector(
@@ -24,10 +27,18 @@ const ArticlesBlock = () => {
     dispatch(fetchRecentArticles(page));
   }, [page]);
 
+  const articleTitle = (article: Articles) => {
+    return article.headline?.main?.length > 76
+      ? article.headline.main.slice(0, 76) + "..."
+      : article.headline.main;
+  };
+
   return (
     <section className={style.allArticles}>
       <div className="container">
-        <h2 className={style.allArticlesTitle} ref={articlesTitleRef}>Articles</h2>
+        <h2 className={style.allArticlesTitle} ref={articlesTitleRef}>
+          Articles
+        </h2>
 
         {isLoadingArticles ? (
           <ArticlesBlockSkeleton />
@@ -48,9 +59,7 @@ const ArticlesBlock = () => {
                   />
                   <div className={style.articlesTitleDate}>
                     <p className={style.articleTitle}>
-                      {article.headline.main.length > 76
-                        ? article.headline.main.slice(0, 76) + "..."
-                        : article.headline.main}
+                      {articleTitle(article)}
                     </p>
                     <div className={style.articleDate}>
                       <svg className={style.iconTime}>

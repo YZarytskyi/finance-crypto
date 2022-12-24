@@ -1,6 +1,6 @@
 import ReactApexChart from "react-apexcharts";
-import { useAppSelector } from "../../Store/hooks";
 import { ApexOptions } from "apexcharts";
+import { useAppSelector } from "../../Store/hooks";
 
 interface ChartHomeProps {
   sparkline: Array<number>;
@@ -10,8 +10,8 @@ interface ChartHomeProps {
 const CoinsChart: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
 
   const marketsTime = useAppSelector(state => state.crypto.marketsTime)
-  const check = Object.keys(marketsTime);
-  const data = check.includes(coinId)
+  const marketsTimeKeys = Object.keys(marketsTime);
+  const data = marketsTimeKeys.includes(coinId)
     ? ((marketsTime[coinId] === '168' && sparkline) 
     || (marketsTime[coinId] === '72' && sparkline.slice(-72))
     || (marketsTime[coinId] === '24' && sparkline.slice(-24))) as Array<number>
@@ -104,11 +104,11 @@ const CoinsChart: React.FC<ChartHomeProps> = ({sparkline, coinId}) => {
       {
         name: "price",
         type: "area",
-        data: data
+        data: data,
       }
     ]
 
-  if (sparkline) {
+  if (data) {
     return (
         <ReactApexChart
           options={options}

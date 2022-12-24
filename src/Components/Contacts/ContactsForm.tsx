@@ -1,10 +1,10 @@
-import style from "./Contacts.module.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import SendButton from "@mui/material/Button";
 import Modal from "../Common/Modal";
+import style from "./Contacts.module.scss";
 
 const schema = yup.object({
   fullName: yup.string().required("⚠ This field is required"),
