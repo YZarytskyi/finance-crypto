@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./Components/Header/Header";
-import Preloader from "./Components/Common/Preloader";
+import Preloader from "./Components/Common/Preloader/Preloader";
 import { COOKIE_TOKEN_NAME, getCookie } from "./utils/cookie";
 import { useAppDispatch } from "./Store/hooks";
 import { initializedSuccess } from "./Store/Reducers/appSlice";

@@ -6,7 +6,7 @@ import {
   removeSelectedExchange,
 } from "../../../Store/Reducers/exchangeSlice";
 import NavCrypto from "../NavCrypto";
-import Preloader from "../../Common/Preloader";
+import Preloader from "../../Common/Preloader/Preloader";
 import { setNumberFormat } from "../../../utils/utils";
 import style from "./SelectedExchange.module.scss";
 

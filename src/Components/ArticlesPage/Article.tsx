@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import Preloader from "../Common/Preloader";
+import Preloader from "../Common/Preloader/Preloader";
 import { Article as ArticleType } from "../../Types/Types";
 import { handleImageError } from "../../utils/imageErrorHandler";
 import sprite from "../../assets/images/icons.svg";

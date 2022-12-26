@@ -1,13 +1,12 @@
-import style from "./Exchanges.module.scss";
 import { useEffect, useState } from "react";
 import NavCrypto from "../NavCrypto";
 import Table from "react-bootstrap/Table";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import TablePagination from "../../Common/TablePagination";
+import TablePagination from "../../Common/TablePagination/TablePagination";
 import { CryptoSkeleton } from "../CryptoSkeleton";
-import SearchForm from "../../Common/SearchForm";
 import TableExchangesBodyItem from "./TableExchangesBodyItem";
 import { fetchExchanges } from "../../../Store/Reducers/exchangeSlice";
+import style from "./Exchanges.module.scss";
 
 const Exchanges = () => {
   const dispatch = useAppDispatch();

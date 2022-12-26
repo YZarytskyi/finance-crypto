@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import Table from "react-bootstrap/Table";
 import TableArbitrageBody from "./TableBody";
 import { fetchCurrencies } from "../../../Store/Reducers/arbitrageSlice";
-import Preloader from "../../Common/Preloader";
+import Preloader from "../../Common/Preloader/Preloader";
 import sprite from "../../../assets/images/icons.svg";
 import style from "./Arbitrage.module.scss";
 

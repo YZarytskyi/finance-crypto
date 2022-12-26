@@ -1,4 +1,4 @@
-import { converterApi } from "../../API/api";
+import { converterApi } from "../../API/converterApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 interface InitialState {

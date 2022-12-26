@@ -1,36 +1,33 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Store/hooks';
-import TablePagination from '../Common/TablePagination';
-import { fetchRecentArticles, setCurrentPage } from '../../Store/Reducers/articlesSlice';
+import TablePagination from '../Common/TablePagination/TablePagination';
+import { fetchRecentArticles } from '../../Store/Reducers/articlesSlice';
 import { ArticlesBlockSkeleton } from './ArticlesBlockSkeleton';
 import { Article } from '../../Types/Types';
 import { handleImageError } from '../../utils/imageErrorHandler';
+import usePrevious from '../../hooks/usePrevious';
 import sprite from '../../assets/images/icons.svg';
 import style from './Articles.module.scss';
-import usePrevious from '../../hooks/usePrevious';
 
 const ARTICLES_PER_PAGE: 10 = 10;
 
 const ArticlesBlock = () => {
-  const { recentArticles, articles, total, currentPage, isLoadingArticles } = useAppSelector(
-    state => state.articles
-  );
+  const { recentArticles, total, currentPage, isLoadingArticles } =
+    useAppSelector(state => state.articles);
   const dispatch = useAppDispatch();
   const articlesTitleRef = useRef<HTMLHeadingElement>(null);
 
-  let totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
-  totalPages = totalPages > 100 ? 100 : totalPages;
-  
-  const prevPage: number = usePrevious<number>(currentPage) || 0;
+  const prevPage: number = usePrevious<number>(currentPage);
 
   useEffect(() => {
-    console.log(prevPage, currentPage)
-    if (prevPage === currentPage) {
-      return
+    if (prevPage !== currentPage) {
+      dispatch(fetchRecentArticles(currentPage));
     }
-    dispatch(fetchRecentArticles(currentPage));
   }, [currentPage]);
+
+  let totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
+  totalPages = totalPages > 100 ? 100 : totalPages;
 
   const articleTitle = (article: Article) => {
     return article.headline?.main?.length > 76

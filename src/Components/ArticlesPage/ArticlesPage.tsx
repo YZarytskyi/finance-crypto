@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { fetchArticles } from "../../Store/Reducers/articlesSlice";
 import ArticlesBlock from "./ArticlesBlock";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
-import Preloader from "../Common/Preloader";
+import Preloader from "../Common/Preloader/Preloader";
 import { handleImageError } from "../../utils/imageErrorHandler";
 import style from "./Articles.module.scss";
 

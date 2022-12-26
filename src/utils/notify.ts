@@ -1,3 +1,4 @@
+import { INotifyOptions } from 'notiflix/build/notiflix-notify-aio';
 import { Notify } from 'notiflix';
 
 export const notifyInit = () => {
@@ -10,4 +11,13 @@ export const notifyInit = () => {
   clickToClose: true,
   zindex: 9999,
   });
+}
+
+export const notifyApiOptions: INotifyOptions = {
+  width: '280px',
+  position: 'right-bottom',
+  timeout: 2500,
+  showOnlyTheLastOne: true,
+  clickToClose: true,
+  zindex: 9999,
 }

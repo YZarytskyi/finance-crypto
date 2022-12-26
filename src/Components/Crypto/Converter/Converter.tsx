@@ -9,7 +9,7 @@ import {
 } from "../../../Store/Reducers/converterSlice";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import Spinner from "../../Common/Spinner";
+import Spinner from "../../Common/Spinner/Spinner";
 import LastUpdateTimer from "./LastUpdateTimer";
 import { numberToFixed2 } from "../../../utils/utils";
 

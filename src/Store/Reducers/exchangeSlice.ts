@@ -1,4 +1,4 @@
-import { cryptoApi } from "../../API/api";
+import { cryptoApi } from "../../API/cryptoApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Exchanges, SelectedExchange } from "../../Types/Types";
 

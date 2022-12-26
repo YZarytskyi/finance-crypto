@@ -4,7 +4,7 @@ import NavLinks from './NavLinks';
 import AuthButtons from './Auth/AuthButtons';
 import ModalAuth from './Auth/ModalAuth';
 import { useAppSelector } from '../../Store/hooks';
-import SearchForm from '../Common/SearchForm';
+import SearchForm from '../Common/SearchForm/SearchForm';
 import sprite from '../../assets/images/icons.svg';
 import style from './Header.module.scss';
 

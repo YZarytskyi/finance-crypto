@@ -1,4 +1,4 @@
-import SearchForm from "../Common/SearchForm";
+import SearchForm from "../Common/SearchForm/SearchForm";
 import AuthButtons from "./Auth/AuthButtons";
 import style from "./Header.module.scss";
 import NavLinks from "./NavLinks";

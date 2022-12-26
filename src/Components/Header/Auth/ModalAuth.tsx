@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Modal from '../../Common/Modal';
+import Modal from '../../Common/Modal/Modal';
 import Login from './Login';
 import SignUp from './SignUp';
 import style from './Auth.module.scss';

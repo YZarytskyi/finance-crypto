@@ -1,13 +1,12 @@
 import style from "./Coins.module.scss";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import CoinsTableBodyItem from "./CoinsTableBodyItem";
-import TablePagination from "../../Common/TablePagination";
+import TablePagination from "../../Common/TablePagination/TablePagination";
 import { fetchMarkets } from "../../../Store/Reducers/cryptoSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { CryptoSkeleton } from "../CryptoSkeleton";
-import SearchForm from "../../Common/SearchForm";
 
 const Coins = () => {
   const { isLoadingCrypto, markets } = useAppSelector((state) => state.crypto);

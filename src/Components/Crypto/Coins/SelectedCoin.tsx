@@ -11,7 +11,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import NavCrypto from "../NavCrypto";
 import { setNumberFormat } from "../../../utils/utils";
-import Preloader from "../../Common/Preloader";
+import Preloader from "../../Common/Preloader/Preloader";
 import style from "./SelectedCoin.module.scss";
 
 const SelectedCoin = () => {
