@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import {
   fetchExchangeById,
   removeSelectedExchange,
-} from "../../../Store/Reducers/exchangeSlice";
-import NavCrypto from "../NavCrypto";
-import Preloader from "../../Common/Preloader/Preloader";
-import { setNumberFormat } from "../../../utils/utils";
-import style from "./SelectedExchange.module.scss";
+} from '../../../Store/Reducers/exchangeSlice';
+import NavCrypto from '../NavCrypto';
+import { Preloader } from '../../Common';
+import { setNumberFormat } from '../../../utils/utils';
+import style from './SelectedExchange.module.scss';
 
 const SelectedExchange = () => {
   const { exchangeId } = useParams();
   const selectedExchange = useAppSelector(
-    (state) => state.exchange.selectedExchange
+    state => state.exchange.selectedExchange
   );
   const dispatch = useAppDispatch();
 
@@ -41,14 +41,14 @@ const SelectedExchange = () => {
         <ul className={style.list}>
           <li>
             <p className={style.textMain}>
-              {selectedExchange.country || "Unknown"}
+              {selectedExchange.country || 'Unknown'}
             </p>
             <p className={style.textSecondary}>Country</p>
           </li>
           <li>
             <p className={style.textMain}>
               {setNumberFormat(selectedExchange.trade_volume_24h_btc) ||
-                "Unknown"}{" "}
+                'Unknown'}{' '}
               BTC
             </p>
             <p className={style.textSecondary}>Trade volume 24h</p>
@@ -57,14 +57,14 @@ const SelectedExchange = () => {
             <p className={style.textMain}>
               {setNumberFormat(
                 selectedExchange.trade_volume_24h_btc_normalized
-              ) || "Unknown"}{" "}
+              ) || 'Unknown'}{' '}
               BTC
             </p>
             <p className={style.textSecondary}>Trade volume 24h normalized</p>
           </li>
           <li>
             <p className={style.textMain}>
-              {selectedExchange.year_established || "Unknown"}
+              {selectedExchange.year_established || 'Unknown'}
             </p>
             <p className={style.textSecondary}>Established Year</p>
           </li>
@@ -84,7 +84,7 @@ const SelectedExchange = () => {
           <p className={style.description}>{selectedExchange.description}</p>
         )}
         <p className={style.description}>
-          If you would like to see more details you can go to{" "}
+          If you would like to see more details you can go to{' '}
           <a
             href={selectedExchange.name}
             target="_blank"
@@ -92,7 +92,7 @@ const SelectedExchange = () => {
             className={style.siteLink}
           >
             {selectedExchange.name}
-          </a>{" "}
+          </a>{' '}
           official web-site
         </p>
       </section>

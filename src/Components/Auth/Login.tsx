@@ -5,11 +5,11 @@ import * as yup from 'yup';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Notify } from 'notiflix';
-import { auth } from '../../Firebase/Firebase';
-import { COOKIE_TOKEN_NAME, setCookie } from '../../../utils/cookie';
-import { setIsAuth } from '../../../Store/Reducers/authSlice';
-import { useAppDispatch } from '../../../Store/hooks';
-import sprite from '../../../assets/images/icons.svg';
+import { auth } from '../Firebase/Firebase';
+import { COOKIE_TOKEN_NAME, setCookie } from '../../utils/cookie';
+import { setIsAuth } from '../../Store/Reducers/authSlice';
+import { useAppDispatch } from '../../Store/hooks';
+import sprite from '../../assets/images/icons.svg';
 import SendButton from '@mui/material/Button';
 import style from './Auth.module.scss';
 
@@ -119,7 +119,7 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
         </SendButton>
       </form>
       <p className={style.orText}>Or</p>
-      <button className={style.googleAuth} onClick={handleClickGoogleAuth}>
+      <button type="button" className={style.googleAuth} onClick={handleClickGoogleAuth}>
         <svg className={style.iconGoogle}>
           <use href={sprite + '#google'} />
         </svg>

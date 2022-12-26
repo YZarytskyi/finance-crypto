@@ -5,11 +5,11 @@ import {
   COOKIE_TOKEN_NAME,
   deleteCookie,
   getCookie,
-} from '../../../utils/cookie';
-import { auth } from '../../Firebase/Firebase';
-import Auth from '../Auth/ModalAuth';
-import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
-import { setIsAuth } from '../../../Store/Reducers/authSlice';
+} from '../../utils/cookie';
+import { auth } from '../Firebase/Firebase';
+import Auth from './ModalAuth';
+import { useAppDispatch, useAppSelector } from '../../Store/hooks';
+import { setIsAuth } from '../../Store/Reducers/authSlice';
 import style from './Auth.module.scss';
 
 interface AuthButtonsProps {

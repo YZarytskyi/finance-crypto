@@ -1,6 +1,6 @@
-import style from "./NavCrypto.module.scss";
 import { NavLink } from "react-router-dom";
 import sprite from "../../assets/images/icons.svg";
+import style from "./NavCrypto.module.scss";
 
 const NavCrypto = () => {
   let currentPath = window.location.hash;

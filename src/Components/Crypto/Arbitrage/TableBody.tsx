@@ -1,9 +1,9 @@
-import style from "./Arbitrage.module.scss";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/arbitrageSlice";
 import { Result } from "../../../Types/Types";
-import React from "react";
 import { removeFloatNull } from "../../../utils/utils";
+import style from "./Arbitrage.module.scss";
 
 
 const TableArbitrageBody = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Modal from '../../Common/Modal/Modal';
+import { Modal } from '../Common';
 import Login from './Login';
 import SignUp from './SignUp';
 import style from './Auth.module.scss';
@@ -43,6 +43,7 @@ const ModalAuth = ({
         <ul className={style.modalAuthNav}>
           <li className={style.modalAuthNavItem}>
             <button
+              type="button"
               className={`${style.modalAuthNavLink} ${
                 toggleLoginSignUp ? style.NavLinkCurrent : ''
               }`}
@@ -53,6 +54,7 @@ const ModalAuth = ({
           </li>
           <li className={style.modalAuthNavItem}>
             <button
+              type="button"
               className={`${style.modalAuthNavLink} ${
                 toggleLoginSignUp ? '' : style.NavLinkCurrent
               }`}

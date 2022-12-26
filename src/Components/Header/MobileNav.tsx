@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
-import AuthButtons from './Auth/AuthButtons';
-import ModalAuth from './Auth/ModalAuth';
+import AuthButtons from '../Auth/AuthButtons';
+import ModalAuth from '../Auth/ModalAuth';
 import { useAppSelector } from '../../Store/hooks';
-import SearchForm from '../Common/SearchForm/SearchForm';
+import { SearchForm } from '../Common';
 import sprite from '../../assets/images/icons.svg';
 import style from './Header.module.scss';
 
@@ -16,8 +16,8 @@ const MobileNav = () => {
   useEffect(() => {
     if (isProfileOpen && isAuth) {
       setTimeout(() => {
-        window.addEventListener('click', onClickProfileClose)
-      })
+        window.addEventListener('click', onClickProfileClose);
+      });
     }
     return () => {
       window.removeEventListener('click', onClickProfileClose);
@@ -27,8 +27,8 @@ const MobileNav = () => {
   useEffect(() => {
     if (isMenuOpen) {
       setTimeout(() => {
-        window.addEventListener('click', onClickCloseMenu)
-      })
+        window.addEventListener('click', onClickCloseMenu);
+      });
     }
     return () => {
       window.removeEventListener('click', onClickCloseMenu);
@@ -45,7 +45,7 @@ const MobileNav = () => {
   }
 
   const onClickToggleProfile = (): void => {
-    setIsProfileOpen((prev) => !prev);
+    setIsProfileOpen(prev => !prev);
     toggleOverflow(isProfileOpen);
   };
 
@@ -87,7 +87,6 @@ const MobileNav = () => {
     </svg>
   );
 
-
   return (
     <div className={`${style.mobileContainer} mobileContainerOverflow`}>
       <nav className={style.mobileNav}>
@@ -108,6 +107,7 @@ const MobileNav = () => {
       </nav>
       <div className={style.profileAuth}>
         <button
+          type="button"
           className={style.profileButton}
           onClick={onClickToggleProfile}
         >

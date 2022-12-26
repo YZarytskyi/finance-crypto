@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Store/hooks';
-import TablePagination from '../Common/TablePagination/TablePagination';
+import { TablePagination } from '../Common';
 import { fetchRecentArticles } from '../../Store/Reducers/articlesSlice';
 import { ArticlesBlockSkeleton } from './ArticlesBlockSkeleton';
 import { Article } from '../../Types/Types';

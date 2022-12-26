@@ -3,7 +3,7 @@ import sprite from '../../../assets/images/icons.svg';
 import style from './SearchForm.module.scss';
 import SearchFormOpen from './SearchFormOpen';
 
-const SearchForm = () => {
+export const SearchForm = () => {
   const [isShowSearchForm, setIsShowSearchForm] = useState<boolean>(false);
 
   const onClickCloseList = (e: MouseEvent) => {
@@ -41,7 +41,7 @@ const SearchForm = () => {
           placeholder="Search"
           onFocus={onSearchOpen}
         />
-        <button className={style.searchIconContainer} onClick={onSearchOpen}>
+        <button type="button" className={style.searchIconContainer} onClick={onSearchOpen}>
           <svg className={style.searchIcon}>
             <use href={sprite + '#search'} />
           </svg>
@@ -57,5 +57,3 @@ const SearchForm = () => {
     </div>
   );
 };
-
-export default SearchForm;

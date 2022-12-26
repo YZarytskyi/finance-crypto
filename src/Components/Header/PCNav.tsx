@@ -1,7 +1,7 @@
-import SearchForm from "../Common/SearchForm/SearchForm";
-import AuthButtons from "./Auth/AuthButtons";
-import style from "./Header.module.scss";
-import NavLinks from "./NavLinks";
+import { SearchForm } from '../Common';
+import AuthButtons from '../Auth/AuthButtons';
+import style from './Header.module.scss';
+import NavLinks from './NavLinks';
 
 const PCNav = () => {
   return (

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import useDebounce from '../../../hooks/useDebounce';
 import { cryptoApi } from '../../../API/cryptoApi';
 import { Link } from 'react-router-dom';
-import useDebounce from '../../../hooks/useDebounce';
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../index';
 import sprite from '../../../assets/images/icons.svg';
 import style from './SearchForm.module.scss';
 
@@ -18,7 +18,7 @@ const SearchFormOpen = ({
   const [query, setQuery] = useState<string>('');
   const [data, setData] = useState<any>({});
 
-  const debouncedValue = useDebounce<string>(query.toLowerCase(), 250)
+  const debouncedValue = useDebounce<string>(query.toLowerCase(), 250);
   useEffect(() => {
     const fetchData = async () => {
       const data = await cryptoApi.getSearchDataByQuery(debouncedValue);
@@ -39,7 +39,7 @@ const SearchFormOpen = ({
   return (
     <div className={style.backdrop}>
       <div className={style.searchMainContainerOut} id="searchAbsolute">
-        <button className={style.closeBtn} onClick={onLinkClick} type="button">
+        <button type="button" className={style.closeBtn} onClick={onLinkClick}>
           <svg className={style.iconClose}>
             <use href={sprite + '#modal_close'} />
           </svg>

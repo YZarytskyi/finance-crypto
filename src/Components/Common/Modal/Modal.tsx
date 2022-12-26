@@ -1,6 +1,6 @@
-import style from "./Modal.module.scss";
-import React, { useEffect } from "react";
-import sprite from "../../../assets/images/icons.svg";
+import style from './Modal.module.scss';
+import React, { useEffect } from 'react';
+import sprite from '../../../assets/images/icons.svg';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -8,17 +8,20 @@ interface ModalProps {
   setModalShow: (value: boolean | ((prevValue: boolean) => boolean)) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
-
+export const Modal = ({
+  children,
+  modalShow,
+  setModalShow,
+}: ModalProps): JSX.Element => {
   useEffect(() => {
     if (modalShow) {
-      document.body.addEventListener('keydown', onEscPress)
-    } 
+      document.body.addEventListener('keydown', onEscPress);
+    }
 
     return () => {
-      document.body.removeEventListener('keydown', onEscPress)
-    }
-  }, [modalShow])
+      document.body.removeEventListener('keydown', onEscPress);
+    };
+  }, [modalShow]);
 
   const handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as Element;
@@ -37,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
   }
 
   function onEscPress(e: KeyboardEvent) {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setModalShow(false);
       document.body.classList.remove('overflow');
     }
@@ -45,14 +48,14 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
 
   return (
     <div
-      className={`${style.backdrop} ${!modalShow ? style.isHidden : ""}`}
+      className={`${style.backdrop} ${!modalShow ? style.isHidden : ''}`}
       onClick={handleCloseModal}
       onMouseDown={handleMouseDownBackdrop}
     >
       <div className={style.modal}>
-        <button type="button" className={style.modalCloseBtn + " jsCloseModal"}>
-          <svg className={style.modalCloseIcon + " jsCloseModal"}>
-            <use href={sprite + "#modal_close"} className="jsCloseModal"></use>
+        <button type="button" className={style.modalCloseBtn + ' jsCloseModal'}>
+          <svg className={style.modalCloseIcon + ' jsCloseModal'}>
+            <use href={sprite + '#modal_close'} className="jsCloseModal"></use>
           </svg>
         </button>
         {children}
@@ -60,5 +63,3 @@ const Modal: React.FC<ModalProps> = ({ children, modalShow, setModalShow }) => {
     </div>
   );
 };
-
-export default Modal;

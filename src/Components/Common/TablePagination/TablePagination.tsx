@@ -10,7 +10,7 @@ interface TablePaginationProps {
   articles?: true;
 }
 
-const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
+export const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
   ({ page, setPage, count, articles }, ref) => {
     const dispatch = useAppDispatch();
 
@@ -43,5 +43,3 @@ const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
     );
   }
 );
-
-export default TablePagination;

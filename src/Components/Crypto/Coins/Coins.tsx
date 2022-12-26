@@ -1,15 +1,15 @@
-import style from "./Coins.module.scss";
-import { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
-import CoinsTableBodyItem from "./CoinsTableBodyItem";
-import TablePagination from "../../Common/TablePagination/TablePagination";
-import { fetchMarkets } from "../../../Store/Reducers/cryptoSlice";
-import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import NavCrypto from "../NavCrypto";
-import { CryptoSkeleton } from "../CryptoSkeleton";
+import { useEffect, useState } from 'react';
+import Table from 'react-bootstrap/Table';
+import CoinsTableBodyItem from './CoinsTableBodyItem';
+import { TablePagination } from '../../Common';
+import { fetchMarkets } from '../../../Store/Reducers/cryptoSlice';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import NavCrypto from '../NavCrypto';
+import { CryptoSkeleton } from '../CryptoSkeleton';
+import style from './Coins.module.scss';
 
 const Coins = () => {
-  const { isLoadingCrypto, markets } = useAppSelector((state) => state.crypto);
+  const { isLoadingCrypto, markets } = useAppSelector(state => state.crypto);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const countCoins: number = 50;
@@ -49,7 +49,7 @@ const Coins = () => {
               <CryptoSkeleton />
             ) : (
               <>
-                {markets.map((coin) => (
+                {markets.map(coin => (
                   <CoinsTableBodyItem coin={coin} key={coin.id} />
                 ))}
               </>

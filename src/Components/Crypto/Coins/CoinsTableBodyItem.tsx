@@ -1,19 +1,19 @@
-import React from "react";
-import style from "./Coins.module.scss";
-import { NavLink } from "react-router-dom";
-import ChartCoins from "./Chart";
-import { removeFloatNull, setNumberFormat } from "../../../utils/utils";
-import { Markets } from "../../../Types/Types";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import ChartCoins from './Chart';
+import {
+  removeFloatNull,
+  setClassNamePlusOrMinus,
+  setNumberFormat,
+} from '../../../utils/utils';
+import { Markets } from '../../../Types/Types';
+import style from './Coins.module.scss';
 
 interface CoinsTableBodyItemProps {
   coin: Markets;
 }
 
-const CoinsTableBodyItem: React.FC<CoinsTableBodyItemProps> = ({ coin }) => {
-  const setClassName = (value: number) => {
-    return value > 0 ? style.percentagePlus : style.percentageMinus;
-  };
-
+const CoinsTableBodyItem = ({ coin }: CoinsTableBodyItemProps): JSX.Element => {
   return (
     <tr>
       <td>{coin.market_cap_rank}</td>
@@ -27,15 +27,25 @@ const CoinsTableBodyItem: React.FC<CoinsTableBodyItemProps> = ({ coin }) => {
         </NavLink>
       </td>
       <td>{removeFloatNull(coin.current_price)} $</td>
-      <td className={setClassName(coin.price_change_percentage_1h_in_currency)}>
+      <td
+        className={setClassNamePlusOrMinus(
+          coin.price_change_percentage_1h_in_currency
+        )}
+      >
         {coin.price_change_percentage_1h_in_currency?.toFixed(2)} %
       </td>
       <td
-        className={setClassName(coin.price_change_percentage_24h_in_currency)}
+        className={setClassNamePlusOrMinus(
+          coin.price_change_percentage_24h_in_currency
+        )}
       >
         {coin.price_change_percentage_24h_in_currency?.toFixed(2)} %
       </td>
-      <td className={setClassName(coin.price_change_percentage_7d_in_currency)}>
+      <td
+        className={setClassNamePlusOrMinus(
+          coin.price_change_percentage_7d_in_currency
+        )}
+      >
         {coin.price_change_percentage_7d_in_currency?.toFixed(2)} %
       </td>
       <td>{setNumberFormat(coin.total_volume)} $</td>

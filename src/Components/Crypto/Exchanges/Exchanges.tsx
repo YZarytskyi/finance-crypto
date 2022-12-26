@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import NavCrypto from "../NavCrypto";
-import Table from "react-bootstrap/Table";
-import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import TablePagination from "../../Common/TablePagination/TablePagination";
-import { CryptoSkeleton } from "../CryptoSkeleton";
-import TableExchangesBodyItem from "./TableExchangesBodyItem";
-import { fetchExchanges } from "../../../Store/Reducers/exchangeSlice";
-import style from "./Exchanges.module.scss";
+import { useEffect, useState } from 'react';
+import NavCrypto from '../NavCrypto';
+import Table from 'react-bootstrap/Table';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import { TablePagination } from '../../Common';
+import { CryptoSkeleton } from '../CryptoSkeleton';
+import TableExchangesBodyItem from './TableExchangesBodyItem';
+import { fetchExchanges } from '../../../Store/Reducers/exchangeSlice';
+import style from './Exchanges.module.scss';
 
 const Exchanges = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const { isLoadingExchanges, exchanges } = useAppSelector(
-    (state) => state.exchange
+    state => state.exchange
   );
   const countExchanges: number = 30;
 
@@ -47,7 +47,7 @@ const Exchanges = () => {
               <CryptoSkeleton />
             ) : (
               <>
-                {exchanges.map((exchange) => (
+                {exchanges.map(exchange => (
                   <TableExchangesBodyItem
                     exchange={exchange}
                     key={exchange.id}

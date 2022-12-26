@@ -1,43 +1,41 @@
-import React, { Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Header from "./Components/Header/Header";
-import Preloader from "./Components/Common/Preloader/Preloader";
-import { COOKIE_TOKEN_NAME, getCookie } from "./utils/cookie";
-import { useAppDispatch } from "./Store/hooks";
-import { initializedSuccess } from "./Store/Reducers/appSlice";
-import { setIsAuth } from "./Store/Reducers/authSlice";
-import { notifyInit } from "./utils/notify";
-import "./App.scss";
+import React, { Suspense, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Header from './Components/Header/Header';
+import { Preloader } from './Components/Common';
+import { COOKIE_TOKEN_NAME, getCookie } from './utils/cookie';
+import { useAppDispatch } from './Store/hooks';
+import { initializedSuccess } from './Store/Reducers/appSlice';
+import { setIsAuth } from './Store/Reducers/authSlice';
+import { notifyInit } from './utils/notify';
+import './App.scss';
 
-const Home = React.lazy(() => import("./Components/Home/Home"));
-const Coins = React.lazy(() => import("./Components/Crypto/Coins/Coins"));
+const Home = React.lazy(() => import('./Components/Home/Home'));
+const Coins = React.lazy(() => import('./Components/Crypto/Coins/Coins'));
 const Exchanges = React.lazy(
-  () => import("./Components/Crypto/Exchanges/Exchanges")
+  () => import('./Components/Crypto/Exchanges/Exchanges')
 );
 const SelectedExchange = React.lazy(
-  () => import("./Components/Crypto/Exchanges/SelectedExchange")
+  () => import('./Components/Crypto/Exchanges/SelectedExchange')
 );
-const Arbitrage = React.lazy(
-  () => import("./Components/Crypto/Arbitrage/Arbitrage")
-);
+const Arbitrage = React.lazy(() => import('./Components/Crypto/Arbitrage/Arbitrage'));
 const Converter = React.lazy(
-  () => import("./Components/Crypto/Converter/Converter")
+  () => import('./Components/Crypto/Converter/Converter')
 );
 const SelectedCoin = React.lazy(
-  () => import("./Components/Crypto/Coins/SelectedCoin")
+  () => import('./Components/Crypto/Coins/SelectedCoin')
 );
 const ArticlesPage = React.lazy(
-  () => import("./Components/ArticlesPage/ArticlesPage")
+  () => import('./Components/ArticlesPage/ArticlesPage')
 );
-const Article = React.lazy(() => import("./Components/ArticlesPage/Article"));
-const Contacts = React.lazy(() => import("./Components/Contacts/Contacts"));
-const Footer = React.lazy(() => import("./Components/Footer/Footer"));
+const Article = React.lazy(() => import('./Components/ArticlesPage/Article'));
+const Contacts = React.lazy(() => import('./Components/Contacts/Contacts'));
+const Footer = React.lazy(() => import('./Components/Footer/Footer'));
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: 'dark',
   },
 });
 

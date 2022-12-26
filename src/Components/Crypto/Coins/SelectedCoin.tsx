@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import SelectedCoinMarketChart from "./SelectedCoinChart";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import SelectedCoinMarketChart from './SelectedCoinChart';
 import {
   fetchSelectedCoinMarketChart,
   removeSelectedCoin,
   removeMarketChart,
   fetchCoinsById,
-} from "../../../Store/Reducers/cryptoSlice";
-import ProgressBar from "react-bootstrap/ProgressBar";
-import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import NavCrypto from "../NavCrypto";
-import { setNumberFormat } from "../../../utils/utils";
-import Preloader from "../../Common/Preloader/Preloader";
-import style from "./SelectedCoin.module.scss";
+} from '../../../Store/Reducers/cryptoSlice';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import NavCrypto from '../NavCrypto';
+import { setNumberFormat } from '../../../utils/utils';
+import { Preloader } from '../../Common';
+import style from './SelectedCoin.module.scss';
 
 const SelectedCoin = () => {
   const { coinId } = useParams();
-  const selectedCoin = useAppSelector((state) => state.crypto.selectedCoin);
+  const selectedCoin = useAppSelector(state => state.crypto.selectedCoin);
   const dispatch = useAppDispatch();
 
-  const [days, setDays] = useState<number | "max">(30);
+  const [days, setDays] = useState<number | 'max'>(30);
 
   useEffect(() => {
     dispatch(fetchSelectedCoinMarketChart([coinId, days]));
@@ -38,11 +38,10 @@ const SelectedCoin = () => {
   const setClassName = (value: number) => {
     return value > 0 ? style.percentagePlus : style.percentageMinus;
   };
-  
 
   const coinDescWithoutTags = selectedCoin?.description.replace(
     /<a\s+href="(.*?)">.*?<\/a>,?/g,
-    ""
+    ''
   );
 
   if (!selectedCoin) {
@@ -88,14 +87,14 @@ const SelectedCoin = () => {
               <div>
                 {selectedCoin.low_24h > selectedCoin.current_price
                   ? selectedCoin.current_price
-                  : selectedCoin.low_24h}{" "}
+                  : selectedCoin.low_24h}{' '}
                 $
               </div>
               <div>24h</div>
               <div>
                 {selectedCoin.high_24h < selectedCoin.current_price
                   ? selectedCoin.current_price
-                  : selectedCoin.high_24h}{" "}
+                  : selectedCoin.high_24h}{' '}
                 $
               </div>
             </div>
@@ -127,7 +126,7 @@ const SelectedCoin = () => {
                   <div>
                     {setNumberFormat(
                       +selectedCoin.circulating_supply.toFixed(0)
-                    )}{" "}
+                    )}{' '}
                     $
                   </div>
                 </div>

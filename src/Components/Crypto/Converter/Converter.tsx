@@ -1,38 +1,35 @@
-import style from "./Converter.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
-import NavCrypto from "../NavCrypto";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import NavCrypto from '../NavCrypto';
 import {
   fetchCoinsList,
   fetchPrice,
   removePrice,
-} from "../../../Store/Reducers/converterSlice";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Spinner from "../../Common/Spinner/Spinner";
-import LastUpdateTimer from "./LastUpdateTimer";
-import { numberToFixed2 } from "../../../utils/utils";
+} from '../../../Store/Reducers/converterSlice';
+import { Spinner } from '../../Common';
+import { LastUpdateTimer } from './LastUpdateTimer';
+import { numberToFixed2 } from '../../../utils/utils';
+import style from './Converter.module.scss';
 
-
-export interface Autocomplete {
+export interface IAutocomplete {
   firstLetter: string;
   pair: string;
 }
 
 const Converter = () => {
-
   const { coinsList, price, isLoadingConverter } = useAppSelector(
-    (state) => state.converter
+    state => state.converter
   );
   const dispatch = useAppDispatch();
 
-  const [coin, setCoin] = useState<Autocomplete>({
-    firstLetter: "B",
-    pair: "BTCUSDT",
+  const [coin, setCoin] = useState<IAutocomplete>({
+    firstLetter: 'B',
+    pair: 'BTCUSDT',
   });
-  const [value, setValue] = useState<number | "">(1);
-  const [convertedValue, setConvertedValue] = useState<number | "">("");
-
+  const [value, setValue] = useState<number | ''>(1);
+  const [convertedValue, setConvertedValue] = useState<number | ''>('');
 
   useEffect(() => {
     if (!coinsList.length) {
@@ -42,26 +39,25 @@ const Converter = () => {
 
   useEffect(() => {
     setValue(1);
-    setConvertedValue("")
+    setConvertedValue('');
     dispatch(fetchPrice(coin.pair));
-    
+
     return () => {
-      dispatch(removePrice())
-    }
+      dispatch(removePrice());
+    };
   }, [coin.pair]);
 
   useEffect(() => {
-    if(!value) {
+    if (!value) {
       setValue(1);
     }
-    setConvertedValue(price && value ? price * value : "");
-    return () => setConvertedValue("");
+    setConvertedValue(price && value ? price * value : '');
+    return () => setConvertedValue('');
   }, [price]);
-
 
   const handleChangeCoin = (
     event: React.SyntheticEvent,
-    newCoin: Autocomplete | null
+    newCoin: IAutocomplete | null
   ): void => {
     if (newCoin) {
       setCoin({ firstLetter: newCoin.firstLetter, pair: newCoin.pair });
@@ -70,30 +66,30 @@ const Converter = () => {
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.currentTarget.value) {
-      setValue(Number(e.currentTarget.value))
+      setValue(Number(e.currentTarget.value));
       setConvertedValue(
         numberToFixed2(Number(e.currentTarget.value) * (price || 0))
       );
     } else {
-      setValue("")
-      setConvertedValue("");
+      setValue('');
+      setConvertedValue('');
     }
   };
 
   const handleChangeConvertedValue = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setConvertedValue(
-      Number(e.currentTarget.value) || ""
-    );
+    setConvertedValue(Number(e.currentTarget.value) || '');
     if (e.currentTarget.value) {
-      setValue(numberToFixed2(Number(e.currentTarget.value) / (price as number)));
+      setValue(
+        numberToFixed2(Number(e.currentTarget.value) / (price as number))
+      );
     } else {
-      setValue("");
+      setValue('');
     }
   };
 
-  const options = coinsList.map((pair) => {
+  const options = coinsList.map(pair => {
     const firstLetter = pair[0].toUpperCase();
     return {
       firstLetter: firstLetter,
@@ -115,12 +111,12 @@ const Converter = () => {
               className={style.autocomplete}
               value={coin}
               onChange={handleChangeCoin}
-              options={options.sort(
-                (a, b) => a.firstLetter.localeCompare(b.firstLetter)
+              options={options.sort((a, b) =>
+                a.firstLetter.localeCompare(b.firstLetter)
               )}
-              groupBy={(coin) => coin.firstLetter}
-              getOptionLabel={(coin) => coin.pair.replace(/USDT/, "")}
-              renderInput={(params) => <TextField {...params} label="Coin" />}
+              groupBy={coin => coin.firstLetter}
+              getOptionLabel={coin => coin.pair.replace(/USDT/, '')}
+              renderInput={params => <TextField {...params} label="Coin" />}
             />
 
             <input
