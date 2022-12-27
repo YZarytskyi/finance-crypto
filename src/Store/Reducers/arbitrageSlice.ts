@@ -1,27 +1,27 @@
 import { arbitrageApi } from "../../API/arbitrageApi";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { Currencies, Pairs, Result } from "../../Types/Types";
+import { ArbitrageResult, Currencies, Result } from "../../Types/Types";
 
 interface InitialState {
   currencies: Array<Currencies>;
   isLoadingCurrencies: boolean;
   result: Array<Result>;
-  pairs: Array<Pairs>;
   isLoadingPairs: boolean;
   pair1: string;
   pair2: string;
   pair3: string;
+  arbitrageResult: Partial<ArbitrageResult>;
 }
 
 const initialState: InitialState = {
   currencies: [],
   isLoadingCurrencies: false,
   result: [],
-  pairs: [],
   isLoadingPairs: false,
   pair1: '',
   pair2: '',
   pair3: '',
+  arbitrageResult: {},
 }
 
 interface FetchCurrencies {
@@ -34,10 +34,10 @@ export const fetchCurrencies = createAsyncThunk(
     return (await arbitrageApi.getAllCurrencies()) as FetchCurrencies
   }
 )
-export const fetchPairs = createAsyncThunk(
+export const fetchArbitrageResult = createAsyncThunk(
   'pairs/fetch',
   async (pairs: {pair1: string, pair2: string, pair3: string}) => {
-    return (await arbitrageApi.getPairs(pairs.pair1, pairs.pair2, pairs.pair3)) as Array<Pairs>;
+    return (await arbitrageApi.getArbitrageResult(pairs.pair1, pairs.pair2, pairs.pair3)) as Result;
   }
 )
 
@@ -56,7 +56,7 @@ export const arbitrageSlice = createSlice({
       state.pair3 = action.payload
     },
     removePairs(state) {
-      state.pairs = [];
+      state.arbitrageResult = {};
       state.pair1 = '';
       state.pair2 = '';
       state.pair3 = '';
@@ -72,11 +72,11 @@ export const arbitrageSlice = createSlice({
       state.isLoadingCurrencies = false
       })
 
-    builder.addCase(fetchPairs.pending, (state) => {
+    builder.addCase(fetchArbitrageResult.pending, (state) => {
       state.isLoadingPairs = true
       })
-      .addCase(fetchPairs.fulfilled, (state, action) => {
-        state.pairs = action.payload
+      .addCase(fetchArbitrageResult.fulfilled, (state, action) => {
+        state.arbitrageResult = action.payload
         state.isLoadingPairs = false
       })
   }

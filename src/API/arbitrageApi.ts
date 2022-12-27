@@ -1,36 +1,35 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
-import { Currencies } from '../Types/Types';
-import { notifyApiOptions } from "../utils/notify";
-
+import { ArbitrageResult, Currencies, Result } from '../Types/Types';
+import { notifyApiOptions } from '../utils/notify';
 
 export const arbitrageApi = {
   getAllCurrencies() {
     return axios
       .all([
-        axios.get("https://api.binance.com/api/v3/exchangeInfo"),
-        axios.get("https://api.binance.com/api/v3/ticker/bookTicker"),
+        axios.get('https://api.binance.com/api/v3/exchangeInfo'),
+        axios.get('https://api.binance.com/api/v3/ticker/bookTicker'),
       ])
       .then(
         axios.spread((response1, response2) => {
-          const result: Array<{symbol: string}> = response1.data.symbols
+          const result: Array<{ symbol: string }> = response1.data.symbols
             .filter(
               (item: { status: string; symbol: string }) =>
-                item.status === "TRADING"
+                item.status === 'TRADING'
             )
             .map((x: { status: string; symbol: string }) => ({
               symbol: x.symbol,
             }));
 
-          const currencies: Array<Currencies> = result.map((x) => {
+          const currencies: Array<Currencies> = result.map(x => {
             const filterPrice: Currencies = response2.data.find(
               (y: Currencies) => y.symbol === x.symbol
             );
             return filterPrice;
           });
 
-          const currenciesUSDT = currencies.filter((q) =>
-            q.symbol.includes("USDT")
+          const currenciesUSDT = currencies.filter(q =>
+            q.symbol.includes('USDT')
           );
 
           const map1 = currenciesUSDT.map(
@@ -38,8 +37,8 @@ export const arbitrageApi = {
               const pair1AskPrice = Number(askPrice);
               const pair1BidPrice = Number(bidPrice);
 
-              const filterPair1 = pair1Symbol.replace(/USDT/, "");
-              const pair2 = currencies.filter((y) =>
+              const filterPair1 = pair1Symbol.replace(/USDT/, '');
+              const pair2 = currencies.filter(y =>
                 y.symbol.includes(filterPair1)
               );
               const map2 = pair2.map(
@@ -48,12 +47,12 @@ export const arbitrageApi = {
                   const pair2BidPrice = Number(bidPrice);
 
                   const regexp = new RegExp(filterPair1);
-                  const filterPair2 = pair2Symbol.replace(regexp, "");
+                  const filterPair2 = pair2Symbol.replace(regexp, '');
                   const pair3 = currencies.filter(
                     ({ symbol }) =>
                       symbol.includes(`${filterPair2}USDT`) ||
                       symbol.includes(`USDT${filterPair2}`) ||
-                      ""
+                      ''
                   );
                   const map3 = pair3.map(
                     ({ symbol: pair3Symbol, askPrice, bidPrice }) => {
@@ -173,7 +172,7 @@ export const arbitrageApi = {
         Notify.failure(message as string, notifyApiOptions);
       });
   },
-  getPairs(value1: string, value2: string, value3: string) {
+  getArbitrageResult(value1: string, value2: string, value3: string) {
     return axios
       .all([
         axios.get(
@@ -188,23 +187,160 @@ export const arbitrageApi = {
       ])
       .then(
         axios.spread((pair1, pair2, pair3) => {
-          return [
-            {
-              symbol: value1,
-              ask: pair1.data.asks.flat()[0],
-              bid: pair1.data.bids.flat()[0],
-            },
-            {
-              symbol: value2,
-              ask: pair2.data.asks.flat()[0],
-              bid: pair2.data.bids.flat()[0],
-            },
-            {
-              symbol: value3,
-              ask: pair3.data.asks.flat()[0],
-              bid: pair3.data.bids.flat()[0],
-            },
-          ];
+          let result: Partial<ArbitrageResult> = {};
+          const filterPair1 = value1.replace(/USDT/, '');
+          const pair1WithPrice = {
+            symbol: value1,
+            ask: pair1.data.asks.flat()[0],
+            bid: pair1.data.bids.flat()[0],
+          };
+          const pair2WithPrice = {
+            symbol: value2,
+            ask: pair2.data.asks.flat()[0],
+            bid: pair2.data.bids.flat()[0],
+          };
+          const pair3WithPrice = {
+            symbol: value3,
+            ask: pair3.data.asks.flat()[0],
+            bid: pair3.data.bids.flat()[0],
+          };
+
+          if (
+            pair1WithPrice.symbol.endsWith('USDT') &&
+            pair2WithPrice.symbol.endsWith(filterPair1) &&
+            pair3WithPrice.symbol.endsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.ask,
+              price2: +pair2WithPrice.ask,
+              price3: +pair3WithPrice.bid,
+              result: +(
+                (100 / +pair1WithPrice.ask / +pair2WithPrice.ask) *
+                  +pair3WithPrice.bid -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.endsWith('USDT') &&
+            pair2WithPrice.symbol.endsWith(filterPair1) &&
+            pair3WithPrice.symbol.startsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.ask,
+              price2: +pair2WithPrice.ask,
+              price3: +pair3WithPrice.ask,
+              result: +(
+                100 /
+                  +pair1WithPrice.ask /
+                  +pair2WithPrice.ask /
+                  +pair3WithPrice.ask -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.endsWith('USDT') &&
+            pair2WithPrice.symbol.startsWith(filterPair1) &&
+            pair3WithPrice.symbol.endsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.ask,
+              price2: +pair2WithPrice.bid,
+              price3: +pair3WithPrice.bid,
+              result: +(
+                (100 / +pair1WithPrice.ask) *
+                  +pair2WithPrice.bid *
+                  +pair3WithPrice.bid -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.endsWith('USDT') &&
+            pair2WithPrice.symbol.startsWith(filterPair1) &&
+            pair3WithPrice.symbol.startsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.ask,
+              price2: +pair2WithPrice.bid,
+              price3: +pair3WithPrice.ask,
+              result: +(
+                ((100 / +pair1WithPrice.ask) * +pair2WithPrice.bid) /
+                  +pair3WithPrice.ask -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.startsWith('USDT') &&
+            pair2WithPrice.symbol.endsWith(filterPair1) &&
+            pair3WithPrice.symbol.endsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.bid,
+              price2: +pair2WithPrice.ask,
+              price3: +pair3WithPrice.bid,
+              result: +(
+                ((100 * +pair1WithPrice.bid) / +pair2WithPrice.ask) *
+                  +pair3WithPrice.bid -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.startsWith('USDT') &&
+            pair2WithPrice.symbol.endsWith(filterPair1) &&
+            pair3WithPrice.symbol.startsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.bid,
+              price2: +pair2WithPrice.ask,
+              price3: +pair3WithPrice.ask,
+              result: +(
+                (100 * +pair1WithPrice.bid) /
+                  +pair2WithPrice.ask /
+                  +pair3WithPrice.ask -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.startsWith('USDT') &&
+            pair2WithPrice.symbol.startsWith(filterPair1) &&
+            pair3WithPrice.symbol.endsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.bid,
+              price2: +pair2WithPrice.bid,
+              price3: +pair3WithPrice.bid,
+              result: +(
+                100 *
+                  +pair1WithPrice.bid *
+                  +pair2WithPrice.bid *
+                  +pair3WithPrice.bid -
+                100
+              ).toFixed(2),
+            };
+          }
+          if (
+            pair1WithPrice.symbol.startsWith('USDT') &&
+            pair2WithPrice.symbol.startsWith(filterPair1) &&
+            pair3WithPrice.symbol.startsWith('USDT')
+          ) {
+            result = {
+              price1: +pair1WithPrice.bid,
+              price2: +pair2WithPrice.bid,
+              price3: +pair3WithPrice.bid,
+              result: +(
+                (100 * +pair1WithPrice.bid * +pair2WithPrice.bid) /
+                  +pair3WithPrice.ask -
+                100
+              ).toFixed(2),
+            };
+          }
+
+          return result;
         })
       )
       .catch(({ message }) => {

@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { removeFloatNull } from '../../../utils/utils';
 import {
-  fetchPairs,
+  fetchArbitrageResult,
   removePairs,
   setPair1,
   setPair2,
@@ -15,7 +15,7 @@ import sprite from '../../../assets/images/icons.svg';
 import style from './Arbitrage.module.scss';
 
 const CheckResult = () => {
-  const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =
+  const { currencies, arbitrageResult, pair1, pair2, pair3, isLoadingPairs } =
     useAppSelector(state => state.arbitrage);
   const dispatch = useAppDispatch();
 
@@ -49,153 +49,6 @@ const CheckResult = () => {
     );
   }
 
-  const [pair1WithPrice, pair2WithPrice, pair3WithPrice] = pairs;
-
-  interface Result {
-    price1: number;
-    price2: number;
-    price3: number;
-    result: number;
-  }
-  let result: Partial<Result> = {};
-
-  if (pairs.length) {
-    if (
-      pair1WithPrice.symbol.endsWith('USDT') &&
-      pair2WithPrice.symbol.endsWith(filterPair1) &&
-      pair3WithPrice.symbol.endsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.ask,
-        price2: +pair2WithPrice.ask,
-        price3: +pair3WithPrice.bid,
-        result: +(
-          (100 / +pair1WithPrice.ask / +pair2WithPrice.ask) *
-            +pair3WithPrice.bid -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.endsWith('USDT') &&
-      pair2WithPrice.symbol.endsWith(filterPair1) &&
-      pair3WithPrice.symbol.startsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.ask,
-        price2: +pair2WithPrice.ask,
-        price3: +pair3WithPrice.ask,
-        result: +(
-          100 /
-            +pair1WithPrice.ask /
-            +pair2WithPrice.ask /
-            +pair3WithPrice.ask -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.endsWith('USDT') &&
-      pair2WithPrice.symbol.startsWith(filterPair1) &&
-      pair3WithPrice.symbol.endsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.ask,
-        price2: +pair2WithPrice.bid,
-        price3: +pair3WithPrice.bid,
-        result: +(
-          (100 / +pair1WithPrice.ask) *
-            +pair2WithPrice.bid *
-            +pair3WithPrice.bid -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.endsWith('USDT') &&
-      pair2WithPrice.symbol.startsWith(filterPair1) &&
-      pair3WithPrice.symbol.startsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.ask,
-        price2: +pair2WithPrice.bid,
-        price3: +pair3WithPrice.ask,
-        result: +(
-          ((100 / +pair1WithPrice.ask) * +pair2WithPrice.bid) /
-            +pair3WithPrice.ask -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.startsWith('USDT') &&
-      pair2WithPrice.symbol.endsWith(filterPair1) &&
-      pair3WithPrice.symbol.endsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.bid,
-        price2: +pair2WithPrice.ask,
-        price3: +pair3WithPrice.bid,
-        result: +(
-          ((100 * +pair1WithPrice.bid) / +pair2WithPrice.ask) *
-            +pair3WithPrice.bid -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.startsWith('USDT') &&
-      pair2WithPrice.symbol.endsWith(filterPair1) &&
-      pair3WithPrice.symbol.startsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.bid,
-        price2: +pair2WithPrice.ask,
-        price3: +pair3WithPrice.ask,
-        result: +(
-          (100 * +pair1WithPrice.bid) /
-            +pair2WithPrice.ask /
-            +pair3WithPrice.ask -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.startsWith('USDT') &&
-      pair2WithPrice.symbol.startsWith(filterPair1) &&
-      pair3WithPrice.symbol.endsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.bid,
-        price2: +pair2WithPrice.bid,
-        price3: +pair3WithPrice.bid,
-        result: +(
-          100 *
-            +pair1WithPrice.bid *
-            +pair2WithPrice.bid *
-            +pair3WithPrice.bid -
-          100
-        ).toFixed(2),
-      };
-    }
-    if (
-      pair1WithPrice.symbol.startsWith('USDT') &&
-      pair2WithPrice.symbol.startsWith(filterPair1) &&
-      pair3WithPrice.symbol.startsWith('USDT')
-    ) {
-      result = {
-        price1: +pair1WithPrice.bid,
-        price2: +pair2WithPrice.bid,
-        price3: +pair3WithPrice.bid,
-        result: +(
-          (100 * +pair1WithPrice.bid * +pair2WithPrice.bid) /
-            +pair3WithPrice.ask -
-          100
-        ).toFixed(2),
-      };
-    }
-  }
-
   const handlePair1 = (
     event: React.SyntheticEvent,
     newValue: string | null
@@ -217,7 +70,7 @@ const CheckResult = () => {
   const handlePairs = () => {
     if (pair1 && pair2 && pair3) {
       const pairs = { pair1, pair2, pair3 };
-      dispatch(fetchPairs(pairs));
+      dispatch(fetchArbitrageResult(pairs));
     }
   };
 
@@ -227,7 +80,9 @@ const CheckResult = () => {
         <ul className={style.checkResultList}>
           <li>
             <p className={style.pairPrice}>
-              {result.price1 ? removeFloatNull(result.price1) : 'Price'}
+              {arbitrageResult.price1
+                ? removeFloatNull(arbitrageResult.price1)
+                : 'Price'}
             </p>
             <Autocomplete
               id="pair-1"
@@ -241,7 +96,9 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {result.price2 ? removeFloatNull(result.price2) : 'Price'}
+              {arbitrageResult.price2
+                ? removeFloatNull(arbitrageResult.price2)
+                : 'Price'}
             </p>
             <Autocomplete
               id="pair-2"
@@ -255,7 +112,9 @@ const CheckResult = () => {
           </li>
           <li>
             <p className={style.pairPrice}>
-              {result.price3 ? removeFloatNull(result.price3) : 'Price'}
+              {arbitrageResult.price3
+                ? removeFloatNull(arbitrageResult.price3)
+                : 'Price'}
             </p>
             <Autocomplete
               id="pair-3"
@@ -283,7 +142,7 @@ const CheckResult = () => {
           Check
         </LoadingButton>
         <p className={style.result}>
-          Result {result.result ? `${result.result} %` : ''}
+          Result {arbitrageResult.result ? `${arbitrageResult.result} %` : ''}
         </p>
       </section>
     </>

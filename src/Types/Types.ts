@@ -158,3 +158,10 @@ export interface Article {
   byline: {original: string},
   multimedia: Array<{url: string}>,
 }
+
+export interface ArbitrageResult {
+  price1: number;
+  price2: number;
+  price3: number;
+  result: number;
+}
