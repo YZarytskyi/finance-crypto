@@ -23,7 +23,7 @@ const ScannerTable = () => {
 
   return (
     <>
-      <svg className={style.refreshIcon} onClick={() => handleRefresh()}>
+      <svg className={style.refreshIcon} onClick={handleRefresh}>
         <use href={sprite + '#refresh'} />
       </svg>
 

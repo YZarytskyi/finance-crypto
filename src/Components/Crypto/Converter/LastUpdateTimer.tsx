@@ -12,11 +12,14 @@ interface LastUpdateTimerProps {
   coin: IAutocomplete;
 }
 
+const SECOND = 1000;
+const MINUTE = 60000;
+
 export const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
   const dispatch = useAppDispatch();
   const price = useAppSelector(state => state.converter.price);
   const [updateCount, setUpdateCount] = useState<number>(0);
-  const [timerChange, setTimerChange] = useState<number>(1000);
+  const [timeInterval, setTimeInterval] = useState<1000 | 60000>(SECOND);
 
   useEffect(() => {
     let timer: any = null;
@@ -29,23 +32,23 @@ export const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
       setUpdateCount(prev => prev + 1);
       if (updateCount === 59) {
         setUpdateCount(1);
-        setTimerChange(60000);
+        setTimeInterval(MINUTE);
       }
-    }, timerChange);
+    }, timeInterval);
 
     return () => clearInterval(timer);
   }, [updateCount, price]);
 
   useEffect(() => {
     setUpdateCount(0);
-    setTimerChange(1000);
+    setTimeInterval(SECOND);
   }, [coin]);
 
   function handleUpdate() {
     dispatch(removePrice());
     dispatch(fetchPrice(coin.pair));
     setUpdateCount(0);
-    setTimerChange(1000);
+    setTimeInterval(SECOND);
   }
 
   return (
@@ -54,15 +57,11 @@ export const LastUpdateTimer = ({ coin }: LastUpdateTimerProps) => {
         Last price update:{' '}
         <span>
           {updateCount}
-          {timerChange === 1000 ? 's' : 'm'}
+          {timeInterval === SECOND ? 's' : 'm'}
         </span>{' '}
         ago
       </p>
-      <svg
-        className={style.refreshIcon}
-        role="button"
-        onClick={() => handleUpdate()}
-      >
+      <svg className={style.refreshIcon} role="button" onClick={handleUpdate}>
         <use href={sprite + '#refresh'} />
       </svg>
     </div>

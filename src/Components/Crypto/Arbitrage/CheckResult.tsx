@@ -1,10 +1,9 @@
-import style from './Arbitrage.module.scss';
 import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
-import sprite from '../../../assets/images/icons.svg';
-import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
+import { removeFloatNull } from '../../../utils/utils';
 import {
   fetchPairs,
   removePairs,
@@ -12,7 +11,8 @@ import {
   setPair2,
   setPair3,
 } from '../../../Store/Reducers/arbitrageSlice';
-import { removeFloatNull } from '../../../utils/utils';
+import sprite from '../../../assets/images/icons.svg';
+import style from './Arbitrage.module.scss';
 
 const CheckResult = () => {
   const { currencies, pairs, pair1, pair2, pair3, isLoadingPairs } =

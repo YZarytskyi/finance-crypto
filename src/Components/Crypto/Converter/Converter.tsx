@@ -55,7 +55,7 @@ const Converter = () => {
     return () => setConvertedValue('');
   }, [price]);
 
-  const handleChangeCoin = (
+  const onChangeCoin = (
     event: React.SyntheticEvent,
     newCoin: IAutocomplete | null
   ): void => {
@@ -64,7 +64,7 @@ const Converter = () => {
     }
   };
 
-  const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.currentTarget.value) {
       setValue(Number(e.currentTarget.value));
       setConvertedValue(
@@ -76,9 +76,9 @@ const Converter = () => {
     }
   };
 
-  const handleChangeConvertedValue = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const onChangeConvertedValue: React.ChangeEventHandler<
+    HTMLInputElement
+  > = e => {
     setConvertedValue(Number(e.currentTarget.value) || '');
     if (e.currentTarget.value) {
       setValue(
@@ -110,7 +110,7 @@ const Converter = () => {
               id="coinsList"
               className={style.autocomplete}
               value={coin}
-              onChange={handleChangeCoin}
+              onChange={onChangeCoin}
               options={options.sort((a, b) =>
                 a.firstLetter.localeCompare(b.firstLetter)
               )}
@@ -124,7 +124,7 @@ const Converter = () => {
               className={style.converterInput}
               value={value}
               disabled={!price}
-              onChange={handleChangeValue}
+              onChange={onChangeValue}
             />
 
             <p className={style.converterText}>Convert to USDT</p>
@@ -135,7 +135,7 @@ const Converter = () => {
                 className={style.converterInput}
                 value={convertedValue}
                 disabled={!price}
-                onChange={handleChangeConvertedValue}
+                onChange={onChangeConvertedValue}
               />
               {isLoadingConverter && <Spinner className={'spinnerConverter'} />}
             </div>

@@ -8,9 +8,9 @@ interface InitialState {
   result: Array<Result>;
   pairs: Array<Pairs>;
   isLoadingPairs: boolean;
-  pair1: string | null;
-  pair2: string | null;
-  pair3: string | null;
+  pair1: string;
+  pair2: string;
+  pair3: string;
 }
 
 const initialState: InitialState = {
@@ -19,9 +19,9 @@ const initialState: InitialState = {
   result: [],
   pairs: [],
   isLoadingPairs: false,
-  pair1: null,
-  pair2: null,
-  pair3: null,
+  pair1: '',
+  pair2: '',
+  pair3: '',
 }
 
 interface FetchCurrencies {
@@ -57,9 +57,9 @@ export const arbitrageSlice = createSlice({
     },
     removePairs(state) {
       state.pairs = [];
-      state.pair1 = null;
-      state.pair2 = null;
-      state.pair3 = null;
+      state.pair1 = '';
+      state.pair2 = '';
+      state.pair3 = '';
     }
   },
   extraReducers: (builder) => {
