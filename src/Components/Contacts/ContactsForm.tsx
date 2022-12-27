@@ -21,7 +21,7 @@ interface IFormInputs {
   message: string;
 }
 
-const ContactsForm = () => {
+export const ContactsForm = () => {
   const [modalShow, setModalShow] = useState<boolean>(false);
   const {
     register,
@@ -82,5 +82,3 @@ const ContactsForm = () => {
     </form>
   );
 };
-
-export default ContactsForm;

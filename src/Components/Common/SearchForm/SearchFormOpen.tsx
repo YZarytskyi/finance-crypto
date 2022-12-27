@@ -76,7 +76,7 @@ const SearchFormOpen = ({
                   data.coins.map((el: any) => (
                     <li key={el.id}>
                       <Link
-                        to={`crypto/coins/${el.id}`}
+                        to={`/coins/${el.id}`}
                         onClick={onLinkClick}
                         className={style.listLink}
                       >
@@ -103,7 +103,7 @@ const SearchFormOpen = ({
                   data.exchanges.map((el: any) => (
                     <li key={el.id}>
                       <Link
-                        to={`crypto/exchanges/${el.id}`}
+                        to={`exchanges/${el.id}`}
                         className={style.listLink}
                         onClick={onLinkClick}
                       >

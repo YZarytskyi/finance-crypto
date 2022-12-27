@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import Table from 'react-bootstrap/Table';
-import TableArbitrageBody from './TableBody';
+import TableArbitrageBody from './TableArbitrageBody';
 import { fetchCurrencies } from '../../../Store/Reducers/arbitrageSlice';
 import { Preloader } from '../../Common';
 import sprite from '../../../assets/images/icons.svg';
 import style from './Arbitrage.module.scss';
 
-const ScannerTable = () => {
+export const ScannerTable = () => {
   const isLoadingCurrencies = useAppSelector(
     state => state.arbitrage.isLoadingCurrencies
   );
@@ -54,5 +54,3 @@ const ScannerTable = () => {
     </>
   );
 };
-
-export default ScannerTable;

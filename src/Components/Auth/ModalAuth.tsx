@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '../Common';
-import Login from './Login';
-import SignUp from './SignUp';
+import { Login } from './Login';
+import { SignUp } from './SignUp';
 import style from './Auth.module.scss';
 
 interface ModalAuthProps {
@@ -11,7 +11,7 @@ interface ModalAuthProps {
   isLogin: boolean;
 }
 
-const ModalAuth = ({
+export const ModalAuth = ({
   children,
   modalAuthShow,
   setModalAuthShow,
@@ -74,5 +74,3 @@ const ModalAuth = ({
     </Modal>
   );
 };
-
-export default ModalAuth;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import {
@@ -30,7 +30,7 @@ const SelectedExchange = () => {
 
   return (
     <>
-      <NavCrypto />
+      <NavCrypto component='Exchanges'/>
       <section className={style.exchange}>
         <img
           src={selectedExchange.image}

@@ -18,7 +18,7 @@ const CoinsTableBodyItem = ({ coin }: CoinsTableBodyItemProps): JSX.Element => {
     <tr>
       <td>{coin.market_cap_rank}</td>
       <td>
-        <NavLink to={`/crypto/coins/${coin.id}`} className={style.link}>
+        <NavLink to={`${coin.id}`} className={style.link}>
           <img src={coin.image} alt={coin.name} height={30} width={30} />
           <p>
             {coin.name}

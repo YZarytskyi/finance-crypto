@@ -12,9 +12,9 @@ import style from './Articles.module.scss';
 
 const ARTICLES_PER_PAGE: 10 = 10;
 
-const ArticlesBlock = () => {
+export const ArticlesBlock = () => {
   const { recentArticles, total, currentPage, isLoadingArticles } =
-    useAppSelector(state => state.articles);
+    useAppSelector((state) => state.articles);
   const dispatch = useAppDispatch();
   const articlesTitleRef = useRef<HTMLHeadingElement>(null);
 
@@ -46,7 +46,7 @@ const ArticlesBlock = () => {
           <ArticlesBlockSkeleton />
         ) : (
           <ul className={style.articlesBlock}>
-            {recentArticles.map(article => (
+            {recentArticles.map((article) => (
               <li key={article._id}>
                 <NavLink
                   to={`/articles/${article._id}`}
@@ -88,5 +88,3 @@ const ArticlesBlock = () => {
     </section>
   );
 };
-
-export default ArticlesBlock;

@@ -54,7 +54,7 @@ const Coins = () => {
             {marketsHome.map((coin) => (
               <li className={style.item} key={coin.id}>
                 <NavLink
-                  to={`/crypto/coins/${coin.id}`}
+                  to={`coins/${coin.id}`}
                   className={style.cryptoLeftSide}
                 >
                   <img src={coin.image} alt={coin.name} />
@@ -80,7 +80,7 @@ const Coins = () => {
                       {price(coin)}
                     </p>
                   </div>
-                  <NavLink to={`/crypto/coins/${coin.id}`}>
+                  <NavLink to={`${coin.id}`}>
                     <div className={style.chart}>
                       <ChartHome
                         sparkline={coin.sparkline_in_7d.price}

@@ -50,7 +50,7 @@ const SelectedCoin = () => {
 
   return (
     <>
-      <NavCrypto />
+      <NavCrypto component='Coins'/>
       <section className={style.coin}>
         <div className={style.descriptionChart}>
           <div className={style.description}>

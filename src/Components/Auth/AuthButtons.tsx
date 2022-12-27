@@ -1,13 +1,9 @@
 import { useRef, useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { Notify } from 'notiflix';
-import {
-  COOKIE_TOKEN_NAME,
-  deleteCookie,
-  getCookie,
-} from '../../utils/cookie';
+import { COOKIE_TOKEN_NAME, deleteCookie } from '../../utils/cookie';
 import { auth } from '../Firebase/Firebase';
-import Auth from './ModalAuth';
+import { ModalAuth } from './ModalAuth';
 import { useAppDispatch, useAppSelector } from '../../Store/hooks';
 import { setIsAuth } from '../../Store/Reducers/authSlice';
 import style from './Auth.module.scss';
@@ -16,12 +12,14 @@ interface AuthButtonsProps {
   isProfileOpen?: boolean;
 }
 
-const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
-  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useState<boolean>(true);
-  const dispatch = useAppDispatch();
+export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
   const isAuth = useAppSelector(state => state.auth.isAuth);
   const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const dispatch = useAppDispatch();
+
+  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+
   const loginRef = useRef(null);
 
   const onClickAuthBtn: React.MouseEventHandler<HTMLButtonElement> = e => {
@@ -51,8 +49,8 @@ const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
   if (isInitialized) {
     return (
       <>
-        <div 
-          id='authBtnContainer'
+        <div
+          id="authBtnContainer"
           className={`${style.authContainerHidden} ${
             isProfileOpen ? style.authContainerOpen : ''
           }`}
@@ -85,7 +83,7 @@ const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
             </>
           )}
         </div>
-        <Auth
+        <ModalAuth
           modalAuthShow={modalAuthShow}
           setModalAuthShow={setModalAuthShow}
           isLogin={isLogin}
@@ -95,5 +93,3 @@ const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
   }
   return null;
 };
-
-export default AuthButtons;

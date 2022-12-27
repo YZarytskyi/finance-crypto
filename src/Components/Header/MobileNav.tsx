@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
-import AuthButtons from '../Auth/AuthButtons';
-import ModalAuth from '../Auth/ModalAuth';
+import { AuthButtons } from '../Auth/AuthButtons';
+import { ModalAuth } from '../Auth/ModalAuth';
 import { useAppSelector } from '../../Store/hooks';
 import { SearchForm } from '../Common';
 import sprite from '../../assets/images/icons.svg';

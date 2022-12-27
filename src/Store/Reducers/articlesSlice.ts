@@ -30,9 +30,12 @@ interface Meta {
   time: number;
 }
 
-export const fetchArticles = createAsyncThunk('articles/fetchAll', async _ => {
-  return (await articlesApi.getArticles()) as Docs;
-});
+export const fetchArticles = createAsyncThunk(
+  'articles/fetchAll',
+  async (_) => {
+    return (await articlesApi.getArticles()) as Docs;
+  }
+);
 
 export const fetchRecentArticles = createAsyncThunk(
   'recentArticles/fetchAll',
@@ -47,13 +50,13 @@ export const articlesSlice = createSlice({
   reducers: {
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
-    }
+    },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(
       fetchArticles.fulfilled,
       (state, action: PayloadAction<Docs>) => {
-        state.articles = action.payload?.docs?.map(article => ({
+        state.articles = action.payload?.docs?.map((article) => ({
           ...article,
           _id: article._id.slice(15),
         }));
@@ -64,13 +67,13 @@ export const articlesSlice = createSlice({
       }
     );
     builder
-      .addCase(fetchRecentArticles.pending, state => {
+      .addCase(fetchRecentArticles.pending, (state) => {
         state.isLoadingArticles = true;
       })
       .addCase(
         fetchRecentArticles.fulfilled,
         (state, action: PayloadAction<Docs>) => {
-          state.recentArticles = action.payload?.docs?.map(article => ({
+          state.recentArticles = action.payload?.docs?.map((article) => ({
             ...article,
             _id: article._id.slice(15),
           }));
@@ -80,6 +83,6 @@ export const articlesSlice = createSlice({
   },
 });
 
-export const { setCurrentPage } = articlesSlice.actions
+export const { setCurrentPage } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

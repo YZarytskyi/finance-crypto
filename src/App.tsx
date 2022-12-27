@@ -19,7 +19,9 @@ const Exchanges = React.lazy(
 const SelectedExchange = React.lazy(
   () => import('./Components/Crypto/Exchanges/SelectedExchange')
 );
-const Arbitrage = React.lazy(() => import('./Components/Crypto/Arbitrage/Arbitrage'));
+const Arbitrage = React.lazy(
+  () => import('./Components/Crypto/Arbitrage/Arbitrage')
+);
 const Converter = React.lazy(
   () => import('./Components/Crypto/Converter/Converter')
 );
@@ -39,7 +41,7 @@ const darkTheme = createTheme({
   },
 });
 
-const App = () => {
+export const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -57,15 +59,15 @@ const App = () => {
         <Suspense fallback={<Preloader />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/crypto/coins" element={<Coins />} />
-            <Route path="/crypto/exchanges" element={<Exchanges />} />
+            <Route path="/coins" element={<Coins />} />
+            <Route path="/coins/:coinId" element={<SelectedCoin />} />
+            <Route path="/exchanges" element={<Exchanges />} />
             <Route
-              path="/crypto/exchanges/:exchangeId"
+              path="/exchanges/:exchangeId"
               element={<SelectedExchange />}
             />
-            <Route path="/crypto/arbitrage" element={<Arbitrage />} />
-            <Route path="/crypto/converter" element={<Converter />} />
-            <Route path="/crypto/coins/:coinId" element={<SelectedCoin />} />
+            <Route path="/arbitrage" element={<Arbitrage />} />
+            <Route path="/converter" element={<Converter />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/articles/:articleId" element={<Article />} />
             <Route path="/contacts" element={<Contacts />} />
@@ -76,5 +78,3 @@ const App = () => {
     </ThemeProvider>
   );
 };
-
-export default App;

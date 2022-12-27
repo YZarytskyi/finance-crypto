@@ -34,7 +34,7 @@ const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
         <li>
           <div className={style.cryptoContainer}>
             <NavLink
-              to="/crypto/coins"
+              to="coins"
               onClick={(e) => onClickMobileLink && handleMobileSubList(e)}
               className={style.link + " " + style.linkCrypto}
             >
@@ -45,22 +45,22 @@ const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
             </NavLink>
             <ul className={style.subListPC}>
               <li>
-                <NavLink to="/crypto/coins" className={style.subListLink}>
+                <NavLink to="/coins" className={style.subListLink}>
                   Coins
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/exchanges" className={style.subListLink}>
+                <NavLink to="/exchanges" className={style.subListLink}>
                   Exchanges
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/arbitrage" className={style.subListLink}>
+                <NavLink to="/arbitrage" className={style.subListLink}>
                   Arbitrage
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/converter" className={style.subListLink}>
+                <NavLink to="/converter" className={style.subListLink}>
                   Converter
                 </NavLink>
               </li>
@@ -73,22 +73,22 @@ const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
               <li
                 onClick={() => onClickMobileLink && onClickMobileLink()}
               >
-                <NavLink to="/crypto/coins">Coins</NavLink>
+                <NavLink to="/coins">Coins</NavLink>
               </li>
               <li
                 onClick={() => onClickMobileLink && onClickMobileLink()}
               >
-                <NavLink to="/crypto/exchanges">Exchanges</NavLink>
+                <NavLink to="/exchanges">Exchanges</NavLink>
               </li>
               <li
                 onClick={() => onClickMobileLink && onClickMobileLink()}
               >
-                <NavLink to="/crypto/arbitrage">Arbitrage</NavLink>
+                <NavLink to="/arbitrage">Arbitrage</NavLink>
               </li>
               <li
                 onClick={() => onClickMobileLink && onClickMobileLink()}
               >
-                <NavLink to="/crypto/converter">Converter</NavLink>
+                <NavLink to="/converter">Converter</NavLink>
               </li>
             </ul>
           </div>

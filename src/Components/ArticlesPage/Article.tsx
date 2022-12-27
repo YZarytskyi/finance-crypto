@@ -10,10 +10,10 @@ import style from './Articles.module.scss';
 
 const Article = () => {
   const { articleId } = useParams<{ articleId: string }>();
-  const dispatch = useAppDispatch();
-  const article: ArticleType | undefined = useAppSelector(state =>
-    state.articles.recentArticles.find(article => article._id === articleId)
+  const article: ArticleType | undefined = useAppSelector((state) =>
+    state.articles.recentArticles.find((article) => article._id === articleId)
   );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!article) {

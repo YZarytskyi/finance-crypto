@@ -30,7 +30,7 @@ const schema = yup.object({
   password: yup.string().required('⚠ This field is required'),
 });
 
-const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
+export const Login = ({ setModalAuthShow }: LoginProps) => {
   const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,7 +50,9 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
     }
   };
 
-  const handleClickGoogleAuth: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const handleClickGoogleAuth: React.MouseEventHandler<
+    HTMLButtonElement
+  > = async e => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
     try {
@@ -119,7 +121,11 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
         </SendButton>
       </form>
       <p className={style.orText}>Or</p>
-      <button type="button" className={style.googleAuth} onClick={handleClickGoogleAuth}>
+      <button
+        type="button"
+        className={style.googleAuth}
+        onClick={handleClickGoogleAuth}
+      >
         <svg className={style.iconGoogle}>
           <use href={sprite + '#google'} />
         </svg>
@@ -128,5 +134,3 @@ const Login: React.FC<LoginProps> = ({ setModalAuthShow }) => {
     </>
   );
 };
-
-export default Login;

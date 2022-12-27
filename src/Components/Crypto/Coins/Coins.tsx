@@ -20,7 +20,7 @@ const Coins = () => {
 
   return (
     <>
-      <NavCrypto />
+      <NavCrypto component='Coins'/>
       <section className={`${style.table} ${style.tableCoins}`}>
         <h1 className="hidden">Cryptocurrencies</h1>
         <Table hover variant="dark">

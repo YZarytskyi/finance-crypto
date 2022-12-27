@@ -7,7 +7,6 @@ import style from "./Arbitrage.module.scss";
 
 
 const TableArbitrageBody = () => {
-
   const result = useAppSelector((state) => state.arbitrage.result);
   const dispatch = useAppDispatch();
 

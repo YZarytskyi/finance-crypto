@@ -1,4 +1,4 @@
-@import "../Coins/Coins.module.scss";
+@import '../Coins/Coins.module.scss';
 
 .tableExchanges {
   th:nth-child(1) {
@@ -6,10 +6,11 @@
   }
   th:nth-child(2) {
     padding-left: 0.7rem;
+    padding-right: 9rem;
     text-align: left;
   }
   th:nth-child(3) {
-    padding: 0 2.3rem;
+    padding: 0 4rem;
   }
   th:nth-child(4) {
     padding: 0 2rem;
@@ -24,23 +25,6 @@
   td {
     padding: 0.5rem !important;
   }
-  td:nth-child(2) {
-    > div {
-      display: flex;
-      align-items: center;
-      text-align: left;
-      font-weight: 500;
-      > a:first-child {
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-right: 1rem;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
   td:nth-child(3) {
     > div {
       display: flex;
@@ -54,5 +38,16 @@
   }
   td:nth-child(4) {
     padding: 0 2rem !important;
+  }
+}
+
+.exchangeLink {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 0.8rem;
+  > img {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }

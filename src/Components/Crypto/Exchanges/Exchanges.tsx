@@ -8,13 +8,15 @@ import TableExchangesBodyItem from './TableExchangesBodyItem';
 import { fetchExchanges } from '../../../Store/Reducers/exchangeSlice';
 import style from './Exchanges.module.scss';
 
+const EXCHANGES_COUNT: 10 = 10;
+
+
 const Exchanges = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const { isLoadingExchanges, exchanges } = useAppSelector(
     state => state.exchange
   );
-  const countExchanges: number = 30;
 
   useEffect(() => {
     dispatch(fetchExchanges(page));
@@ -22,7 +24,7 @@ const Exchanges = () => {
 
   return (
     <>
-      <NavCrypto />
+      <NavCrypto component='Exchanges' />
       <section className={`${style.table} ${style.tableExchanges}`}>
         <Table hover variant="dark">
           <thead>
@@ -59,7 +61,7 @@ const Exchanges = () => {
         </Table>
       </section>
       <div className={style.pagination}>
-        <TablePagination page={page} setPage={setPage} count={countExchanges} />
+        <TablePagination page={page} setPage={setPage} count={EXCHANGES_COUNT} />
       </div>
     </>
   );
