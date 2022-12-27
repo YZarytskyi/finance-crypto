@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkcrypto_project=self.webpackChunkcrypto_project||[]).push([[930],{7930:function(e,r,t){t.r(r),t.d(r,{default:function(){return s}});var o="Footer_footer__nTpWA",c="Footer_footerText__Z9KZ3",n=t(184),s=function(){return(0,n.jsx)("footer",{className:o,children:(0,n.jsx)("p",{className:c,children:"\xa9 2022 CRYPTO LLC. All Rights Reserved."})})}}}]);
-//# sourceMappingURL=930.40a9382a.chunk.js.map
