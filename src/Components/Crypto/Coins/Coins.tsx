@@ -4,7 +4,7 @@ import CoinsTableBodyItem from './CoinsTableBodyItem';
 import { TablePagination } from '../../Common';
 import { fetchMarkets } from '../../../Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
-import NavCrypto from '../NavCrypto';
+import NavCrypto from '../NavCrypto/NavCrypto';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import style from './Coins.module.scss';
 

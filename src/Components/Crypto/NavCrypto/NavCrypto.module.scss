@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import "../../../variables.scss";
 
 .container {
   max-width: 1600px;
@@ -58,4 +58,8 @@
       display: none;
     }
   }
+}
+
+.leftText {
+  margin-top: 0.1rem;
 }

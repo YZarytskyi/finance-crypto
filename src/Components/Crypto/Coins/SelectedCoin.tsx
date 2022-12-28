@@ -9,7 +9,7 @@ import {
 } from '../../../Store/Reducers/cryptoSlice';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
-import NavCrypto from '../NavCrypto';
+import NavCrypto from '../NavCrypto/NavCrypto';
 import { setNumberFormat } from '../../../utils/utils';
 import { Preloader } from '../../Common';
 import style from './SelectedCoin.module.scss';

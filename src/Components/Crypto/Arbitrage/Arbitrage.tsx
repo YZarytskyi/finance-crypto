@@ -1,4 +1,4 @@
-import NavCrypto from '../NavCrypto';
+import NavCrypto from '../NavCrypto/NavCrypto';
 import { ScannerTable } from './ScannerTable';
 import { CheckResult } from './CheckResult';
 // import { COOKIE_TOKEN_NAME, getCookie } from '../../../utils/cookie';

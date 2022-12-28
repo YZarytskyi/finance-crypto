@@ -162,7 +162,7 @@ export const MarketCapSkeleton = () => {
     <>
       <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
         <div>
-          <Skeleton height={23} width={220} />
+          <Skeleton height={21} width={220} />
         </div>
       </SkeletonTheme>
     </>
@@ -173,7 +173,7 @@ export const VolumeSkeleton = () => {
     <>
       <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
         <div>
-          <Skeleton height={23} width={160} />
+          <Skeleton height={21} width={160} />
         </div>
       </SkeletonTheme>
     </>
@@ -184,7 +184,7 @@ export const ActiveCoinsSkeleton = () => {
     <>
       <SkeletonTheme baseColor="#4e4e4e" highlightColor="#dabdab">
         <div>
-          <Skeleton height={23} width={65} />
+          <Skeleton height={21} width={65} />
         </div>
       </SkeletonTheme>
     </>

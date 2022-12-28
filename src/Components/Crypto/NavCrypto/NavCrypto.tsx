@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import sprite from '../../assets/images/icons.svg';
+import sprite from '../../../assets/images/icons.svg';
 import style from './NavCrypto.module.scss';
 
 interface NavCryptoProps {
@@ -32,14 +32,16 @@ const NavCrypto = ({ component }: NavCryptoProps) => {
           </li>
           <li className={isSelectedComponent ? '' : style.hidden}>
             <NavLink to={`/${component}`} className={style.leftLink}>
-              {component}
+              <span className={style.leftText}>{component}</span>
               <svg className={style.arrow}>
                 <use href={sprite + '#arrow_right'} />
               </svg>
             </NavLink>
           </li>
           <li>
-            <span className={style.currentPath}>{currentPath}</span>
+            <span className={`${style.currentPath} ${style.leftText}`}>
+              {currentPath}
+            </span>
           </li>
         </ul>
 

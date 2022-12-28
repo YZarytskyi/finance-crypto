@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import NavCrypto from '../NavCrypto';
+import NavCrypto from '../NavCrypto/NavCrypto';
 import Table from 'react-bootstrap/Table';
 import { useAppDispatch, useAppSelector } from '../../../Store/hooks';
 import { TablePagination } from '../../Common';
