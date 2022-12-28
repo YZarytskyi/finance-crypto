@@ -165,3 +165,23 @@ export interface ArbitrageResult {
   price3: number;
   result: number;
 }
+
+export interface CoinSearchForm {
+  api_symbol: string;
+  component: string;
+  id: string;
+  large: string;
+  market_cap_rank: number;
+  name: string;
+  symbol: string;
+  thumb: string;
+}
+
+export interface ExchangeSearchForm {
+  component: string;
+  id: string;
+  large: string;
+  market_type: string;
+  name: string;
+  thumb: string;
+}

@@ -5,24 +5,39 @@ import { Link } from 'react-router-dom';
 import { Spinner } from '../index';
 import sprite from '../../../assets/images/icons.svg';
 import style from './SearchForm.module.scss';
+import { CoinSearchForm, ExchangeSearchForm } from '../../../Types/Types';
 
 interface SearchFormOpenProps {
   onClickCloseList: (e: MouseEvent) => void;
-  onLinkClick: () => void;
+  onClickCloseSearch: () => void;
 }
+
+type Component = 'coins' | 'exchanges';
+type RecentSearch = CoinSearchForm | ExchangeSearchForm;
+interface SearchData {
+  coins: CoinSearchForm[];
+  exchanges: ExchangeSearchForm[];
+}
+
+const RECENT_SEARCH_KEY = 'recent-search';
 
 const SearchFormOpen = ({
   onClickCloseList,
-  onLinkClick,
+  onClickCloseSearch,
 }: SearchFormOpenProps): JSX.Element => {
   const [query, setQuery] = useState<string>('');
-  const [data, setData] = useState<any>({});
+  const [data, setData] = useState<Partial<SearchData>>({});
+  const [recentSearch] = useState<RecentSearch[]>(() => {
+    const savedSearch = localStorage.getItem(RECENT_SEARCH_KEY);
+    const initialState = savedSearch && JSON.parse(savedSearch);
+    return initialState || [];
+  });
 
   const debouncedValue = useDebounce<string>(query.toLowerCase(), 250);
   useEffect(() => {
     const fetchData = async () => {
       const data = await cryptoApi.getSearchDataByQuery(debouncedValue);
-      setData(data);
+      data && setData(data);
     };
     fetchData();
   }, [debouncedValue]);
@@ -36,10 +51,41 @@ const SearchFormOpen = ({
     setQuery(e.target.value);
   };
 
+  const onClickSetLocalStorage = (el: any, component?: Component) => {
+    onClickCloseSearch();
+    if (component) {
+      el = { component, ...el };
+    }
+
+    const copyRecentSearch = JSON.parse(JSON.stringify(recentSearch));
+    let elementInRecentId = null;
+
+    for (const obj of recentSearch) {
+      if (obj.id === el.id) {
+        elementInRecentId = recentSearch.indexOf(obj);
+        break;
+      }
+    }
+
+    if (elementInRecentId) {
+      copyRecentSearch.splice(elementInRecentId, 1);
+    }
+
+    let setToStorage = [el, ...copyRecentSearch];
+    if (setToStorage.length > 3) {
+      setToStorage.length = 3;
+    }
+    localStorage.setItem(RECENT_SEARCH_KEY, JSON.stringify(setToStorage));
+  };
+
   return (
     <div className={style.backdrop}>
       <div className={style.searchMainContainerOut} id="searchAbsolute">
-        <button type="button" className={style.closeBtn} onClick={onLinkClick}>
+        <button
+          type="button"
+          className={style.closeBtn}
+          onClick={onClickCloseSearch}
+        >
           <svg className={style.iconClose}>
             <use href={sprite + '#modal_close'} />
           </svg>
@@ -77,8 +123,8 @@ const SearchFormOpen = ({
                     <li key={el.id}>
                       <Link
                         to={`/coins/${el.id}`}
-                        onClick={onLinkClick}
                         className={style.listLink}
+                        onClick={() => onClickSetLocalStorage(el, 'coins')}
                       >
                         <img
                           src={el.thumb}
@@ -105,7 +151,7 @@ const SearchFormOpen = ({
                       <Link
                         to={`exchanges/${el.id}`}
                         className={style.listLink}
-                        onClick={onLinkClick}
+                        onClick={() => onClickSetLocalStorage(el, 'exchanges')}
                       >
                         <img
                           src={el.thumb}
@@ -120,6 +166,32 @@ const SearchFormOpen = ({
                   <p className={style.warning}>Exchanges not found</p>
                 )}
               </ul>
+
+              {recentSearch.length ? (
+                <>
+                  <p className={style.label}>Recent searches</p>
+                  <ul className={style.recentSearchList}>
+                    {recentSearch.map(el => (
+                      <li key={el.name}>
+                        <Link
+                          to={`${el.component}/${el.id}`}
+                          className={style.recentSearchLink}
+                          onClick={() => onClickSetLocalStorage(el)}
+                        >
+                          <img
+                            src={el.thumb}
+                            alt="Logo"
+                            className={style.recentSearchImage}
+                          />
+                          <p>{el.name}</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                ''
+              )}
             </>
           )}
         </div>

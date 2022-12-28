@@ -18,7 +18,7 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
   
   const series = [
     {
-      data: marketChart,
+      data: marketChart && marketChart,
     },
   ]
   const options = {

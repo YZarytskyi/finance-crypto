@@ -19,10 +19,10 @@ export const SearchForm = () => {
     }
   };
 
-  const onLinkClick = () => {
+  const onClickCloseSearch = () => {
     setIsShowSearchForm(false);
     document.body.classList.remove('overflow');
-  };
+  }
 
   const onSearchOpen = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ export const SearchForm = () => {
       {isShowSearchForm && (
         <SearchFormOpen
           onClickCloseList={onClickCloseList}
-          onLinkClick={onLinkClick}
+          onClickCloseSearch={onClickCloseSearch}
         />
       )}
     </div>

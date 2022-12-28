@@ -1,6 +1,7 @@
+import { ExchangeSearchForm } from './../Types/Types';
 import axios from 'axios';
 import { Notify } from 'notiflix';
-import { CoinByQuery } from '../Types/Types';
+import { CoinByQuery, CoinSearchForm } from '../Types/Types';
 import { notifyApiOptions } from '../utils/notify';
 
 
@@ -129,8 +130,8 @@ export const cryptoApi = {
       if (!data.coins.length && !data.exchanges.length) {
         return { coins: [], exchanges: [] };
       }
-      const coins = data.coins.slice(0, 6);
-      const exchanges = data.exchanges.slice(0, 6);
+      const coins: CoinSearchForm[] = data.coins.slice(0, 5);
+      const exchanges: ExchangeSearchForm[] = data.exchanges.slice(0, 5);
       return { coins, exchanges };
     } catch ({ message }) {
       Notify.failure(message as string, notifyApiOptions);
