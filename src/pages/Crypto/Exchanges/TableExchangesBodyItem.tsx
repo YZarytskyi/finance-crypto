@@ -16,7 +16,7 @@ const TableExchangesBodyItem: React.FC<TableExchangesBodyItemProps> = ({
       <td>{exchange.trust_score_rank}</td>
       <td>
         <Link
-          to={`/exchanges/${exchange.id}`}
+          to={`${exchange.id}`}
           className={style.exchangeLink}
         >
           <img src={exchange.image} alt={exchange.name} />

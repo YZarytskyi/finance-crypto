@@ -1,4 +1,3 @@
-import NavCrypto from '../NavCrypto/NavCrypto';
 import { ScannerTable } from './ScannerTable';
 import { CheckResult } from './CheckResult';
 // import { COOKIE_TOKEN_NAME, getCookie } from '../../../utils/cookie';
@@ -11,7 +10,6 @@ const Arbitrage = () => {
     // <>
     //   {userId
     //   ? <>
-    //     <NavCrypto />
     //     <CheckResult />
     //     <TableScanner />
     //   </>
@@ -19,7 +17,6 @@ const Arbitrage = () => {
     //   }
     // </>
     <>
-      <NavCrypto />
       <CheckResult />
       <ScannerTable />
     </>

@@ -2,19 +2,25 @@ import { NavLink, useLocation } from 'react-router-dom';
 import sprite from '../../../assets/images/icons.svg';
 import style from './NavCrypto.module.scss';
 
-interface NavCryptoProps {
-  component?: 'Coins' | 'Exchanges';
-}
-
-const NavCrypto = ({ component }: NavCryptoProps) => {
+const NavCrypto = () => {
   let currentPath = useLocation().pathname;
 
-  const regexpSelectedComponent = new RegExp(`/${component}/`, 'i');
-  const isSelectedComponent = regexpSelectedComponent.test(currentPath);
+  let component: RegExpMatchArray | string | null =
+    currentPath.match(/(coins)|(exchanges)/);
+  if (component) {
+    component = component[0].replace(/\//g, '');
+  }
+
+  const isSelectedComponent = new RegExp(`/crypto/${component}/\\w+`).test(
+    currentPath
+  );
+  const regexpSelectedComponent = new RegExp(`/crypto/${component}/?`);
+  const selectedElement = currentPath
+    .replace(regexpSelectedComponent, '')
+    .replace(/\//, '');
   currentPath = isSelectedComponent
-    ? currentPath.replace(regexpSelectedComponent, '').substring(0, 17) +
-      (currentPath.length > 18 ? '...' : '')
-    : currentPath.replace(/^\//, '');
+    ? selectedElement + (selectedElement.length > 18 ? '...' : '')
+    : (component as string);
 
   return (
     <div className={style.container}>
@@ -31,7 +37,7 @@ const NavCrypto = ({ component }: NavCryptoProps) => {
             </NavLink>
           </li>
           <li className={isSelectedComponent ? '' : style.hidden}>
-            <NavLink to={`/${component}`} className={style.leftLink}>
+            <NavLink to={`/crypto/${component}`} className={style.leftLink}>
               <span className={style.leftText}>{component}</span>
               <svg className={style.arrow}>
                 <use href={sprite + '#arrow_right'} />
@@ -47,22 +53,22 @@ const NavCrypto = ({ component }: NavCryptoProps) => {
 
         <ul className={style.listCenter}>
           <li>
-            <NavLink to="/coins" className={style.centerLink}>
+            <NavLink to="/crypto/coins" className={style.centerLink}>
               Coins
             </NavLink>
           </li>
           <li>
-            <NavLink to="/exchanges" className={style.centerLink}>
+            <NavLink to="/crypto/exchanges" className={style.centerLink}>
               Exchanges
             </NavLink>
           </li>
           <li>
-            <NavLink to="/arbitrage" className={style.centerLink}>
+            <NavLink to="/crypto/arbitrage" className={style.centerLink}>
               Arbitrage
             </NavLink>
           </li>
           <li>
-            <NavLink to="/converter" className={style.centerLink}>
+            <NavLink to="/crypto/converter" className={style.centerLink}>
               Converter
             </NavLink>
           </li>
@@ -72,4 +78,4 @@ const NavCrypto = ({ component }: NavCryptoProps) => {
   );
 };
 
-export default NavCrypto;
+export { NavCrypto };

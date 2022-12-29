@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import NavCrypto from '../NavCrypto/NavCrypto';
 import Table from 'react-bootstrap/Table';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { TablePagination } from '../../../components/Common';
@@ -9,7 +8,6 @@ import { fetchExchanges } from '../../../Store/Reducers/exchangeSlice';
 import style from './Exchanges.module.scss';
 
 const EXCHANGES_COUNT: 10 = 10;
-
 
 const Exchanges = () => {
   const dispatch = useAppDispatch();
@@ -24,7 +22,6 @@ const Exchanges = () => {
 
   return (
     <>
-      <NavCrypto component='Exchanges' />
       <section className={`${style.table} ${style.tableExchanges}`}>
         <Table hover variant="dark">
           <thead>
@@ -61,7 +58,11 @@ const Exchanges = () => {
         </Table>
       </section>
       <div className={style.pagination}>
-        <TablePagination page={page} setPage={setPage} count={EXCHANGES_COUNT} />
+        <TablePagination
+          page={page}
+          setPage={setPage}
+          count={EXCHANGES_COUNT}
+        />
       </div>
     </>
   );

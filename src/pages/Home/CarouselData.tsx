@@ -49,7 +49,7 @@ export const CryptoCarouselData = () => {
       <Carousel.Caption className={style.caption}>
         <ul className={`${style.carouselInfo} ${style.cryptoData}`}>
           <li>
-            <NavLink to="/coins" className={style.cryptoLink}>
+            <NavLink to="/crypto/coins" className={style.cryptoLink}>
               {market_cap_change_percentage_24h_usd ? (
                 <div>
                   {marketCap}
@@ -68,13 +68,13 @@ export const CryptoCarouselData = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/coins" className={style.cryptoLink}>
+            <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>{total_volume?.usd ? totalVolume : <VolumeSkeleton />}</div>
               <p>Trading Volume 24h</p>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/coins" className={style.cryptoLink}>
+            <NavLink to="/crypto/coins" className={style.cryptoLink}>
               <div>
                 {active_cryptocurrencies ? (
                   setNumberFormat(active_cryptocurrencies)
@@ -87,7 +87,7 @@ export const CryptoCarouselData = () => {
           </li>
         </ul>
         <NavLink
-          to="coins"
+          to="/crypto/coins"
           className={style.footer + " " + style.footerCrypto}
         >
           <h1>CRYPTOCURRENCIES MARKETS</h1>

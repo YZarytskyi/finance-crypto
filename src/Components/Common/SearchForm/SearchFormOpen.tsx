@@ -122,7 +122,7 @@ const SearchFormOpen = ({
                   data.coins.map((el: any) => (
                     <li key={el.id}>
                       <Link
-                        to={`/coins/${el.id}`}
+                        to={`/crypto/coins/${el.id}`}
                         className={style.listLink}
                         onClick={() => onClickSetLocalStorage(el, 'coins')}
                       >
@@ -149,7 +149,7 @@ const SearchFormOpen = ({
                   data.exchanges.map((el: any) => (
                     <li key={el.id}>
                       <Link
-                        to={`exchanges/${el.id}`}
+                        to={`/crypto/exchanges/${el.id}`}
                         className={style.listLink}
                         onClick={() => onClickSetLocalStorage(el, 'exchanges')}
                       >
@@ -174,7 +174,7 @@ const SearchFormOpen = ({
                     {recentSearch.map(el => (
                       <li key={el.name}>
                         <Link
-                          to={`${el.component}/${el.id}`}
+                          to={`/crypto/${el.component}/${el.id}`}
                           className={style.recentSearchLink}
                           onClick={() => onClickSetLocalStorage(el)}
                         >

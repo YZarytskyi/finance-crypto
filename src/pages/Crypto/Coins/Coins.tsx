@@ -4,7 +4,6 @@ import CoinsTableBodyItem from './CoinsTableBodyItem';
 import { TablePagination } from '../../../components/Common';
 import { fetchMarkets } from '../../../Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import NavCrypto from '../NavCrypto/NavCrypto';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import style from './Coins.module.scss';
 
@@ -20,7 +19,6 @@ const Coins = () => {
 
   return (
     <>
-      <NavCrypto component='Coins'/>
       <section className={`${style.table} ${style.tableCoins}`}>
         <h1 className="hidden">Cryptocurrencies</h1>
         <Table hover variant="dark">

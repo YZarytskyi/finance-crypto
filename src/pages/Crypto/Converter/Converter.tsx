@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import NavCrypto from '../NavCrypto/NavCrypto';
 import {
   fetchCoinsList,
   fetchPrice,
@@ -98,52 +97,49 @@ const Converter = () => {
   });
 
   return (
-    <>
-      <NavCrypto />
-      <section>
-        <div className={style.hero}>
-          <h1 className={style.heroInside}>Cryptocurrency Converter</h1>
-        </div>
-        <div className={style.converter}>
-          <div className={style.converterInside}>
-            <Autocomplete
-              id="coinsList"
-              className={style.autocomplete}
-              value={coin}
-              onChange={onChangeCoin}
-              options={options.sort((a, b) =>
-                a.firstLetter.localeCompare(b.firstLetter)
-              )}
-              groupBy={coin => coin.firstLetter}
-              getOptionLabel={coin => coin.pair.replace(/USDT/, '')}
-              renderInput={params => <TextField {...params} label="Coin" />}
-            />
+    <section>
+      <div className={style.hero}>
+        <h1 className={style.heroInside}>Cryptocurrency Converter</h1>
+      </div>
+      <div className={style.converter}>
+        <div className={style.converterInside}>
+          <Autocomplete
+            id="coinsList"
+            className={style.autocomplete}
+            value={coin}
+            onChange={onChangeCoin}
+            options={options.sort((a, b) =>
+              a.firstLetter.localeCompare(b.firstLetter)
+            )}
+            groupBy={coin => coin.firstLetter}
+            getOptionLabel={coin => coin.pair.replace(/USDT/, '')}
+            renderInput={params => <TextField {...params} label="Coin" />}
+          />
 
+          <input
+            type="number"
+            className={style.converterInput}
+            value={value}
+            disabled={!price}
+            onChange={onChangeValue}
+          />
+
+          <p className={style.converterText}>Convert to USDT</p>
+
+          <div className={style.converterInputWrapper}>
             <input
               type="number"
               className={style.converterInput}
-              value={value}
+              value={convertedValue}
               disabled={!price}
-              onChange={onChangeValue}
+              onChange={onChangeConvertedValue}
             />
-
-            <p className={style.converterText}>Convert to USDT</p>
-
-            <div className={style.converterInputWrapper}>
-              <input
-                type="number"
-                className={style.converterInput}
-                value={convertedValue}
-                disabled={!price}
-                onChange={onChangeConvertedValue}
-              />
-              {isLoadingConverter && <Spinner className={'spinnerConverter'} />}
-            </div>
-            <LastUpdateTimer coin={coin} />
+            {isLoadingConverter && <Spinner className={'spinnerConverter'} />}
           </div>
+          <LastUpdateTimer coin={coin} />
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

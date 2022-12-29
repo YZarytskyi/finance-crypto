@@ -10,6 +10,7 @@ import { initializedSuccess } from './Store/Reducers/appSlice';
 import { setIsAuth } from './Store/Reducers/authSlice';
 import { notifyInit } from './utils/notify';
 import './App.scss';
+import Crypto from './pages/Crypto/Crypto';
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const Coins = React.lazy(() => import('./pages/Crypto/Coins/Coins'));
@@ -55,19 +56,22 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
-            <Route path="coins" element={<Coins />} />
-            <Route path="coins/:coinId" element={<SelectedCoin />} />
-            <Route path="exchanges" element={<Exchanges />} />
-            <Route
-              path="/exchanges/:exchangeId"
-              element={<SelectedExchange />}
-            />
-            <Route path="arbitrage" element={<Arbitrage />} />
-            <Route path="converter" element={<Converter />} />
+            <Route path="crypto" element={<Crypto />}>
+              <Route index element={<Navigate to='/crypto/coins' />} />
+              <Route path="coins" element={<Coins />} />
+              <Route path="coins/:coinId" element={<SelectedCoin />} />
+              <Route path="exchanges" element={<Exchanges />} />
+              <Route
+                path="exchanges/:exchangeId"
+                element={<SelectedExchange />}
+              />
+              <Route path="arbitrage" element={<Arbitrage />} />
+              <Route path="converter" element={<Converter />} />
+            </Route>
             <Route path="articles" element={<Articles />} />
             <Route path="articles/:articleId" element={<Article />} />
             <Route path="contacts" element={<Contacts />} />
-            <Route path="*" element={<Navigate to='/' />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </Suspense>
