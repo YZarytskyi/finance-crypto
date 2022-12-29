@@ -1,6 +1,6 @@
 import Pagination from "@mui/material/Pagination";
 import { forwardRef } from "react";
-import { useAppDispatch } from "../../../Store/hooks";
+import { useAppDispatch } from "../../../hooks/redux-hooks";
 import { setCurrentPage } from "../../../Store/Reducers/articlesSlice";
 
 interface TablePaginationProps {

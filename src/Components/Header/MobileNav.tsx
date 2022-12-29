@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
 import { AuthButtons } from '../Auth/AuthButtons';
 import { ModalAuth } from '../Auth/ModalAuth';
-import { useAppSelector } from '../../Store/hooks';
+import { useAppSelector } from '../../hooks/redux-hooks';
 import { SearchForm } from '../Common';
 import sprite from '../../assets/images/icons.svg';
 import style from './Header.module.scss';

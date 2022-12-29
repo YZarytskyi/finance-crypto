@@ -4,7 +4,7 @@ import { Notify } from 'notiflix';
 import { COOKIE_TOKEN_NAME, deleteCookie } from '../../utils/cookie';
 import { auth } from '../Firebase/Firebase';
 import { ModalAuth } from './ModalAuth';
-import { useAppDispatch, useAppSelector } from '../../Store/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { setIsAuth } from '../../Store/Reducers/authSlice';
 import style from './Auth.module.scss';
 

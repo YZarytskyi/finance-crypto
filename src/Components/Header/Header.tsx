@@ -1,5 +1,5 @@
-import MobileNav from "./MobileNav";
-import PCNav from "./PCNav";
+import MobileNav from './MobileNav';
+import PCNav from './PCNav';
 
 const Header = () => {
   return (
@@ -10,4 +10,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export { Header };

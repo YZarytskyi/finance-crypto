@@ -1,39 +1,36 @@
 import React, { Suspense, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from './Components/Header/Header';
+import { SharedLayout } from './pages/SharedLayout/SharedLayout';
 import { Preloader } from './Components/Common';
 import { COOKIE_TOKEN_NAME, getCookie } from './utils/cookie';
-import { useAppDispatch } from './Store/hooks';
+import { useAppDispatch } from './hooks/redux-hooks';
 import { initializedSuccess } from './Store/Reducers/appSlice';
 import { setIsAuth } from './Store/Reducers/authSlice';
 import { notifyInit } from './utils/notify';
 import './App.scss';
 
-const Home = React.lazy(() => import('./Components/Home/Home'));
-const Coins = React.lazy(() => import('./Components/Crypto/Coins/Coins'));
+const Home = React.lazy(() => import('./pages/Home/Home'));
+const Coins = React.lazy(() => import('./pages/Crypto/Coins/Coins'));
 const Exchanges = React.lazy(
-  () => import('./Components/Crypto/Exchanges/Exchanges')
+  () => import('./pages/Crypto/Exchanges/Exchanges')
 );
 const SelectedExchange = React.lazy(
-  () => import('./Components/Crypto/Exchanges/SelectedExchange')
+  () => import('./pages/Crypto/Exchanges/SelectedExchange')
 );
 const Arbitrage = React.lazy(
-  () => import('./Components/Crypto/Arbitrage/Arbitrage')
+  () => import('./pages/Crypto/Arbitrage/Arbitrage')
 );
 const Converter = React.lazy(
-  () => import('./Components/Crypto/Converter/Converter')
+  () => import('./pages/Crypto/Converter/Converter')
 );
 const SelectedCoin = React.lazy(
-  () => import('./Components/Crypto/Coins/SelectedCoin')
+  () => import('./pages/Crypto/Coins/SelectedCoin')
 );
-const ArticlesPage = React.lazy(
-  () => import('./Components/ArticlesPage/ArticlesPage')
-);
-const Article = React.lazy(() => import('./Components/ArticlesPage/Article'));
-const Contacts = React.lazy(() => import('./Components/Contacts/Contacts'));
-const Footer = React.lazy(() => import('./Components/Footer/Footer'));
+const Articles = React.lazy(() => import('./pages/Articles/Articles'));
+const Article = React.lazy(() => import('./pages/Articles/Article'));
+const Contacts = React.lazy(() => import('./pages/Contacts/Contacts'));
 
 const darkTheme = createTheme({
   palette: {
@@ -54,27 +51,26 @@ export const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Header />
-      <main>
-        <Suspense fallback={<Preloader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/coins" element={<Coins />} />
-            <Route path="/coins/:coinId" element={<SelectedCoin />} />
-            <Route path="/exchanges" element={<Exchanges />} />
+      <Suspense fallback={<Preloader />}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="coins" element={<Coins />} />
+            <Route path="coins/:coinId" element={<SelectedCoin />} />
+            <Route path="exchanges" element={<Exchanges />} />
             <Route
               path="/exchanges/:exchangeId"
               element={<SelectedExchange />}
             />
-            <Route path="/arbitrage" element={<Arbitrage />} />
-            <Route path="/converter" element={<Converter />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/articles/:articleId" element={<Article />} />
-            <Route path="/contacts" element={<Contacts />} />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
+            <Route path="arbitrage" element={<Arbitrage />} />
+            <Route path="converter" element={<Converter />} />
+            <Route path="articles" element={<Articles />} />
+            <Route path="articles/:articleId" element={<Article />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="*" element={<Navigate to='/' />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </ThemeProvider>
   );
 };
