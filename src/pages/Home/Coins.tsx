@@ -6,7 +6,7 @@ import ChartHome from "./CoinsChart";
 import CoinsSelect from "./CoinsSelect";
 import { CoinsBlockSkeleton } from "./HomeSkeleton";
 import { setClassNamePlusOrMinus } from "../../utils/utils";
-import { Markets } from "../../Types/Types";
+import { Markets } from "../../types/Types";
 import style from "./Home.module.scss";
 
 const Coins = () => {

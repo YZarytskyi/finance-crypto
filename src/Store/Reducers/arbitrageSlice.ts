@@ -1,6 +1,6 @@
 import { arbitrageApi } from "../../API/arbitrageApi";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { ArbitrageResult, Currencies, Result } from "../../Types/Types";
+import { ArbitrageResult, Currencies, Result } from "../../types/Types";
 
 interface InitialState {
   currencies: Array<Currencies>;

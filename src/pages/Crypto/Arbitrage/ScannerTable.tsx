@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import Table from 'react-bootstrap/Table';
 import TableArbitrageBody from './TableArbitrageBody';
 import { fetchCurrencies } from '../../../Store/Reducers/arbitrageSlice';
-import { Preloader } from '../../../Components/Common';
+import { Preloader } from '../../../components/Common';
 import sprite from '../../../assets/images/icons.svg';
 import style from './Arbitrage.module.scss';
 

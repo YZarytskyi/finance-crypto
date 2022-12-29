@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Spinner } from '../index';
 import sprite from '../../../assets/images/icons.svg';
 import style from './SearchForm.module.scss';
-import { CoinSearchForm, ExchangeSearchForm } from '../../../Types/Types';
+import { CoinSearchForm, ExchangeSearchForm } from '../../../types/Types';
 
 interface SearchFormOpenProps {
   onClickCloseList: (e: MouseEvent) => void;

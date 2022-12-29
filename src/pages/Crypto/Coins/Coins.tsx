@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import CoinsTableBodyItem from './CoinsTableBodyItem';
-import { TablePagination } from '../../../Components/Common';
+import { TablePagination } from '../../../components/Common';
 import { fetchMarkets } from '../../../Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import NavCrypto from '../NavCrypto/NavCrypto';

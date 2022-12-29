@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
-import { ArbitrageResult, Currencies, Result } from '../Types/Types';
+import { ArbitrageResult, Currencies, Result } from '../types/Types';
 import { notifyApiOptions } from '../utils/notify';
 
 export const arbitrageApi = {

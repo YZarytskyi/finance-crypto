@@ -1,7 +1,7 @@
-import { ExchangeSearchForm } from './../Types/Types';
+import { ExchangeSearchForm } from '../types/Types';
 import axios from 'axios';
 import { Notify } from 'notiflix';
-import { CoinByQuery, CoinSearchForm } from '../Types/Types';
+import { CoinByQuery, CoinSearchForm } from '../types/Types';
 import { notifyApiOptions } from '../utils/notify';
 
 

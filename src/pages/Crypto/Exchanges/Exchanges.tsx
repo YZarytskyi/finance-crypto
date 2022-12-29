@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import NavCrypto from '../NavCrypto/NavCrypto';
 import Table from 'react-bootstrap/Table';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import { TablePagination } from '../../../Components/Common';
+import { TablePagination } from '../../../components/Common';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import TableExchangesBodyItem from './TableExchangesBodyItem';
 import { fetchExchanges } from '../../../Store/Reducers/exchangeSlice';

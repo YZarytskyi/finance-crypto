@@ -6,7 +6,7 @@ import {
   setClassNamePlusOrMinus,
   setNumberFormat,
 } from '../../../utils/utils';
-import { Markets } from '../../../Types/Types';
+import { Markets } from '../../../types/Types';
 import style from './Coins.module.scss';
 
 interface CoinsTableBodyItemProps {

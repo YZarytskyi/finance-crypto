@@ -6,7 +6,7 @@ import {
   MarketsTime,
   SelectedCoin,
   SelectedCoinMarketChart,
-} from "../../Types/Types";
+} from "../../types/Types";
 
 const initialState: InitialState = {
   marketsHome: [],

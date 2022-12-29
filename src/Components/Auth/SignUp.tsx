@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SendButton from '@mui/material/Button';
 import { Notify } from 'notiflix';
 import { auth } from '../Firebase/Firebase';
-import { useNavigate } from 'react-router-dom';
 import sprite from '../../assets/images/icons.svg';
 import style from './Auth.module.scss';
 

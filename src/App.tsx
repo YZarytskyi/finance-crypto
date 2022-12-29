@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { SharedLayout } from './pages/SharedLayout/SharedLayout';
-import { Preloader } from './Components/Common';
+import { Preloader } from './components/Common';
 import { COOKIE_TOKEN_NAME, getCookie } from './utils/cookie';
 import { useAppDispatch } from './hooks/redux-hooks';
 import { initializedSuccess } from './Store/Reducers/appSlice';

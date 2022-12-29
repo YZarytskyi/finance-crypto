@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
 import { setPair1, setPair2, setPair3 } from "../../../Store/Reducers/arbitrageSlice";
-import { Result } from "../../../Types/Types";
+import { Result } from "../../../types/Types";
 import { removeFloatNull } from "../../../utils/utils";
 import style from "./Arbitrage.module.scss";
 

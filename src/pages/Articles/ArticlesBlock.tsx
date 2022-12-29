@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { TablePagination } from '../../Components/Common';
+import { TablePagination } from '../../components/Common';
 import { fetchRecentArticles } from '../../Store/Reducers/articlesSlice';
 import { ArticlesBlockSkeleton } from './ArticlesBlockSkeleton';
-import { Article } from '../../Types/Types';
+import { Article } from '../../types/Types';
 import { handleImageError } from '../../utils/imageErrorHandler';
 import usePrevious from '../../hooks/usePrevious';
 import sprite from '../../assets/images/icons.svg';
