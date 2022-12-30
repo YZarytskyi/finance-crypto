@@ -6,7 +6,7 @@ const NavCrypto = () => {
   let currentPath = useLocation().pathname;
 
   let component: RegExpMatchArray | string | null =
-    currentPath.match(/(coins)|(exchanges)/);
+    currentPath.match(/(coins)|(exchanges)|(arbitrage)|(converter)/);
   if (component) {
     component = component[0].replace(/\//g, '');
   }
