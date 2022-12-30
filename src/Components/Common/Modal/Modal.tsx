@@ -1,6 +1,6 @@
 import style from './Modal.module.scss';
 import React, { useEffect } from 'react';
-import sprite from '../../../assets/images/icons.svg';
+import sprite from 'assets/images/icons.svg';
 
 interface ModalProps {
   children: React.ReactNode;

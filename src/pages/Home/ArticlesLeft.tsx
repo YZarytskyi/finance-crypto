@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux-hooks";
-import { handleImageError } from "../../utils/imageErrorHandler";
-import sprite from "../../assets/images/icons.svg";
+import { useAppSelector } from "hooks/redux-hooks";
+import { handleImageError } from "utils/imageErrorHandler";
+import sprite from "assets/images/icons.svg";
 import style from "./Home.module.scss";
 
 const ArticlesLeft = () => {

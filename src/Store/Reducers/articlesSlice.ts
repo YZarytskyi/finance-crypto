@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { articlesApi } from '../../API/articlesApi';
+import { articlesApi } from 'api/articlesApi';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Article } from '../../types/Types';
+import { Article } from 'types/Types';
 
 interface ArticlesState {
   articles: Array<Article>;

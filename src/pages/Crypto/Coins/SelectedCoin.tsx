@@ -6,11 +6,11 @@ import {
   removeSelectedCoin,
   removeMarketChart,
   fetchCoinsById,
-} from '../../../Store/Reducers/cryptoSlice';
+} from 'Store/Reducers/cryptoSlice';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import { setNumberFormat } from '../../../utils/utils';
-import { Preloader } from '../../../components/Common';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { setNumberFormat } from 'utils/utils';
+import { Preloader } from 'components/Common';
 import style from './SelectedCoin.module.scss';
 
 const SelectedCoin = () => {

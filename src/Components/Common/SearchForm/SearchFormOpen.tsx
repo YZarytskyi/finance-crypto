@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import useDebounce from '../../../hooks/useDebounce';
-import { cryptoApi } from '../../../API/cryptoApi';
+import useDebounce from 'hooks/useDebounce';
+import { cryptoApi } from 'api/cryptoApi';
 import { Link } from 'react-router-dom';
 import { Spinner } from '../index';
-import sprite from '../../../assets/images/icons.svg';
+import sprite from 'assets/images/icons.svg';
 import style from './SearchForm.module.scss';
-import { CoinSearchForm, ExchangeSearchForm } from '../../../types/Types';
+import { CoinSearchForm, ExchangeSearchForm } from 'types/Types';
 
 interface SearchFormOpenProps {
   onClickCloseList: (e: MouseEvent) => void;

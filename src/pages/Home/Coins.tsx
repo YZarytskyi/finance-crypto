@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import { fetchMarketsHome } from "../../Store/Reducers/cryptoSlice";
+import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
+import { fetchMarketsHome } from "Store/Reducers/cryptoSlice";
 import ChartHome from "./CoinsChart";
 import CoinsSelect from "./CoinsSelect";
 import { CoinsBlockSkeleton } from "./HomeSkeleton";
-import { setClassNamePlusOrMinus } from "../../utils/utils";
-import { Markets } from "../../types/Types";
+import { setClassNamePlusOrMinus } from "utils/utils";
+import { Markets } from "types/Types";
 import style from "./Home.module.scss";
 
 const Coins = () => {

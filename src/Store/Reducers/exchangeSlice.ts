@@ -1,6 +1,6 @@
-import { cryptoApi } from "../../API/cryptoApi";
+import { cryptoApi } from "api/cryptoApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Exchanges, SelectedExchange } from "../../types/Types";
+import { Exchanges, SelectedExchange } from "types/Types";
 
 const initialState: InitialState = {
   exchanges: [],

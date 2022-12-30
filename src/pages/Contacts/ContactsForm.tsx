@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import SendButton from "@mui/material/Button";
-import { Modal } from "../../components/Common";
+import { Modal } from "components/Common";
 import style from "./Contacts.module.scss";
 
 const schema = yup.object({

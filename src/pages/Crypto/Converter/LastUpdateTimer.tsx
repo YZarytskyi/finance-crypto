@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { IAutocomplete } from './Converter';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import {
   fetchPrice,
   removePrice,
-} from '../../../Store/Reducers/converterSlice';
-import sprite from '../../../assets/images/icons.svg';
+} from 'Store/Reducers/converterSlice';
+import sprite from 'assets/images/icons.svg';
 import style from './Converter.module.scss';
 
 interface LastUpdateTimerProps {

@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { Notify } from 'notiflix';
-import { COOKIE_TOKEN_NAME, deleteCookie } from '../../utils/cookie';
+import { COOKIE_TOKEN_NAME, deleteCookie } from 'utils/cookie';
 import { auth } from '../Firebase/Firebase';
 import { ModalAuth } from './ModalAuth';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { setIsAuth } from '../../Store/Reducers/authSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { setIsAuth } from 'Store/Reducers/authSlice';
 import style from './Auth.module.scss';
 
 interface AuthButtonsProps {

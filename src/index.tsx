@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './Store/store';
-import { App } from './App';
+import { store } from 'Store/store';
+import { App } from 'App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 

@@ -5,8 +5,8 @@ import {
   removeFloatNull,
   setClassNamePlusOrMinus,
   setNumberFormat,
-} from '../../../utils/utils';
-import { Markets } from '../../../types/Types';
+} from 'utils/utils';
+import { Markets } from 'types/Types';
 import style from './Coins.module.scss';
 
 interface CoinsTableBodyItemProps {

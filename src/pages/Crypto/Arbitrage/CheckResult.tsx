@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { removeFloatNull } from '../../../utils/utils';
+import { removeFloatNull } from 'utils/utils';
 import {
   fetchArbitrageResult,
   removePairs,
   setPair1,
   setPair2,
   setPair3,
-} from '../../../Store/Reducers/arbitrageSlice';
-import sprite from '../../../assets/images/icons.svg';
+} from 'Store/Reducers/arbitrageSlice';
+import sprite from 'assets/images/icons.svg';
 import style from './Arbitrage.module.scss';
 
 export const CheckResult = () => {

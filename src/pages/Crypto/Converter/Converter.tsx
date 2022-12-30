@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import {
   fetchCoinsList,
   fetchPrice,
   removePrice,
-} from '../../../Store/Reducers/converterSlice';
-import { Spinner } from '../../../components/Common';
+} from 'Store/Reducers/converterSlice';
+import { Spinner } from 'components/Common';
 import { LastUpdateTimer } from './LastUpdateTimer';
-import { numberToFixed2 } from '../../../utils/utils';
+import { numberToFixed2 } from 'utils/utils';
 import style from './Converter.module.scss';
 
 export interface IAutocomplete {

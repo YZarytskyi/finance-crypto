@@ -1,4 +1,4 @@
-import { cryptoApi } from "../../API/cryptoApi";
+import { cryptoApi } from "api/cryptoApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   GlobalData,
@@ -6,7 +6,7 @@ import {
   MarketsTime,
   SelectedCoin,
   SelectedCoinMarketChart,
-} from "../../types/Types";
+} from "types/Types";
 
 const initialState: InitialState = {
   marketsHome: [],

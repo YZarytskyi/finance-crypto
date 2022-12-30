@@ -1,6 +1,6 @@
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { useAppSelector } from "../../hooks/redux-hooks";
+import { useAppSelector } from "hooks/redux-hooks";
 
 interface ChartHomeProps {
   sparkline: Array<number>;

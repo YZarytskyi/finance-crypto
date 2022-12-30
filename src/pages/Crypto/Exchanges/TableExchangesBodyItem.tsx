@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import { Exchanges } from '../../../types/Types';
-import { setNumberFormat } from '../../../utils/utils';
+import { Exchanges } from 'types/Types';
+import { setNumberFormat } from 'utils/utils';
 import style from './Exchanges.module.scss';
 
 interface TableExchangesBodyItemProps {

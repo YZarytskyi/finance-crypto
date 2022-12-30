@@ -6,10 +6,10 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Notify } from 'notiflix';
 import { auth } from '../Firebase/Firebase';
-import { COOKIE_TOKEN_NAME, setCookie } from '../../utils/cookie';
-import { setIsAuth } from '../../Store/Reducers/authSlice';
-import { useAppDispatch } from '../../hooks/redux-hooks';
-import sprite from '../../assets/images/icons.svg';
+import { COOKIE_TOKEN_NAME, setCookie } from 'utils/cookie';
+import { setIsAuth } from 'Store/Reducers/authSlice';
+import { useAppDispatch } from 'hooks/redux-hooks';
+import sprite from 'assets/images/icons.svg';
 import SendButton from '@mui/material/Button';
 import style from './Auth.module.scss';
 

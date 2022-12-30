@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
 import {
   setDefaultMarketsTime,
   setMarketsTime,
-} from "../../Store/Reducers/cryptoSlice";
+} from "Store/Reducers/cryptoSlice";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./CoinsSelect.scss";

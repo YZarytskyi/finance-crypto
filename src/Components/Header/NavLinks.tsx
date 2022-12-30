@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import style from "./Header.module.scss";
 import React, { useState } from "react";
-import sprite from "../../assets/images/icons.svg";
+import sprite from "assets/images/icons.svg";
 
 interface NavLinksProps {
   onClickMobileLink?: () => void;

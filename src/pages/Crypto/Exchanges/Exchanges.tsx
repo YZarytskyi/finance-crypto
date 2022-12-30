@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import { TablePagination } from '../../../components/Common';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { TablePagination } from 'components/Common';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import TableExchangesBodyItem from './TableExchangesBodyItem';
-import { fetchExchanges } from '../../../Store/Reducers/exchangeSlice';
+import { fetchExchanges } from 'Store/Reducers/exchangeSlice';
 import style from './Exchanges.module.scss';
 
 const EXCHANGES_COUNT: 10 = 10;

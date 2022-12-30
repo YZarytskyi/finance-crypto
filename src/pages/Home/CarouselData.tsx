@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
-import sprite from "../../assets/images/icons.svg";
-import slider1 from "../../assets/images/slider1.jpg";
-import slider2 from "../../assets/images/slider2.jpg";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
+import sprite from "assets/images/icons.svg";
+import slider1 from "assets/images/slider1.jpg";
+import slider2 from "assets/images/slider2.jpg";
+import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
 import {
   ActiveCoinsSkeleton,
   CarouselArticleSkeleton,
   MarketCapSkeleton,
   VolumeSkeleton,
 } from "./HomeSkeleton";
-import { fetchGlobalData } from "../../Store/Reducers/cryptoSlice";
-import { setClassNamePlusOrMinus, setNumberFormat } from "../../utils/utils";
+import { fetchGlobalData } from "Store/Reducers/cryptoSlice";
+import { setClassNamePlusOrMinus, setNumberFormat } from "utils/utils";
 import style from "./Home.module.scss";
 
 export const CryptoCarouselData = () => {

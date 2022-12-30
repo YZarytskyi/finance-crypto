@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import {
   fetchExchangeById,
   removeSelectedExchange,
-} from '../../../Store/Reducers/exchangeSlice';
-import { Preloader } from '../../../components/Common';
-import { setNumberFormat } from '../../../utils/utils';
+} from 'Store/Reducers/exchangeSlice';
+import { Preloader } from 'components/Common';
+import { setNumberFormat } from 'utils/utils';
 import style from './SelectedExchange.module.scss';
 
 const SelectedExchange = () => {

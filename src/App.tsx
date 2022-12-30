@@ -10,28 +10,28 @@ import { initializedSuccess } from './Store/Reducers/appSlice';
 import { setIsAuth } from './Store/Reducers/authSlice';
 import { notifyInit } from './utils/notify';
 import './App.scss';
-import Crypto from './pages/Crypto/Crypto';
+import Crypto from 'pages/Crypto/Crypto';
 
-const Home = React.lazy(() => import('./pages/Home/Home'));
-const Coins = React.lazy(() => import('./pages/Crypto/Coins/Coins'));
+const Home = React.lazy(() => import('pages/Home/Home'));
+const Coins = React.lazy(() => import('pages/Crypto/Coins/Coins'));
 const Exchanges = React.lazy(
-  () => import('./pages/Crypto/Exchanges/Exchanges')
+  () => import('pages/Crypto/Exchanges/Exchanges')
 );
 const SelectedExchange = React.lazy(
-  () => import('./pages/Crypto/Exchanges/SelectedExchange')
+  () => import('pages/Crypto/Exchanges/SelectedExchange')
 );
 const Arbitrage = React.lazy(
-  () => import('./pages/Crypto/Arbitrage/Arbitrage')
+  () => import('pages/Crypto/Arbitrage/Arbitrage')
 );
 const Converter = React.lazy(
-  () => import('./pages/Crypto/Converter/Converter')
+  () => import('pages/Crypto/Converter/Converter')
 );
 const SelectedCoin = React.lazy(
-  () => import('./pages/Crypto/Coins/SelectedCoin')
+  () => import('pages/Crypto/Coins/SelectedCoin')
 );
-const Articles = React.lazy(() => import('./pages/Articles/Articles'));
-const Article = React.lazy(() => import('./pages/Articles/Article'));
-const Contacts = React.lazy(() => import('./pages/Contacts/Contacts'));
+const Articles = React.lazy(() => import('pages/Articles/Articles'));
+const Article = React.lazy(() => import('pages/Articles/Article'));
+const Contacts = React.lazy(() => import('pages/Contacts/Contacts'));
 
 const darkTheme = createTheme({
   palette: {

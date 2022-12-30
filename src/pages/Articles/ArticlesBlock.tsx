@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { TablePagination } from '../../components/Common';
-import { fetchRecentArticles } from '../../Store/Reducers/articlesSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { TablePagination } from 'components/Common';
+import { fetchRecentArticles } from 'Store/Reducers/articlesSlice';
 import { ArticlesBlockSkeleton } from './ArticlesBlockSkeleton';
-import { Article } from '../../types/Types';
-import { handleImageError } from '../../utils/imageErrorHandler';
-import usePrevious from '../../hooks/usePrevious';
-import sprite from '../../assets/images/icons.svg';
+import { Article } from 'types/Types';
+import { handleImageError } from 'utils/imageErrorHandler';
+import usePrevious from 'hooks/usePrevious';
+import sprite from 'assets/images/icons.svg';
 import style from './Articles.module.scss';
 
 const ARTICLES_PER_PAGE: 10 = 10;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import sprite from '../../../assets/images/icons.svg';
+import sprite from 'assets/images/icons.svg';
 import style from './SearchForm.module.scss';
 import SearchFormOpen from './SearchFormOpen';
 

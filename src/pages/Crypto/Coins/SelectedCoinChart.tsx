@@ -1,7 +1,7 @@
 import style from './SelectedCoin.module.scss'
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import { useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppSelector } from 'hooks/redux-hooks';
 
 
 interface ApexChartProps {

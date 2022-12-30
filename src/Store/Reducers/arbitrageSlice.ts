@@ -1,4 +1,4 @@
-import { arbitrageApi } from "../../API/arbitrageApi";
+import { arbitrageApi } from "api/arbitrageApi";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { ArbitrageResult, Currencies, Result } from "../../types/Types";
 

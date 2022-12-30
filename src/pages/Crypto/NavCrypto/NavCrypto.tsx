@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import sprite from '../../../assets/images/icons.svg';
+import sprite from 'assets/images/icons.svg';
 import style from './NavCrypto.module.scss';
 
 const NavCrypto = () => {
