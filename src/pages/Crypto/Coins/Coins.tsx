@@ -1,21 +1,40 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import CoinsTableBodyItem from './CoinsTableBodyItem';
+import CoinsTableBody from './CoinsTableBody';
 import { TablePagination } from 'components/Common';
 import { fetchMarkets } from 'Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { CryptoSkeleton } from '../CryptoSkeleton';
+import { ModalAuth } from '../../../components/Auth/ModalAuth';
+import sprite from 'assets/images/icons.svg';
 import style from './Coins.module.scss';
+import { useLocalStorageState } from '../../../hooks/useStorage';
+
+const SELECTED_COINS_KEY = 'selected-coins';
 
 const Coins = () => {
+  const [selectedCoins, setSelectedCoins] = useLocalStorageState<string[]>(
+    SELECTED_COINS_KEY,
+    []
+  );
+
   const { isLoadingCrypto, markets } = useAppSelector(state => state.crypto);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
+  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const countCoins: number = 50;
 
   useEffect(() => {
     dispatch(fetchMarkets(page));
   }, [page]);
+
+  const setNewSelectedCoins = (newArr: string[]) => {
+    setSelectedCoins(newArr)
+  }
+
+  const openModalAuth = () => {
+    setModalAuthShow(true);
+  };
 
   return (
     <>
@@ -24,6 +43,11 @@ const Coins = () => {
         <Table hover variant="dark">
           <thead>
             <tr>
+              <th>
+                <svg className={style.starHead}>
+                  <use href={sprite + '#star'}></use>
+                </svg>
+              </th>
               <th>#</th>
               <th>
                 Coin
@@ -48,7 +72,13 @@ const Coins = () => {
             ) : (
               <>
                 {markets.map(coin => (
-                  <CoinsTableBodyItem coin={coin} key={coin.id} />
+                  <CoinsTableBody
+                    key={coin.id}
+                    coin={coin}
+                    selectedCoins={selectedCoins}
+                    openModalAuth={openModalAuth}
+                    setNewSelectedCoins={setNewSelectedCoins}
+                  />
                 ))}
               </>
             )}
@@ -58,6 +88,11 @@ const Coins = () => {
       <div className={style.pagination}>
         <TablePagination page={page} setPage={setPage} count={countCoins} />
       </div>
+      <ModalAuth
+        modalAuthShow={modalAuthShow}
+        setModalAuthShow={setModalAuthShow}
+        isLogin
+      />
     </>
   );
 };

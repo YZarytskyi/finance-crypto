@@ -3,7 +3,7 @@
 .table {
   margin: 0 auto;
   margin-top: 1rem;
-  width: 90%;
+  padding: 0 3rem;
   max-width: 1600px;
   text-align: center;
   font-size: 0.9rem;
@@ -36,22 +36,26 @@
   thead {
     height: 3.5rem;
     th:nth-child(1) {
-      padding: 0 1.3rem;
+      padding: 0 1.1rem;
+      @media screen and (max-width: 767px) {
+        padding: 0 0.8rem;
+      }
+      > svg {
+        margin-bottom: 0.2rem;
+      }
     }
     th:nth-child(2) {
+      padding: 0 0.3rem;
+    }
+    th:nth-child(3) {
       text-align: left;
-      padding: 0 8rem 0 0.7rem;
+      padding: 0 4.5rem;
       @media screen and (max-width: 767px) {
         max-width: 12rem;
       }
     }
-    th:nth-child(3) {
-      text-align: right;
-      padding-right: 1.5rem;
-      padding-left: 3.2rem;
-    }
     th:nth-child(4) {
-      padding: 0 1.5rem;
+      padding: 0 2.5rem;
     }
     th:nth-child(5) {
       padding: 0 1.5rem;
@@ -60,13 +64,16 @@
       padding: 0 1.5rem;
     }
     th:nth-child(7) {
-      padding: 0 2.5rem;
+      padding: 0 1.5rem;
     }
     th:nth-child(8) {
-      padding: 0 1.2rem;
+      padding: 0 2.5rem;
     }
     th:nth-child(9) {
-      padding: 0 4rem;
+      padding: 0 1.2rem;
+    }
+    th:nth-child(10) {
+      padding: 0 3rem;
     }
   }
   tbody {
@@ -86,16 +93,16 @@
     td {
       padding: 0.2rem !important;
     }
-    td:nth-child(2) {
-      text-align: left;
+    td:nth-child(1) {
+      position: relative;
     }
     td:nth-child(3) {
+      padding-left: 1rem !important;
+      text-align: left;
+    }
+    td:nth-child(4) {
       text-align: right;
       padding-right: 1rem !important;
-      font-weight: 450;
-    }
-    td:nth-child(9) {
-      width: 13rem;
     }
   }
 }
@@ -105,4 +112,34 @@
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+}
+
+.star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  fill: transparent;
+  stroke: $color-main;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: fill 300ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.starActive {
+  width: 23px;
+  height: 23px;
+  fill: gold;
+}
+
+.starHead {
+  width: 23px;
+  height: 23px;
+  fill: gold;
+}
+
+.chartImg {
+  margin: 0 auto;
+  height: 50px;
 }

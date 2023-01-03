@@ -2,30 +2,42 @@
 
 .tableExchanges {
   th:nth-child(1) {
-    padding: 0 1.3rem;
+    padding: 0 1.1rem;
+    @media screen and (max-width: 767px) {
+      padding: 0 0.8rem;
+    }
+    > svg {
+      margin-bottom: 0.2rem;
+    }
   }
   th:nth-child(2) {
+    padding: 0 0.3rem;
+  }
+  th:nth-child(3) {
     padding-left: 0.7rem;
     padding-right: 9rem;
     text-align: left;
   }
-  th:nth-child(3) {
+  th:nth-child(4) {
     padding: 0 4rem;
   }
-  th:nth-child(4) {
+  th:nth-child(5) {
     padding: 0 2rem;
   }
-  th:nth-child(5) {
+  th:nth-child(6) {
     padding: 0 1rem;
   }
-  th:nth-child(6) {
+  th:nth-child(7) {
     padding: 0 2rem;
   }
 
   td {
     padding: 0.5rem !important;
   }
-  td:nth-child(3) {
+  td:nth-child(1) {
+    position: relative;
+  }
+  td:nth-child(4) {
     > div {
       display: flex;
       align-items: center;
@@ -36,7 +48,7 @@
       }
     }
   }
-  td:nth-child(4) {
+  td:nth-child(5) {
     padding: 0 2rem !important;
   }
 }

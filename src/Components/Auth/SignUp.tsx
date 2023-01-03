@@ -91,7 +91,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setModalAuthShow }) => {
         <input
           {...register('isAgree')}
           type="checkbox"
-          className={style.formCheckbox + ' ' + 'hidden'}
+          className={`${style.formCheckbox} hidden`}
         />
         <svg className={style.formCheckboxIcon} width="17" height="16">
           <use href={`${sprite}#check`}></use>
