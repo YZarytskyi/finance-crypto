@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import CoinsTableBody from './CoinsTableBody';
 import { TablePagination } from 'components/Common';
@@ -6,11 +6,12 @@ import { fetchMarkets } from 'Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import { ModalAuth } from '../../../components/Auth/ModalAuth';
+import { useLocalStorageState } from '../../../hooks/useStorage';
 import sprite from 'assets/images/icons.svg';
 import style from './Coins.module.scss';
-import { useLocalStorageState } from '../../../hooks/useStorage';
 
 const SELECTED_COINS_KEY = 'selected-coins';
+const COUNT_COINS: number = 50;
 
 const Coins = () => {
   const [selectedCoins, setSelectedCoins] = useLocalStorageState<string[]>(
@@ -22,15 +23,16 @@ const Coins = () => {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
-  const countCoins: number = 50;
+
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     dispatch(fetchMarkets(page));
   }, [page]);
 
   const setNewSelectedCoins = (newArr: string[]) => {
-    setSelectedCoins(newArr)
-  }
+    setSelectedCoins(newArr);
+  };
 
   const openModalAuth = () => {
     setModalAuthShow(true);
@@ -39,7 +41,9 @@ const Coins = () => {
   return (
     <>
       <section className={`${style.table} ${style.tableCoins}`}>
-        <h1 className="hidden">Cryptocurrencies</h1>
+        <h1 className={style.tableHeader} ref={headingRef}>
+          Cryptocurrencies
+        </h1>
         <Table hover variant="dark">
           <thead>
             <tr>
@@ -86,7 +90,12 @@ const Coins = () => {
         </Table>
       </section>
       <div className={style.pagination}>
-        <TablePagination page={page} setPage={setPage} count={countCoins} />
+        <TablePagination
+          page={page}
+          setPage={setPage}
+          count={COUNT_COINS}
+          ref={headingRef}
+        />
       </div>
       <ModalAuth
         modalAuthShow={modalAuthShow}
