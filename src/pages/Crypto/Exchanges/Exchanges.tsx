@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { TablePagination } from 'components/Common';
+import { TablePagination } from 'Components/Common';
 import { CryptoSkeleton } from '../CryptoSkeleton';
 import TableExchangesBody from './TableExchangesBody';
 import { fetchExchanges } from 'Store/Reducers/exchangeSlice';
-import { ModalAuth } from 'components/Auth/ModalAuth';
+import { ModalAuth } from 'Components/Auth/ModalAuth';
 import { useLocalStorageState } from '../../../hooks/useStorage';
 import sprite from 'assets/images/icons.svg';
 import style from './Exchanges.module.scss';

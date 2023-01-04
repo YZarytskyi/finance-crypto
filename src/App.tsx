@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { SharedLayout } from './pages/SharedLayout/SharedLayout';
-import { Preloader } from './components/Common';
+import { Preloader } from './Components/Common';
 import { COOKIE_TOKEN_NAME, getCookie } from './utils/cookie';
 import { useAppDispatch } from './hooks/redux-hooks';
 import { initializedSuccess } from './Store/Reducers/appSlice';
@@ -32,12 +32,15 @@ const SelectedCoin = React.lazy(
 const Articles = React.lazy(() => import('pages/Articles/Articles'));
 const Article = React.lazy(() => import('pages/Articles/Article'));
 const Contacts = React.lazy(() => import('pages/Contacts/Contacts'));
+const Portfolio = React.lazy(() => import('pages/Portfolio/Portfolio'));
+
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
+
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -71,6 +74,7 @@ export const App = () => {
             <Route path="articles" element={<Articles />} />
             <Route path="articles/:articleId" element={<Article />} />
             <Route path="contacts" element={<Contacts />} />
+            <Route path="portfolio" element={<Portfolio />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>

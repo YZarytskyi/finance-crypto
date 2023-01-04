@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import CoinsTableBody from './CoinsTableBody';
-import { TablePagination } from 'components/Common';
+import { TablePagination } from 'Components/Common';
 import { fetchMarkets } from 'Store/Reducers/cryptoSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { CryptoSkeleton } from '../CryptoSkeleton';
-import { ModalAuth } from '../../../components/Auth/ModalAuth';
-import { useLocalStorageState } from '../../../hooks/useStorage';
+import { ModalAuth } from 'Components/Auth/ModalAuth';
+import { useLocalStorageState } from 'hooks/useStorage';
 import sprite from 'assets/images/icons.svg';
 import style from './Coins.module.scss';
 

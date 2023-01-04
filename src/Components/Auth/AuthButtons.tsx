@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { Notify } from 'notiflix';
 import { COOKIE_TOKEN_NAME, deleteCookie } from 'utils/cookie';
@@ -6,7 +6,9 @@ import { auth } from '../Firebase/Firebase';
 import { ModalAuth } from './ModalAuth';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { setIsAuth } from 'Store/Reducers/authSlice';
+import sprite from 'assets/images/icons.svg';
 import style from './Auth.module.scss';
+import { Link } from 'react-router-dom';
 
 interface AuthButtonsProps {
   isProfileOpen?: boolean;
@@ -19,8 +21,16 @@ export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
 
   const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isPCProfileOpen, setIsPCProfileOpen] = useState<boolean>(false);
 
-  const loginRef = useRef(null);
+  const loginRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (isPCProfileOpen) {
+      window.addEventListener('mousedown', onClickCloseProfile);
+    }
+    return () => window.removeEventListener('mousedown', onClickCloseProfile);
+  }, [isPCProfileOpen]);
 
   const onClickAuthBtn: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
@@ -40,10 +50,26 @@ export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
       await signOut(auth);
       deleteCookie(COOKIE_TOKEN_NAME);
       dispatch(setIsAuth(false));
+      onClickToggleProfile();
       Notify.success('You logged out successfully');
     } catch ({ message }) {
       Notify.failure(message as string);
     }
+  };
+
+  const onClickToggleProfile = () => {
+    setIsPCProfileOpen(prev => !prev);
+  };
+
+  const onClickCloseProfile = (e: MouseEvent) => {
+    const target = e.target as Element;
+    if (
+      target.closest(`.${style.pcProfileMenuHidden}`) ||
+      target.closest(`.${style.profileButton}`)
+    ) {
+      return;
+    }
+    setIsPCProfileOpen(false);
   };
 
   if (isInitialized) {
@@ -56,13 +82,37 @@ export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
           }`}
         >
           {isAuth ? (
-            <button
-              type="button"
-              className={style.logoutBtn}
-              onClick={onClickLogout}
-            >
-              Log&nbsp;Out
-            </button>
+            <div className={style.pcProfileBtnContainer}>
+              <button
+                type="button"
+                className={style.profileButton}
+                onClick={onClickToggleProfile}
+              >
+                <svg className={style.profileIcon}>
+                  <use href={sprite + '#profile'} />
+                </svg>
+              </button>
+              <div
+                className={`${style.pcProfileMenuHidden} ${
+                  isPCProfileOpen ? style.pcProfileMenuOpen : ''
+                }`}
+              >
+                <Link
+                  to="/portfolio"
+                  className={style.portfolioLink}
+                  onClick={onClickToggleProfile}
+                >
+                  My Portfolio
+                </Link>
+                <button
+                  type="button"
+                  className={style.logoutBtn}
+                  onClick={onClickLogout}
+                >
+                  Log&nbsp;Out
+                </button>
+              </div>
+            </div>
           ) : (
             <>
               <button

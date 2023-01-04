@@ -9,7 +9,7 @@ import { Markets } from 'types/Types';
 import { useAppSelector } from 'hooks/redux-hooks';
 import sprite from 'assets/images/icons.svg';
 import style from './Coins.module.scss';
-import { Preloader } from '../../../components/Common';
+import { Preloader } from 'Components/Common';
 
 interface CoinsTableBodyItemProps {
   coin: Markets;

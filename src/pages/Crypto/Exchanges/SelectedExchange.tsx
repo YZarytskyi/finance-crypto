@@ -5,7 +5,7 @@ import {
   fetchExchangeById,
   removeSelectedExchange,
 } from 'Store/Reducers/exchangeSlice';
-import { Preloader } from 'components/Common';
+import { Preloader } from 'Components/Common';
 import { setNumberFormat } from 'utils/utils';
 import style from './SelectedExchange.module.scss';
 
