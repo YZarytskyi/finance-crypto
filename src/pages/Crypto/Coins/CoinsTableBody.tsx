@@ -14,7 +14,7 @@ import { Preloader } from 'Components/Common';
 interface CoinsTableBodyItemProps {
   coin: Markets;
   selectedCoins: string[];
-  openModalAuth: () => void;
+  openModalAuth?: () => void;
   setNewSelectedCoins: (newArr: string[]) => void;
 }
 
@@ -43,7 +43,7 @@ const CoinsTableBody = ({
 
   const onClickToggleSelect: React.MouseEventHandler<SVGElement> = e => {
     if (!isAuth) {
-      openModalAuth();
+      openModalAuth && openModalAuth();
       return;
     }
 

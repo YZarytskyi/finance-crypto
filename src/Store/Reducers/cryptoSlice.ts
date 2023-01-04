@@ -86,6 +86,7 @@ export const fetchGlobalData = createAsyncThunk(
   }
 );
 
+
 export const cryptoSlice = createSlice({
   name: "crypto",
   initialState,

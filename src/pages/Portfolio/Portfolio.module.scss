@@ -1,0 +1,18 @@
+@import '../Crypto/Coins/Coins.module.scss';
+
+.textNotFound {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  color: rgb(255, 121, 121);
+}
+
+.textLink {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  > a {
+    color: $color-accent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
