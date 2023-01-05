@@ -1,22 +1,11 @@
 @import '../Coins/Coins.module.scss';
 
 .tableExchanges {
-  th:nth-child(1) {
-    padding: 0 1.1rem;
-    @media screen and (max-width: 767px) {
-      padding: 0 0.8rem;
-    }
-    > svg {
-      margin-bottom: 0.2rem;
-    }
-  }
   th:nth-child(2) {
-    padding: 0 0.3rem;
+    padding: 0 7rem;
   }
   th:nth-child(3) {
-    padding-left: 0.7rem;
-    padding-right: 9rem;
-    text-align: left;
+    padding: 0 4rem;
   }
   th:nth-child(4) {
     padding: 0 4rem;
@@ -34,10 +23,11 @@
   td {
     padding: 0.5rem !important;
   }
-  td:nth-child(1) {
-    position: relative;
-  }
-  td:nth-child(4) {
+
+td:nth-child(2) {
+  padding-left: 1rem !important;
+}
+  td:nth-child(3) {
     > div {
       display: flex;
       align-items: center;
@@ -48,7 +38,7 @@
       }
     }
   }
-  td:nth-child(5) {
+  td:nth-child(4) {
     padding: 0 2rem !important;
   }
 }

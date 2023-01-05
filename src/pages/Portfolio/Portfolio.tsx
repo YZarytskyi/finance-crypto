@@ -4,8 +4,9 @@ import { useLocalStorageState } from '../../hooks/useStorage';
 import { Markets } from '../../types/Types';
 import { CoinTableHead } from '../Crypto/Coins/CoinTableHead';
 import { TablePagination } from '../../Components/Common';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import style from './Portfolio.module.scss';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 const SELECTED_COINS_KEY = 'selected-coins';
 
@@ -15,6 +16,7 @@ const Portfolio = () => {
     []
   );
 
+  const isAuth = useAppSelector(state => state.auth.isAuth)
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [portfolio, setPortfolio] = useState<Markets[]>([]);
@@ -36,6 +38,10 @@ const Portfolio = () => {
   const setNewSelectedCoins = (newArr: string[]) => {
     setSelectedCoins(newArr);
   };
+
+  if (!isAuth) {
+    return <Navigate to='/' />
+  }
 
   return (
     <>

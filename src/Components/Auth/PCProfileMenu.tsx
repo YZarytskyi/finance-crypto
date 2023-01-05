@@ -2,13 +2,11 @@ import { Link } from 'react-router-dom';
 import sprite from 'assets/images/icons.svg';
 import style from './Auth.module.scss';
 
-
 interface PCProfileMenuProps {
   isPCProfileOpen: boolean;
   onClickToggleProfile: () => void;
   onClickLogout: React.MouseEventHandler<HTMLButtonElement>;
 }
-
 
 const PCProfileMenu = ({
   isPCProfileOpen,

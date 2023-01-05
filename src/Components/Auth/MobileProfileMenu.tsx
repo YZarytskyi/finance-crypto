@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import style from './Auth.module.scss';
 
 interface MobileProfileMenuProps {
@@ -14,7 +14,7 @@ const MobileProfileMenu = ({
 }: MobileProfileMenuProps) => {
   return (
     <div
-      id='authBtnContainer'
+      id="authBtnContainer"
       className={`${style.mobileContainer} ${
         isProfileOpen ? style.mobileContainerOpen : ''
       }`}
@@ -33,4 +33,4 @@ const MobileProfileMenu = ({
   );
 };
 
-export {MobileProfileMenu}
+export { MobileProfileMenu };

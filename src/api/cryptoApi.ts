@@ -23,7 +23,7 @@ export const cryptoApi = {
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
         { params: arrId && { ids: arrId.join(',') } }
       );
-      if (arrId && !arrId?.length) {
+      if (arrId && !arrId.length) {
         return [];
       }
       return data;
@@ -32,12 +32,10 @@ export const cryptoApi = {
     }
   },
 
-  async getExchanges(page: number, id?: string) {
+  async getExchanges(page: number) {
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`,
-        { params: id && { id: id } }
-      );
+        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`);
       return data;
     } catch ({ message }) {
       Notify.failure(message as string, notifyApiOptions);
