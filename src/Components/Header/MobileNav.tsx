@@ -37,7 +37,7 @@ const MobileNav = () => {
 
   function onClickProfileClose(e: MouseEvent): void {
     const target = e.target as Element;
-    if (target.closest('#authBtnContainer')) {
+    if (target.id === 'authBtnContainer') {
       return;
     }
     setIsProfileOpen(false);

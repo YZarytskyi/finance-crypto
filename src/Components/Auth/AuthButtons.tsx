@@ -6,9 +6,9 @@ import { auth } from '../Firebase/Firebase';
 import { ModalAuth } from './ModalAuth';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { setIsAuth } from 'Store/Reducers/authSlice';
-import sprite from 'assets/images/icons.svg';
+import { PCProfileMenu } from './PCProfileMenu';
+import { MobileProfileMenu } from './MobileProfileMenu';
 import style from './Auth.module.scss';
-import { Link } from 'react-router-dom';
 
 interface AuthButtonsProps {
   isProfileOpen?: boolean;
@@ -65,7 +65,7 @@ export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
     const target = e.target as Element;
     if (
       target.closest(`.${style.pcProfileMenuHidden}`) ||
-      target.closest(`.${style.profileButton}`)
+      target.closest(`.${style.pcProfileButton}`)
     ) {
       return;
     }
@@ -75,64 +75,38 @@ export const AuthButtons = ({ isProfileOpen }: AuthButtonsProps) => {
   if (isInitialized) {
     return (
       <>
-        <div
-          id="authBtnContainer"
-          className={`${style.authContainerHidden} ${
-            isProfileOpen ? style.authContainerOpen : ''
-          }`}
-        >
-          {isAuth ? (
-            <div className={style.pcProfileBtnContainer}>
-              <button
-                type="button"
-                className={style.profileButton}
-                onClick={onClickToggleProfile}
-              >
-                <svg className={style.profileIcon}>
-                  <use href={sprite + '#profile'} />
-                </svg>
-              </button>
-              <div
-                className={`${style.pcProfileMenuHidden} ${
-                  isPCProfileOpen ? style.pcProfileMenuOpen : ''
-                }`}
-              >
-                <Link
-                  to="/portfolio"
-                  className={style.portfolioLink}
-                  onClick={onClickToggleProfile}
-                >
-                  My Portfolio
-                </Link>
-                <button
-                  type="button"
-                  className={style.logoutBtn}
-                  onClick={onClickLogout}
-                >
-                  Log&nbsp;Out
-                </button>
-              </div>
-            </div>
-          ) : (
-            <>
-              <button
-                ref={loginRef}
-                type="button"
-                className={style.loginBtn}
-                onClick={onClickAuthBtn}
-              >
-                Login
-              </button>
-              <button
-                type="button"
-                className={style.signUpBtn}
-                onClick={onClickAuthBtn}
-              >
-                Sign&nbsp;Up
-              </button>
-            </>
-          )}
-        </div>
+        {isAuth ? (
+          <>
+            <PCProfileMenu
+              isPCProfileOpen={isPCProfileOpen}
+              onClickToggleProfile={onClickToggleProfile}
+              onClickLogout={onClickLogout}
+            />
+            <MobileProfileMenu
+              isProfileOpen={isProfileOpen!}
+              onClickToggleProfile={onClickToggleProfile}
+              onClickLogout={onClickLogout}
+            />
+          </>
+        ) : (
+          <div className={style.pcAuthContainer}>
+            <button
+              ref={loginRef}
+              type="button"
+              className={style.loginBtn}
+              onClick={onClickAuthBtn}
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              className={style.signUpBtn}
+              onClick={onClickAuthBtn}
+            >
+              Sign&nbsp;Up
+            </button>
+          </div>
+        )}
         <ModalAuth
           modalAuthShow={modalAuthShow}
           setModalAuthShow={setModalAuthShow}

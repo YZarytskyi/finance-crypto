@@ -18,7 +18,7 @@ const Exchanges = React.lazy(
   () => import('pages/Crypto/Exchanges/Exchanges')
 );
 const SelectedExchange = React.lazy(
-  () => import('pages/Crypto/Exchanges/SelectedExchange')
+  () => import('pages/Crypto/Exchanges/SelectedExchange/SelectedExchange')
 );
 const Arbitrage = React.lazy(
   () => import('pages/Crypto/Arbitrage/Arbitrage')
@@ -27,7 +27,7 @@ const Converter = React.lazy(
   () => import('pages/Crypto/Converter/Converter')
 );
 const SelectedCoin = React.lazy(
-  () => import('pages/Crypto/Coins/SelectedCoin')
+  () => import('pages/Crypto/Coins/SelectedCoin/SelectedCoin')
 );
 const Articles = React.lazy(() => import('pages/Articles/Articles'));
 const Article = React.lazy(() => import('pages/Articles/Article'));
