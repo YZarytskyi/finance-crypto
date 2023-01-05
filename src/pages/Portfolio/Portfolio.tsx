@@ -23,7 +23,7 @@ const Portfolio = () => {
 
   const headingRef = useRef<HTMLHeadingElement>(null);
 
-  const countCoins: number = portfolio?.length || 0;
+  const countPages: number = Math.ceil(selectedCoins.length / 15);
 
   useEffect(() => {
     setIsLoading(true)
@@ -73,7 +73,7 @@ const Portfolio = () => {
           <TablePagination
             page={page}
             setPage={setPage}
-            count={countCoins}
+            count={countPages}
             ref={headingRef}
           />
         </div>
