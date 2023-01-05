@@ -7,7 +7,7 @@ import {
   fetchPrice,
   removePrice,
 } from 'Store/Reducers/converterSlice';
-import { Spinner } from 'components/Common';
+import { Spinner } from 'Components/Common';
 import { LastUpdateTimer } from './LastUpdateTimer';
 import { numberToFixed2 } from 'utils/utils';
 import style from './Converter.module.scss';

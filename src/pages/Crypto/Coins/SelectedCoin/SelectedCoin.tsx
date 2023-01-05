@@ -10,7 +10,7 @@ import {
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { setNumberFormat } from 'utils/utils';
-import { Preloader } from 'components/Common';
+import { Preloader } from 'Components/Common';
 import style from './SelectedCoin.module.scss';
 
 const SelectedCoin = () => {

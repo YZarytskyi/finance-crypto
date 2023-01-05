@@ -23,6 +23,9 @@ export const cryptoApi = {
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
         { params: arrId && { ids: arrId.join(',') } }
       );
+      if (arrId && !arrId?.length) {
+        return [];
+      }
       return data;
     } catch ({ message }) {
       Notify.failure(message as string, notifyApiOptions);

@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Preloader } from 'components/Common';
-import { Footer } from 'components';
-import { Header } from 'components';
+import { Preloader } from 'Components/Common';
+import { Footer } from 'Components';
+import { Header } from 'Components';
 
 export const SharedLayout = () => {
   return (
