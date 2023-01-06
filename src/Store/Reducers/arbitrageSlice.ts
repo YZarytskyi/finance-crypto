@@ -4,8 +4,6 @@ import { ArbitrageResult, Currencies, Result } from "../../types/Types";
 
 interface InitialState {
   currencies: Array<Currencies>;
-  isLoadingCurrencies: boolean;
-  result: Array<Result>;
   isLoadingPairs: boolean;
   pair1: string;
   pair2: string;
@@ -15,8 +13,6 @@ interface InitialState {
 
 const initialState: InitialState = {
   currencies: [],
-  isLoadingCurrencies: false,
-  result: [],
   isLoadingPairs: false,
   pair1: '',
   pair2: '',
@@ -24,16 +20,6 @@ const initialState: InitialState = {
   arbitrageResult: {},
 }
 
-interface FetchCurrencies {
-  currencies: Array<Currencies>;
-  result: Array<Result>;
-}
-export const fetchCurrencies = createAsyncThunk(
-  'currencies/fetch',
-  async () => {
-    return (await arbitrageApi.getAllCurrencies()) as FetchCurrencies
-  }
-)
 export const fetchArbitrageResult = createAsyncThunk(
   'pairs/fetch',
   async (pairs: {pair1: string, pair2: string, pair3: string}) => {
@@ -46,6 +32,9 @@ export const arbitrageSlice = createSlice({
   name: 'arbitrage',
   initialState,
   reducers: {
+    setCurrencies(state, action) {
+      state.currencies = action.payload
+    },
     setPair1(state, action) {
       state.pair1 = action.payload
     },
@@ -63,15 +52,6 @@ export const arbitrageSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchCurrencies.pending, (state) => {
-      state.isLoadingCurrencies = true
-      })
-      .addCase(fetchCurrencies.fulfilled, (state, action) => {
-      state.currencies = action.payload.currencies
-      state.result = action.payload.result
-      state.isLoadingCurrencies = false
-      })
-
     builder.addCase(fetchArbitrageResult.pending, (state) => {
       state.isLoadingPairs = true
       })
@@ -82,6 +62,6 @@ export const arbitrageSlice = createSlice({
   }
 })
 
-export const { setPair1, setPair2, setPair3, removePairs } = arbitrageSlice.actions
+export const { setCurrencies, setPair1, setPair2, setPair3, removePairs } = arbitrageSlice.actions
 
 export default arbitrageSlice.reducer

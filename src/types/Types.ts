@@ -6,12 +6,22 @@ export interface Currencies {
   askQty: string;
 }
 
+export interface ArbitrageWorkerResult {
+  currencies: Array<Currencies | undefined>;
+  result: Array<Result>;
+}
+
+export interface ArbitrageData {
+  symbols: Array<{ status: string; symbol: string }>;
+  allCurrencies: Array<Currencies>;
+}
+
 export interface Result {
   pair1: string;
   price1: number;
   pair2: string;
   price2: number;
-  pair3: string;
+  pair3: string | number;
   price3: number;
   result: number;
 }

@@ -1,24 +1,38 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import TableArbitrageBody from './TableArbitrageBody';
-import { fetchCurrencies } from 'Store/Reducers/arbitrageSlice';
+import { setCurrencies } from 'Store/Reducers/arbitrageSlice';
 import { Preloader } from 'Components/Common';
+import { arbitrageApi } from 'api/arbitrageApi';
+import { useWebWorker } from 'hooks/useWebWorker';
+import { getArbitrageTableResult } from 'utils/getArbitrageResult';
+import { useAppDispatch } from 'hooks/redux-hooks';
 import sprite from 'assets/images/icons.svg';
 import style from './Arbitrage.module.scss';
 
 export const ScannerTable = () => {
-  const isLoadingCurrencies = useAppSelector(
-    state => state.arbitrage.isLoadingCurrencies
-  );
   const dispatch = useAppDispatch();
+  const { result, setResult, run } = useWebWorker(getArbitrageTableResult);
 
   useEffect(() => {
-    dispatch(fetchCurrencies());
+    getArbitrageData();
   }, []);
 
+  useEffect(() => {
+    if (!result) {
+      return;
+    }
+    dispatch(setCurrencies(result.currencies));
+  }, [result]);
+
+  async function getArbitrageData() {
+    const res = await arbitrageApi.getAllCurrencies();
+    run(res);
+  }
+
   const handleRefresh = () => {
-    dispatch(fetchCurrencies());
+    setResult(null);
+    getArbitrageData();
   };
 
   return (
@@ -27,7 +41,7 @@ export const ScannerTable = () => {
         <use href={sprite + '#refresh'} />
       </svg>
 
-      {isLoadingCurrencies ? (
+      {!result ? (
         <div className={style.tablePreloader}>
           <Preloader className="small" />
         </div>
@@ -46,7 +60,7 @@ export const ScannerTable = () => {
               </tr>
             </thead>
             <tbody>
-              <TableArbitrageBody />
+              <TableArbitrageBody result={result.result} />
             </tbody>
           </Table>
         </div>
