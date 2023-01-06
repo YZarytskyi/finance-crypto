@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { AnyFunction, ArbitrageWorkerResult } from 'types/Types';
 
 const workerHandler = (fn: AnyFunction) => {
@@ -10,22 +10,50 @@ const workerHandler = (fn: AnyFunction) => {
 export const useWebWorker = (fn: AnyFunction) => {
   const [result, setResult] = useState<ArbitrageWorkerResult | null>(null);
 
-  const workerRef = useRef<Worker | null>(null);
-
-  useEffect(() => {
+  const run = (value: any) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`(${workerHandler})(${fn})`]))
     );
-    workerRef.current = worker;
-    worker.onmessage = event => setResult(event.data);
-    return () => {
+    worker.onmessage = event => {
+      setResult(event.data);
       worker.terminate();
     };
-  }, [fn]);
+    worker.onerror = (error) => {
+      console.log(error.message)
+      worker.terminate();
+    };
+    worker.postMessage(value);
+  };
 
   return {
     result,
     setResult,
-    run: (value: any) => workerRef.current!.postMessage(value),
+    run,
   };
 };
+
+
+
+
+// export const useWebWorker = (fn: AnyFunction) => {
+//   const [result, setResult] = useState<ArbitrageWorkerResult | null>(null);
+
+//   const workerRef = useRef<Worker | null>(null);
+
+//   useEffect(() => {
+//     const worker = new Worker(
+//       URL.createObjectURL(new Blob([`(${workerHandler})(${fn})`]))
+//     );
+//     workerRef.current = worker;
+//     worker.onmessage = event => setResult(event.data);
+//     return () => {
+//       worker.terminate();
+//     };
+//   }, [fn]);
+
+//   return {
+//     result,
+//     setResult,
+//     run: (value: any) => workerRef.current!.postMessage(value),
+//   };
+// };
