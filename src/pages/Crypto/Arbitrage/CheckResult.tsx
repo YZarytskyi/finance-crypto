@@ -81,6 +81,7 @@ export const CheckResult = () => {
             </p>
             <Autocomplete
               id="pair-1"
+              disabled={!currencies.length}
               value={pair1}
               onChange={handlePair1}
               sx={{ width: 200 }}
@@ -97,6 +98,7 @@ export const CheckResult = () => {
             </p>
             <Autocomplete
               id="pair-2"
+              disabled={!currencies.length}
               value={pair2}
               onChange={handlePair2}
               sx={{ width: 200 }}
@@ -113,6 +115,7 @@ export const CheckResult = () => {
             </p>
             <Autocomplete
               id="pair-3"
+              disabled={!currencies.length}
               value={pair3}
               onChange={handlePair3}
               sx={{ width: 200 }}
