@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import TableArbitrageBody from './TableArbitrageBody';
 import { setCurrencies } from 'Store/Reducers/arbitrageSlice';

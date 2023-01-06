@@ -1,8 +1,7 @@
 import { useCallback, useState } from "react";
 import { localStorageWrapper } from "utils/storageWrapper";
+import { AnyFunction } from "types/Types";
 import usePrevious from "./usePrevious";
-
-type AnyFunction = (...args: any[]) => any;
 
 function isFunction(val: unknown): val is AnyFunction {
   return typeof val === "function";

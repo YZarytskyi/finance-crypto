@@ -1,3 +1,5 @@
+export type AnyFunction = (...args: any[]) => any;
+
 export interface Currencies {
   symbol: string;
   bidPrice: string;
@@ -29,7 +31,7 @@ export interface Result {
 export interface Exchanges {
   id: string;
   name: string;
-  year_established:  number;
+  year_established: number;
   country: string;
   description: string;
   url: string;
@@ -42,18 +44,18 @@ export interface Exchanges {
 }
 
 export interface MarketsTime {
-  [coinId: string]: '24' | '72' | '168'
+  [coinId: string]: '24' | '72' | '168';
 }
 
 export interface GlobalData {
-    active_cryptocurrencies: number;
-    total_market_cap: {
-      usd: number;
-    },
-    total_volume: {
-      usd: number;
-    },
-    market_cap_change_percentage_24h_usd: number;
+  active_cryptocurrencies: number;
+  total_market_cap: {
+    usd: number;
+  };
+  total_volume: {
+    usd: number;
+  };
+  market_cap_change_percentage_24h_usd: number;
 }
 
 export interface SelectedCoinMarketChart {
@@ -82,36 +84,36 @@ export interface Markets {
   total_supply: number;
   max_supply: number;
   last_updated: string;
-  sparkline_in_7d: {price: Array<number>},
+  sparkline_in_7d: { price: Array<number> };
   price_change_percentage_1h_in_currency: number;
   price_change_percentage_24h_in_currency: number;
   price_change_percentage_7d_in_currency: number;
 }
 
 export interface SelectedCoin {
-    id: string,
-    symbol: string,
-    name: string,
-    description: string,
-    image: string,
-    homepage: string,
-    current_price: number,
-    market_cap:  number,
-    market_cap_rank: number,
-    fully_diluted_valuation:  number,
-    total_volume:  number,
-    high_24h:  number,
-    low_24h:  number,
-    price_change_24h:  number,
-    price_change_percentage_24h:  number,
-    market_cap_change_24h:  number,
-    market_cap_change_percentage_24h:  number,
-    circulating_supply:  number,
-    total_supply:  number,
-    max_supply:  number,
-    price_change_percentage_1h_in_currency:  number,
-    price_change_percentage_24h_in_currency:  number,
-    price_change_percentage_7d_in_currency:  number,
+  id: string;
+  symbol: string;
+  name: string;
+  description: string;
+  image: string;
+  homepage: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  price_change_percentage_1h_in_currency: number;
+  price_change_percentage_24h_in_currency: number;
+  price_change_percentage_7d_in_currency: number;
 }
 
 export interface CoinByQuery {
@@ -158,15 +160,15 @@ export interface User {
 }
 
 export interface Article {
-  _id: string,
-  headline: {main: string},
-  snippet: string,
-  lead_paragraph: string,
-  news_desk: string,
-  web_url: string,
-  pub_date: string,
-  byline: {original: string},
-  multimedia: Array<{url: string}>,
+  _id: string;
+  headline: { main: string };
+  snippet: string;
+  lead_paragraph: string;
+  news_desk: string;
+  web_url: string;
+  pub_date: string;
+  byline: { original: string };
+  multimedia: Array<{ url: string }>;
 }
 
 export interface ArbitrageResult {
