@@ -5,8 +5,9 @@ import style from './NavCrypto.module.scss';
 const NavCrypto = () => {
   let currentPath = useLocation().pathname;
 
-  let component: RegExpMatchArray | string | null =
-    currentPath.match(/(coins)|(exchanges)|(arbitrage)|(converter)/);
+  let component: RegExpMatchArray | string | null = currentPath.match(
+    /(coins)|(exchanges)|(arbitrage)|(converter)/
+  );
   if (component) {
     component = component[0].replace(/\//g, '');
   }
@@ -53,22 +54,42 @@ const NavCrypto = () => {
 
         <ul className={style.listCenter}>
           <li>
-            <NavLink to="/crypto/coins" className={style.centerLink}>
+            <NavLink
+              to="/crypto/coins"
+              className={({ isActive }) =>
+                `${style.centerLink} ${isActive ? style.centerLinkActive : ''}`
+              }
+            >
               Coins
             </NavLink>
           </li>
           <li>
-            <NavLink to="/crypto/exchanges" className={style.centerLink}>
+            <NavLink
+              to="/crypto/exchanges"
+              className={({ isActive }) =>
+                `${style.centerLink} ${isActive ? style.centerLinkActive : ''}`
+              }
+            >
               Exchanges
             </NavLink>
           </li>
           <li>
-            <NavLink to="/crypto/arbitrage" className={style.centerLink}>
+            <NavLink
+              to="/crypto/arbitrage"
+              className={({ isActive }) =>
+                `${style.centerLink} ${isActive ? style.centerLinkActive : ''}`
+              }
+            >
               Arbitrage
             </NavLink>
           </li>
           <li>
-            <NavLink to="/crypto/converter" className={style.centerLink}>
+            <NavLink
+              to="/crypto/converter"
+              className={({ isActive }) =>
+                `${style.centerLink} ${isActive ? style.centerLinkActive : ''}`
+              }
+            >
               Converter
             </NavLink>
           </li>

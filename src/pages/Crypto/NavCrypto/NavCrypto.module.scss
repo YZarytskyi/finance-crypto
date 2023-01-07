@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import 'variables.scss';
 
 .container {
   max-width: 1600px;
@@ -13,7 +13,7 @@
 .navCrypto {
   height: 3rem;
   display: grid;
-  grid-template-areas: ". l c .";
+  grid-template-areas: '. l c .';
   grid-template-columns: 0.11fr 0.89fr 1fr 1fr;
   align-items: center;
   @media (max-width: 1199px) {
@@ -45,18 +45,44 @@
       }
     }
     .currentPath {
-      color:rgb(128, 128, 128);
+      color: rgb(128, 128, 128);
       text-transform: capitalize;
     }
   }
-  > .listCenter {
-    grid-area: c;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    @media (max-width: 1199px) {
-      display: none;
-    }
+}
+
+.listCenter {
+  grid-area: c;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 1199px) {
+    display: none;
+  }
+  > li {
+    height: 100%;
+  }
+}
+
+.centerLink {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.centerLinkActive {
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    height: 2.2px;
+    border-radius: 5px;
+    background-color: $color-accent;
+    width: 100%;
   }
 }
 
