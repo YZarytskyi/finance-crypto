@@ -9,12 +9,18 @@ interface NavLinksProps {
 }
 
 const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
-  const [isSubListMobileOpen, setSubListMobileOpen] = useState<boolean>(false);
-
+  const [isSubListMobileOpen, setSubListMobileOpen] = useState(false);
+  const [shouldSublistPCClose, setShouldSublistPCClose] = useState(false);
   const handleMobileSubList = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setSubListMobileOpen((prev) => !prev);
   };
+  const onClickSublistLink = () => {
+    setShouldSublistPCClose(true)
+    setTimeout(() => {
+      setShouldSublistPCClose(false)
+    })
+  }
 
   return (
     <>
@@ -36,31 +42,31 @@ const NavLinks = ({ onClickMobileLink, isMenuOpen }: NavLinksProps) => {
             <NavLink
               to="/crypto/coins"
               onClick={(e) => onClickMobileLink && handleMobileSubList(e)}
-              className={style.link + " " + style.linkCrypto}
+              className={`${style.link} ${style.linkCrypto}`}
             >
               Crypto
               <svg className={style.icon}>
                 <use href={sprite + "#arrow_down"} />
               </svg>
             </NavLink>
-            <ul className={style.subListPC}>
+            <ul className={`${shouldSublistPCClose ? style.subListPCHidden : style.subListPC}`}>
               <li>
-                <NavLink to="/crypto/coins" className={style.subListLink}>
+                <NavLink to="/crypto/coins" className={style.subListLink} onClick={onClickSublistLink}>
                   Coins
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/exchanges" className={style.subListLink}>
+                <NavLink to="/crypto/exchanges" className={style.subListLink} onClick={onClickSublistLink}>
                   Exchanges
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/arbitrage" className={style.subListLink}>
+                <NavLink to="/crypto/arbitrage" className={style.subListLink} onClick={onClickSublistLink}>
                   Arbitrage
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/crypto/converter" className={style.subListLink}>
+                <NavLink to="/crypto/converter" className={style.subListLink} onClick={onClickSublistLink}>
                   Converter
                 </NavLink>
               </li>

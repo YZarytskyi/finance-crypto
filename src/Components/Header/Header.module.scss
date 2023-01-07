@@ -261,7 +261,7 @@ header {
   fill: currentColor;
 }
 
-.subListPC {
+%subListPC {
   position: absolute;
   top: 100%;
   right: -22%;
@@ -290,6 +290,14 @@ header {
       padding: 0.7rem 3rem 0.7rem 2rem;
     }
   }
+}
+
+.subListPC {
+  @extend %subListPC
+}
+
+.subListPCHidden {
+  @extend %subListPC
 }
 
 .cryptoContainer:hover .subListPC {
