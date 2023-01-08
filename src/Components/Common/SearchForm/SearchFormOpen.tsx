@@ -3,9 +3,11 @@ import useDebounce from 'hooks/useDebounce';
 import { cryptoApi } from 'api/cryptoApi';
 import { Link } from 'react-router-dom';
 import { Spinner } from '../index';
+import { CoinSearchForm, ExchangeSearchForm } from 'types/Types';
+import { useLocalStorageState } from 'hooks/useStorage';
+import { RecentSearchBlock } from './RecentSearchBlock';
 import sprite from 'assets/images/icons.svg';
 import style from './SearchForm.module.scss';
-import { CoinSearchForm, ExchangeSearchForm } from 'types/Types';
 
 interface SearchFormOpenProps {
   onClickCloseList: (e: MouseEvent) => void;
@@ -13,7 +15,7 @@ interface SearchFormOpenProps {
 }
 
 type Component = 'coins' | 'exchanges';
-type RecentSearch = CoinSearchForm | ExchangeSearchForm;
+export type RecentSearch = CoinSearchForm | ExchangeSearchForm;
 interface SearchData {
   coins: CoinSearchForm[];
   exchanges: ExchangeSearchForm[];
@@ -25,13 +27,13 @@ const SearchFormOpen = ({
   onClickCloseList,
   onClickCloseSearch,
 }: SearchFormOpenProps): JSX.Element => {
+  const [recentSearch, setRecentSearch] = useLocalStorageState<RecentSearch[]>(
+    RECENT_SEARCH_KEY,
+    []
+  );
+
   const [query, setQuery] = useState<string>('');
   const [data, setData] = useState<Partial<SearchData>>({});
-  const [recentSearch] = useState<RecentSearch[]>(() => {
-    const savedSearch = localStorage.getItem(RECENT_SEARCH_KEY);
-    const initialState = savedSearch && JSON.parse(savedSearch);
-    return initialState || [];
-  });
 
   const debouncedValue = useDebounce<string>(query.toLowerCase(), 250);
   useEffect(() => {
@@ -57,25 +59,13 @@ const SearchFormOpen = ({
       el = { component, ...el };
     }
 
-    const copyRecentSearch = JSON.parse(JSON.stringify(recentSearch));
-    let elementInRecentId = null;
+    const filterRecentSearch = recentSearch.filter(obj => obj.id !== el.id);
 
-    for (const obj of recentSearch) {
-      if (obj.id === el.id) {
-        elementInRecentId = recentSearch.indexOf(obj);
-        break;
-      }
-    }
-
-    if (elementInRecentId) {
-      copyRecentSearch.splice(elementInRecentId, 1);
-    }
-
-    let setToStorage = [el, ...copyRecentSearch];
+    let setToStorage = [el, ...filterRecentSearch];
     if (setToStorage.length > 3) {
       setToStorage.length = 3;
     }
-    localStorage.setItem(RECENT_SEARCH_KEY, JSON.stringify(setToStorage));
+    setRecentSearch(setToStorage);
   };
 
   return (
@@ -111,9 +101,15 @@ const SearchFormOpen = ({
 
         <div className={style.listContainer}>
           {!Object.keys(data).length ? (
-            <p className={style.loading}>
-              Loading <Spinner className={'spinnerSearch'} />
-            </p>
+            <>
+              <p className={style.loading}>
+                Loading <Spinner className={'spinnerSearch'} />
+              </p>
+              <RecentSearchBlock
+                recentSearch={recentSearch}
+                onClickSetLocalStorage={onClickSetLocalStorage}
+              />
+            </>
           ) : (
             <>
               <p className={style.label}>Cryptocurrencies</p>
@@ -167,31 +163,10 @@ const SearchFormOpen = ({
                 )}
               </ul>
 
-              {recentSearch.length ? (
-                <>
-                  <p className={style.label}>Recent searches</p>
-                  <ul className={style.recentSearchList}>
-                    {recentSearch.map(el => (
-                      <li key={el.name}>
-                        <Link
-                          to={`/crypto/${el.component}/${el.id}`}
-                          className={style.recentSearchLink}
-                          onClick={() => onClickSetLocalStorage(el)}
-                        >
-                          <img
-                            src={el.thumb}
-                            alt="Logo"
-                            className={style.recentSearchImage}
-                          />
-                          <p>{el.name}</p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                ''
-              )}
+              <RecentSearchBlock
+                recentSearch={recentSearch}
+                onClickSetLocalStorage={onClickSetLocalStorage}
+              />
             </>
           )}
         </div>
