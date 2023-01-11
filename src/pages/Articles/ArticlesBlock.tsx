@@ -18,10 +18,11 @@ export const ArticlesBlock = () => {
   const dispatch = useAppDispatch();
   const articlesTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const prevPage = usePrevious<number>(currentPage);
+  const prevPage = usePrevious<number>(currentPage).current;
 
   useEffect(() => {
-    if (prevPage.current !== currentPage) {
+    console.log(prevPage, currentPage)
+    if (prevPage !== currentPage) {
       dispatch(fetchRecentArticles(currentPage));
     }
   }, [currentPage]);
