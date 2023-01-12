@@ -5,7 +5,7 @@ import { setCurrentPage } from "Store/Reducers/articlesSlice";
 
 interface TablePaginationProps {
   page: number;
-  setPage?: React.Dispatch<React.SetStateAction<number>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   count: number;
   articles?: true;
 }
@@ -23,9 +23,9 @@ export const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationPro
 
     const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
       if (articles) {
-        dispatch(setCurrentPage(page - 1));
+        setPage(page - 1);
       } else {
-        setPage && setPage(page);
+        setPage(page);
       }
 
       if (ref) {

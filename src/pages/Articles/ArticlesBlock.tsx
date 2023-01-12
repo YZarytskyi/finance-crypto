@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { TablePagination } from 'Components/Common';
 import { fetchRecentArticles } from 'Store/Reducers/articlesSlice';
@@ -13,16 +13,24 @@ import style from './Articles.module.scss';
 const ARTICLES_PER_PAGE: 10 = 10;
 
 export const ArticlesBlock = () => {
-  const { recentArticles, total, currentPage, isLoadingArticles } =
-    useAppSelector((state) => state.articles);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState<number>(() => {
+    const page = searchParams.get('page');
+    if (page) {
+      return Number(page) - 1;
+    }
+    return 0;
+  })
+  const { recentArticles, total, isLoadingArticles } =
+  useAppSelector((state) => state.articles);
   const dispatch = useAppDispatch();
   const articlesTitleRef = useRef<HTMLHeadingElement>(null);
-
+  
   const prevPage = usePrevious<number>(currentPage).current;
-
+  
   useEffect(() => {
-    console.log(prevPage, currentPage)
-    if (prevPage !== currentPage) {
+    setSearchParams({page: String(currentPage + 1)})
+    if (prevPage !== currentPage || currentPage) {
       dispatch(fetchRecentArticles(currentPage));
     }
   }, [currentPage]);
@@ -80,6 +88,7 @@ export const ArticlesBlock = () => {
         <div className={style.paginationArticlesBlock}>
           <TablePagination
             page={currentPage + 1}
+            setPage={setCurrentPage}
             count={totalPages}
             ref={articlesTitleRef}
             articles
