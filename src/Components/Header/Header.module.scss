@@ -127,16 +127,19 @@ header {
   width: 100%;
   max-width: 1600px;
   display: grid;
-  grid-template-columns: 1fr 11rem 14rem;
+  grid-template-columns: 28rem 1fr 28rem;
   align-items: center;
   @media (max-width: 1199px) {
     display: none;
   }
 }
+
+.pcRightContainer {
+  display: flex;
+  align-items: center;
+}
+
 .pcNav {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 25rem 1fr;
   align-items: center;
   > ul {
     height: 100%;

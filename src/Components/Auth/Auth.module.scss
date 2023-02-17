@@ -298,3 +298,18 @@
     color: $color-accent;
   }
 }
+
+.pcWalletBtn {
+  margin-left: 1rem;
+  @media (max-width: 1199px) {
+    display: none;
+  }
+}
+
+.mobileWalletBtn {
+  display: none;
+  @media (max-width: 1199px) {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}

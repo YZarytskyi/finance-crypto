@@ -9,8 +9,8 @@ import { useAppDispatch } from './hooks/redux-hooks';
 import { initializedSuccess } from './Store/Reducers/appSlice';
 import { setIsAuth } from './Store/Reducers/authSlice';
 import { notifyInit } from './utils/notify';
-import './App.scss';
 import Crypto from 'pages/Crypto/Crypto';
+import './App.scss';
 
 const Home = React.lazy(() => import('pages/Home/Home'));
 const Coins = React.lazy(() => import('pages/Crypto/Coins/Coins'));

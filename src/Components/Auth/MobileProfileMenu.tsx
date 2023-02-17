@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import style from './Auth.module.scss';
+import { Link } from "react-router-dom";
+import WalletConnect from "../WalletConnectBtn/WalletConnectBtn";
+import style from "./Auth.module.scss";
 
 interface MobileProfileMenuProps {
   isProfileOpen: boolean;
@@ -16,9 +17,12 @@ const MobileProfileMenu = ({
     <div
       id="authBtnContainer"
       className={`${style.mobileContainer} ${
-        isProfileOpen ? style.mobileContainerOpen : ''
+        isProfileOpen ? style.mobileContainerOpen : ""
       }`}
     >
+      <div className={style.mobileWalletBtn}>
+        <WalletConnect />
+      </div>
       <Link
         to="/portfolio"
         className={style.portfolioLink}

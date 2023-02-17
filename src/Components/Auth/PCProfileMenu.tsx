@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import sprite from 'assets/images/icons.svg';
-import style from './Auth.module.scss';
+import { Link } from "react-router-dom";
+import sprite from "assets/images/icons.svg";
+import style from "./Auth.module.scss";
+import WalletConnect from "../WalletConnectBtn/WalletConnectBtn";
 
 interface PCProfileMenuProps {
   isPCProfileOpen: boolean;
@@ -15,18 +16,21 @@ const PCProfileMenu = ({
 }: PCProfileMenuProps) => {
   return (
     <>
+      <div className={style.pcWalletBtn}>
+        <WalletConnect />
+      </div>
       <button
         type="button"
         className={style.pcProfileButton}
         onClick={onClickToggleProfile}
       >
         <svg className={style.profileIcon}>
-          <use href={sprite + '#profile'} />
+          <use href={sprite + "#profile"} />
         </svg>
       </button>
       <div
         className={`${style.pcProfileMenuHidden} ${
-          isPCProfileOpen ? style.pcProfileMenuOpen : ''
+          isPCProfileOpen ? style.pcProfileMenuOpen : ""
         }`}
       >
         <Link
