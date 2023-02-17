@@ -127,7 +127,7 @@ header {
   width: 100%;
   max-width: 1600px;
   display: grid;
-  grid-template-columns: 28rem 1fr 28rem;
+  grid-template-columns: 27rem 1fr 27rem;
   align-items: center;
   @media (max-width: 1199px) {
     display: none;
@@ -136,7 +136,9 @@ header {
 
 .pcRightContainer {
   display: flex;
+  gap: 1rem;
   align-items: center;
+  justify-content: space-between;
 }
 
 .pcNav {
