@@ -63,7 +63,7 @@ export const articlesSlice = createSlice({
         if (!state.currentPage) {
           state.recentArticles = state.articles;
         }
-        state.total = action.payload.meta.hits;
+        state.total = action.payload?.meta?.hits;
       }
     );
     builder
