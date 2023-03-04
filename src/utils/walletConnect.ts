@@ -10,7 +10,6 @@ export const PROJECT_ID = "6f1a3ec5e0a634d4a3f3931c5e8e0c37";
 
 const chains = [arbitrum, mainnet, polygon];
 
-// Wagmi client
 const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId: PROJECT_ID }),
 ]);
@@ -25,5 +24,4 @@ export const wagmiClient = createClient({
   provider,
 });
 
-// Web3Modal Ethereum Client
 export const ethereumClient = new EthereumClient(wagmiClient, chains);

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { Notify } from 'notiflix';
-import { auth } from '../Firebase/Firebase';
-import { COOKIE_TOKEN_NAME, setCookie } from 'utils/cookie';
-import { setIsAuth } from 'Store/Reducers/authSlice';
-import { useAppDispatch } from 'hooks/redux-hooks';
-import sprite from 'assets/images/icons.svg';
-import SendButton from '@mui/material/Button';
-import style from './Auth.module.scss';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Notify } from "notiflix";
+import { auth } from "../Firebase/Firebase";
+import { COOKIE_TOKEN_NAME, setCookie } from "utils/cookie";
+import { setIsAuth } from "Store/Reducers/authSlice";
+import { useAppDispatch } from "hooks/redux-hooks";
+import sprite from "assets/images/icons.svg";
+import SendButton from "@mui/material/Button";
+import style from "./Auth.module.scss";
 
 interface IFormInputs {
   email: string;
@@ -25,16 +25,16 @@ interface LoginProps {
 const schema = yup.object({
   email: yup
     .string()
-    .email('⚠ Invalid email')
-    .required('⚠ This field is required'),
-  password: yup.string().required('⚠ This field is required'),
+    .email("⚠ Invalid email")
+    .required("⚠ This field is required"),
+  password: yup.string().required("⚠ This field is required"),
 });
 
 export const Login = ({ setModalAuthShow }: LoginProps) => {
   const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
 
   const handleLogIn = async (email: string, password: string) => {
     try {
@@ -42,7 +42,7 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
       setCookie(COOKIE_TOKEN_NAME, user.uid);
       setModalAuthShow(false);
       dispatch(setIsAuth(true));
-      document.body.classList.remove('overflow');
+      document.body.classList.remove("overflow");
       Notify.success(`Hi, you logged in successfully`);
     } catch (error: any) {
       const errorMessage = error.message.slice(10);
@@ -52,7 +52,7 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
 
   const handleClickGoogleAuth: React.MouseEventHandler<
     HTMLButtonElement
-  > = async e => {
+  > = async (e) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
     try {
@@ -62,7 +62,7 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
       setCookie(COOKIE_TOKEN_NAME, token);
       setModalAuthShow(false);
       dispatch(setIsAuth(true));
-      document.body.classList.remove('overflow');
+      document.body.classList.remove("overflow");
       Notify.success(`Hi, you logged in successfully`);
     } catch ({ message }) {
       Notify.failure(message as string);
@@ -75,7 +75,7 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
     formState: { errors },
   } = useForm<IFormInputs>({ resolver: yupResolver(schema) });
   const onSubmit = (data: IFormInputs) => {
-    setError('');
+    setError("");
     setLoading(true);
     handleLogIn(data.email, data.password);
     setLoading(false);
@@ -89,12 +89,12 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
         </label>
         <input
           id="emailLogin"
-          {...register('email')}
+          {...register("email")}
           placeholder="Enter your email..."
           className={style.formInput}
         />
         <p className={style.formErrorMessage}>
-          {errors.email?.message ? errors.email?.message : ' '}
+          {errors.email?.message ? errors.email?.message : " "}
         </p>
 
         <label htmlFor="passwordLogin" className={style.formLabel}>
@@ -102,13 +102,13 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
         </label>
         <input
           id="passwordLogin"
-          {...register('password')}
+          {...register("password")}
           type="password"
           placeholder="Enter your password..."
           className={style.formInput}
         />
         <p className={style.formErrorMessage}>
-          {errors.password?.message ? errors.password?.message : ' '}
+          {errors.password?.message ? errors.password?.message : " "}
           {error && error}
         </p>
         <SendButton
@@ -127,7 +127,7 @@ export const Login = ({ setModalAuthShow }: LoginProps) => {
         onClick={handleClickGoogleAuth}
       >
         <svg className={style.iconGoogle}>
-          <use href={sprite + '#google'} />
+          <use href={sprite + "#google"} />
         </svg>
         Continue with Google
       </button>

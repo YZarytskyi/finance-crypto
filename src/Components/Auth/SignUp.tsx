@@ -39,8 +39,6 @@ export const SignUp: React.FC<SignUpProps> = ({ setModalAuthShow }) => {
   const signUp = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      setModalAuthShow(false);
-      Notify.success('You successfully signed up');
     } catch (error: any) {
       const errorMessage = error.message.slice(10);
       setError(`⚠ ${errorMessage}`);
