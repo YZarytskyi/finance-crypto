@@ -114,7 +114,7 @@ const CoinsTableBody = ({
       <td>
         {isLoadedImg ? (
           <img
-            src={`https://www.coingecko.com/coins/${coinNumber}/sparkline`}
+            src={`https://www.coingecko.com/coins/${coinNumber}/sparkline.svg`}
             alt={`${coin.name} 7d chart`}
             className={style.chartImg}
           />
