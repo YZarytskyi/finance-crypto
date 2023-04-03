@@ -197,3 +197,10 @@ export interface ExchangeSearchForm {
   name: string
   thumb: string
 }
+
+export type RecentSearch = CoinSearchForm | ExchangeSearchForm
+
+export interface SearchData {
+  coins: CoinSearchForm[]
+  exchanges: ExchangeSearchForm[]
+}

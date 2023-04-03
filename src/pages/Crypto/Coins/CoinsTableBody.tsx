@@ -22,8 +22,8 @@ const CoinsTableBody = ({
 }: CoinsTableBodyItemProps): JSX.Element => {
   const isAuth = useAppSelector((state) => state.auth.isAuth)
 
-  const [isSelected, setIsSelected] = useState<boolean>(false)
-  const [isLoadedImg, setIsLoadedImg] = useState<boolean>(false)
+  const [isSelected, setIsSelected] = useState(false)
+  const [isLoadedImg, setIsLoadedImg] = useState(false)
 
   useEffect(() => {
     if (!isAuth) {
@@ -37,7 +37,7 @@ const CoinsTableBody = ({
     }
   }, [isAuth])
 
-  const onClickToggleSelect: React.MouseEventHandler<SVGElement> = (e) => {
+  const onClickToggleSelect: React.MouseEventHandler<SVGElement> = () => {
     if (!isAuth) {
       openModalAuth && openModalAuth()
       return

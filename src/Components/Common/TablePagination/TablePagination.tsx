@@ -12,7 +12,6 @@ interface TablePaginationProps {
 
 export const TablePagination = forwardRef<HTMLHeadingElement, TablePaginationProps>(
   ({ page, setPage, count, articles }, ref) => {
-    const dispatch = useAppDispatch()
 
     const executeScroll = (ref: HTMLHeadingElement) => {
       ref.scrollIntoView({

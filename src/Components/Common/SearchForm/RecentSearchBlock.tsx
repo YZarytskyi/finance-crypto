@@ -1,6 +1,6 @@
-import { RecentSearch } from './SearchFormOpen'
-import style from './SearchForm.module.scss'
 import { Link } from 'react-router-dom'
+import { RecentSearch } from 'types/Types'
+import style from './SearchForm.module.scss'
 
 interface RecentSearchBlockProps {
   recentSearch: RecentSearch[]

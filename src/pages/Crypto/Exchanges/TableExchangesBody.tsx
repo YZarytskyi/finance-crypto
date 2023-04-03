@@ -6,12 +6,10 @@ import style from './Exchanges.module.scss'
 
 interface TableExchangesBodyItemProps {
   exchange: Exchanges
-  openModalAuth?: () => void
 }
 
 const TableExchangesBody = ({
   exchange,
-  openModalAuth,
 }: TableExchangesBodyItemProps): JSX.Element => {
   return (
     <tr key={exchange.id}>

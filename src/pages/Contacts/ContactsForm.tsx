@@ -25,7 +25,7 @@ export const ContactsForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInputs>({ resolver: yupResolver(schema) })
-  const onSubmit = (data: IFormInputs) => setModalShow(true)
+  const onSubmit = () => setModalShow(true)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.contactsForm} autoComplete='off'>

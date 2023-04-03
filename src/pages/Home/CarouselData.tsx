@@ -89,10 +89,7 @@ export const CryptoCarouselData = () => {
 }
 
 export const ArticlesCarouselData = () => {
-  const articles = useAppSelector((state) => state.articles.articles)
-  const filterArticles = articles
-    .filter((article) => article.headline.main.length > 30 && article.headline.main.length <= 50)
-    .slice(0, 3)
+  const articles = useAppSelector((state) => state.articles.articles).slice(6,9)
 
   return (
     <>
@@ -102,11 +99,11 @@ export const ArticlesCarouselData = () => {
 
       <Carousel.Caption className={style.caption}>
         <ul className={`${style.carouselInfo} ${style.articlesData}`}>
-          {filterArticles.length ? (
-            filterArticles.map((article) => (
+          {articles.length ? (
+            articles.map((article) => (
               <li key={article._id}>
                 <NavLink to={`/articles/${article._id}`} className={style.articlesLink}>
-                  <p>{article.headline.main}</p>
+                  <p>{article.headline.main.length > 50 ? article.headline.main.slice(0, 47) + '...' : article.headline.main}</p>
                   <p>
                     <svg className={style.iconTime}>
                       <use href={sprite + '#time'} />

@@ -6,13 +6,11 @@ import { CryptoSkeleton } from '../CryptoSkeleton'
 interface TableExchangesHeadProps {
   isLoading?: boolean
   exchanges: Array<Exchanges>
-  openModalAuth?: () => void
 }
 
 export const TableExchangesHead = ({
   isLoading,
   exchanges,
-  openModalAuth,
 }: TableExchangesHeadProps) => {
   return (
     <Table hover variant='dark'>
@@ -42,7 +40,6 @@ export const TableExchangesHead = ({
               <TableExchangesBody
                 key={exchange.id}
                 exchange={exchange}
-                openModalAuth={openModalAuth}
               />
             ))}
           </>

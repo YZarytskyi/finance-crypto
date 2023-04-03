@@ -20,10 +20,6 @@ const Exchanges = () => {
     dispatch(fetchExchanges(page))
   }, [page])
 
-  const openModalAuth = () => {
-    setModalAuthShow(true)
-  }
-
   return (
     <>
       <section className={`${style.table} ${style.tableExchanges}`}>
@@ -33,7 +29,6 @@ const Exchanges = () => {
         <TableExchangesHead
           isLoading={isLoadingExchanges}
           exchanges={exchanges}
-          openModalAuth={openModalAuth}
         />
       </section>
       <div className={style.pagination}>

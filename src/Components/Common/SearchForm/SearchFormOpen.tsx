@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import useDebounce from 'hooks/useDebounce'
 import { cryptoApi } from 'api/cryptoApi'
-import { Link } from 'react-router-dom'
 import { Spinner } from '../index'
-import { CoinSearchForm, ExchangeSearchForm } from 'types/Types'
 import { useLocalStorageState } from 'hooks/useStorage'
 import { RecentSearchBlock } from './RecentSearchBlock'
+import { RecentSearch, SearchData } from 'types/Types'
 import sprite from 'assets/images/icons.svg'
 import style from './SearchForm.module.scss'
+
+const RECENT_SEARCH_KEY = 'recent-search'
+
+export type Component = 'coins' | 'exchanges'
 
 interface SearchFormOpenProps {
   onClickCloseList: (e: MouseEvent) => void
   onClickCloseSearch: () => void
 }
-
-type Component = 'coins' | 'exchanges'
-export type RecentSearch = CoinSearchForm | ExchangeSearchForm
-interface SearchData {
-  coins: CoinSearchForm[]
-  exchanges: ExchangeSearchForm[]
-}
-
-const RECENT_SEARCH_KEY = 'recent-search'
 
 const SearchFormOpen = ({
   onClickCloseList,
