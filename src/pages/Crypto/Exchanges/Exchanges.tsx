@@ -1,30 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { TablePagination } from 'Components/Common';
-import { fetchExchanges } from 'Store/Reducers/exchangeSlice';
-import { ModalAuth } from 'Components/Auth/ModalAuth';
-import { TableExchangesHead } from './TableExchangesHead';
-import style from './Exchanges.module.scss';
+import { useEffect, useRef, useState } from 'react'
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
+import { TablePagination } from 'Components/Common'
+import { fetchExchanges } from 'Store/Reducers/exchangeSlice'
+import { ModalAuth } from 'Components/Auth/ModalAuth'
+import { TableExchangesHead } from './TableExchangesHead'
+import style from './Exchanges.module.scss'
 
-const EXCHANGES_COUNT: 10 = 10;
+const EXCHANGES_COUNT = 10
 
 const Exchanges = () => {
-  const { isLoadingExchanges, exchanges } = useAppSelector(
-    state => state.exchange
-  );
-  const dispatch = useAppDispatch();
-  const [page, setPage] = useState<number>(1);
-  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false);
+  const { isLoadingExchanges, exchanges } = useAppSelector((state) => state.exchange)
+  const dispatch = useAppDispatch()
+  const [page, setPage] = useState<number>(1)
+  const [modalAuthShow, setModalAuthShow] = useState<boolean>(false)
 
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
-    dispatch(fetchExchanges(page));
-  }, [page]);
+    dispatch(fetchExchanges(page))
+  }, [page])
 
   const openModalAuth = () => {
-    setModalAuthShow(true);
-  };
+    setModalAuthShow(true)
+  }
 
   return (
     <>
@@ -39,20 +37,11 @@ const Exchanges = () => {
         />
       </section>
       <div className={style.pagination}>
-        <TablePagination
-          page={page}
-          setPage={setPage}
-          count={EXCHANGES_COUNT}
-          ref={headingRef}
-        />
+        <TablePagination page={page} setPage={setPage} count={EXCHANGES_COUNT} ref={headingRef} />
       </div>
-      <ModalAuth
-        modalAuthShow={modalAuthShow}
-        setModalAuthShow={setModalAuthShow}
-        isLogin
-      />
+      <ModalAuth modalAuthShow={modalAuthShow} setModalAuthShow={setModalAuthShow} isLogin />
     </>
-  );
-};
+  )
+}
 
-export default Exchanges;
+export default Exchanges

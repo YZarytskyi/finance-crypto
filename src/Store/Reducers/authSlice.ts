@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface AuthState {
-  modalShow: boolean;
-  toggleLoginSignUp: boolean;
-  isAuth: boolean;
+  modalShow: boolean
+  toggleLoginSignUp: boolean
+  isAuth: boolean
 }
 
 const initialState: AuthState = {

@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 interface AuthState {
-  isInitialized: boolean;
+  isInitialized: boolean
 }
 
 const initialState: AuthState = {
@@ -9,15 +9,15 @@ const initialState: AuthState = {
 }
 
 export const appSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     initializedSuccess(state) {
-      state.isInitialized = true;
+      state.isInitialized = true
     },
   },
-});
+})
 
-export const { initializedSuccess } = appSlice.actions;
+export const { initializedSuccess } = appSlice.actions
 
-export default appSlice.reducer;
+export default appSlice.reducer

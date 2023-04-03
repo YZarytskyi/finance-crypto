@@ -1,48 +1,44 @@
-import style from './Modal.module.scss';
-import React, { useEffect } from 'react';
-import sprite from 'assets/images/icons.svg';
+import style from './Modal.module.scss'
+import React, { useEffect } from 'react'
+import sprite from 'assets/images/icons.svg'
 
 interface ModalProps {
-  children: React.ReactNode;
-  modalShow: boolean;
-  setModalShow: (value: boolean | ((prevValue: boolean) => boolean)) => void;
+  children: React.ReactNode
+  modalShow: boolean
+  setModalShow: (value: boolean | ((prevValue: boolean) => boolean)) => void
 }
 
-export const Modal = ({
-  children,
-  modalShow,
-  setModalShow,
-}: ModalProps): JSX.Element => {
+export const Modal = ({ children, modalShow, setModalShow }: ModalProps): JSX.Element => {
   useEffect(() => {
     if (modalShow) {
-      document.body.addEventListener('keydown', onEscPress);
+      document.body.addEventListener('keydown', onEscPress)
     }
 
     return () => {
-      document.body.removeEventListener('keydown', onEscPress);
-    };
-  }, [modalShow]);
+      document.body.removeEventListener('keydown', onEscPress)
+    }
+  }, [modalShow])
 
   const handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as Element;
+    const target = e.target as Element
     if (target.classList.contains('jsCloseModal')) {
-      setModalShow(false);
-      document.body.classList.remove('overflow');
+      setModalShow(false)
+      document.body.classList.remove('overflow')
     }
-  };
+  }
 
   function handleMouseDownBackdrop(e: React.MouseEvent<HTMLDivElement>) {
-    const target = e.target as Element;
+    const target = e.target as Element
     if (target === e.currentTarget) {
-      setModalShow(false);
-      document.body.classList.remove('overflow');
+      setModalShow(false)
+      document.body.classList.remove('overflow')
     }
   }
 
   function onEscPress(e: KeyboardEvent) {
     if (e.key === 'Escape') {
-      setModalShow(false);
-      document.body.classList.remove('overflow');
+      setModalShow(false)
+      document.body.classList.remove('overflow')
     }
   }
 
@@ -53,13 +49,13 @@ export const Modal = ({
       onMouseDown={handleMouseDownBackdrop}
     >
       <div className={style.modal}>
-        <button type="button" className={style.modalCloseBtn + ' jsCloseModal'}>
+        <button type='button' className={style.modalCloseBtn + ' jsCloseModal'}>
           <svg className={style.modalCloseIcon + ' jsCloseModal'}>
-            <use href={sprite + '#modal_close'} className="jsCloseModal"></use>
+            <use href={sprite + '#modal_close'} className='jsCloseModal'></use>
           </svg>
         </button>
         {children}
       </div>
     </div>
-  );
-};
+  )
+}

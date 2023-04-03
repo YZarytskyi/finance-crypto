@@ -1,6 +1,5 @@
-import { Carousel } from "react-bootstrap";
-import { ArticlesCarouselData, CryptoCarouselData } from "./CarouselData";
-
+import { Carousel } from 'react-bootstrap'
+import { ArticlesCarouselData, CryptoCarouselData } from './CarouselData'
 
 const CarouselBlock = () => {
   return (
@@ -12,7 +11,7 @@ const CarouselBlock = () => {
         <ArticlesCarouselData />
       </Carousel.Item>
     </Carousel>
-  );
-};
+  )
+}
 
-export default CarouselBlock;
+export default CarouselBlock

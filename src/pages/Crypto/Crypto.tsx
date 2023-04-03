@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import { NavCrypto } from './NavCrypto/NavCrypto';
-import { Preloader } from 'Components/Common';
+import { Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
+import { NavCrypto } from './NavCrypto/NavCrypto'
+import { Preloader } from 'Components/Common'
 
 const Crypto = () => {
   return (
@@ -11,7 +11,7 @@ const Crypto = () => {
         <Outlet />
       </Suspense>
     </>
-  );
-};
+  )
+}
 
-export default Crypto;
+export default Crypto

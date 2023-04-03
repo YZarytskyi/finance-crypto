@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-import WalletConnect from "../WalletConnectBtn/WalletConnectBtn";
-import style from "./Auth.module.scss";
+import { Link } from 'react-router-dom'
+import WalletConnect from '../WalletConnectBtn/WalletConnectBtn'
+import style from './Auth.module.scss'
 
 interface MobileProfileMenuProps {
-  isProfileOpen: boolean;
-  onClickToggleProfile: () => void;
-  onClickLogout: React.MouseEventHandler<HTMLButtonElement>;
+  isProfileOpen: boolean
+  onClickToggleProfile: () => void
+  onClickLogout: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const MobileProfileMenu = ({
@@ -15,26 +15,20 @@ const MobileProfileMenu = ({
 }: MobileProfileMenuProps) => {
   return (
     <div
-      id="authBtnContainer"
-      className={`${style.mobileContainer} ${
-        isProfileOpen ? style.mobileContainerOpen : ""
-      }`}
+      id='authBtnContainer'
+      className={`${style.mobileContainer} ${isProfileOpen ? style.mobileContainerOpen : ''}`}
     >
       <div className={style.mobileWalletBtn}>
         <WalletConnect />
       </div>
-      <Link
-        to="/portfolio"
-        className={style.portfolioLink}
-        onClick={onClickToggleProfile}
-      >
+      <Link to='/portfolio' className={style.portfolioLink} onClick={onClickToggleProfile}>
         My Portfolio
       </Link>
-      <button type="button" className={style.logoutBtn} onClick={onClickLogout}>
+      <button type='button' className={style.logoutBtn} onClick={onClickLogout}>
         Log&nbsp;Out
       </button>
     </div>
-  );
-};
+  )
+}
 
-export { MobileProfileMenu };
+export { MobileProfileMenu }

@@ -1,0 +1,234 @@
+@import 'variables.scss';
+
+.profileAuth {
+  justify-self: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileButton {
+  height: 100%;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+  width: 55px;
+  background-color: transparent;
+}
+
+.profileIcon {
+  width: 25px;
+  height: 25px;
+  fill: $color-main;
+  @media screen and (max-width: 375px) {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+.pcContainer {
+  width: 100%;
+  max-width: 1600px;
+  display: grid;
+  grid-template-columns: 27rem 1fr 27rem;
+  align-items: center;
+  @media (max-width: 1199px) {
+    display: none;
+  }
+}
+
+.pcRightContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pcNav {
+  align-items: center;
+  > ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 1.3rem 1.3rem;
+      transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      @media (max-width: 1300px) {
+        padding: 1.3rem 1rem;
+      }
+      &::after {
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $color-accent;
+        content: '';
+        transform: scale(0);
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      &:hover::after {
+        transform: scale(1);
+      }
+    }
+    .cryptoContainer {
+      position: relative;
+      margin-right: -0.4rem;
+      &:hover .link::after,
+      &:hover .link {
+        transform: scale(1);
+        color: $color-accent;
+      }
+    }
+  }
+  .cryptoContainer:hover .icon,
+  .cryptoContainer:focus .icon {
+    transform: rotate(0);
+  }
+}
+
+.authBtnsBackdropHidden {
+  position: absolute;
+  top: -9999px;
+  visibility: hidden;
+  opacity: 0;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 3, 15, 0.5);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &.authBtnsBackdropOpen {
+    top: 100%;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.linkLogo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-self: left;
+  margin-left: 3rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  @media screen and (max-width: 1199px) {
+    padding-top: 0.3rem;
+    margin-left: 0;
+    justify-self: center;
+  }
+  @media screen and (max-width: 479px) {
+    margin-left: 0;
+    justify-self: center;
+    font-size: 1.7rem;
+  }
+  @media screen and (max-width: 375px) {
+    font-size: 1.6rem;
+  }
+  .iconLogo {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    fill: currentColor;
+    @media screen and (max-width: 479px) {
+      width: 23px;
+      height: 23px;
+    }
+    @media screen and (max-width: 375px) {
+      width: 21px;
+      height: 21px;
+    }
+  }
+}
+
+.linkCrypto {
+  display: flex;
+  align-items: center;
+  &:hover .icon,
+  &:focus .icon {
+    transform: rotate(0);
+  }
+}
+
+.icon {
+  width: 9.5px;
+  height: 9.5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  justify-content: center;
+  transform: rotate(-90deg);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentColor;
+}
+
+%subListPC {
+  position: absolute;
+  top: 100%;
+  right: -22%;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  padding: 0.5rem 0;
+  text-align: left;
+  font-size: 1rem;
+  background-color: rgb(9, 10, 15);
+  border-radius: 0.2rem;
+  box-shadow: 0px 2px 20px 0.1px rgba(68, 60, 82, 0.3);
+  transform: translate(0px, 10%);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  > li {
+    padding: 0.6rem 0rem;
+    &:hover,
+    &:focus {
+      color: inherit;
+      background-color: rgb(97, 97, 97);
+    }
+    .subListLink {
+      color: $color-main;
+      padding: 0.7rem 3rem 0.7rem 2rem;
+    }
+  }
+}
+
+.subListPC {
+  @extend %subListPC;
+}
+
+.subListPCHidden {
+  @extend %subListPC;
+}
+
+.cryptoContainer:hover .subListPC {
+  @media screen and (min-width: 1200px) {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    transform: translate(0px, 0px);
+  }
+}
+
+.profileContainerHidden {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 0;
+  padding: 2rem;
+  padding-right: 1.5rem;
+  background-color: rgb(8, 13, 22);
+  box-shadow: 0px 2px 20px 0.1px rgba(68, 60, 82, 0.3);
+  border-bottom-left-radius: 10px;
+  font-size: 1.2rem;
+  transform: translateX(100%);
+  &.profileContainerOpen {
+    transform: translateX(0);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

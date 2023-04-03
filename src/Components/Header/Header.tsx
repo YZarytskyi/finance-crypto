@@ -1,5 +1,5 @@
-import MobileNav from './MobileNav';
-import PCNav from './PCNav';
+import MobileNav from './MobileNav/MobileNav'
+import PCNav from './PCNav/PCNav'
 
 const Header = () => {
   return (
@@ -7,7 +7,7 @@ const Header = () => {
       <PCNav />
       <MobileNav />
     </header>
-  );
-};
+  )
+}
 
-export { Header };
+export { Header }

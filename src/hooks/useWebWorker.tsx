@@ -1,39 +1,34 @@
-import { useState } from 'react';
-import { AnyFunction, ArbitrageWorkerResult } from 'types/Types';
+import { useState } from 'react'
+import { AnyFunction, ArbitrageWorkerResult } from 'types/Types'
 
 const workerHandler = (fn: AnyFunction) => {
-  onmessage = event => {
-    postMessage(fn(event.data));
-  };
-};
+  onmessage = (event) => {
+    postMessage(fn(event.data))
+  }
+}
 
 export const useWebWorker = (fn: AnyFunction) => {
-  const [result, setResult] = useState<ArbitrageWorkerResult | null>(null);
+  const [result, setResult] = useState<ArbitrageWorkerResult | null>(null)
 
   const run = (value: any) => {
-    const worker = new Worker(
-      URL.createObjectURL(new Blob([`(${workerHandler})(${fn})`]))
-    );
-    worker.onmessage = event => {
-      setResult(event.data);
-      worker.terminate();
-    };
+    const worker = new Worker(URL.createObjectURL(new Blob([`(${workerHandler})(${fn})`])))
+    worker.onmessage = (event) => {
+      setResult(event.data)
+      worker.terminate()
+    }
     worker.onerror = (error) => {
       console.log(error.message)
-      worker.terminate();
-    };
-    worker.postMessage(value);
-  };
+      worker.terminate()
+    }
+    worker.postMessage(value)
+  }
 
   return {
     result,
     setResult,
     run,
-  };
-};
-
-
-
+  }
+}
 
 // export const useWebWorker = (fn: AnyFunction) => {
 //   const [result, setResult] = useState<ArbitrageWorkerResult | null>(null);

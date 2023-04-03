@@ -1,8 +1,7 @@
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import { Preloader } from 'Components/Common';
-import { Footer } from 'Components';
-import { Header } from 'Components';
+import { Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
+import { Preloader } from 'Components/Common'
+import { Header, Footer } from 'Components'
 
 export const SharedLayout = () => {
   return (
@@ -15,5 +14,5 @@ export const SharedLayout = () => {
       </main>
       <Footer />
     </>
-  );
-};
+  )
+}

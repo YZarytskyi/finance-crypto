@@ -1,12 +1,10 @@
-import style from './Preloader.module.scss';
+import style from './Preloader.module.scss'
 
 interface PreloaderMainProps {
-  className?: string;
+  className?: string
 }
 
-export const Preloader = ({
-  className = 'main',
-}: PreloaderMainProps): JSX.Element => {
+export const Preloader = ({ className = 'main' }: PreloaderMainProps): JSX.Element => {
   return (
     <>
       <div className={style[className]}>
@@ -24,5 +22,5 @@ export const Preloader = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}

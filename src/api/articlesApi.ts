@@ -4,7 +4,7 @@ import { notifyApiOptions } from '../utils/notify';
 
 
 export const articlesApi = {
-  async getArticles(page: number = 0) {
+  async getArticles(page = 0) {
     try {
       const { data } = await axios.get(
         `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=crypto&page=${page}&api-key=mScVMtCvTO7fBzSIQmgG1N6TAs3IXnic`

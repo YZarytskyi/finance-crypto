@@ -1,40 +1,35 @@
-import { useCallback, useState } from "react";
-import { localStorageWrapper } from "utils/storageWrapper";
-import { AnyFunction } from "types/Types";
-import usePrevious from "./usePrevious";
+import { useCallback, useState } from 'react'
+import { localStorageWrapper } from 'utils/storageWrapper'
+import { AnyFunction } from 'types/Types'
+import usePrevious from './usePrevious'
 
 function isFunction(val: unknown): val is AnyFunction {
-  return typeof val === "function";
+  return typeof val === 'function'
 }
 
-export function useLocalStorageState<T>(
-  key: string,
-  initialValue: T | (() => T)
-) {
+export function useLocalStorageState<T>(key: string, initialValue: T | (() => T)) {
   const [value, setValue] = useState(() => {
-    const savedValue = localStorageWrapper.get<T>(key);
+    const savedValue = localStorageWrapper.get<T>(key)
 
-    if (typeof savedValue !== "undefined") {
-      return savedValue;
+    if (typeof savedValue !== 'undefined') {
+      return savedValue
     }
 
-    return isFunction(initialValue) ? initialValue() : initialValue;
-  });
+    return isFunction(initialValue) ? initialValue() : initialValue
+  })
 
-  const latestValue = usePrevious(value);
+  const latestValue = usePrevious(value)
 
   const updateValue = useCallback(
     (newValue: React.SetStateAction<T>) => {
-      setValue(newValue);
+      setValue(newValue)
 
-      const actualValue = isFunction(newValue)
-        ? newValue(latestValue.current)
-        : newValue;
+      const actualValue = isFunction(newValue) ? newValue(latestValue.current) : newValue
 
-      localStorageWrapper.set(key, actualValue);
+      localStorageWrapper.set(key, actualValue)
     },
-    [key, latestValue]
-  );
+    [key, latestValue],
+  )
 
-  return [value, updateValue] as const;
+  return [value, updateValue] as const
 }

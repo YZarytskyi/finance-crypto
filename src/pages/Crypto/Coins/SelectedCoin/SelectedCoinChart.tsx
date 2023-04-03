@@ -1,21 +1,19 @@
+import React, { useState } from 'react'
+import ReactApexChart from 'react-apexcharts'
+import { useAppSelector } from 'hooks/redux-hooks'
 import style from './SelectedCoin.module.scss'
-import { useState } from "react";
-import ReactApexChart from "react-apexcharts";
-import { useAppSelector } from 'hooks/redux-hooks';
-
 
 interface ApexChartProps {
-  setDays: (e: number | 'max') => void;
+  setDays: (e: number | 'max') => void
 }
 
-const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
-
-  const selectedCoinMarketChart = useAppSelector((state) => state.crypto.selectedCoinMarketChart);
+const ApexChart: React.FC<ApexChartProps> = ({ setDays }) => {
+  const selectedCoinMarketChart = useAppSelector((state) => state.crypto.selectedCoinMarketChart)
   const marketChart = selectedCoinMarketChart.prices
 
-  const setNumberFormat = (number: number) => new Intl.NumberFormat("ua-UA").format(number);
+  const setNumberFormat = (number: number) => new Intl.NumberFormat('ua-UA').format(number)
   const [chartTime, setChartTime] = useState<number | 'max'>(30)
-  
+
   const series = [
     {
       data: marketChart && marketChart,
@@ -23,18 +21,18 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
   ]
   const options = {
     chart: {
-      id: "area-datetime",
-      type: "area",
+      id: 'area-datetime',
+      type: 'area',
     },
     yaxis: {
-    tickAmount: 6,
-    labels: {
+      tickAmount: 6,
+      labels: {
         show: true,
         align: 'right',
         style: {
-            colors: '#eaeaea',
-            fontSize: '12px',
-            fontWeight: 400,
+          colors: '#eaeaea',
+          fontSize: '12px',
+          fontWeight: 400,
         },
         formatter: (value: number) => {
           if (!value) {
@@ -46,11 +44,11 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
           }
           return setNumberFormat(value)
         },
-    },
+      },
     },
     xaxis: {
       show: true,
-      type: "datetime",
+      type: 'datetime',
       labels: {
         style: {
           colors: '#eaeaea',
@@ -58,48 +56,48 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
           fontFamily: 'Helvetica, Arial, sans-serif',
           fontWeight: 400,
         },
-      }
+      },
     },
     dataLabels: {
       enabled: false,
     },
     markers: {
       size: 0,
-      style: "hollow",
+      style: 'hollow',
     },
     stroke: {
       show: true,
-      curve: "straight",
-      lineCap: "butt",
+      curve: 'straight',
+      lineCap: 'butt',
       width: 2,
       dashArray: 0,
     },
     tooltip: {
       enabled: true,
-      theme: "dark",
+      theme: 'dark',
       style: {
-        fontSize: "12px",
+        fontSize: '12px',
         fontFamily: undefined,
       },
       x: {
-        format: "dd MMM yyyy",
+        format: 'dd MMM yyyy',
       },
       y: {
-        formatter: function (value:number) {
+        formatter: function (value: number) {
           if (value > 5) {
-            return value.toFixed(2);
+            return value.toFixed(2)
           }
-          return value.toFixed(5);
+          return value.toFixed(5)
         },
         title: {
-          formatter: () => "$",
+          formatter: () => '$',
         },
       },
     },
     fill: {
-      type: "gradient",
+      type: 'gradient',
       gradient: {
-        type: "vertical",
+        type: 'vertical',
         shadeIntensity: 0,
         opacityFrom: 0.1,
         opacityTo: 0.7,
@@ -116,29 +114,38 @@ const ApexChart: React.FC<ApexChartProps> = ({setDays}) => {
     setDays(chartTime)
   }
 
-    return (
-      <div className={style.chartTools}>
-        <div className={style.chartButtons}>
-          <button type="button" onClick={() => setDays(1)} >1d</button>
-          <button type="button" onClick={() => setDays(7)} >7d</button>
-          <button type="button" onClick={() => setDays(30)} >1m</button>
-          <button type="button" onClick={() => setDays(183)} >6m</button>
-          <button type="button" onClick={() => setDays(365)} >1y</button>
-          <button type="button" onClick={() => setDays('max')} >All</button>
-          <span className={style.inputDays}>
-            <input type='number' placeholder='Days' onChange={onChangeInput}/>
-            <button type="button" onClick={onClickButton}>Show</button>
-          </span>
-        </div>
-
-          <ReactApexChart
-            options={options}
-            series={series}
-            type="area"
-            height={'300vw'}
-          />
+  return (
+    <div className={style.chartTools}>
+      <div className={style.chartButtons}>
+        <button type='button' onClick={() => setDays(1)}>
+          1d
+        </button>
+        <button type='button' onClick={() => setDays(7)}>
+          7d
+        </button>
+        <button type='button' onClick={() => setDays(30)}>
+          1m
+        </button>
+        <button type='button' onClick={() => setDays(183)}>
+          6m
+        </button>
+        <button type='button' onClick={() => setDays(365)}>
+          1y
+        </button>
+        <button type='button' onClick={() => setDays('max')}>
+          All
+        </button>
+        <span className={style.inputDays}>
+          <input type='number' placeholder='Days' onChange={onChangeInput} />
+          <button type='button' onClick={onClickButton}>
+            Show
+          </button>
+        </span>
       </div>
-    );
+
+      <ReactApexChart options={options} series={series} type='area' height={'300vw'} />
+    </div>
+  )
 }
 
-export default ApexChart;
+export default ApexChart

@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import useDebounce from 'hooks/useDebounce';
-import { cryptoApi } from 'api/cryptoApi';
-import { Link } from 'react-router-dom';
-import { Spinner } from '../index';
-import { CoinSearchForm, ExchangeSearchForm } from 'types/Types';
-import { useLocalStorageState } from 'hooks/useStorage';
-import { RecentSearchBlock } from './RecentSearchBlock';
-import sprite from 'assets/images/icons.svg';
-import style from './SearchForm.module.scss';
+import React, { useEffect, useState } from 'react'
+import useDebounce from 'hooks/useDebounce'
+import { cryptoApi } from 'api/cryptoApi'
+import { Link } from 'react-router-dom'
+import { Spinner } from '../index'
+import { CoinSearchForm, ExchangeSearchForm } from 'types/Types'
+import { useLocalStorageState } from 'hooks/useStorage'
+import { RecentSearchBlock } from './RecentSearchBlock'
+import sprite from 'assets/images/icons.svg'
+import style from './SearchForm.module.scss'
 
 interface SearchFormOpenProps {
-  onClickCloseList: (e: MouseEvent) => void;
-  onClickCloseSearch: () => void;
+  onClickCloseList: (e: MouseEvent) => void
+  onClickCloseSearch: () => void
 }
 
-type Component = 'coins' | 'exchanges';
-export type RecentSearch = CoinSearchForm | ExchangeSearchForm;
+type Component = 'coins' | 'exchanges'
+export type RecentSearch = CoinSearchForm | ExchangeSearchForm
 interface SearchData {
-  coins: CoinSearchForm[];
-  exchanges: ExchangeSearchForm[];
+  coins: CoinSearchForm[]
+  exchanges: ExchangeSearchForm[]
 }
 
-const RECENT_SEARCH_KEY = 'recent-search';
+const RECENT_SEARCH_KEY = 'recent-search'
 
 const SearchFormOpen = ({
   onClickCloseList,
@@ -29,53 +29,49 @@ const SearchFormOpen = ({
 }: SearchFormOpenProps): JSX.Element => {
   const [recentSearch, setRecentSearch] = useLocalStorageState<RecentSearch[]>(
     RECENT_SEARCH_KEY,
-    []
-  );
+    [],
+  )
 
-  const [query, setQuery] = useState<string>('');
-  const [data, setData] = useState<Partial<SearchData>>({});
+  const [query, setQuery] = useState<string>('')
+  const [data, setData] = useState<Partial<SearchData>>({})
 
-  const debouncedValue = useDebounce<string>(query.toLowerCase(), 250);
+  const debouncedValue = useDebounce<string>(query.toLowerCase(), 250)
   useEffect(() => {
     const fetchData = async () => {
-      const data = await cryptoApi.getSearchDataByQuery(debouncedValue);
-      data && setData(data);
-    };
-    fetchData();
-  }, [debouncedValue]);
+      const data = await cryptoApi.getSearchDataByQuery(debouncedValue)
+      data && setData(data)
+    }
+    fetchData()
+  }, [debouncedValue])
 
   useEffect(() => {
-    window.addEventListener('mousedown', onClickCloseList);
-    return () => window.removeEventListener('mousedown', onClickCloseList);
-  }, []);
+    window.addEventListener('mousedown', onClickCloseList)
+    return () => window.removeEventListener('mousedown', onClickCloseList)
+  }, [])
 
-  const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = e => {
-    setQuery(e.target.value);
-  };
+  const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setQuery(e.target.value)
+  }
 
   const onClickSetLocalStorage = (el: any, component?: Component) => {
-    onClickCloseSearch();
+    onClickCloseSearch()
     if (component) {
-      el = { component, ...el };
+      el = { component, ...el }
     }
 
-    const filterRecentSearch = recentSearch.filter(obj => obj.id !== el.id);
+    const filterRecentSearch = recentSearch.filter((obj) => obj.id !== el.id)
 
-    let setToStorage = [el, ...filterRecentSearch];
+    const setToStorage = [el, ...filterRecentSearch]
     if (setToStorage.length > 3) {
-      setToStorage.length = 3;
+      setToStorage.length = 3
     }
-    setRecentSearch(setToStorage);
-  };
+    setRecentSearch(setToStorage)
+  }
 
   return (
     <div className={style.backdrop}>
-      <div className={style.searchMainContainerOut} id="searchAbsolute">
-        <button
-          type="button"
-          className={style.closeBtn}
-          onClick={onClickCloseSearch}
-        >
+      <div className={style.searchMainContainerOut} id='searchAbsolute'>
+        <button type='button' className={style.closeBtn} onClick={onClickCloseSearch}>
           <svg className={style.iconClose}>
             <use href={sprite + '#modal_close'} />
           </svg>
@@ -83,11 +79,11 @@ const SearchFormOpen = ({
 
         <div className={style.searchInputContainerOut}>
           <input
-            type="text"
+            type='text'
             className={style.inputDataOut}
-            placeholder="Search"
-            name="searchQuery"
-            autoComplete="off"
+            placeholder='Search'
+            name='searchQuery'
+            autoComplete='off'
             value={query}
             onChange={onChangeInput}
             autoFocus
@@ -122,11 +118,7 @@ const SearchFormOpen = ({
                         className={style.listLink}
                         onClick={() => onClickSetLocalStorage(el, 'coins')}
                       >
-                        <img
-                          src={el.thumb}
-                          alt={el.name}
-                          className={style.itemImage}
-                        />
+                        <img src={el.thumb} alt={el.name} className={style.itemImage} />
                         <p>
                           {el.name}
                           <span className={style.itemSymbol}>{el.symbol}</span>
@@ -149,11 +141,7 @@ const SearchFormOpen = ({
                         className={style.listLink}
                         onClick={() => onClickSetLocalStorage(el, 'exchanges')}
                       >
-                        <img
-                          src={el.thumb}
-                          alt={el.name}
-                          className={style.itemImage}
-                        />
+                        <img src={el.thumb} alt={el.name} className={style.itemImage} />
                         <p>{el.name}</p>
                       </Link>
                     </li>
@@ -172,7 +160,7 @@ const SearchFormOpen = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SearchFormOpen;
+export default SearchFormOpen

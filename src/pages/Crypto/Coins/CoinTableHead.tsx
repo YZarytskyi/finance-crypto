@@ -1,16 +1,16 @@
-import Table from 'react-bootstrap/Table';
-import CoinsTableBody from './CoinsTableBody';
-import { CryptoSkeleton } from '../CryptoSkeleton';
-import { Markets } from '../../../types/Types';
-import sprite from 'assets/images/icons.svg';
-import style from './Coins.module.scss';
+import Table from 'react-bootstrap/Table'
+import CoinsTableBody from './CoinsTableBody'
+import { CryptoSkeleton } from '../CryptoSkeleton'
+import { Markets } from '../../../types/Types'
+import sprite from 'assets/images/icons.svg'
+import style from './Coins.module.scss'
 
 interface CoinTableHeadProps {
-  isLoading?: boolean;
-  markets: Array<Markets>;
-  selectedCoins: string[];
-  openModalAuth?: () => void;
-  setNewSelectedCoins: (newArr: string[]) => void;
+  isLoading?: boolean
+  markets: Array<Markets>
+  selectedCoins: string[]
+  openModalAuth?: () => void
+  setNewSelectedCoins: (newArr: string[]) => void
 }
 
 const CoinTableHead = ({
@@ -21,7 +21,7 @@ const CoinTableHead = ({
   setNewSelectedCoins,
 }: CoinTableHeadProps) => {
   return (
-    <Table hover variant="dark">
+    <Table hover variant='dark'>
       <thead>
         <tr>
           <th>
@@ -52,7 +52,7 @@ const CoinTableHead = ({
           <CryptoSkeleton />
         ) : (
           <>
-            {markets.map(coin => (
+            {markets.map((coin) => (
               <CoinsTableBody
                 key={coin.id}
                 coin={coin}
@@ -65,7 +65,7 @@ const CoinTableHead = ({
         )}
       </tbody>
     </Table>
-  );
-};
+  )
+}
 
-export { CoinTableHead };
+export { CoinTableHead }

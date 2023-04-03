@@ -1,24 +1,24 @@
-import { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { fetchArticles } from 'Store/Reducers/articlesSlice';
-import { ArticlesBlock } from './ArticlesBlock';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { Preloader } from 'Components/Common';
-import { handleImageError } from 'utils/imageErrorHandler';
-import style from './Articles.module.scss';
+import { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import { fetchArticles } from 'Store/Reducers/articlesSlice'
+import { ArticlesBlock } from './ArticlesBlock'
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
+import { Preloader } from 'Components/Common'
+import { handleImageError } from 'utils/imageErrorHandler'
+import style from './Articles.module.scss'
 
 const Articles = () => {
-  const articles = useAppSelector((state) => state.articles.articles);
-  const dispatch = useAppDispatch();
+  const articles = useAppSelector((state) => state.articles.articles)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!articles.length) {
-      dispatch(fetchArticles());
+      dispatch(fetchArticles())
     }
-  }, []);
+  }, [])
 
   if (!articles.length) {
-    return <Preloader />;
+    return <Preloader />
   }
   return (
     <>
@@ -33,13 +33,13 @@ const Articles = () => {
       </section>
       <ArticlesBlock />
     </>
-  );
-};
+  )
+}
 
-export default Articles;
+export default Articles
 
 const BottomList = () => {
-  const articles = useAppSelector((state) => state.articles.articles);
+  const articles = useAppSelector((state) => state.articles.articles)
   return (
     <ul className={style.bottomList}>
       {articles.slice(2, 5).map((article) => (
@@ -51,18 +51,16 @@ const BottomList = () => {
               alt={article.headline.main}
               onError={handleImageError}
             />
-            <p className={style.bottomListArticleTitle}>
-              {article.headline.main}
-            </p>
+            <p className={style.bottomListArticleTitle}>{article.headline.main}</p>
           </NavLink>
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
 const TopArticles = () => {
-  const articles = useAppSelector((state) => state.articles.articles);
+  const articles = useAppSelector((state) => state.articles.articles)
   return (
     <div className={style.rightBlock}>
       <h2 className={style.rightListTitle}>Top Articles</h2>
@@ -76,13 +74,11 @@ const TopArticles = () => {
                 alt={article.headline.main}
                 onError={handleImageError}
               />
-              <p className={style.rightListArticleTitle}>
-                {article.headline.main}
-              </p>
+              <p className={style.rightListArticleTitle}>{article.headline.main}</p>
             </NavLink>
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}

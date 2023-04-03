@@ -1,5 +1,5 @@
-@import "variables.scss";
-@import "Components/Header/Header.module.scss";
+@import 'variables.scss';
+@import 'Components/Header/Header.module.scss';
 
 html {
   background-color: $bg-color-main;
@@ -12,16 +12,15 @@ html {
     @extend %bg;
     margin: 0;
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-      "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 1rem;
     color: $color-main;
     overflow-x: hidden;
     overflow-y: scroll;
-    
+
     &.overflow {
       overflow: hidden;
       padding-right: 14px;
@@ -30,7 +29,7 @@ html {
       }
 
       & header {
-          width: calc(100% + 14px);
+        width: calc(100% + 14px);
         @media screen and (max-width: 767px) {
           width: 100%;
         }

@@ -1,12 +1,12 @@
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import style from "./Articles.module.scss";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import style from './Articles.module.scss'
 
 export const ArticlesBlockSkeleton = () => {
-  const articles: Array<string> = [];
-  articles.length = 10;
+  const articles: Array<string> = []
+  articles.length = 10
 
   return (
-    <SkeletonTheme baseColor="#2b2b2b" highlightColor="#dabdab">
+    <SkeletonTheme baseColor='#2b2b2b' highlightColor='#dabdab'>
       <ul className={style.articlesBlock}>
         <Block />
         <Block />
@@ -20,18 +20,18 @@ export const ArticlesBlockSkeleton = () => {
         <Block />
       </ul>
     </SkeletonTheme>
-  );
-};
+  )
+}
 
 function Block() {
   return (
     <li className={style.allArticlesLink}>
       <Skeleton className={style.articlesImage} />
       <div className={style.articlesTitleDate}>
-        <Skeleton height={"1rem"} width={"100%"} />
-        <Skeleton height={"1rem"} width={"100%"} />
-        <Skeleton height={"1rem"} width={"35%"} />
+        <Skeleton height={'1rem'} width={'100%'} />
+        <Skeleton height={'1rem'} width={'100%'} />
+        <Skeleton height={'1rem'} width={'35%'} />
       </div>
     </li>
-  );
+  )
 }

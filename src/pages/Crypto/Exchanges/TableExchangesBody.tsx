@@ -1,14 +1,13 @@
-import { Link } from 'react-router-dom';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import { Exchanges } from 'types/Types';
-import { setNumberFormat } from 'utils/utils';
-import style from './Exchanges.module.scss';
+import { Link } from 'react-router-dom'
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import { Exchanges } from 'types/Types'
+import { setNumberFormat } from 'utils/utils'
+import style from './Exchanges.module.scss'
 
 interface TableExchangesBodyItemProps {
-  exchange: Exchanges;
-  openModalAuth?: () => void;
+  exchange: Exchanges
+  openModalAuth?: () => void
 }
-
 
 const TableExchangesBody = ({
   exchange,
@@ -33,7 +32,7 @@ const TableExchangesBody = ({
       <td>{exchange.year_established || 'Unknown'}</td>
       <td>{exchange.country || 'Unknown'}</td>
     </tr>
-  );
-};
+  )
+}
 
-export default TableExchangesBody;
+export default TableExchangesBody

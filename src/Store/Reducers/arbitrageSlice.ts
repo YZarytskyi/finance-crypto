@@ -1,14 +1,14 @@
-import { arbitrageApi } from "api/arbitrageApi";
+import { arbitrageApi } from 'api/arbitrageApi'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { ArbitrageResult, Currencies, Result } from "../../types/Types";
+import { ArbitrageResult, Currencies, Result } from '../../types/Types'
 
 interface InitialState {
-  currencies: Array<Currencies>;
-  isLoadingPairs: boolean;
-  pair1: string;
-  pair2: string;
-  pair3: string;
-  arbitrageResult: Partial<ArbitrageResult>;
+  currencies: Array<Currencies>
+  isLoadingPairs: boolean
+  pair1: string
+  pair2: string
+  pair3: string
+  arbitrageResult: Partial<ArbitrageResult>
 }
 
 const initialState: InitialState = {
@@ -22,11 +22,10 @@ const initialState: InitialState = {
 
 export const fetchArbitrageResult = createAsyncThunk(
   'pairs/fetch',
-  async (pairs: {pair1: string, pair2: string, pair3: string}) => {
-    return (await arbitrageApi.getArbitrageResult(pairs.pair1, pairs.pair2, pairs.pair3)) as Result;
-  }
+  async (pairs: { pair1: string; pair2: string; pair3: string }) => {
+    return (await arbitrageApi.getArbitrageResult(pairs.pair1, pairs.pair2, pairs.pair3)) as Result
+  },
 )
-
 
 export const arbitrageSlice = createSlice({
   name: 'arbitrage',
@@ -45,21 +44,22 @@ export const arbitrageSlice = createSlice({
       state.pair3 = action.payload
     },
     removePairs(state) {
-      state.arbitrageResult = {};
-      state.pair1 = '';
-      state.pair2 = '';
-      state.pair3 = '';
-    }
+      state.arbitrageResult = {}
+      state.pair1 = ''
+      state.pair2 = ''
+      state.pair3 = ''
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchArbitrageResult.pending, (state) => {
-      state.isLoadingPairs = true
+    builder
+      .addCase(fetchArbitrageResult.pending, (state) => {
+        state.isLoadingPairs = true
       })
       .addCase(fetchArbitrageResult.fulfilled, (state, action) => {
         state.arbitrageResult = action.payload
         state.isLoadingPairs = false
       })
-  }
+  },
 })
 
 export const { setCurrencies, setPair1, setPair2, setPair3, removePairs } = arbitrageSlice.actions

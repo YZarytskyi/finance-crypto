@@ -1,28 +1,28 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchArticles } from 'Store/Reducers/articlesSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { Preloader } from 'Components/Common';
-import { Article as ArticleType } from 'types/Types';
-import { handleImageError } from 'utils/imageErrorHandler';
-import sprite from 'assets/images/icons.svg';
-import style from './Articles.module.scss';
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { fetchArticles } from 'Store/Reducers/articlesSlice'
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
+import { Preloader } from 'Components/Common'
+import { Article as ArticleType } from 'types/Types'
+import { handleImageError } from 'utils/imageErrorHandler'
+import sprite from 'assets/images/icons.svg'
+import style from './Articles.module.scss'
 
 const Article = () => {
-  const { articleId } = useParams<{ articleId: string }>();
+  const { articleId } = useParams<{ articleId: string }>()
   const article: ArticleType | undefined = useAppSelector((state) =>
-    state.articles.recentArticles.find((article) => article._id === articleId)
-  );
-  const dispatch = useAppDispatch();
+    state.articles.recentArticles.find((article) => article._id === articleId),
+  )
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!article) {
-      dispatch(fetchArticles());
+      dispatch(fetchArticles())
     }
-  }, []);
+  }, [])
 
   if (!article) {
-    return <Preloader />;
+    return <Preloader />
   }
   return (
     <article className={style.selectedArticle}>
@@ -48,14 +48,14 @@ const Article = () => {
         <a
           className={style.readMoreLink}
           href={article.web_url}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
+          target='_blank'
+          rel='noopener noreferrer nofollow'
         >
           Read&nbsp;more
         </a>
       </p>
     </article>
-  );
-};
+  )
+}
 
-export default Article;
+export default Article
