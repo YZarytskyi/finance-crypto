@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { SearchForm } from '../../Common'
 import { AuthButtons } from '../../Auth/AuthButtons'
-import { NavLink } from 'react-router-dom'
 import sprite from 'assets/images/icons.svg'
 import style from './PCNav.module.scss'
 
