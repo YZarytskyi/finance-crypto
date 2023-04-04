@@ -44,7 +44,7 @@ const BottomList = () => {
     <ul className={style.bottomList}>
       {articles.slice(2, 5).map((article) => (
         <li className={style.bottomListItem} key={article._id}>
-          <NavLink to={`/aricles/${article._id}`} className={style.bottomListLink}>
+          <NavLink to={`/articles/${article._id}`} className={style.bottomListLink}>
             <img
               className={style.bottomListImage}
               src={`https://static01.nyt.com/${article.multimedia[0]?.url}`}
