@@ -10,6 +10,7 @@ import { initializedSuccess } from './Store/Reducers/appSlice'
 import { setIsAuth } from './Store/Reducers/authSlice'
 import { notifyInit } from './utils/notify'
 import Crypto from 'pages/Crypto/Crypto'
+import { PopUp } from './Components'
 import './App.scss'
 
 const Home = React.lazy(() => import('pages/Home/Home'))
@@ -65,6 +66,7 @@ export const App = () => {
             <Route path='*' element={<Navigate to='/' />} />
           </Route>
         </Routes>
+        <PopUp />
       </Suspense>
     </ThemeProvider>
   )
