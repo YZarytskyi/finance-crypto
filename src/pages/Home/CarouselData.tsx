@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Carousel } from 'react-bootstrap'
 import sprite from 'assets/images/icons.svg'
-import slider1 from 'assets/images/slider1.jpg'
-import slider2 from 'assets/images/slider2.jpg'
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
 import {
   ActiveCoinsSkeleton,
@@ -40,9 +38,8 @@ export const CryptoCarouselData = () => {
 
   return (
     <>
-      <div className={`${style.image} ${style.imageCrypto}`}>
-        <img src={slider2} alt='Second slide' />
-      </div>
+      <div className={`${style.image} ${style.imageCrypto}`}></div>
+
       <Carousel.Caption className={style.caption}>
         <ul className={`${style.carouselInfo} ${style.cryptoData}`}>
           <li>
@@ -89,13 +86,11 @@ export const CryptoCarouselData = () => {
 }
 
 export const ArticlesCarouselData = () => {
-  const articles = useAppSelector((state) => state.articles.articles).slice(6,9)
+  const articles = useAppSelector((state) => state.articles.articles).slice(6, 9)
 
   return (
     <>
-      <div className={style.image}>
-        <img src={slider1} alt='Second slide' />
-      </div>
+      <div className={`${style.image} ${style.imageArticles}`}></div>
 
       <Carousel.Caption className={style.caption}>
         <ul className={`${style.carouselInfo} ${style.articlesData}`}>
@@ -103,7 +98,11 @@ export const ArticlesCarouselData = () => {
             articles.map((article) => (
               <li key={article._id}>
                 <NavLink to={`/articles/${article._id}`} className={style.articlesLink}>
-                  <p>{article.headline.main.length > 50 ? article.headline.main.slice(0, 47) + '...' : article.headline.main}</p>
+                  <p>
+                    {article.headline.main.length > 50
+                      ? article.headline.main.slice(0, 47) + '...'
+                      : article.headline.main}
+                  </p>
                   <p>
                     <svg className={style.iconTime}>
                       <use href={sprite + '#time'} />

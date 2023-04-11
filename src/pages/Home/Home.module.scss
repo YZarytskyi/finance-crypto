@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import 'variables.scss';
 
 .home {
   max-width: 1600px;
@@ -9,32 +9,38 @@
   height: 100%;
   display: grid;
   grid-template-areas:
-    "."
-    "c"
-    "f"
-    ".";
+    '.'
+    'c'
+    'f'
+    '.';
   grid-template-rows: 10% 62% 15% 18%;
+
   @media (max-width: 1350px) {
     grid-template-rows: 10% 73% 4% 18%;
   }
+
   .footer {
     grid-area: f;
     margin: 0 auto;
     width: fit-content;
+
     @media (max-width: 400px) {
       padding-top: 0.25rem;
     }
 
     h1 {
       font-size: 1.9rem;
+
       @media (max-width: 1350px) {
         font-size: 1.1rem;
         margin-top: 0.85rem;
       }
+
       @media (max-width: 400px) {
         font-size: 0.9rem;
       }
     }
+
     p {
       font-size: 1.1rem;
       margin-top: 0.5rem;
@@ -42,6 +48,7 @@
       margin-right: auto;
       margin-left: auto;
       width: fit-content;
+
       @media (max-width: 1350px) {
         display: none;
       }
@@ -58,19 +65,16 @@
   filter: brightness(40%) sepia(100%) hue-rotate(190deg) saturate(200%);
   width: 100%;
   height: 19rem;
-  > img {
-    @media (max-width: 740px) {
-      height: 100%;
-    }
-  }
+}
+
+.imageArticles {
+  background-image: url('../../assets/images/slider1.jpg');
 }
 
 .imageCrypto {
   filter: brightness(40%);
-  > img {
-    height: 100%;
-    width: 100%;
-  }
+  background-image: url('../../assets/images/slider2.jpg');
+  background-size: 100% 100%;
 }
 
 .carouselInfo {
@@ -87,6 +91,7 @@
     width: 18rem;
     max-height: 6.5rem;
     overflow-y: auto;
+
     @media (max-width: 400px) {
       width: 100%;
     }
@@ -102,6 +107,7 @@
       border-left: 10px solid rgb(0, 140, 255, 0.7);
       background-color: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(5px);
+
       @media (max-width: 1350px) {
         padding: 0.4rem 0.2rem;
         min-height: 3.5rem;
@@ -118,13 +124,15 @@
     > div:first-child {
       font-size: 1.1rem;
       font-weight: 500;
+
       @media (max-width: 400px) {
-        font-size: 0.9rem
+        font-size: 0.9rem;
       }
       > span {
         font-size: 0.9rem;
+
         @media (max-width: 400px) {
-          font-size: 0.7rem
+          font-size: 0.7rem;
         }
       }
     }
@@ -132,8 +140,9 @@
       margin-top: 0.1rem;
       font-size: 0.9rem;
       color: $color-secondary;
+
       @media (max-width: 400px) {
-        font-size: 0.7rem
+        font-size: 0.7rem;
       }
     }
   }
@@ -153,8 +162,9 @@
       margin-left: 0.5rem;
       font-size: 1.1rem;
       font-weight: 500;
+
       @media (max-width: 400px) {
-        font-size: 0.9rem
+        font-size: 0.9rem;
       }
     }
     > p:nth-child(2) {
@@ -166,8 +176,9 @@
       margin-top: 0.1rem;
       font-size: 0.9rem;
       color: $color-secondary;
+
       @media (max-width: 400px) {
-        font-size: 0.7rem
+        font-size: 0.7rem;
       }
     }
   }
@@ -179,14 +190,15 @@
 }
 
 .articlesDate {
-display: flex;
-align-items: center;
-gap: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .coins {
   padding: 0.6rem 2.3rem;
   text-align: center;
+
   @media (max-width: 880px) {
     padding: 0rem 0rem;
   }
@@ -213,9 +225,11 @@ gap: 4px;
   @media (min-width: 1411px) {
     justify-content: center;
   }
+
   @media (max-width: 1360px) {
     padding: 0.9rem 0.2rem 0.5rem 0.2rem;
   }
+
   @media (max-width: 880px) {
     padding: 0.2rem 0.6rem 0.5rem 0.6rem;
   }
@@ -238,6 +252,7 @@ gap: 4px;
     width: 31%;
     padding: 0.35rem 0.1rem;
     font-size: 0.8rem;
+
     > img {
       margin-top: 10px;
       display: block;
@@ -246,10 +261,12 @@ gap: 4px;
       margin: 0 auto;
       filter: brightness(100%);
     }
+
     > p:nth-child(2) {
       margin-top: 0.7rem;
       font-weight: 500;
     }
+
     > p:nth-child(3) {
       margin-top: 0.1rem;
     }
@@ -261,20 +278,24 @@ gap: 4px;
   height: 100%;
   font-size: 15px;
   padding: 0.2rem 0.2rem 0.2rem 0;
+
   > .cryptoRightTop {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 30%;
+
     > p:nth-child(2) {
       margin-top: 0.14rem;
     }
+
     .price {
       font-weight: 680;
       color: $color-main;
       margin-top: 0.14rem;
     }
   }
+
   .chart {
     width: 100%;
     height: 70%;
@@ -289,10 +310,12 @@ gap: 4px;
   justify-content: center;
   color: $color-main;
   padding: 0 2.5rem;
+
   @media (max-width: 1360px) {
     margin-top: 1rem;
     width: 100%;
   }
+
   @media (max-width: 1020px) {
     flex-direction: column;
     padding: 0 1rem;
@@ -300,9 +323,11 @@ gap: 4px;
   h2 {
     text-align: left;
     font-size: 1.2rem;
+
     @media (max-width: 1020px) {
       text-align: center;
     }
+
     .arrow {
       width: 18px;
       height: 18px;
@@ -317,28 +342,35 @@ gap: 4px;
   max-width: 57%;
   font-size: 1.05rem;
   margin-right: 4rem;
+
   @media (max-width: 1210px) {
     max-width: 95%;
-    margin: 0 auto;  
+    margin: 0 auto;
   }
+
   > .articlesLeftList {
     display: flex;
     gap: 5vw;
     margin-top: 0.7rem;
+
     @media (max-width: 1210px) {
       justify-content: center;
     }
+
     @media (max-width: 568px) {
       flex-wrap: wrap;
     }
+
     .articlesLeftLink {
       &:hover img {
         transform: scale(1.05);
       }
+
       > .articlesLeftImg {
         height: 9.5rem;
         width: 16rem;
         overflow: hidden;
+
         img {
           width: 100%;
           height: 100%;
@@ -348,12 +380,14 @@ gap: 4px;
           transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
         }
       }
+
       > p:nth-child(2) {
         margin-top: 0.3rem;
         margin-bottom: -0.2rem;
         font-size: 1rem;
         width: 13.5rem;
       }
+
       > p:nth-child(3) {
         display: flex;
         margin-top: 0.3rem;
@@ -369,13 +403,16 @@ gap: 4px;
   margin: 0 auto;
   border-left: 1px solid $color-secondary;
   margin-left: 2rem;
+
   @media (max-width: 1020px) {
     max-width: 34.6rem;
     border: none;
     margin-left: auto;
   }
+
   .articlesRightTitle {
     margin-left: 1.75rem;
+
     @media (max-width: 1020px) {
       margin-top: 1.2rem;
       margin-bottom: 0.5rem;
@@ -386,12 +423,15 @@ gap: 4px;
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+
     @media (max-width: 1020px) {
       margin-bottom: 1.5rem;
     }
+
     .articlesRightItem {
-     min-height: 4.8rem; 
+      min-height: 4.8rem;
     }
+
     .articlesRightLink {
       display: grid;
       grid-template-columns: 59px 1fr;
@@ -399,20 +439,25 @@ gap: 4px;
       margin-top: 0.5rem;
       margin-left: 1.75rem;
       font-size: 1rem;
+
       &:hover img {
         transform: scale(1.15);
       }
+
       @media (max-width: 1020px) {
         margin-left: 0;
       }
+
       .articlesRightImg {
         width: 100%;
         height: 59px;
         border-radius: 50%;
         overflow: hidden;
+
         @media (max-width: 1210px) {
           margin-top: 0.5rem;
         }
+
         img {
           width: 100%;
           height: 100%;
@@ -426,6 +471,7 @@ gap: 4px;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
+
         > p:nth-child(2) {
           flex-grow: 1;
           display: flex;
