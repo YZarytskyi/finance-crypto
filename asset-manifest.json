@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/finance-crypto/static/css/main.40ab6455.css",
-    "main.js": "/finance-crypto/static/js/main.a405660d.js",
+    "main.css": "/finance-crypto/static/css/main.3ef701b2.css",
+    "main.js": "/finance-crypto/static/js/main.aef8c293.js",
     "static/css/298.febc4ae9.chunk.css": "/finance-crypto/static/css/298.febc4ae9.chunk.css",
     "static/js/298.a3bd8560.chunk.js": "/finance-crypto/static/js/298.a3bd8560.chunk.js",
     "static/css/686.2a2dcb0c.chunk.css": "/finance-crypto/static/css/686.2a2dcb0c.chunk.css",
@@ -49,7 +49,7 @@
     "index.html": "/finance-crypto/index.html"
   },
   "entrypoints": [
-    "static/css/main.40ab6455.css",
-    "static/js/main.a405660d.js"
+    "static/css/main.3ef701b2.css",
+    "static/js/main.aef8c293.js"
   ]
 }
