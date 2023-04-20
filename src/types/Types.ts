@@ -180,7 +180,7 @@ export interface ArbitrageResult {
 
 export interface CoinSearchForm {
   api_symbol: string
-  component: string
+  component?: string
   id: string
   large: string
   market_cap_rank: number

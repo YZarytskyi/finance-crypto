@@ -5,7 +5,8 @@ import { cryptoApi } from 'api/cryptoApi'
 import { Spinner } from '../index'
 import { useLocalStorageState } from 'hooks/useStorage'
 import { RecentSearchBlock } from './RecentSearchBlock'
-import { RecentSearch, SearchData } from 'types/Types'
+import { CoinSearchForm, ExchangeSearchForm, RecentSearch, SearchData } from 'types/Types'
+import { getHighlightedText } from 'utils/highlightText'
 import sprite from 'assets/images/icons.svg'
 import style from './SearchForm.module.scss'
 
@@ -31,6 +32,7 @@ const SearchFormOpen = ({
   const [data, setData] = useState<Partial<SearchData>>({})
 
   const debouncedValue = useDebounce<string>(query.toLowerCase(), 250)
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await cryptoApi.getSearchDataByQuery(debouncedValue)
@@ -48,15 +50,18 @@ const SearchFormOpen = ({
     setQuery(e.target.value)
   }
 
-  const onClickSetLocalStorage = (el: any, component?: Component) => {
+  const onClickSetLocalStorage = (
+    element: CoinSearchForm | ExchangeSearchForm,
+    component?: Component,
+  ) => {
     onClickCloseSearch()
     if (component) {
-      el = { component, ...el }
+      element = { ...element, component }
     }
 
-    const filterRecentSearch = recentSearch.filter((obj) => obj.id !== el.id)
+    const filterRecentSearch = recentSearch.filter((obj) => obj.id !== element.id)
 
-    const setToStorage = [el, ...filterRecentSearch]
+    const setToStorage = [element, ...filterRecentSearch]
     if (setToStorage.length > 3) {
       setToStorage.length = 3
     }
@@ -97,6 +102,7 @@ const SearchFormOpen = ({
                 Loading <Spinner className={'spinnerSearch'} />
               </p>
               <RecentSearchBlock
+                query={query}
                 recentSearch={recentSearch}
                 onClickSetLocalStorage={onClickSetLocalStorage}
               />
@@ -106,7 +112,7 @@ const SearchFormOpen = ({
               <p className={style.label}>Cryptocurrencies</p>
               <ul>
                 {data.coins?.length ? (
-                  data.coins.map((el: any) => (
+                  data.coins.map((el) => (
                     <li key={el.id}>
                       <Link
                         to={`/crypto/coins/${el.id}`}
@@ -115,7 +121,7 @@ const SearchFormOpen = ({
                       >
                         <img src={el.thumb} alt={el.name} className={style.itemImage} />
                         <p>
-                          {el.name}
+                          {getHighlightedText(el.name, query)}
                           <span className={style.itemSymbol}>{el.symbol}</span>
                         </p>
                       </Link>
@@ -129,7 +135,7 @@ const SearchFormOpen = ({
               <p className={style.label}>Exchanges</p>
               <ul>
                 {data.exchanges?.length ? (
-                  data.exchanges.map((el: any) => (
+                  data.exchanges.map((el) => (
                     <li key={el.id}>
                       <Link
                         to={`/crypto/exchanges/${el.id}`}
@@ -137,7 +143,7 @@ const SearchFormOpen = ({
                         onClick={() => onClickSetLocalStorage(el, 'exchanges')}
                       >
                         <img src={el.thumb} alt={el.name} className={style.itemImage} />
-                        <p>{el.name}</p>
+                        <p>{getHighlightedText(el.name, query)}</p>
                       </Link>
                     </li>
                   ))
@@ -147,6 +153,7 @@ const SearchFormOpen = ({
               </ul>
 
               <RecentSearchBlock
+                query={query}
                 recentSearch={recentSearch}
                 onClickSetLocalStorage={onClickSetLocalStorage}
               />

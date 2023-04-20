@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom'
-import { RecentSearch } from 'types/Types'
+import { getHighlightedText } from 'utils/highlightText'
+import { CoinSearchForm, ExchangeSearchForm, RecentSearch } from 'types/Types'
 import style from './SearchForm.module.scss'
 
 interface RecentSearchBlockProps {
+  query: string
   recentSearch: RecentSearch[]
-  onClickSetLocalStorage: (el: any) => void
+  onClickSetLocalStorage: (el: CoinSearchForm | ExchangeSearchForm) => void
 }
 
-const RecentSearchBlock = ({ recentSearch, onClickSetLocalStorage }: RecentSearchBlockProps) => {
+const RecentSearchBlock = ({
+  query,
+  recentSearch,
+  onClickSetLocalStorage,
+}: RecentSearchBlockProps) => {
   if (!recentSearch.length) {
     return null
   }
@@ -23,7 +29,7 @@ const RecentSearchBlock = ({ recentSearch, onClickSetLocalStorage }: RecentSearc
               onClick={() => onClickSetLocalStorage(el)}
             >
               <img src={el.thumb} alt='Logo' className={style.recentSearchImage} />
-              <p>{el.name}</p>
+              <p>{getHighlightedText(el.name, query)}</p>
             </Link>
           </li>
         ))}
